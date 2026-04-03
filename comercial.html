@@ -62,8 +62,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .hg-ptr{position:absolute;width:100%;height:100%;top:-50%;left:-50%;background:radial-gradient(circle at center,rgba(176,140,24,.6) 0%,rgba(176,140,24,.55) 10%,rgba(176,140,24,.42) 20%,rgba(176,140,24,.3) 30%,rgba(176,140,24,.18) 40%,rgba(176,140,24,.09) 50%,rgba(176,140,24,.03) 60%,rgba(176,140,24,0) 70%) no-repeat;mix-blend-mode:hard-light;opacity:.7;pointer-events:none;transition:transform .05s linear}
 @keyframes bMC{0%{transform:rotate(0deg)}50%{transform:rotate(180deg)}100%{transform:rotate(360deg)}}
 @keyframes bMH{0%{transform:translateX(-50%) translateY(-10%)}50%{transform:translateX(50%) translateY(10%)}100%{transform:translateX(-50%) translateY(-10%)}}
-.hero-inner{position:relative;z-index:2;height:100%;display:grid;grid-template-columns:1fr 42%;align-items:end}
-.hero-content{padding:0 var(--gutter) 5rem;z-index:2}
+.hero-inner{position:relative;z-index:2;height:100%;display:grid;grid-template-columns:1fr 42%;align-items:flex-start}
+.hero-content{padding:7rem var(--gutter) 5rem;z-index:2}
 .hero-noise{position:absolute;inset:0;z-index:1;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px;pointer-events:none}
 .hero-eyebrow{font-size:.55rem;font-weight:400;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;opacity:0;transform:translateY(10px);animation:fu .7s .3s forwards}
 .hero-title{font-weight:900;font-size:clamp(3.5rem,11vw,10rem);line-height:.88;letter-spacing:-.02em;color:#f2ede6;will-change:transform,opacity}
@@ -101,6 +101,8 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
 /* ═══════════════════════════════════════════════════════════════════ */
 /* PAGE-SPECIFIC STYLES — comercial.html only */
 /* ═══════════════════════════════════════════════════════════════════ */
+
+.hero-title .tl:first-child{margin-bottom:1.5rem}
 
 .stmt{padding:12vh var(--gutter)}
 .stmt h2{font-size:clamp(1.5rem,4vw,2.2rem);font-weight:700;line-height:1.2;margin-bottom:2.5rem;letter-spacing:-.02em}
@@ -177,7 +179,7 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
 
 <nav>
   <a href="/" class="nav-logo">
-    <div class="nav-wordmark">MATI<span>RATH</span>.jpg</div>
+    <div class="nav-wordmark">mati<span>rath</span>.jpg</div>
   </a>
   <div class="nav-burger-wrap">
     <button class="nav-burger" id="burger" aria-label="Menú" aria-expanded="false">

@@ -72,8 +72,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .hg-ptr{position:absolute;width:100%;height:100%;top:-50%;left:-50%;background:radial-gradient(circle at center,rgba(176,140,24,.6) 0%,rgba(176,140,24,.55) 10%,rgba(176,140,24,.42) 20%,rgba(176,140,24,.3) 30%,rgba(176,140,24,.18) 40%,rgba(176,140,24,.09) 50%,rgba(176,140,24,.03) 60%,rgba(176,140,24,0) 70%) no-repeat;mix-blend-mode:hard-light;opacity:.7;pointer-events:none;transition:transform .05s linear}
 @keyframes bMC{0%{transform:rotate(0deg)}50%{transform:rotate(180deg)}100%{transform:rotate(360deg)}}
 @keyframes bMH{0%{transform:translateX(-50%) translateY(-10%)}50%{transform:translateX(50%) translateY(10%)}100%{transform:translateX(-50%) translateY(-10%)}}
-.hero-inner{position:relative;z-index:2;height:100%;display:grid;grid-template-columns:1fr 42%;align-items:end}
-.hero-content{padding:0 var(--gutter) 5rem;z-index:2}
+.hero-inner{position:relative;z-index:2;height:100%;display:grid;grid-template-columns:1fr 42%;align-items:flex-start}
+.hero-content{padding:12rem var(--gutter) 5rem;z-index:2}
 .hero-noise{position:absolute;inset:0;z-index:1;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px;pointer-events:none}
 .hero-eyebrow{font-size:.55rem;font-weight:400;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;opacity:0;transform:translateY(10px);animation:fu .7s .3s forwards}
 .hero-title{font-weight:900;font-size:clamp(3.5rem,11vw,10rem);line-height:.88;letter-spacing:-.02em;color:#f2ede6;will-change:transform,opacity}
@@ -89,17 +89,26 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .hero-bar{width:1px;height:44px;background:linear-gradient(to bottom,var(--gold),transparent);animation:sp 2s ease-in-out infinite}
 @keyframes sp{0%{opacity:0}20%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translateY(10px)}}
 
+.hero-gallery{position:relative;overflow:hidden;margin:0;min-width:100vw;width:100vw;left:50%;right:50%;transform:translateX(-50%);background:#111;padding:0;}
+.gallery-track{position:relative;display:flex;justify-content:center;align-items:center;width:auto;height:auto;min-width:0;min-height:0;}
+.gallery-track img{position:static;width:auto;height:auto;max-width:100%;max-height:80vh;object-fit:contain;border-radius:0;border:none;opacity:0;transition:opacity .6s ease;animation:slideFade 10s linear infinite;display:block;margin:auto;}
+.gallery-track img:nth-child(1){animation-delay:0s;}
+.gallery-track img:nth-child(2){animation-delay:5s;}
+@keyframes slideFade{0%{opacity:1;}45%{opacity:1;}55%{opacity:0;}100%{opacity:0;}}
+
+
 /* ── FOOTER ── */
 footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1fr;gap:2rem;align-items:center;border-top:1px solid rgba(176,140,24,.1)}
 .fl{display:flex;align-items:center;gap:.8rem}
-.ph-logo{width:40px;height:40px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.65rem;color:#0a0908}
+.ph-logo{width:40px;height:40px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.65rem;color:#0a0908;margin-right:.75rem}
+.ph-logo img{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}
 .ph-logo-sm{width:32px;height:32px;font-size:.55rem}
 .fm{font-size:.7rem;font-weight:600;letter-spacing:.08em;color:#f2ede6}
 .fh{font-size:.65rem;color:rgba(242,237,230,.6);letter-spacing:.08em}
 .fc{font-size:.6rem;color:rgba(242,237,230,.5);text-align:right}
 
 /* ── BACK TO TOP ── */
-.back-top{position:fixed;bottom:2rem;right:var(--gutter);z-index:190;width:40px;height:40px;background:rgba(176,140,24,.1);border:1px solid rgba(176,140,24,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:all .3s;outline:none}
+.back-top{position:fixed;bottom:6rem;right:var(--gutter);z-index:190;width:40px;height:40px;background:rgba(176,140,24,.1);border:1px solid rgba(176,140,24,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:all .3s;outline:none}
 .back-top.visible{opacity:1;pointer-events:auto}
 .back-top:hover{background:rgba(176,140,24,.2);border-color:var(--gold)}
 .back-top-arr{display:block;font-size:1rem;color:var(--gold)}
@@ -116,17 +125,19 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
 /* PAGE-SPECIFIC STYLES — index.html only */
 /* ═══════════════════════════════════════════════════════════════════ */
 
-.mq{overflow:hidden;padding:.95rem 0;border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04)}
-.mq-t{display:inline-flex;gap:2.5rem;animation:mqa 24s linear infinite;white-space:nowrap}
+.mq{overflow:hidden;padding:.95rem 0;border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04);position:relative;height:1.5rem}
+.mq-t{display:inline-flex;gap:2.5rem;animation:mqa 24s linear infinite;white-space:nowrap;position:absolute;top:0;left:0}
+.mq-t + .mq-t{animation-delay:-12s}
 .mq-t span{font-weight:700;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(176,140,24,.3)}
 .mq-t .dot{color:rgba(176,140,24,.12)}
 @keyframes mqa{from{transform:translateX(0)}to{transform:translateX(-50%)}}
 
-.nav-svc{padding:12vh var(--gutter)}
+.nav-svc{padding:12vh var(--gutter);background-image:url("imgs/fondocampo.jpg");background-size:cover;background-position:bottom center;background-repeat:no-repeat;position:relative;z-index:0;overflow:hidden}
+.nav-svc::before{content:'';position:absolute;inset:0;background:rgba(10,9,8,.45);z-index:1}
 .svc-nav-inner{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:3rem;max-width:100%}
-section>*,.svc-nav-inner{position:relative;z-index:1}
-.svc-nav-card{background:rgba(10,9,8,.7);border:1px solid rgba(176,140,24,.08);border-radius:12px;padding:2.5rem;transition:all .3s;cursor:pointer}
-.svc-nav-card:hover{border-color:rgba(176,140,24,.25);background:rgba(10,9,8,.9)}
+section>*,.svc-nav-inner{position:relative;z-index:2}
+.svc-nav-card{background:rgba(10,9,8,.7);border:1px solid rgba(176,140,24,.08);border-radius:12px;padding:2.5rem;transition:all .3s;cursor:pointer;backdrop-filter:blur(4px)}
+.svc-nav-card:hover{border-color:rgba(176,140,24,.25);background:rgba(10,9,8,.75)}
 .svc-nav-card h3{font-size:1.2rem;font-weight:700;color:#f2ede6;margin-bottom:1rem;letter-spacing:.02em}
 .svc-nav-card p{font-size:.75rem;color:rgba(242,237,230,.7);line-height:1.7;margin-bottom:1.8rem;max-width:35ch}
 .svc-nav-card .arrow{display:inline-block;color:var(--gold);font-size:.9rem;transition:transform .3s}
@@ -141,10 +152,16 @@ section>*,.svc-nav-inner{position:relative;z-index:1}
 .ap-num{display:block;font-size:.65rem;font-weight:700;letter-spacing:.25em;text-transform:uppercase;color:var(--gold);margin-bottom:.8rem}
 
 .cta{padding:12vh var(--gutter)}
-.shine-box{text-align:center}
+.shine-box{text-align:center;position:relative;overflow:hidden;border:1px solid rgba(184,144,38,.35);border-radius:12px;padding:4rem 3rem;transition:transform .35s ease,box-shadow .35s ease}
+.shine-box::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at 30% 30%,rgba(255,255,255,.15),transparent 50%),radial-gradient(circle at 70% 70%,rgba(176,140,24,.25),transparent 45%);opacity:0;transition:opacity .3s ease}
+.shine-box::after{content:'';position:absolute;left:-120%;top:0;width:120%;height:100%;background:linear-gradient(120deg,rgba(255,255,255,0) 0%,rgba(255,255,255,.25) 50%,rgba(255,255,255,0) 100%);transform:translateX(0);animation:shimmer 4s linear infinite;pointer-events:none;opacity:.45}
+.shine-box:hover{transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,.25)}
+.shine-box:hover::before{opacity:1}
+@keyframes shimmer{0%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
 .cta-lbl{display:block;font-size:.6rem;font-weight:500;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);margin-bottom:2rem}
 .cta h2{font-size:clamp(2.5rem,7vw,4rem);font-weight:900;line-height:1;margin-bottom:1.8rem;letter-spacing:-.02em}
 .cta h2 em{font-style:italic;color:var(--gold)}
+.cta h2 .highlight{color:var(--gold);font-style:italic;}
 .cta-sub{display:block;font-size:.75rem;color:rgba(242,237,230,.7);line-height:1.8;max-width:70ch;margin:0 auto 2rem;font-weight:300}
 .cta-email{display:inline-block;font-size:.7rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:.8rem 1.8rem;border:1px solid var(--gold);border-radius:6px;transition:all .3s}
 .cta-email:hover{background:var(--gold);color:#0a0908}
@@ -167,7 +184,7 @@ section>*,.svc-nav-inner{position:relative;z-index:1}
 
 <nav>
   <a href="/" class="nav-logo">
-    <div class="nav-wordmark">MATI<span>RATH</span>.jpg</div>
+    <div class="nav-wordmark">mati<span>rath</span>.jpg</div>
   </a>
   <div class="nav-burger-wrap">
     <button class="nav-burger" id="burger" aria-label="Menú" aria-expanded="false">
@@ -196,12 +213,12 @@ section>*,.svc-nav-inner{position:relative;z-index:1}
   <div class="hero-overlay" id="heroOverlay"></div>
   <div class="hero-inner">
     <div class="hero-content">
-      <div class="hero-eyebrow">La imágen como sistema</div>
+      <div class="hero-eyebrow">Imágenes que construyen marcas</div>
       <h1 class="hero-title" id="heroTitle">
-        <span class="tl"><span class="out">.jpg</span></span>
-        <span class="tl">fotografía </span>
+        <span class="tl"><span class="out">RATH</span></span>
+        <span class="tl">fotografía <span class="itl">de marca.</span></span>
       </h1>
-      <p class="hero-sub">Flash off-camera. Composición intencional. Visión editorial.</p>
+      <p class="hero-sub">Flash off-camera. Composición intencional. Visión editorial. Para emprendedores y negocios que compiten por valor, no por precio.</p>
     </div>
   </div>
   <div class="hero-scroll">
@@ -209,8 +226,18 @@ section>*,.svc-nav-inner{position:relative;z-index:1}
     <div class="hero-bar"></div>
   </div>
   <svg class="hero-svg-filter">
-    <filter id="goo"><feGaussianBlur in="SourceGraphic" stdDeviation="10" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    <filter id="goo"><feGaussianBlur in="SourceGraphic" stdDeviation="10" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="S    @media(max-width:768px){
+      .hero-content { padding: 8rem var(--gutter) 3rem; }
+      .gallery-track img { height: 140px; }
+    }ourceGraphic"/></feMerge></filter>
   </svg>
+</section>
+
+<section class="hero-gallery s-dark2">
+  <div class="gallery-track">
+    <img src="imgs/agus1.webp" alt="Galería foto 1" />
+    <img src="imgs/agus2.webp" alt="Galería foto 2" />
+  </div>
 </section>
 
 <section class="mq s-dark">
@@ -221,7 +248,7 @@ section>*,.svc-nav-inner{position:relative;z-index:1}
     <span class="dot">•</span>
     <span>Marca</span>
     <span class="dot">•</span>
-    <span>La Plata</span>
+    <span>Buenos Aires</span>
     <span class="dot">•</span>
     <span>Editorial</span>
     <span class="dot">•</span>
@@ -235,7 +262,7 @@ section>*,.svc-nav-inner{position:relative;z-index:1}
     <span class="dot">•</span>
     <span>Identidad Visual</span>
   </div>
-  <div class="mq-t" style="animation-delay:-12s">
+  <div class="mq-t">
     <span>Flash Off-Camera</span>
     <span class="dot">•</span>
     <span>Identidad Visual</span>
@@ -300,15 +327,15 @@ section>*,.svc-nav-inner{position:relative;z-index:1}
 
 <section class="cta s-dark2" id="cta">
   <div class="shine-box">
-    <p class="cta-lbl r">Trabajo con pocos clientes a la vez. Con intención.</p>
-    <h2 class="r">TU MARCA<br>MERECE<br><em>esto.</em></h2>
-    <p class="cta-sub r d1">Si entendés que la imagen es una inversión y no un gasto,<br>probablemente trabajemos bien juntos.</p>
-    <a href="mailto:hola@matirath.jpg" class="cta-email r d2">Contáme tu proyecto &nbsp;→</a>
+    <p class="cta-lbl r">La imagen como sistema</p>
+    <h2 class="r">Una forma<br>de <span class="highlight">mirar</span></h2>
+    <p class="cta-sub r d1">No se trata solo de fotografiar, sino de cómo se construye una imagen.</p>
+    <a href="https://wa.me/5492954230852?text=Hola%20Mat%C3%ADas%2C%20estuve%20viendo%20tu%20web%20y%20me%20interesa%20una%20producci%C3%B3n%20de%20fotos.%0A%0ATe%20cuento%20un%20poco%20mi%20proyecto%3A%0A%5Bbreve%20descripci%C3%B3n%5D%0A%0AFecha%20aproximada%3A%0A%5Bfecha%5D%0A%0ALugar%3A%0A%5Bubicaci%C3%B3n%5D%0A%0AQuedo%20atento%20a%20tu%20disponibilidad.%20%C2%A1Gracias%21" class="cta-email r d2" target="_blank" rel="noopener">Iniciar proyecto &nbsp;→</a>
   </div>
 </section>
 
 <footer class="s-dark">
-  <div class="fl"><div class="ph-logo ph-logo-sm">MR</div><span class="fm">matirath.jpg</span></div>
+  <div class="fl"><div class="ph-logo ph-logo-sm"><img src="imgs/LOGOMATIRATH.png" alt="Logo Matirath"></div><span class="fm">matirath.jpg</span></div>
   <span class="fh">@matirath.jpg</span>
   <span class="fc">© <span id="yr"></span> Matías Rath · Argentina</span>
 </footer>
