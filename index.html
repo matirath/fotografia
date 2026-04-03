@@ -85,7 +85,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .hero-overlay{position:absolute;inset:0;z-index:1;background:#0a0908;opacity:.45;pointer-events:none;transition:opacity .05s linear}
 .hero-title .out{-webkit-text-stroke:2.5px #f2ede6;color:transparent;transition:color .1s linear,-webkit-text-stroke-color .1s linear}
 .hero-title .itl{font-style:italic;font-weight:500;font-size:.52em;color:var(--gold);display:block;margin-top:.15em;letter-spacing:.04em;transition:color .1s linear}
-.hero-sub{margin-top:1.8rem;font-size:.75rem;font-weight:300;letter-spacing:.04em;line-height:1.9;color:rgba(242,237,230,.6);max-width:42ch;opacity:0;transform:translateY(10px);animation:fu .7s .85s forwards}
+.hero-sub{margin-top:3.8rem;font-size:1.6rem;font-weight:600;letter-spacing:.03em;line-height:1.8;color:rgba(242,237,230,.9);max-width:55ch;opacity:0;transform:translateY(10px);animation:fu .7s .85s forwards}
 @keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .hero-scroll{position:absolute;right:var(--gutter);bottom:5rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;z-index:2;opacity:0;animation:fu .7s 1.3s forwards}
 .hero-scroll span{font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(242,237,230,.45);writing-mode:vertical-rl}
@@ -141,10 +141,10 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
 .nav-svc::before{content:'';position:absolute;inset:0;background:rgba(10,9,8,.45);z-index:1}
 .svc-nav-inner{display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:3rem;max-width:100%}
 section>*,.svc-nav-inner{position:relative;z-index:2}
-.svc-nav-card{background:rgba(10,9,8,.7);border:1px solid rgba(176,140,24,.08);border-radius:12px;padding:2.5rem;transition:all .3s;cursor:pointer;backdrop-filter:blur(4px)}
-.svc-nav-card:hover{border-color:rgba(176,140,24,.25);background:rgba(10,9,8,.75)}
+.svc-nav-card{background:linear-gradient(145deg,rgba(255,255,255,.08),rgba(255,255,255,.04));border:1px solid rgba(255,255,255,.25);box-shadow:0 16px 30px rgba(0,0,0,.25), inset 0 0 0 1px rgba(255,255,255,.08);border-radius:16px;padding:2.8rem;transition:transform .3s,box-shadow .3s,background .3s;cursor:pointer;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);}
+.svc-nav-card:hover{transform:translateY(-6px);box-shadow:0 24px 40px rgba(0,0,0,.35), inset 0 0 0 1px rgba(255,255,255,.16);background:linear-gradient(145deg,rgba(255,255,255,.18),rgba(255,255,255,.06));border-color:rgba(255,255,255,.45)}
 .svc-nav-card h3{font-size:1.2rem;font-weight:700;color:#f2ede6;margin-bottom:1rem;letter-spacing:.02em}
-.svc-nav-card p{font-size:.75rem;color:rgba(242,237,230,.7);line-height:1.7;margin-bottom:1.8rem;max-width:35ch}
+.svc-nav-card p{font-size:.75rem;color:rgba(242,237,230,.85);line-height:1.7;margin-bottom:1.8rem;max-width:35ch}
 .svc-nav-card .arrow{display:inline-block;color:var(--gold);font-size:.9rem;transition:transform .3s}
 .svc-nav-card:hover .arrow{transform:translateX(4px)}
 .svc-nav-card a{text-decoration:none;color:var(--gold);font-size:.7rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase}
@@ -223,7 +223,7 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
         <span class="tl"><span class="out">.jpg</span></span>
         <span class="tl">fotografía</span>
       </h1>
-      <p class="hero-sub">Flash off-camera. Composición intencional. Visión editorial.</p>
+      <p class="hero-sub">comercial, eventos y proyectos.</p>
     </div>
   </div>
   <div class="hero-scroll">
@@ -236,20 +236,6 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
       .gallery-track img { height: 140px; }
     }ourceGraphic"/></feMerge></filter>
   </svg>
-</section>
-
-<section class="hero-gallery s-dark2">
-  <div class="gallery-track" id="galleryTrack">
-    <img src="imgs/galeriainicio1.jpg" alt="Galería foto 1" class="active" />
-    <img src="imgs/galeriainicio2.jpg" alt="Galería foto 2" />
-    <img src="imgs/galeriainicio3.jpg" alt="Galería foto 3" />
-    <img src="imgs/galeriainicio4.jpg" alt="Galería foto 4" />
-    <img src="imgs/galeriainicio5.jpg" alt="Galería foto 5" />
-    <img src="imgs/galeriainicio6.jpg" alt="Galería foto 6" />
-    <img src="imgs/galeriainicio7.jpg" alt="Galería foto 7" />
-    <img src="imgs/galeriainicio8.jpg" alt="Galería foto 8" />
-  </div>
-  <div class="gallery-dots" id="galleryDots" aria-label="Navegación de galería"></div>
 </section>
 
 <section class="mq s-dark">
@@ -310,11 +296,25 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
       <a href="/eventos.html">Ver más <span class="arrow">→</span></a>
     </div>
     <div class="svc-nav-card r d2">
-      <h3>PERSONAL</h3>
-      <p>Para emprendedores y creadores. Retratos que comunican quiénes sos. Presencia visual que genera autoridad.</p>
-      <a href="/comercial.html#personal">Ver más <span class="arrow">→</span></a>
+      <h3>CONTACTO</h3>
+      <p>¿Listo para producir tu próxima imagen de marca? Hablemos.</p>
+      <a href="/contacto.html">Ir a contacto <span class="arrow">→</span></a>
     </div>
   </div>
+</section>
+
+<section class="hero-gallery s-dark2">
+  <div class="gallery-track" id="galleryTrack">
+    <img src="imgs/galeriainicio1.jpg" alt="Galería foto 1" class="active" />
+    <img src="imgs/galeriainicio2.jpg" alt="Galería foto 2" />
+    <img src="imgs/galeriainicio3.jpg" alt="Galería foto 3" />
+    <img src="imgs/galeriainicio4.jpg" alt="Galería foto 4" />
+    <img src="imgs/galeriainicio5.jpg" alt="Galería foto 5" />
+    <img src="imgs/galeriainicio6.jpg" alt="Galería foto 6" />
+    <img src="imgs/galeriainicio7.jpg" alt="Galería foto 7" />
+    <img src="imgs/galeriainicio8.jpg" alt="Galería foto 8" />
+  </div>
+  <div class="gallery-dots" id="galleryDots" aria-label="Navegación de galería"></div>
 </section>
 
 <section class="ap s-dark" id="approach">
