@@ -17,6 +17,10 @@
 <meta property="og:image:height" content="1276"/>
 <meta property="og:image:alt" content="Matías Rath - Fotografía de marca"/>
 <meta property="og:url" content="https://www.matirath.com.ar"/>
+<link rel="canonical" href="https://www.matirath.com.ar/"/>
+<meta property="og:image:secure_url" content="https://www.matirath.com.ar/imgs/og-cover.jpg"/>
+<meta property="og:image:type" content="image/jpeg"/>
+<meta property="og:locale" content="es_AR"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="matirath.jpg — Fotografía de Marca"/>
 <meta name="twitter:description" content="Imágenes que construyen marcas. Flash off-camera. Visión editorial. Buenos Aires."/>
@@ -56,8 +60,8 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .nav-wordmark{font-weight:700;font-size:.9rem;letter-spacing:.14em;color:#f2ede6}
 .nav-wordmark span{color:var(--gold)}
 .nav-links{display:none;gap:2.8rem;align-items:center}
-.nav-links a{color:#f2ede6;text-decoration:none;font-size:.79rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:.55rem .8rem;border:1px solid rgba(255,255,255,.18);border-radius:14px;background:rgba(255,255,255,.08);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 10px 20px rgba(0,0,0,.20);transition:color .2s,background .25s,border-color .25s,box-shadow .25s,transform .25s,opacity .25s}
-.nav-links a:hover{color:#0a0908;background:rgba(255,255,255,.55);border-color:rgba(255,255,255,.35);box-shadow:0 12px 24px rgba(0,0,0,.24);transform:translateY(-1px);opacity:0.92}
+.nav-links a{color:var(--gold);text-decoration:none;font-size:.79rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:.55rem .8rem;border:1px solid rgba(176,140,24,.35);border-radius:14px;background:rgba(176,140,24,.14);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 10px 20px rgba(176,140,24,.15);transition:color .2s,background .25s,border-color .25s,box-shadow .25s,transform .25s,opacity .25s}
+.nav-links a:hover{color:#0a0908;background:rgba(176,140,24,.35);border-color:rgba(176,140,24,.55);box-shadow:0 12px 24px rgba(176,140,24,.22);transform:translateY(-1px);opacity:1}
 .nav-burger{display:flex;flex-direction:column;gap:5px;cursor:pointer;position:relative;z-index:201;padding:.5rem;background:none;border:none;outline:none}
 .nav-burger span{width:22px;height:1.5px;background:#f2ede6;display:block;transition:background .3s}
 .nav-burger:hover span{background:var(--gold)}
@@ -71,7 +75,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 @keyframes dropIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 
 /* ── HERO ── */
-.hero{height:100svh;min-height:600px;position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0908 0%,#1a1200 50%,#0a0908 100%)}
+.hero{min-height:65vh;min-height:clamp(560px,65vh,760px);position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0908 0%,#1a1200 50%,#0a0908 100%)}
 .hero-grad{position:absolute;inset:0;z-index:0;overflow:hidden;filter:url(#goo) blur(40px)}
 @media(max-width:768px){.hero-grad{filter:blur(60px)} .hg-blob{mix-blend-mode:normal} .hg2,.hg3,.hg4,.hg5{opacity:.5}}
 .hg-blob{position:absolute;border-radius:50%;mix-blend-mode:hard-light;opacity:.9}
@@ -187,6 +191,9 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
   .hero-gallery{height:70vh;min-height:420px}
   .gallery-track img{object-position:center top;object-fit:cover}
   .gallery-dots{bottom:1.4rem;gap:.65rem}
+  .hero-scroll{right:1.2rem;bottom:2.6rem;gap:.4rem}
+  .hero-scroll span{font-size:.44rem;letter-spacing:.28em}
+  .hero-bar{height:32px}
 
   nav{padding:.7rem 1.2rem}
   .nav-links a{padding:.6rem .9rem;font-size:.76rem;border-radius:14px}

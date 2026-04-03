@@ -8,6 +8,14 @@
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="Comercial — matirath.jpg"/>
 <meta property="og:description" content="Sesiones completas de brand photography. Flash off-camera. Sistema de imágenes."/>
+<meta property="og:url" content="https://www.matirath.com.ar/comercial.html"/>
+<link rel="canonical" href="https://www.matirath.com.ar/comercial.html"/>
+<meta property="og:image" content="https://www.matirath.com.ar/imgs/og-cover.jpg"/>
+<meta property="og:image:secure_url" content="https://www.matirath.com.ar/imgs/og-cover.jpg"/>
+<meta property="og:image:type" content="image/jpeg"/>
+<meta property="og:locale" content="es_AR"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:image" content="https://www.matirath.com.ar/imgs/og-cover.jpg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet"/>
@@ -39,6 +47,9 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .nav-logo{display:flex;align-items:center;gap:.75rem;text-decoration:none;position:relative;z-index:1}
 .nav-wordmark{font-weight:700;font-size:.9rem;letter-spacing:.14em;color:#f2ede6}
 .nav-wordmark span{color:var(--gold)}
+.nav-links{display:none;gap:2.8rem;align-items:center}
+.nav-links a{color:var(--gold);text-decoration:none;font-size:.79rem;font-weight:600;letter-spacing:.15em;text-transform:uppercase;padding:.55rem .8rem;border:1px solid rgba(176,140,24,.35);border-radius:14px;background:rgba(176,140,24,.14);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);box-shadow:0 10px 20px rgba(176,140,24,.15);transition:color .2s,background .25s,border-color .25s,box-shadow .25s,transform .25s,opacity .25s}
+.nav-links a:hover{color:#0a0908;background:rgba(176,140,24,.35);border-color:rgba(176,140,24,.55);box-shadow:0 12px 24px rgba(176,140,24,.22);transform:translateY(-1px);opacity:1}
 .nav-burger{display:flex;flex-direction:column;gap:5px;cursor:pointer;position:relative;z-index:201;padding:.5rem;background:none;border:none;outline:none}
 .nav-burger span{width:22px;height:1.5px;background:#f2ede6;display:block;transition:background .3s}
 .nav-burger:hover span{background:var(--gold)}
@@ -51,7 +62,7 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .nav-drop hr{border:none;border-top:1px solid rgba(176,140,24,.12);margin:.2rem .8rem}
 @keyframes dropIn{from{opacity:0;transform:translateY(-6px)}to{opacity:1;transform:translateY(0)}}
 
-.hero{height:100svh;min-height:600px;position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0908 0%,#1a1200 50%,#0a0908 100%)}
+.hero{min-height:55vh;min-height:clamp(520px,55vh,680px);position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0908 0%,#1a1200 50%,#0a0908 100%)}
 .hero-grad{position:absolute;inset:0;z-index:0;overflow:hidden;filter:url(#goo) blur(40px)}
 @media(max-width:768px){.hero-grad{filter:blur(60px)} .hg-blob{mix-blend-mode:normal} .hg2,.hg3,.hg4,.hg5{opacity:.5}}
 .hg-blob{position:absolute;border-radius:50%;mix-blend-mode:hard-light;opacity:.9}
@@ -62,20 +73,26 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .hg-ptr{position:absolute;width:100%;height:100%;top:-50%;left:-50%;background:radial-gradient(circle at center,rgba(176,140,24,.6) 0%,rgba(176,140,24,.55) 10%,rgba(176,140,24,.42) 20%,rgba(176,140,24,.3) 30%,rgba(176,140,24,.18) 40%,rgba(176,140,24,.09) 50%,rgba(176,140,24,.03) 60%,rgba(176,140,24,0) 70%) no-repeat;mix-blend-mode:hard-light;opacity:.7;pointer-events:none;transition:transform .05s linear}
 @keyframes bMC{0%{transform:rotate(0deg)}50%{transform:rotate(180deg)}100%{transform:rotate(360deg)}}
 @keyframes bMH{0%{transform:translateX(-50%) translateY(-10%)}50%{transform:translateX(50%) translateY(10%)}100%{transform:translateX(-50%) translateY(-10%)}}
-.hero-inner{position:relative;z-index:2;height:100%;display:grid;grid-template-columns:1fr 42%;align-items:flex-start}
-.hero-content{padding:7rem var(--gutter) 5rem;z-index:2}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 42%;align-items:center;min-height:inherit}
+.hero-content{padding:4.5rem var(--gutter) 3rem;max-width:58ch;z-index:2}
 .hero-noise{position:absolute;inset:0;z-index:1;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px;pointer-events:none}
-.hero-eyebrow{font-size:.55rem;font-weight:400;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;opacity:0;transform:translateY(10px);animation:fu .7s .3s forwards}
-.hero-title{font-weight:900;font-size:clamp(3.5rem,11vw,10rem);line-height:.88;letter-spacing:-.02em;color:#f2ede6;will-change:transform,opacity}
-.hero-title .tl{display:block;opacity:0;transform:translateY(32px) skewY(1.5deg);filter:blur(6px);will-change:transform,opacity,filter}
+.hero-eyebrow{font-size:.55rem;font-weight:400;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;opacity:0;transform:translateY(10px);animation:fu .7s .3s forwards}
+.hero-title{font-weight:900;font-size:clamp(3rem,8vw,7.5rem);line-height:.92;letter-spacing:-.02em;color:#f2ede6;will-change:transform,opacity}
+.hero-title .tl{display:block;opacity:0;transform:translateY(24px) skewY(1.5deg);filter:blur(6px);will-change:transform,opacity,filter}
 .hero-overlay{position:absolute;inset:0;z-index:1;background:#0a0908;opacity:.45;pointer-events:none;transition:opacity .05s linear}
 .hero-title .out{-webkit-text-stroke:2.5px #f2ede6;color:transparent;transition:color .1s linear,-webkit-text-stroke-color .1s linear}
 .hero-title .itl{font-style:italic;font-weight:500;font-size:.52em;color:var(--gold);display:block;margin-top:.15em;letter-spacing:.04em;transition:color .1s linear}
-.hero-sub{margin-top:1.8rem;font-size:.75rem;font-weight:300;letter-spacing:.04em;line-height:1.9;color:rgba(242,237,230,.6);max-width:42ch;opacity:0;transform:translateY(10px);animation:fu .7s .85s forwards}
+.hero-sub{margin-top:1.3rem;font-size:.9rem;font-weight:300;letter-spacing:.04em;line-height:1.8;color:rgba(242,237,230,.65);max-width:40ch;opacity:0;transform:translateY(10px);animation:fu .7s .85s forwards}
 @keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.hero-scroll{position:absolute;right:var(--gutter);bottom:5rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;z-index:2;opacity:0;animation:fu .7s 1.3s forwards}
+.hero-scroll{position:absolute;right:var(--gutter);bottom:3rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;z-index:2;opacity:0;animation:fu .7s 1.3s forwards}
 .hero-scroll span{font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(242,237,230,.45);writing-mode:vertical-rl}
 .hero-bar{width:1px;height:44px;background:linear-gradient(to bottom,var(--gold),transparent);animation:sp 2s ease-in-out infinite}
+.mq{overflow:hidden;padding:.95rem 0;border-top:1px solid rgba(176,140,24,.18);border-bottom:1px solid rgba(176,140,24,.18);position:relative;background:rgba(176,140,24,.06)}
+.mq-t{display:inline-flex;gap:2.5rem;white-space:nowrap;position:absolute;top:0;width:100%;left:0;transform:translateX(0);animation:mqa 24s linear infinite}
+.mq-t + .mq-t{left:100%}
+.mq-t span{font-weight:700;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:var(--gold)}
+.mq-t .dot{color:var(--gold)}
+@keyframes mqa{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
 @keyframes sp{0%{opacity:0}20%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translateY(10px)}}
 
 footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1fr;gap:2rem;align-items:center;border-top:1px solid rgba(176,140,24,.1)}
@@ -161,6 +178,9 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
 @media(max-width:768px){
   .hero-inner{grid-template-columns:1fr}
   .hero-content{padding:0 var(--gutter) 3rem}
+  .hero-scroll{right:1.2rem;bottom:2.6rem;gap:.4rem}
+  .hero-scroll span{font-size:.44rem;letter-spacing:.28em}
+  .hero-bar{height:32px}
   nav{padding:.8rem var(--gutter)}
   footer{grid-template-columns:1fr;gap:1rem;text-align:center}
   .fl{justify-content:center}
@@ -170,6 +190,10 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
   .testi-inner{grid-template-columns:1fr}
   .gal-card{flex:0 0 100%}
   .hgal-track{gap:2rem}
+}
+@media(min-width:769px){
+  .nav-burger-wrap{display:none}
+  .nav-links{display:flex}
 }
 </style>
 </head>
@@ -181,6 +205,12 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
   <a href="/" class="nav-logo">
     <div class="nav-wordmark">mati<span>rath</span>.jpg</div>
   </a>
+  <div class="nav-links">
+    <a href="/">Inicio</a>
+    <a href="/comercial.html">Comercial</a>
+    <a href="/eventos.html">Eventos</a>
+    <a href="/contacto.html">Contacto</a>
+  </div>
   <div class="nav-burger-wrap">
     <button class="nav-burger" id="burger" aria-label="Menú" aria-expanded="false">
       <span></span><span></span><span></span>
@@ -223,6 +253,47 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
   <svg class="hero-svg-filter">
     <filter id="goo"><feGaussianBlur in="SourceGraphic" stdDeviation="10" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
   </svg>
+</section>
+
+<section class="mq s-dark">
+  <div class="mq-t">
+    <span>Flash Off-Camera</span>
+    <span class="dot">•</span>
+    <span>Identidad Visual</span>
+    <span class="dot">•</span>
+    <span>Marca</span>
+    <span class="dot">•</span>
+    <span>Buenos Aires</span>
+    <span class="dot">•</span>
+    <span>Editorial</span>
+    <span class="dot">•</span>
+    <span>Sesiones Completas</span>
+    <span class="dot">•</span>
+    <span>Intención</span>
+    <span class="dot">•</span>
+    <span>Sistema de Imágenes</span>
+    <span class="dot">•</span>
+    <span>Flash Off-Camera</span>
+  </div>
+  <div class="mq-t">
+    <span>Flash Off-Camera</span>
+    <span class="dot">•</span>
+    <span>Identidad Visual</span>
+    <span class="dot">•</span>
+    <span>Marca</span>
+    <span class="dot">•</span>
+    <span>Buenos Aires</span>
+    <span class="dot">•</span>
+    <span>Editorial</span>
+    <span class="dot">•</span>
+    <span>Sesiones Completas</span>
+    <span class="dot">•</span>
+    <span>Intención</span>
+    <span class="dot">•</span>
+    <span>Sistema de Imágenes</span>
+    <span class="dot">•</span>
+    <span>Flash Off-Camera</span>
+  </div>
 </section>
 
 <section class="stmt s-light">

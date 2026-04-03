@@ -11,7 +11,7 @@
   :root { --blk:#0a0908; --blk2:#111009; --cream:#e8e1d5; --cream2:#f0ebe2; --gold:#b08c18; --gutter:3rem; --R:"Rubik",sans-serif; }
   *{box-sizing:border-box;margin:0;padding:0}
   body{font-family:var(--R);background:var(--blk);color:#f2ede6;line-height:1.6;overflow-x:hidden;}
-  .hero{min-height:100svh;position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0908 0%,#1a1200 50%,#0a0908 100%);}
+  .hero{min-height:65vh;min-height:clamp(560px,65vh,760px);position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0908 0%,#1a1200 50%,#0a0908 100%);}
   .hero-grad{position:absolute;inset:0;z-index:0;overflow:hidden;filter:url(#goo) blur(40px);}
   .hero-overlay{position:absolute;inset:0;z-index:1;background:#0a0908;opacity:.45;pointer-events:none;transition:opacity .05s linear;}
   .page{max-width:1120px;margin:0 auto;padding:2.2rem 1.5rem;position:relative;z-index:2;}
