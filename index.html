@@ -3,6 +3,10 @@
 <head>
 <meta charset="UTF-8"/>
 <meta name="viewport" content="width=device-width,initial-scale=1.0"/>
+<meta name="theme-color" content="#0a0908">
+<meta name="theme-color" content="#0a0908" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f0ebe2" media="(prefers-color-scheme: light)">
+<meta name="color-scheme" content="dark light">
 <title>matirath.jpg — Fotografía de Marca</title>
 <meta name="description" content="Matías Rath — Fotógrafo de marca en Buenos Aires. Sesiones de brand photography, eventos y personal branding. Flash off-camera. Visión editorial."/>
 <meta property="og:type" content="website"/>
@@ -175,7 +179,7 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
 .cta-email:hover{background:var(--gold);color:#0a0908}
 
 @media(max-width:768px){
-  .hero{min-height:75vh;min-height:calc(100vh - 5.5rem)}
+  .hero{min-height:60vh;min-height:calc(100vh - 6.5rem)}
   .hero-inner{grid-template-columns:1fr}
   .hero-content{padding:9rem 1.2rem 2.6rem;max-width:90%;margin:0 auto}
   .hero-sub{font-size:1.15rem;line-height:1.7;max-width:100%}
@@ -267,10 +271,13 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
     <div class="hero-bar"></div>
   </div>
   <svg class="hero-svg-filter">
-    <filter id="goo"><feGaussianBlur in="SourceGraphic" stdDeviation="10" result="coloredBlur"/><feMerge><feMergeNode in="coloredBlur"/><feMergeNode in="S    @media(max-width:768px){
-      .hero-content { padding: 8rem var(--gutter) 3rem; }
-      .gallery-track img { height: 140px; }
-    }ourceGraphic"/></feMerge></filter>
+    <filter id="goo">
+      <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="coloredBlur"/>
+      <feMerge>
+        <feMergeNode in="coloredBlur"/>
+        <feMergeNode in="SourceGraphic"/>
+      </feMerge>
+    </filter>
   </svg>
 </section>
 
