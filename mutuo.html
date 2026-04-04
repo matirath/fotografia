@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Mutuo — matirath.jpg</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
+<style>
+  :root { --blk:#0a0908; --cream:#e8e1d5; --gold:#b08c18; --gutter:3rem; --R:"Rubik",sans-serif; }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{font-family:var(--R);background:var(--blk);color:#f2ede6;line-height:1.75;min-height:100vh;}
+  a{color:var(--gold);text-decoration:none;}
+  a:hover{text-decoration:underline;}
+  .page{max-width:1120px;margin:0 auto;padding:2.5rem 1.5rem;}
+  .hero{min-height:60vh;display:flex;align-items:flex-end;padding:3rem 0;position:relative;overflow:hidden;background:linear-gradient(135deg,#0f0d0b 0%,#1a1200 40%,#0a0908 100%);}
+  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at top left,rgba(176,140,24,.12),transparent 40%);}
+  .hero-content{position:relative;z-index:1;}
+  .back{display:inline-flex;align-items:center;gap:.4rem;color:var(--cream);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.75rem;margin-bottom:1rem;}
+  .hero-bar{width:100px;height:2px;background:linear-gradient(90deg,var(--gold),rgba(176,140,24,0));margin-bottom:1.5rem;}
+  h1{font-size:clamp(2.4rem,5vw,4rem);font-weight:900;line-height:1.03;margin-bottom:.75rem;}
+  .note{max-width:58ch;font-size:1rem;color:rgba(242,237,230,.78);margin-bottom:2rem;}
+  .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;font-size:.95rem;color:rgba(242,237,230,.78);margin-bottom:2rem;}
+  .meta span{display:block;}
+  .section{margin-bottom:3rem;}
+  .section h2{font-size:1.35rem;font-weight:700;margin-bottom:.75rem;letter-spacing:-.02em;}
+  .section p{max-width:72ch;font-size:1rem;color:rgba(242,237,230,.9);}
+  .section p + p{margin-top:1rem;}
+  .cta{padding:1.8rem 2rem;border:1px solid rgba(176,140,24,.2);border-radius:18px;background:rgba(242,237,230,.04);}
+  .cta p{color:rgba(242,237,230,.92);margin-bottom:1rem;}
+  .cta a{font-weight:700;}
+  footer{padding:2rem 1.5rem 3rem;margin-top:2rem;border-top:1px solid rgba(176,140,24,.1);}
+  .footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;font-size:.85rem;color:rgba(242,237,230,.65);}
+  @media(max-width:768px){.hero{padding:2rem 0;}.page{padding:2rem 1rem;}.meta{grid-template-columns:1fr;}.hero-bar{width:70px;}}
+</style>
+</head>
+<body>
+  <section class="hero">
+    <div class="page hero-content">
+      <a class="back" href="comercial.html">← Volver a comercial</a>
+      <div class="hero-bar"></div>
+      <h1>Mutuo</h1>
+      <p class="note">Sesión completa de brand photography para un estudio de Pilates en Buenos Aires. Imágenes pensadas para retrato, ambiente y uso en redes con un sistema visual claro.</p>
+      <div class="meta">
+        <span><strong>Cliente</strong> Estudio de Pilates</span>
+        <span><strong>Ubicación</strong> Buenos Aires</span>
+        <span><strong>Formato</strong> Retrato y contenido editorial</span>
+      </div>
+    </div>
+  </section>
+
+  <main class="page">
+    <section class="section">
+      <h2>Enfoque</h2>
+      <p>El objetivo fue contar la experiencia del estudio a través de imágenes que funcionen tanto en formato editorial como en redes sociales. Buscamos transmitir orden, calma y profesionalismo sin perder la cercanía del espacio.</p>
+    </section>
+
+    <section class="section">
+      <h2>Qué hicimos</h2>
+      <p>Fotografiamos retratos de clientes, detalles de equipamiento y escenas del espacio. Definimos una paleta visual simple y una dirección de luz controlada para que el contenido se vea uniforme y coherente.</p>
+      <p>El resultado fue una serie de imágenes que el cliente puede usar para promociones, redes sociales, sitio web y presentaciones de marca.</p>
+    </section>
+
+    <section class="section cta">
+      <p>Este tipo de proyecto funciona bien para marcas que necesitan material usable al mismo tiempo que construyen una imagen de confianza y calidad.</p>
+      <a href="mailto:hola@matirath.jpg">Contáme tu idea →</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+      <span>matirath.jpg</span>
+      <span>© 2026 Matías Rath · Argentina</span>
+    </div>
+  </footer>
+</body>
+</html>

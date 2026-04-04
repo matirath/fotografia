@@ -107,6 +107,13 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
 .back-top.visible{opacity:1;pointer-events:auto}
 .back-top:hover{background:rgba(176,140,24,.2);border-color:var(--gold)}
 .back-top-arr{display:block;font-size:1rem;color:var(--gold)}
+.fab-whatsapp{position:fixed;bottom:10.5rem;right:var(--gutter);z-index:195;display:inline-flex;align-items:center;gap:.8rem;padding:.85rem 1rem;border-radius:999px;background:#25d366;color:#0a0908;font-weight:700;text-decoration:none;box-shadow:0 20px 40px rgba(0,0,0,.22);transition:transform .2s ease,box-shadow .2s ease,opacity .2s ease;}
+.fab-whatsapp:hover{transform:translateY(-2px);box-shadow:0 24px 48px rgba(0,0,0,.26)}
+.fab-whatsapp:active{transform:translateY(0)}
+.fab-whatsapp .fab-icon{width:1.5rem;height:1.5rem;display:inline-flex;align-items:center;justify-content:center;background:#ffffff;border-radius:50%;padding:.25rem;}
+.fab-whatsapp .fab-icon svg{width:1rem;height:1rem;display:block;fill:#25d366;}
+.fab-label{display:inline-block;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;}
+@media(max-width:640px){.fab-whatsapp{bottom:8.8rem;right:1rem;padding:.75rem .95rem;}.fab-label{display:none;}}
 
 .r{opacity:0;transform:translateY(16px)}
 .r.on{animation:rv .6s cubic-bezier(0.16,1,0.3,1) forwards}
@@ -316,7 +323,7 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
           <h3>Mutuo</h3>
           <span class="subtitle">Estudio de Pilates | Buenos Aires</span>
           <p>Sesión completa para el estudio. Retratos de clientes, detalles del espacio, sistema visual para redes.</p>
-          <a href="#proyecto">Ver proyecto →</a>
+          <a href="mutuo.html">Ver proyecto →</a>
         </div>
       </div>
       <div class="gal-card r d1">
@@ -325,7 +332,7 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
           <h3>Agus</h3>
           <span class="subtitle">Personal Branding | Buenos Aires</span>
           <p>Retratos para emprendedor. Imágenes que comunican autoridad visual. Material para LinkedIn, Instagram, web.</p>
-          <a href="#proyecto">Ver proyecto →</a>
+          <a href="agus.html">Ver proyecto →</a>
         </div>
       </div>
       <div class="gal-card r d2">
@@ -334,7 +341,7 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
           <h3>Próximo Proyecto</h3>
           <span class="subtitle">Categoría | Ubicación</span>
           <p>Espacio para nuevos proyectos de brand photography y personal branding que se agreguen.</p>
-          <a href="#proyecto">Ver proyecto →</a>
+          <a href="proximo-proyecto.html">Ver proyecto →</a>
         </div>
       </div>
     </div>
@@ -414,6 +421,13 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
   <span class="fh">@matirath.jpg</span>
   <span class="fc">© <span id="yr"></span> Matías Rath · Argentina</span>
 </footer>
+
+<a class="fab-whatsapp" href="https://wa.me/5492954230852?text=Hola%20Mat%C3%ADas%2C%20quiero%20contactarte%20por%20un%20proyecto%20de%20fotograf%C3%ADa" target="_blank" rel="noopener noreferrer" aria-label="Canal de contacto inmediato por WhatsApp">
+  <span class="fab-icon" aria-hidden="true">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.868-2.03-.967-.273-.1-.472-.149-.672.15-.198.297-.768.966-.942 1.164-.173.198-.347.223-.644.075-.297-.149-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.173.198-.298.298-.497.1-.198.05-.372-.025-.52-.075-.149-.672-1.611-.921-2.208-.242-.579-.487-.5-.672-.51-.173-.01-.372-.01-.571-.01-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.26.489 1.691.626.71.226 1.356.194 1.865.118.569-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.413-.074-.124-.272-.198-.57-.347z"/></svg>
+  </span>
+  <span class="fab-label">Canal de contacto inmediato</span>
+</a>
 
 <button class="back-top" id="backTop" onclick="navTo('hero')" aria-label="Volver al inicio">
   <span class="back-top-arr">↑</span>

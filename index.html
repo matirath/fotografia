@@ -111,7 +111,14 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .gallery-dots button{width:14px;height:14px;border-radius:999px;border:none;background:rgba(242,237,230,.45);cursor:pointer;transition:background .2s,width .2s,height .2s,box-shadow .2s,opacity .2s;opacity:.5;}
 .gallery-dots button:hover{opacity:0.8}
 .gallery-dots button.active{background:var(--gold);width:44px;height:14px;border-radius:999px;opacity:1;box-shadow:0 0 18px rgba(176,140,24,.7),0 0 36px rgba(176,140,24,.35)}
-
+.gallery-arrows{position:absolute;top:50%;left:0;right:0;width:100%;height:auto;pointer-events:none;z-index:1;display:flex;justify-content:space-between;align-items:center;padding:0 1.5rem}
+.gallery-arrows button{pointer-events:auto;width:45px;height:45px;background:rgba(176,140,24,.08);border:1px solid rgba(176,140,24,.25);border-radius:50%;color:var(--gold);font-size:1.5rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s ease;opacity:.4}
+.gallery-arrows button:hover{opacity:.9;background:rgba(176,140,24,.15);border-color:rgba(176,140,24,.5);box-shadow:0 0 12px rgba(176,140,24,.25)}
+.gallery-arrows button:active{transform:scale(.95)}
+@media(max-width:768px){
+  .gallery-arrows{padding:0 1rem}
+  .gallery-arrows button{width:40px;height:40px;font-size:1.2rem}
+}
 
 /* ── FOOTER ── */
 footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1fr;gap:2rem;align-items:center;border-top:1px solid rgba(176,140,24,.1)}
@@ -364,6 +371,10 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
     <img src="imgs/galeriainicio7.jpg" alt="Galería foto 7" />
     <img src="imgs/galeriainicio8.jpg" alt="Galería foto 8" />
   </div>
+  <div class="gallery-arrows" aria-label="Navegación de flechas">
+    <button id="galleryPrev" aria-label="Imagen anterior">&lsaquo;</button>
+    <button id="galleryNext" aria-label="Imagen siguiente">&rsaquo;</button>
+  </div>
   <div class="gallery-dots" id="galleryDots" aria-label="Navegación de galería"></div>
 </section>
 
@@ -508,6 +519,8 @@ document.querySelectorAll('.r').forEach(function(el){obs.observe(el);});
   if(!track)return;
   var slides=Array.prototype.slice.call(track.querySelectorAll('img'));
   var dotsContainer=document.getElementById('galleryDots');
+  var prevBtn=document.getElementById('galleryPrev');
+  var nextBtn=document.getElementById('galleryNext');
   var current=0;
   var autoId=null;
 
@@ -538,6 +551,14 @@ document.querySelectorAll('.r').forEach(function(el){obs.observe(el);});
     if(i===0)dot.classList.add('active');
     dotsContainer.appendChild(dot);
   });
+
+  // arrow buttons
+  if(prevBtn){
+    prevBtn.addEventListener('click',function(){go(-1);resetAuto();});
+  }
+  if(nextBtn){
+    nextBtn.addEventListener('click',function(){go(1);resetAuto();});
+  }
 
   // swipe táctil básico
   var touchStartX=null;
