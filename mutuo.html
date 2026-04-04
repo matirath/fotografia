@@ -3,6 +3,9 @@
 <head>
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
+<link rel="apple-touch-icon" href="/favicon.png">
 <title>Mutuo — matirath.jpg</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -14,8 +17,8 @@
   a{color:var(--gold);text-decoration:none;}
   a:hover{text-decoration:underline;}
   .page{max-width:1120px;margin:0 auto;padding:2.5rem 1.5rem;}
-  .hero{min-height:60vh;display:flex;align-items:flex-end;padding:3rem 0;position:relative;overflow:hidden;background:linear-gradient(135deg,#0f0d0b 0%,#1a1200 40%,#0a0908 100%);}
-  .hero::before{content:'';position:absolute;inset:0;background:radial-gradient(circle at top left,rgba(176,140,24,.12),transparent 40%);}
+  .hero{min-height:60vh;display:flex;align-items:flex-end;padding:3rem 0;position:relative;overflow:hidden;background:linear-gradient(135deg,#0f0d0b 0%,#1a1200 40%,#0a0908 100%);background-image:url('imgs/mutuo-portada.jpg');background-size:cover;background-position:center 140%;background-attachment:fixed;}
+  .hero::before{content:'';position:absolute;inset:0;background:rgba(10,9,8,.68);z-index:0;}
   .hero-content{position:relative;z-index:1;}
   .back{display:inline-flex;align-items:center;gap:.4rem;color:var(--cream);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.75rem;margin-bottom:1rem;}
   .hero-bar{width:100px;height:2px;background:linear-gradient(90deg,var(--gold),rgba(176,140,24,0));margin-bottom:1.5rem;}

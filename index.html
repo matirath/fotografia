@@ -7,6 +7,9 @@
 <meta name="theme-color" content="#0a0908" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f0ebe2" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="dark light">
+<link rel="icon" type="image/png" href="/favicon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
+<link rel="apple-touch-icon" href="/favicon.png">
 <title>matirath.jpg — Fotografía de Marca</title>
 <meta name="description" content="Matías Rath — Fotógrafo de marca en Buenos Aires. Sesiones de brand photography, eventos y personal branding. Flash off-camera. Visión editorial."/>
 <meta property="og:type" content="website"/>
@@ -86,12 +89,12 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .hg-ptr{position:absolute;width:100%;height:100%;top:-50%;left:-50%;background:radial-gradient(circle at center,rgba(176,140,24,.6) 0%,rgba(176,140,24,.55) 10%,rgba(176,140,24,.42) 20%,rgba(176,140,24,.3) 30%,rgba(176,140,24,.18) 40%,rgba(176,140,24,.09) 50%,rgba(176,140,24,.03) 60%,rgba(176,140,24,0) 70%) no-repeat;mix-blend-mode:hard-light;opacity:.7;pointer-events:none;transition:transform .05s linear}
 @keyframes bMC{0%{transform:rotate(0deg)}50%{transform:rotate(180deg)}100%{transform:rotate(360deg)}}
 @keyframes bMH{0%{transform:translateX(-50%) translateY(-10%)}50%{transform:translateX(50%) translateY(10%)}100%{transform:translateX(-50%) translateY(-10%)}}
-.hero-inner{position:relative;z-index:2;height:100%;display:grid;grid-template-columns:1fr 42%;align-items:flex-start}
+.hero-inner{position:relative;z-index:2;height:100%;display:grid;grid-template-columns:1fr 42%;align-items:flex-end}
 .hero-content{padding:16rem var(--gutter) 5rem;z-index:2}
 .hero-noise{position:absolute;inset:0;z-index:1;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px;pointer-events:none}
 .hero-eyebrow{font-size:.55rem;font-weight:400;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;opacity:0;transform:translateY(10px);animation:fu .7s .3s forwards}
 .hero-title{font-weight:900;font-size:clamp(3.5rem,11vw,10rem);line-height:.88;letter-spacing:-.02em;color:#f2ede6;will-change:transform,opacity}
-.hero-title .tl{display:block;opacity:0;transform:translateY(32px) skewY(1.5deg);filter:blur(6px);will-change:transform,opacity,filter}
+.hero-title .tl{display:block;opacity:0;transform:translateY(32px) skewY(1.5deg);will-change:transform,opacity,filter}
 .hero-title .tl:first-child{margin-bottom:3rem}
 .hero-overlay{position:absolute;inset:0;z-index:1;background:#0a0908;opacity:.45;pointer-events:none;transition:opacity .05s linear}
 .hero-title .out{-webkit-text-stroke:2.5px #f2ede6;color:transparent;transition:color .1s linear,-webkit-text-stroke-color .1s linear}
@@ -115,7 +118,46 @@ nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:cen
 .gallery-arrows button{pointer-events:auto;width:45px;height:45px;background:rgba(176,140,24,.08);border:1px solid rgba(176,140,24,.25);border-radius:50%;color:var(--gold);font-size:1.5rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;transition:all .3s ease;opacity:.4}
 .gallery-arrows button:hover{opacity:.9;background:rgba(176,140,24,.15);border-color:rgba(176,140,24,.5);box-shadow:0 0 12px rgba(176,140,24,.25)}
 .gallery-arrows button:active{transform:scale(.95)}
+.fab-whatsapp{position:fixed;bottom:10.5rem;right:var(--gutter);z-index:195;display:inline-flex;align-items:center;gap:.8rem;padding:.85rem 1rem;border-radius:999px;background:rgba(37,211,102,.08);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(37,211,102,.15);color:#25d366;font-weight:700;text-decoration:none;box-shadow:0 20px 40px rgba(0,0,0,.08);transition:transform .2s ease,box-shadow .2s ease,opacity .2s ease;}
+.fab-whatsapp:hover{transform:translateY(-2px);box-shadow:0 24px 48px rgba(0,0,0,.12);background:rgba(37,211,102,.12)}
+.fab-whatsapp:active{transform:translateY(0)}
+.fab-whatsapp .fab-icon{width:1.5rem;height:1.5rem;display:inline-flex;align-items:center;justify-content:center;background:transparent;border-radius:50%;padding:.25rem;}
+.fab-whatsapp .fab-icon svg,.fab-whatsapp .fab-icon img{width:1rem;height:1rem;display:block;object-fit:contain;}
+.fab-label{display:inline-block;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;}
+@media(max-width:640px){
+  :root{--gutter:.9rem}
+  .hero-content{padding:10rem .9rem 2.5rem}
+  .hero-title{font-size:clamp(1.8rem,5vw,2.8rem)}
+  .hero-eyebrow{font-size:.48rem;margin-bottom:.8rem}
+  .hero-sub{font-size:.8rem}
+  nav{padding:.6rem var(--gutter)}
+  .nav-wordmark{font-size:.8rem}
+  .fab-whatsapp{bottom:7.2rem;right:.9rem;padding:.65rem .8rem;gap:.6rem}
+  .fab-label{display:none}
+  .back-top{bottom:5.5rem;right:.9rem}
+  footer{padding:1.8rem var(--gutter);gap:.6rem}
+  .fm,.fh{font-size:.6rem}
+  .fc{font-size:.52rem}
+  .mq-t span{font-size:.5rem}
+  .svc-nav-inner{gap:1.5rem}
+  .svc-nav-card{padding:1.5rem;gap:1rem}
+  .svc-nav-card h3{font-size:.95rem}
+  .svc-nav-card p{font-size:.65rem}
+  .ap-item h4{font-size:.9rem}
+  .ap-item p{font-size:.65rem}
+}
+@media(max-width:480px){
+  :root{--gutter:.75rem}
+  .hero-content{padding:9rem .75rem 2rem}
+  .hero-title{font-size:clamp(1.6rem,4.5vw,2.4rem)}
+  .hero-eyebrow{font-size:.42rem}
+  .cta h2{font-size:clamp(1.6rem,4vw,2.4rem)}
+  nav{padding:.5rem var(--gutter)}
+  .nav-wordmark{font-size:.75rem}
+  footer{padding:1.5rem var(--gutter)}
+}
 @media(max-width:768px){
+  :root{--gutter:1.2rem}
   .gallery-arrows{padding:0 1rem}
   .gallery-arrows button{width:40px;height:40px;font-size:1.2rem}
 }
@@ -148,12 +190,13 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
 /* PAGE-SPECIFIC STYLES — index.html only */
 /* ═══════════════════════════════════════════════════════════════════ */
 
-.mq{overflow:hidden;padding:.95rem 0;border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04);position:relative;height:1.5rem}
-.mq-t{display:inline-flex;gap:2.5rem;white-space:nowrap;position:absolute;top:0;width:100%;left:0;transform:translateX(0);animation:mqa 24s linear infinite}
-.mq-t + .mq-t{left:100%}
-.mq-t span{font-weight:700;font-size:.72rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(176,140,24,.3)}
+.mq{overflow:hidden;padding:.95rem 0;border-top:1px solid rgba(255,255,255,.04);border-bottom:1px solid rgba(255,255,255,.04);position:relative;min-height:2.6rem;display:flex;align-items:center}
+.mq-track{display:flex;align-items:center;width:max-content;animation:mqa 24s linear infinite}
+.mq-t{display:inline-flex;gap:2.5rem;white-space:nowrap}
+.mq-t + .mq-t{margin-left:3rem}
+.mq-t span{font-weight:700;font-size:.72rem;line-height:1.15rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(176,140,24,.3)}
 .mq-t .dot{color:rgba(176,140,24,.12)}
-@keyframes mqa{0%{transform:translateX(0)}100%{transform:translateX(-100%)}}
+@keyframes mqa{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 
 .nav-svc{padding:12vh var(--gutter);background-image:url("imgs/fondocampo.jpg");background-size:cover;background-position:bottom center;background-repeat:no-repeat;position:relative;z-index:0;overflow:hidden}
 .nav-svc::before{content:'';position:absolute;inset:0;background:rgba(10,9,8,.45);z-index:1}
@@ -192,21 +235,42 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
 @media(max-width:768px){
   .hero{min-height:50vh;min-height:calc(100vh - 8rem)}
   .hero-inner{grid-template-columns:1fr}
-  .hero-content{padding:9rem 1.2rem 2.6rem;max-width:90%;margin:0 auto}
-  .hero-sub{font-size:1.15rem;line-height:1.7;max-width:100%}
-
-  .hero-gallery{height:70vh;min-height:420px}
+  .hero-content{padding:12rem 1.2rem 3rem;max-width:100%;margin:0}
+  .hero-eyebrow{margin-bottom:1rem}
+  .hero-title{font-size:clamp(2.2rem,6vw,3.5rem)}
+  .hero-sub{font-size:.85rem;line-height:1.6;max-width:100%}
+  .hero-gallery{height:60vh;min-height:340px}
   .gallery-track img{object-position:center top;object-fit:cover}
-  .gallery-dots{bottom:1.4rem;gap:.65rem}
-  .hero-scroll{right:1.2rem;bottom:2.6rem;gap:.4rem}
-  .hero-scroll span{font-size:.44rem;letter-spacing:.28em}
+  .gallery-dots{bottom:1.2rem;gap:.55rem}
+  .hero-scroll{right:1rem;bottom:2rem;gap:.3rem}
+  .hero-scroll span{font-size:.4rem;letter-spacing:.26em}
+  .hero-bar{height:28px}
+  nav{padding:.7rem var(--gutter)}
+  footer{grid-template-columns:1fr;gap:.8rem;text-align:center;padding:2rem var(--gutter)}
+  .fl{justify-content:center;flex-direction:column}
+  .fc{text-align:center;font-size:.55rem;margin-top:.5rem}
+  .back-top{bottom:6.5rem;right:1.2rem;width:36px;height:36px}
+  .fab-whatsapp{bottom:8.2rem;right:1.2rem;padding:.7rem .9rem;font-size:.75rem}
+  .fab-label{font-size:.7rem}
+  .cta{padding:10vh var(--gutter) 12vh}
+  .cta h2{font-size:clamp(1.8rem,5vw,2.8rem)}
+  .cta-sub{font-size:.7rem}
+  .mq{padding:.7rem 0;min-height:2.2rem}
+  .mq-t span{font-size:.58rem;line-height:1rem;margin-right:1.5rem}
+  .svc-nav-card{padding:2rem;border-radius:12px}
+  .svc-nav-card h3{font-size:1rem;margin-bottom:.7rem}
+  .svc-nav-card p{font-size:.7rem}
+  .ap-inner{grid-template-columns:1fr;gap:2rem}
+  .ap-item h4{font-size:.95rem}
+  .ap-item p{font-size:.7rem}
+  .nav-svc{padding:10vh var(--gutter)}
   .hero-bar{height:32px}
 
   nav{padding:.7rem 1.2rem}
   .nav-links a{padding:.6rem .9rem;font-size:.76rem;border-radius:14px}
   .nav-links{gap:2rem}
 
-  .mq{height:1.6rem}
+  .mq{min-height:2.6rem;height:auto}
 
   footer{grid-template-columns:1fr;gap:.8rem;text-align:center;padding:2rem 1.2rem}
   .fl{justify-content:center}
@@ -243,6 +307,7 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
     <a href="/">Inicio</a>
     <a href="/comercial.html">Comercial</a>
     <a href="/eventos.html">Eventos</a>
+    <a href="/quien-soy.html">Quién soy</a>
     <a href="/contacto.html">Contacto</a>
   </div>
   <div class="nav-burger-wrap">
@@ -253,6 +318,7 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
       <a href="/">Inicio</a>
       <a href="/comercial.html">Comercial</a>
       <a href="/eventos.html">Eventos</a>
+      <a href="/quien-soy.html">Quién soy</a>
       <a href="/contacto.html">Contacto</a>
       <hr>
       <a href="https://instagram.com/matirath.jpg" target="_blank">@matirath.jpg</a>
@@ -296,47 +362,49 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
 </section>
 
 <section class="mq s-dark">
-  <div class="mq-t">
-    <span>Flash Off-Camera</span>
-    <span class="dot">•</span>
-    <span>Identidad Visual</span>
-    <span class="dot">•</span>
-    <span>Marca</span>
-    <span class="dot">•</span>
-    <span>Buenos Aires</span>
-    <span class="dot">•</span>
-    <span>Editorial</span>
-    <span class="dot">•</span>
-    <span>Sesiones Completas</span>
-    <span class="dot">•</span>
-    <span>Intención</span>
-    <span class="dot">•</span>
-    <span>Sistema de Imágenes</span>
-    <span class="dot">•</span>
-    <span>Flash Off-Camera</span>
-    <span class="dot">•</span>
-    <span>Identidad Visual</span>
-  </div>
-  <div class="mq-t">
-    <span>Flash Off-Camera</span>
-    <span class="dot">•</span>
-    <span>Identidad Visual</span>
-    <span class="dot">•</span>
-    <span>Marca</span>
-    <span class="dot">•</span>
-    <span>Buenos Aires</span>
-    <span class="dot">•</span>
-    <span>Editorial</span>
-    <span class="dot">•</span>
-    <span>Sesiones Completas</span>
-    <span class="dot">•</span>
-    <span>Intención</span>
-    <span class="dot">•</span>
-    <span>Sistema de Imágenes</span>
-    <span class="dot">•</span>
-    <span>Flash Off-Camera</span>
-    <span class="dot">•</span>
-    <span>Identidad Visual</span>
+  <div class="mq-track">
+    <div class="mq-t">
+      <span>Flash Off-Camera</span>
+      <span class="dot">•</span>
+      <span>Identidad Visual</span>
+      <span class="dot">•</span>
+      <span>Marca</span>
+      <span class="dot">•</span>
+      <span>Buenos Aires</span>
+      <span class="dot">•</span>
+      <span>Editorial</span>
+      <span class="dot">•</span>
+      <span>Sesiones Completas</span>
+      <span class="dot">•</span>
+      <span>Intención</span>
+      <span class="dot">•</span>
+      <span>Sistema de Imágenes</span>
+      <span class="dot">•</span>
+      <span>Flash Off-Camera</span>
+      <span class="dot">•</span>
+      <span>Identidad Visual</span>
+    </div>
+    <div class="mq-t">
+      <span>Flash Off-Camera</span>
+      <span class="dot">•</span>
+      <span>Identidad Visual</span>
+      <span class="dot">•</span>
+      <span>Marca</span>
+      <span class="dot">•</span>
+      <span>Buenos Aires</span>
+      <span class="dot">•</span>
+      <span>Editorial</span>
+      <span class="dot">•</span>
+      <span>Sesiones Completas</span>
+      <span class="dot">•</span>
+      <span>Intención</span>
+      <span class="dot">•</span>
+      <span>Sistema de Imágenes</span>
+      <span class="dot">•</span>
+      <span>Flash Off-Camera</span>
+      <span class="dot">•</span>
+      <span>Identidad Visual</span>
+    </div>
   </div>
 </section>
 
@@ -406,6 +474,13 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
     <a href="https://wa.me/5492954230852?text=Hola%20Mat%C3%ADas%2C%20estuve%20viendo%20tu%20web%20y%20me%20interesa%20una%20producci%C3%B3n%20de%20fotos.%0A%0ATe%20cuento%20un%20poco%20mi%20proyecto%3A%0A%5Bbreve%20descripci%C3%B3n%5D%0A%0AFecha%20aproximada%3A%0A%5Bfecha%5D%0A%0ALugar%3A%0A%5Bubicaci%C3%B3n%5D%0A%0AQuedo%20atento%20a%20tu%20disponibilidad.%20%C2%A1Gracias%21" class="cta-email r d2" target="_blank" rel="noopener">Iniciar proyecto &nbsp;→</a>
   </div>
 </section>
+
+<a class="fab-whatsapp" href="https://wa.me/5492954230852?text=Hola%20Mat%C3%ADas%2C%20quiero%20contactarte%20por%20un%20proyecto%20de%20fotograf%C3%ADa" target="_blank" rel="noopener noreferrer" aria-label="Canal de contacto inmediato por WhatsApp">
+  <span class="fab-icon" aria-hidden="true">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 509 511.514"><path fill="currentColor" d="M434.762 74.334C387.553 26.81 323.245 0 256.236 0h-.768C115.795.001 2.121 113.696 2.121 253.456l.001.015a253.516 253.516 0 0033.942 126.671L0 511.514l134.373-35.269a253.416 253.416 0 00121.052 30.9h.003.053C395.472 507.145 509 393.616 509 253.626c0-67.225-26.742-131.727-74.252-179.237l.014-.055zM255.555 464.453c-37.753 0-74.861-10.22-107.293-29.479l-7.72-4.602-79.741 20.889 21.207-77.726-4.984-7.975c-21.147-33.606-32.415-72.584-32.415-112.308 0-116.371 94.372-210.743 210.741-210.743 56.011 0 109.758 22.307 149.277 61.98a210.93 210.93 0 0161.744 149.095c0 116.44-94.403 210.869-210.844 210.869h.028zm115.583-157.914c-6.363-3.202-37.474-18.472-43.243-20.593-5.769-2.121-10.01-3.202-14.315 3.203-4.305 6.404-16.373 20.593-20.063 24.855-3.69 4.263-7.401 4.815-13.679 1.612-6.278-3.202-26.786-9.883-50.899-31.472a192.748 192.748 0 01-35.411-43.867c-3.712-6.363-.404-9.777 2.82-12.873 3.224-3.096 6.363-7.381 9.48-11.092a41.58 41.58 0 006.357-10.597 11.678 11.678 0 00-.508-11.09c-1.718-3.18-14.444-34.357-19.534-47.06-5.09-12.703-10.37-10.603-14.272-10.901-3.902-.297-7.911-.19-12.089-.19a23.322 23.322 0 00-16.964 7.911c-5.707 6.298-22.1 21.673-22.1 52.849s22.671 61.249 25.852 65.532c3.182 4.284 44.663 68.227 108.288 95.649 15.099 6.489 26.891 10.392 36.053 13.403a87.504 87.504 0 0025.216 3.718c4.905 0 9.82-.416 14.65-1.237 12.174-1.782 37.453-15.291 42.776-30.073s5.303-27.57 3.711-30.093c-1.591-2.524-5.704-4.369-12.088-7.615l-.038.021z"/></svg>
+  </span>
+  <span class="fab-label">Canal de contacto inmediato</span>
+</a>
 
 <footer class="s-dark">
   <div class="fl"><div class="ph-logo ph-logo-sm"><img src="imgs/LOGOMATIRATH.png" alt="Logo Matirath"></div><span class="fm">matirath.jpg</span></div>
