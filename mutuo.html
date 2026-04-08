@@ -3,9 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<link rel="icon" type="image/png" href="/favicon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
-<link rel="apple-touch-icon" href="/favicon.png">
+<link rel="icon" type="image/png" href="/imgs/favicon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/imgs/favicon.png">
+<link rel="apple-touch-icon" href="/imgs/favicon.png">
 <title>Mutuo — matirath.jpg</title>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
@@ -75,6 +75,8 @@
   .cta a{font-weight:700;}
   footer{padding:2rem 1.5rem 3rem;margin-top:2rem;border-top:1px solid rgba(176,140,24,.1);}
   .footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;font-size:.85rem;color:rgba(242,237,230,.65);}
+  .footer-brand{display:inline-flex;align-items:center;gap:.55rem;}
+  .footer-brand img{width:28px;height:28px;object-fit:contain;border-radius:50%;background:var(--gold);padding:2px;}
   @media(max-width:640px){
     .topbar{padding:0 var(--gutter)}
   }
@@ -169,7 +171,7 @@
 
   <footer>
     <div class="footer-inner">
-      <span>matirath.jpg</span>
+      <span class="footer-brand"><img src="imgs/LOGOMATIRATH.png" alt="Logo Matirath"><span>matirath.jpg</span></span>
       <span>© 2026 Matías Rath · Argentina</span>
     </div>
   </footer>

@@ -6,9 +6,9 @@
 <meta name="theme-color" content="#0a0908" media="(prefers-color-scheme: dark)">
 <meta name="theme-color" content="#f0ebe2" media="(prefers-color-scheme: light)">
 <meta name="color-scheme" content="dark light">
-<link rel="icon" type="image/png" href="/favicon.png">
-<link rel="icon" type="image/png" sizes="192x192" href="/favicon.png">
-<link rel="apple-touch-icon" href="/favicon.png">
+<link rel="icon" type="image/png" href="/imgs/favicon.png">
+<link rel="icon" type="image/png" sizes="192x192" href="/imgs/favicon.png">
+<link rel="apple-touch-icon" href="/imgs/favicon.png">
 <title>matirath.jpg — Fotografía de Marca</title>
 <meta name="description" content="Matías Rath — Fotógrafo de marca en Buenos Aires. Sesiones de brand photography, eventos y personal branding. Flash off-camera. Visión editorial."/>
 <meta property="og:type" content="website"/>
@@ -73,7 +73,7 @@ section>*,footer>*,.cta>*{position:relative;z-index:1}
 @media(max-width:768px){.topbar-links{display:none}.topbar-burger{display:flex}}
 
 /* ── HERO ── */
-.hero{min-height:25vh;min-height:clamp(220px,25vh,320px);position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0908 0%,#1a1200 50%,#0a0908 100%)}
+.hero{min-height:55vh;min-height:clamp(520px,55vh,680px);position:relative;overflow:hidden;background:linear-gradient(135deg,#0a0908 0%,#1a1200 50%,#0a0908 100%)}
 .hero-grad{position:absolute;inset:0;z-index:0;overflow:hidden;filter:url(#goo) blur(40px)}
 @media(max-width:768px){.hero-grad{filter:blur(60px)} .hg-blob{mix-blend-mode:normal} .hg2,.hg3,.hg4,.hg5{opacity:.5}}
 .hg-blob{position:absolute;border-radius:50%;mix-blend-mode:hard-light;opacity:.9}
@@ -84,19 +84,19 @@ section>*,footer>*,.cta>*{position:relative;z-index:1}
 .hg-ptr{position:absolute;width:100%;height:100%;top:-50%;left:-50%;background:radial-gradient(circle at center,rgba(176,140,24,.6) 0%,rgba(176,140,24,.55) 10%,rgba(176,140,24,.42) 20%,rgba(176,140,24,.3) 30%,rgba(176,140,24,.18) 40%,rgba(176,140,24,.09) 50%,rgba(176,140,24,.03) 60%,rgba(176,140,24,0) 70%) no-repeat;mix-blend-mode:hard-light;opacity:.7;pointer-events:none;transition:transform .05s linear}
 @keyframes bMC{0%{transform:rotate(0deg)}50%{transform:rotate(180deg)}100%{transform:rotate(360deg)}}
 @keyframes bMH{0%{transform:translateX(-50%) translateY(-10%)}50%{transform:translateX(50%) translateY(10%)}100%{transform:translateX(-50%) translateY(-10%)}}
-.hero-inner{position:relative;z-index:2;height:100%;display:grid;grid-template-columns:1fr 42%;align-items:flex-end}
-.hero-content{padding:6rem var(--gutter) 1.2rem;max-width:58ch;z-index:2}
+.hero-inner{position:relative;z-index:2;display:grid;grid-template-columns:1fr 42%;align-items:flex-end;min-height:inherit}
+.hero-content{padding:16rem var(--gutter) 5rem;max-width:58ch;z-index:2}
 .hero-noise{position:absolute;inset:0;z-index:1;opacity:.04;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px;pointer-events:none}
-.hero-eyebrow{font-size:.55rem;font-weight:400;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1.4rem;opacity:0;transform:translateY(10px);animation:fu .7s .3s forwards}
-.hero-title{font-weight:900;font-size:clamp(3.5rem,11vw,10rem);line-height:.88;letter-spacing:-.02em;color:#f2ede6;will-change:transform,opacity}
-.hero-title .tl{display:block;opacity:0;transform:translateY(32px) skewY(1.5deg);will-change:transform,opacity,filter}
-.hero-title .tl:first-child{margin-bottom:3rem}
+.hero-eyebrow{font-size:.55rem;font-weight:400;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:1.2rem;opacity:0;transform:translateY(10px);animation:fu .7s .3s forwards}
+.hero-title{font-weight:900;font-size:clamp(3rem,8vw,7.5rem);line-height:.92;letter-spacing:-.02em;color:#f2ede6;will-change:transform,opacity}
+.hero-title .tl{display:block;opacity:0;transform:translateY(24px) skewY(1.5deg);will-change:transform,opacity,filter}
+.hero-title .tl:first-child{margin-bottom:1.5rem}
 .hero-overlay{position:absolute;inset:0;z-index:1;background:#0a0908;opacity:.45;pointer-events:none;transition:opacity .05s linear}
-.hero-title .out{font-family:"Segoe UI","Arial",var(--R);-webkit-text-stroke:2.5px #f2ede6;color:transparent;transition:color .1s linear,-webkit-text-stroke-color .1s linear}
+.hero-title .out{font-family:var(--R);-webkit-text-stroke:2.5px #f2ede6;color:transparent;transition:color .1s linear,-webkit-text-stroke-color .1s linear}
 .hero-title .itl{font-style:italic;font-weight:500;font-size:.52em;color:var(--gold);display:block;margin-top:.15em;letter-spacing:.04em;transition:color .1s linear}
-.hero-sub{margin-top:3.8rem;font-size:1.6rem;font-weight:600;letter-spacing:.03em;line-height:1.8;color:rgba(242,237,230,.9);max-width:55ch;opacity:0;transform:translateY(10px);animation:fu .7s .85s forwards}
+.hero-sub{margin-top:1.3rem;font-size:.9rem;font-weight:300;letter-spacing:.04em;line-height:1.8;color:rgba(242,237,230,.65);max-width:40ch;opacity:0;transform:translateY(10px);animation:fu .7s .85s forwards}
 @keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.hero-scroll{position:absolute;right:var(--gutter);bottom:5rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;z-index:3;opacity:0;animation:fu .7s 1.3s forwards}
+.hero-scroll{position:absolute;right:var(--gutter);bottom:3rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;z-index:2;opacity:0;animation:fu .7s 1.3s forwards}
 .hero-scroll span{font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(242,237,230,.45);writing-mode:vertical-rl}
 .hero-bar{width:1px;height:44px;background:linear-gradient(to bottom,var(--gold),transparent);animation:sp 2s ease-in-out infinite}
 @keyframes sp{0%{opacity:0}20%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translateY(10px)}}
@@ -346,7 +346,7 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
         <span class="tl"><span class="out">DIRECCIÓN</span></span>
         <span class="tl">visual</span>
       </h1>
-      <p class="hero-sub">Trabajo con el Método F.O.C.O. para construir sistemas de imágenes que posicionan marcas y narran eventos premium con coherencia.</p>
+      <p class="hero-sub">Trabajo con el Método F.O.C.O. para diseñar sistemas de imágenes que ordenan la comunicación, elevan el valor percibido y sostienen una identidad consistente.</p>
     </div>
   </div>
   <div class="hero-scroll">
@@ -415,17 +415,17 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
   <div class="svc-nav-inner">
     <div class="svc-nav-card r">
       <h3>COMERCIAL</h3>
-      <p>Dirección visual para marcas que necesitan posicionarse con claridad, consistencia y un sistema de imágenes funcional.</p>
+      <p>Dirección visual para marcas que necesitan claridad comercial, identidad consistente y un sistema de imágenes que funcione en todos sus canales.</p>
       <a href="/comercial.html">Ver más <span class="arrow">→</span></a>
     </div>
     <div class="svc-nav-card r d1">
       <h3>EVENTOS</h3>
-      <p>Cobertura editorial para eventos premium: relato visual, presencia discreta y criterio profesional en cada momento clave.</p>
+      <p>Cobertura editorial de eventos premium con criterio, lectura de contexto y una narrativa visual que respeta el tono de la marca.</p>
       <a href="/eventos.html">Ver más <span class="arrow">→</span></a>
     </div>
     <div class="svc-nav-card r d2">
       <h3>CONTACTO</h3>
-      <p>Iniciá el Fundamento: definimos objetivo, alcance y próximos pasos para tu proyecto.</p>
+      <p>Iniciamos con Fundamento: definimos objetivo, enfoque y próximos pasos para producir con dirección desde el primer día.</p>
       <a href="/contacto.html">Iniciar fundamento <span class="arrow">→</span></a>
     </div>
   </div>
@@ -454,26 +454,26 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
     <div class="ap-item r">
       <span class="ap-num">01 ——</span>
       <h4>FUNDAMENTO</h4>
-      <p>Definimos objetivo, audiencia y mensaje antes de producir.<br>Sin fundamento, no hay dirección real.</p>
+      <p>Definimos objetivo, audiencia y mensaje antes de producir.<br>Sin esa base, no hay decisiones visuales sólidas.</p>
     </div>
     <div class="ap-item r d1">
       <span class="ap-num">02 ——</span>
       <h4>ORDEN</h4>
-      <p>Diseñamos tomas clave, ritmo y ruta visual.<br>El proceso evita improvisación y mejora la calidad de decisión.</p>
+      <p>Diseñamos tomas clave, ritmo y ruta visual.<br>El proceso ordena la producción y evita improvisación.</p>
     </div>
     <div class="ap-item r d2">
       <span class="ap-num">03 ——</span>
       <h4>CONSTRUCCIÓN + OPTIMIZACIÓN</h4>
-      <p>Ejecutamos con criterio editorial y entregamos una selección curada.<br>El resultado es un sistema, no fotos sueltas.</p>
+      <p>Ejecutamos con criterio editorial y entregamos una selección curada.<br>El resultado es un sistema de imagen, no fotos sueltas.</p>
     </div>
   </div>
 </section>
 
 <section class="cta s-dark2" id="cta">
   <div class="shine-box">
-    <p class="cta-lbl r">Sin vueltas. Con método.</p>
-    <h2 class="r">Tu proyecto empieza<br>con <span class="highlight">Fundamento</span></h2>
-    <p class="cta-sub r d1">En una primera conversación definimos objetivo, enfoque visual y próximos pasos para construir un sistema de imágenes coherente.</p>
+    <p class="cta-lbl r">Dirección clara. Método aplicado.</p>
+    <h2 class="r">Tu sistema visual<br>empieza con <span class="highlight">Fundamento</span></h2>
+    <p class="cta-sub r d1">En una primera conversación definimos objetivo comercial, enfoque visual y próximos pasos para construir una comunicación más consistente.</p>
     <a href="/contacto.html" class="cta-email r d2">Iniciar fundamento &nbsp;→</a>
   </div>
 </section>
