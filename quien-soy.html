@@ -175,6 +175,48 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
 }
 @media(min-width:769px){
 }
+@media(max-width:768px){
+  .hero{min-height:52vh;min-height:clamp(500px,52vh,640px)}
+  .hero-content{padding:10.6rem 0 2.6rem;max-width:42ch}
+  .hero-title{font-size:clamp(2rem,8.5vw,3rem);line-height:.96}
+  .hero-sub{font-size:.82rem;line-height:1.72;max-width:38ch}
+  .portrait-image{min-height:420px}
+  .portrait-copy{padding:1.8rem var(--gutter) 2.4rem}
+  .portrait-title{font-size:clamp(1.7rem,7.5vw,2.3rem);margin-bottom:1.1rem}
+  .portrait-copy p{font-size:.84rem;line-height:1.76;margin-bottom:1rem}
+  .about-section{padding:8.8vh var(--gutter)}
+  .about-section p{font-size:.8rem;line-height:1.72;margin-bottom:1.15rem}
+  .about-quote{font-size:1rem;line-height:1.62}
+  .philosophy-card{padding:1.5rem}
+  .philosophy-card p{font-size:.76rem;line-height:1.65}
+  .cta-section{padding:8.8vh var(--gutter)}
+  .cta-btn{font-size:.7rem;padding:.72rem 1.3rem}
+}
+@media(max-width:480px){
+  .hero-content{padding:9.8rem 0 2rem}
+  .portrait-image{min-height:360px}
+  .philosophy-grid{gap:1.15rem}
+}
+@media(max-width:430px){
+  .hero-content{padding:9.25rem 0 1.95rem}
+  .hero-title{font-size:clamp(1.7rem,8.2vw,2.2rem)}
+  .hero-sub{font-size:.79rem;line-height:1.66}
+  .portrait-image{min-height:330px}
+  .portrait-copy{padding:1.45rem var(--gutter) 2rem}
+  .portrait-title{font-size:clamp(1.45rem,7.2vw,2rem)}
+  .portrait-copy p,.about-section p,.philosophy-card p{font-size:.72rem;line-height:1.64}
+  .about-section{padding:8vh var(--gutter)}
+  .cta-btn{font-size:.6rem;padding:.68rem 1.05rem}
+}
+@media(max-width:390px){
+  :root{--gutter:.82rem}
+  .hero-content{padding:8.95rem 0 1.8rem}
+  .portrait-image{min-height:300px}
+  .philosophy-card{padding:1.15rem}
+}
+@media(max-width:430px){
+  .topbar-drop{right:var(--gutter);left:var(--gutter);min-width:0}
+}
 @media (prefers-reduced-motion: reduce) {
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
 }
@@ -219,7 +261,7 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
         <span class="tl"><span class="out">QUIÉN</span></span>
         <span class="tl">soy<br><span class="itl">y cómo trabajo.</span></span>
       </h1>
-      <p class="hero-sub">No soy solo fotógrafo. Trabajo con método para convertir intención en un sistema visual coherente para marcas y eventos premium.</p>
+      <p class="hero-sub">No soy solo fotógrafo. Acompaño cada proyecto con dirección, criterio y un proceso claro para que la imagen tenga sentido antes de existir.</p>
     </div>
   </div>
   <div class="hero-scroll">
@@ -245,8 +287,8 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
     <div class="portrait-copy">
       <div class="hero-eyebrow">Autorretrato</div>
       <h2 class="portrait-title">Una mirada personal con criterio profesional.</h2>
-      <p>Mi trabajo empieza antes de la cámara: defino intención, contexto y objetivo visual para que cada imagen cumpla una función real.</p>
-      <p>La técnica importa, pero la diferencia está en la dirección. Por eso cada proyecto se construye con proceso, no con improvisación.</p>
+      <p>Empecé haciendo fotos por sensibilidad, pero elegí profesionalizar esa mirada con una lógica de trabajo precisa. Hoy lo que más me importa no es solo que una imagen se vea bien, sino que diga lo correcto.</p>
+      <p>Mi trabajo empieza antes de la cámara: escucho, observo y ordeno la intención del proyecto para que cada decisión visual tenga una función real. La técnica importa, pero la diferencia está en la dirección.</p>
     </div>
   </div>
 </section>
@@ -254,41 +296,41 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
 <section class="about-section s-light">
   <h2>Mi enfoque</h2>
   <p>La fotografía que funciona no se sostiene solo en estética. Se sostiene en decisiones correctas antes, durante y después de la sesión.</p>
-  <p>Por eso trabajo con el Método F.O.C.O.: Fundamento, Orden, Construcción y Optimización. Cada etapa existe para que tu imagen comunique con claridad.</p>
+  <p>Por eso trabajo con método. No para volver rígido el proceso, sino para darle claridad. Si una marca o un evento necesita transmitir algo valioso, la imagen no puede depender de la improvisación.</p>
   <p class="about-quote">"No entrego fotos sueltas. Entrego dirección visual aplicada."</p>
-  <p>Trabajo con pocos proyectos a la vez para garantizar profundidad, foco y resultados que se sostengan en el tiempo.</p>
+  <p>Trabajo con pocos proyectos a la vez porque necesito involucrarme de verdad: entender el contexto, detectar lo que hace distinta a cada propuesta y tomar decisiones con atención real. Ahí es donde aparece el valor.</p>
 </section>
 
 <section class="about-section s-dark">
   <h2>Cómo trabajo</h2>
-  <p>Cada proyecto se estructura en cuatro fases:</p>
+  <p>El método está para sostener la experiencia completa, no para llenarla de pasos vacíos. Cuando trabajamos juntos, esto es lo que cuido:</p>
   <div class="philosophy-grid">
     <div class="philosophy-card">
-      <h3>Fundamento</h3>
-      <p>Definimos objetivo, audiencia y mensaje para que la imagen tenga dirección desde el inicio.</p>
+      <h3>Claridad antes de producir</h3>
+      <p>Definimos qué tiene que comunicar el proyecto, qué percepción querés construir y dónde van a vivir esas imágenes.</p>
     </div>
     <div class="philosophy-card">
-      <h3>Orden</h3>
-      <p>Planificamos tomas, tiempos y prioridades para que la sesión sea eficiente y coherente.</p>
+      <h3>Dirección durante la sesión</h3>
+      <p>No dejo que la sesión avance en automático. Guío encuadre, ritmo, intención y prioridades para sostener coherencia de principio a fin.</p>
     </div>
     <div class="philosophy-card">
-      <h3>Construcción + Optimización</h3>
-      <p>Ejecutamos con criterio editorial y entregamos una selección curada, lista para funcionar en canales reales.</p>
+      <h3>Selección con criterio</h3>
+      <p>La entrega final no es acumulación. Es una selección curada para que lo que recibas esté listo para funcionar en web, redes, prensa o venta.</p>
     </div>
   </div>
 </section>
 
 <section class="about-section s-dark2">
   <h2>Por qué trabajo con cupos limitados</h2>
-  <p>La dirección visual profunda requiere tiempo, criterio y presencia. Por eso priorizo calidad de proceso por encima de cantidad de sesiones.</p>
-  <p>Cuando trabajamos juntos, el foco está en construir un sistema visual útil para tu marca o tu evento, no en producir contenido en serie.</p>
-  <p>Eso es valor premium: método, ejecución y coherencia de principio a fin.</p>
+  <p>La dirección visual profunda requiere tiempo, criterio y presencia. Por eso no tomo volumen por tomar volumen. Si acepto un proyecto, necesito poder estar realmente adentro.</p>
+  <p>Eso implica pensar antes de producir, dirigir con atención durante la sesión y editar con el nivel de exigencia que el resultado necesita. Si llenara agenda, esa profundidad se perdería.</p>
+  <p>Trabajo con pocos proyectos a la vez porque prefiero entregar una experiencia seria, cuidada y consistente antes que convertirme en una fábrica de fotos. Esa decisión sostiene la calidad y también el posicionamiento de quienes me contratan.</p>
 </section>
 
 <section class="cta-section s-dark">
-  <h2>Iniciemos el Fundamento de tu proyecto</h2>
-  <p style="font-size:.95rem;color:rgba(242,237,230,.75);margin-bottom:2.5rem;max-width:60ch;margin-left:auto;margin-right:auto;">En la primera conversación definimos objetivo, enfoque visual y próximos pasos para avanzar con claridad.</p>
-  <a href="/contacto.html" class="cta-btn">Iniciar Fundamento</a>
+  <h2>Si esto resuena con tu proyecto, conversemos</h2>
+  <p style="font-size:.95rem;color:rgba(242,237,230,.75);margin-bottom:2.5rem;max-width:60ch;margin-left:auto;margin-right:auto;">En la primera conversación definimos si hay encaje, qué necesita tu proyecto y cuál sería la mejor forma de construirlo visualmente. Si avanzamos, te respondo con próximos pasos concretos en menos de 24 horas.</p>
+  <a href="/contacto.html" class="cta-btn">Abrir conversación</a>
 </section>
 
 <a class="fab-whatsapp" href="https://wa.me/5492954230852?text=Hola%20Mat%C3%ADas%2C%20quiero%20contactarte%20por%20un%20proyecto%20de%20fotograf%C3%ADa" target="_blank" rel="noopener noreferrer" aria-label="Canal de contacto inmediato por WhatsApp">
@@ -300,7 +342,7 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
 
 <footer>
   <div class="fl">
-    <div class="ph-logo ph-logo-sm"><img src="imgs/LOGOMATIRATH.png" alt="Logo Matirath" style="width:100%;height:100%;object-fit:contain;"></div>
+    <div class="ph-logo ph-logo-sm"><img src="matirath_sistema_visual_v2.svg" alt="Logo Matirath" style="width:100%;height:100%;object-fit:contain;"></div>
     <span class="fm">matirath.jpg</span>
   </div>
   <span class="fh">Matías Rath © 2026</span>

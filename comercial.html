@@ -174,6 +174,14 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
 .gal-info a{display:inline-block;font-size:.65rem;color:var(--gold);text-decoration:none;font-weight:600;letter-spacing:.08em;text-transform:uppercase}
 .gal-info a:hover{color:#1a1714;transition:color .3s}
 
+.proof{padding:10vh var(--gutter)}
+.proof-hdr{font-size:1.3rem;font-weight:700;margin-bottom:2.2rem;letter-spacing:-.01em}
+.proof-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:1.4rem}
+.proof-card{padding:1.5rem;border:1px solid rgba(26,23,20,.14);border-radius:8px;background:rgba(255,255,255,.45)}
+.proof-card h3{font-size:.92rem;font-weight:700;color:#1a1714;margin-bottom:.6rem}
+.proof-card p{font-size:.73rem;line-height:1.7;color:rgba(26,23,20,.84);margin-bottom:.65rem}
+.proof-card p:last-child{margin-bottom:0}
+
 .process{padding:12vh var(--gutter)}
 .process-hdr{font-size:1.4rem;font-weight:700;margin-bottom:3rem;text-align:center}
 .process-inner{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:2rem}
@@ -228,6 +236,8 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
   .testi-inner{grid-template-columns:1fr;gap:2rem}
   .testi-quote{font-size:.8rem}
   .testi-name{font-size:.8rem;margin-top:.5rem}
+  .proof{padding:10vh var(--gutter)}
+  .proof-grid{grid-template-columns:1fr}
   .gal-card{flex:0 0 100%;margin-bottom:2rem}
   .gal-img{max-height:280px}
   .gal-info h3{font-size:.9rem}
@@ -235,6 +245,40 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
   .hgal-track{gap:2rem}
 }
 @media(min-width:769px){
+}
+@media(max-width:768px){
+  .hero{min-height:52vh;min-height:clamp(500px,52vh,640px)}
+  .hero-content{padding:10.6rem var(--gutter) 2.8rem}
+  .hero-title{font-size:clamp(2rem,8.6vw,3rem);line-height:.96}
+  .hero-sub{font-size:.82rem;line-height:1.72;max-width:38ch}
+  .stmt,.gallery,.proof,.process,.why,.testi,.cta{padding:8.8vh var(--gutter)}
+  .stmt p,.why-block p,.process-step p,.proof-card p{font-size:.74rem;line-height:1.68}
+  .gal-info{padding:1.45rem}
+  .cta-sub{font-size:.74rem;line-height:1.72}
+  .cta-email{font-size:.64rem;padding:.75rem 1.35rem}
+}
+@media(max-width:480px){
+  .hero-content{padding:9.6rem var(--gutter) 2.2rem}
+  .proof-card,.process-step,.why-block{padding:1.25rem}
+}
+@media(max-width:430px){
+  .hero-content{padding:9.2rem var(--gutter) 2rem}
+  .hero-title{font-size:clamp(1.65rem,8.2vw,2.2rem)}
+  .hero-sub{font-size:.79rem;line-height:1.66}
+  .stmt,.gallery,.proof,.process,.why,.testi,.cta{padding:8vh var(--gutter)}
+  .stmt h2,.proof-hdr,.process-hdr,.why-hdr{font-size:1.18rem}
+  .gal-info{padding:1.2rem}
+  .gal-info p,.stmt p,.why-block p,.process-step p,.proof-card p{font-size:.72rem;line-height:1.62}
+  .cta-email{font-size:.6rem;padding:.7rem 1.05rem}
+}
+@media(max-width:390px){
+  :root{--gutter:.82rem}
+  .hero-content{padding:8.9rem var(--gutter) 1.9rem}
+  .proof-grid,.process-inner,.why-inner,.testi-inner{gap:1.15rem}
+  .proof-card,.process-step,.why-block{padding:1.05rem}
+}
+@media(max-width:430px){
+  .topbar-drop{right:var(--gutter);left:var(--gutter);min-width:0}
 }
 @media (prefers-reduced-motion: reduce) {
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
@@ -347,7 +391,7 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
 </section>
 
 <section class="gallery s-dark" id="portfolio">
-  <h2 class="r">TRABAJOS RECIENTES</h2>
+  <h2 class="r">CASOS REALES</h2>
   <div class="hgal-container">
     <div class="hgal-track" id="galTrack">
       <div class="gal-card r">
@@ -357,7 +401,8 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
         <div class="gal-info">
           <h3>Mutuo</h3>
           <span class="subtitle">Estudio de Pilates | Buenos Aires</span>
-          <p>Sesión completa para el estudio. Retratos de clientes, detalles del espacio, sistema visual para redes.</p>
+          <p>Dirección visual integral para ordenar cómo se presenta el estudio en Instagram, web y piezas comerciales.</p>
+          <p>Incluyó retratos en contexto real, escenas de clases, detalles de espacio y banco visual curado por uso.</p>
           <a href="mutuo.html">Ver proyecto →</a>
         </div>
       </div>
@@ -368,20 +413,28 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
         <div class="gal-info">
           <h3>Agus</h3>
           <span class="subtitle">Personal Branding | Buenos Aires</span>
-          <p>Retratos para emprendedor. Imágenes que comunican autoridad visual. Material para LinkedIn, Instagram, web.</p>
+          <p>Sistema de retratos para posicionamiento profesional con foco comercial y narrativa de autoridad.</p>
+          <p>Producción diseñada para LinkedIn, Instagram, propuestas comerciales y presencia web consistente.</p>
           <a href="agus.html">Ver proyecto →</a>
         </div>
       </div>
-      <div class="gal-card r d2" hidden>
-        <div class="gal-img">IMAGEN</div>
-        <div class="gal-info">
-          <h3>Próximo Proyecto</h3>
-          <span class="subtitle">Categoría | Ubicación</span>
-          <p>Espacio para nuevos proyectos de brand photography y personal branding que se agreguen.</p>
-          <a href="proximo-proyecto.html">Ver proyecto →</a>
-        </div>
-      </div>
     </div>
+  </div>
+</section>
+
+<section class="proof s-light2">
+  <h2 class="proof-hdr r">EVIDENCIA COMERCIAL CONCRETA</h2>
+  <div class="proof-grid">
+    <article class="proof-card r">
+      <h3>Mutuo: de fotos sueltas a sistema usable</h3>
+      <p>Se entregó una biblioteca visual organizada para cubrir identidad, servicios, experiencia de alumnos y comunicación diaria.</p>
+      <p>Resultado práctico: el equipo dejó de improvisar piezas y empezó a publicar con criterio consistente en cada canal.</p>
+    </article>
+    <article class="proof-card r d1">
+      <h3>Agus: presencia profesional con continuidad</h3>
+      <p>La producción se pensó por escenarios de uso reales: perfil profesional, contenidos de marca personal y material comercial.</p>
+      <p>Resultado práctico: la comunicación visual sostiene la misma autoridad en LinkedIn, Instagram, web y propuestas.</p>
+    </article>
   </div>
 </section>
 
@@ -416,15 +469,15 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
   <div class="why-inner">
     <div class="why-block r">
       <h3>POSICIONAMIENTO VISIBLE</h3>
-      <p>Las imágenes no solo se ven bien: comunican valor y mejoran la percepción de tu marca.</p>
+      <p>Las imágenes no solo se ven bien: comunican valor para que dejes de competir solo por precio y sostengas mejor valor percibido.</p>
     </div>
     <div class="why-block r d1">
       <h3>CONSISTENCIA DE SISTEMA</h3>
-      <p>Cada pieza visual se conecta con la siguiente para sostener identidad y coherencia de canal a canal.</p>
+      <p>Cada pieza visual se conecta con la siguiente para sostener identidad entre Instagram, web y piezas comerciales sin romper la narrativa.</p>
     </div>
     <div class="why-block r d2">
       <h3>PRODUCCIÓN SELECTIVA</h3>
-      <p>Trabajo con pocos proyectos por período para asegurar dirección real, foco y resultados sólidos.</p>
+      <p>Trabajo con pocos proyectos por período para dirigir cada sesión con foco real y entregar material listo para usar, no solo para archivar.</p>
     </div>
   </div>
 </section>
@@ -448,13 +501,13 @@ footer{padding:3rem var(--gutter);display:grid;grid-template-columns:1fr auto 1f
   <div class="shine-box">
     <p class="cta-lbl r">Si tu marca necesita orden visual, empecemos por el Fundamento.</p>
     <h2 class="r">HABLEMOS<br>DE TU<br><em>sistema comercial.</em></h2>
-    <p class="cta-sub r d1">En una primera conversación definimos objetivo, enfoque visual y próximos pasos para producir con método.</p>
-    <a href="mailto:hola@matirath.jpg" class="cta-email r d2">Iniciar Fundamento &nbsp;→</a>
+    <p class="cta-sub r d1">En una primera conversación definimos objetivo comercial, enfoque visual y próximos pasos para producir con método y resultado aplicable. Si hay encaje, revisamos opciones reales en menos de 24 horas.</p>
+    <a href="/contacto.html" class="cta-email r d2">Iniciar conversación &nbsp;→</a>
   </div>
 </section>
 
 <footer class="s-dark">
-  <div class="fl"><div class="ph-logo ph-logo-sm"><img src="imgs/LOGOMATIRATH.png" alt="Logo Matirath"></div><span class="fm">matirath.jpg</span></div>
+  <div class="fl"><div class="ph-logo ph-logo-sm"><img src="matirath_sistema_visual_v2.svg" alt="Logo Matirath"></div><span class="fm">matirath.jpg</span></div>
   <span class="fh">@matirath.jpg</span>
   <span class="fc">© <span id="yr"></span> Matías Rath · Argentina</span>
 </footer>

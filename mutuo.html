@@ -49,6 +49,10 @@
   .section h2{font-size:1.35rem;font-weight:700;margin-bottom:.75rem;letter-spacing:-.02em;}
   .section p{max-width:72ch;font-size:1rem;color:rgba(242,237,230,.9);}
   .section p + p{margin-top:1rem;}
+  .impact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:.5rem;}
+  .impact-card{padding:1.1rem 1.2rem;border:1px solid rgba(176,140,24,.2);border-radius:12px;background:rgba(242,237,230,.03);}
+  .impact-card h3{font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;}
+  .impact-card p{font-size:.92rem;color:rgba(242,237,230,.9);max-width:none;}
   .gallery-toggle{display:inline-flex;align-items:center;gap:.6rem;margin-top:.8rem;padding:.7rem 1.1rem;border:1px solid rgba(176,140,24,.45);border-radius:999px;background:rgba(176,140,24,.12);color:var(--gold);font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
   .gallery-toggle:hover{background:rgba(176,140,24,.2);border-color:var(--gold);}
   .gallery-toggle .arr{display:inline-block;transition:transform .28s ease;}
@@ -90,6 +94,53 @@
     .topbar{padding:0 var(--gutter)}
     .fab-whatsapp{bottom:7.2rem;right:.9rem;padding:.5rem;gap:0}
     .fab-label{display:none}
+  }
+  @media(max-width:768px){
+    .hero{min-height:52vh;padding:1.6rem 0;background-attachment:scroll}
+    .page{padding:1.6rem 1rem}
+    h1{font-size:clamp(1.95rem,8.2vw,2.6rem);line-height:.98}
+    .note{font-size:.84rem;line-height:1.72;margin-bottom:1.25rem}
+    .meta{font-size:.8rem;gap:.7rem}
+    .section{margin-bottom:2.1rem}
+    .section h2{font-size:1.1rem;margin-bottom:.55rem}
+    .section p,.impact-card p{font-size:.8rem;line-height:1.68}
+    .impact-grid,.gallery{gap:.75rem}
+    .gallery-toggle{font-size:.62rem;padding:.58rem .9rem}
+    .cta{padding:1.1rem 1rem;border-radius:12px}
+    .cta a{font-size:.76rem}
+    footer{padding:1.4rem 1rem 2.2rem}
+    .footer-inner{font-size:.72rem;gap:.6rem}
+  }
+  @media(max-width:520px){
+    .gallery{grid-template-columns:1fr}
+    .lightbox-btn,.lightbox-close{width:40px;height:40px;font-size:20px}
+  }
+  @media(max-width:430px){
+    .hero{min-height:50vh;padding:1.35rem 0}
+    .page{padding:1.35rem .9rem}
+    h1{font-size:clamp(1.7rem,8.4vw,2.15rem)}
+    .note,.section p,.impact-card p{font-size:.74rem;line-height:1.62}
+    .meta{font-size:.74rem;gap:.55rem}
+    .section{margin-bottom:1.8rem}
+    .gallery-toggle{font-size:.58rem;padding:.52rem .78rem}
+    .cta{padding:.95rem .85rem}
+    .cta a{font-size:.7rem}
+    .footer-inner{font-size:.68rem;justify-content:center}
+    .lightbox-btn.prev{left:10px}
+    .lightbox-btn.next{right:10px}
+    .lightbox-close{top:12px;right:12px}
+    .lightbox-counter{font-size:2rem;right:14px;bottom:12px}
+  }
+  @media(max-width:390px){
+    :root{--gutter:.82rem}
+    .page{padding:1.2rem .82rem}
+    .impact-card,.cta{border-radius:10px}
+    .impact-card{padding:.95rem .9rem}
+    .gallery img{border-radius:10px}
+    .footer-brand img{width:24px;height:24px}
+  }
+  @media(max-width:430px){
+    .topbar-drop{right:var(--gutter);left:var(--gutter);min-width:0}
   }
   @media (prefers-reduced-motion: reduce) {
     *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
@@ -133,14 +184,33 @@
   <main class="page">
     <section class="section">
       <h2>Enfoque</h2>
-      <p>El objetivo fue contar la experiencia del estudio a través de imágenes que funcionen tanto en formato editorial como en redes sociales. Buscamos transmitir orden, calma y profesionalismo sin perder la cercanía del espacio.</p>
+      <p>El objetivo fue ordenar la comunicación visual del estudio para que la marca se perciba consistente, profesional y confiable en cada punto de contacto.</p>
+      <p>La dirección se construyó sobre tres ejes: experiencia real de clase, identidad del espacio y claridad comercial para redes, web y piezas de captación.</p>
     </section>
 
     <section class="section">
       <h2>Qué hicimos</h2>
-      <p>Fotografiamos retratos de clientes, detalles de equipamiento y escenas del espacio. Definimos una paleta visual simple y una dirección de luz controlada para que el contenido se vea uniforme y coherente.</p>
-      <p>El resultado fue una serie de imágenes que el cliente puede usar para promociones, redes sociales, sitio web y presentaciones de marca.</p>
-      <p>Todo el trabajo se resolvió como sistema: planificación, captura y entrega orientadas a coherencia visual y continuidad.</p>
+      <p>Fotografiamos retratos en contexto, escenas activas de clases, detalles de equipamiento y arquitectura del espacio. Definimos dirección de luz, encuadres y ritmo visual para evitar contenido suelto.</p>
+      <p>La entrega se pensó por escenarios de uso concretos: publicación diaria, piezas promocionales, portada de web y comunicación de servicios.</p>
+      <p>Todo el proyecto se resolvió como sistema: planificación, captura, curaduría y selección final orientadas a continuidad comercial.</p>
+    </section>
+
+    <section class="section">
+      <h2>Impacto comercial</h2>
+      <div class="impact-grid">
+        <article class="impact-card">
+          <h3>Consistencia visible</h3>
+          <p>La marca dejó de depender de fotos aisladas y pasó a comunicar con una identidad reconocible en todos los canales.</p>
+        </article>
+        <article class="impact-card">
+          <h3>Producción usable</h3>
+          <p>El equipo recibió material listo para operar durante semanas sin perder calidad ni coherencia de mensaje.</p>
+        </article>
+        <article class="impact-card">
+          <h3>Percepción de valor</h3>
+          <p>La comunicación visual elevó la forma de presentar servicios, experiencia y propuesta del estudio.</p>
+        </article>
+      </div>
     </section>
 
     <section class="section">
@@ -164,19 +234,19 @@
     </section>
 
     <section class="section cta">
-      <p>Este tipo de proyecto funciona bien para marcas que necesitan material usable al mismo tiempo que construyen una imagen de confianza, calidad y jerarquía editorial.</p>
-      <a href="mailto:hola@matirath.jpg">Contáme tu idea →</a>
+      <p>Este tipo de dirección funciona para marcas que necesitan orden visual real, material de uso inmediato y una presencia comercial que sostenga valor percibido.</p>
+      <a href="mailto:hola@matirath.jpg">Hablemos de tu sistema visual →</a>
     </section>
   </main>
 
   <footer>
     <div class="footer-inner">
-      <span class="footer-brand"><img src="imgs/LOGOMATIRATH.png" alt="Logo Matirath"><span>matirath.jpg</span></span>
+      <span class="footer-brand"><img src="matirath_sistema_visual_v2.svg" alt="Logo Matirath"><span>matirath.jpg</span></span>
       <span>© 2026 Matías Rath · Argentina</span>
     </div>
   </footer>
 
-  <a href="https://wa.me/5491123456789?text=Hablemos%20de%20tu%20proyecto." class="fab-whatsapp" target="_blank">
+  <a href="https://wa.me/5492954230852?text=Hola%20Mat%C3%ADas%2C%20quiero%20contactarte%20por%20un%20proyecto%20de%20fotograf%C3%ADa" class="fab-whatsapp" target="_blank">
     <div class="fab-icon">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>
     </div>
