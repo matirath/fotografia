@@ -122,10 +122,6 @@ section>*,footer>*,.cta>*{position:relative;z-index:1}
 .fab-label{display:none;}
 @media(max-width:640px){
   :root{--gutter:.9rem}
-  .hero-content{padding:6rem .9rem 1.6rem}
-  .hero-title{font-size:clamp(2.2rem,5vw,3.5rem)}
-  .hero-eyebrow{font-size:.48rem;margin-bottom:.8rem}
-  .hero-sub{font-size:clamp(.95rem,1.8vw,1.1rem)}
   .fab-whatsapp{bottom:7.2rem;right:.9rem;padding:.65rem .8rem;gap:.6rem}
   .fab-label{display:none}
   .back-top{bottom:5.5rem;right:.9rem}
@@ -142,9 +138,6 @@ section>*,footer>*,.cta>*{position:relative;z-index:1}
 }
 @media(max-width:480px){
   :root{--gutter:.75rem}
-  .hero-content{padding:5.5rem .75rem 1.4rem}
-  .hero-title{font-size:clamp(1.9rem,4.5vw,2.8rem)}
-  .hero-eyebrow{font-size:.42rem}
   .cta h2{font-size:clamp(1.6rem,4vw,2.4rem)}
   footer{padding:1.5rem var(--gutter)}
 }
@@ -296,7 +289,8 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
 
 @media(max-width:768px){
   .hero{min-height:clamp(500px,74vh,720px)}
-  .hero-content{padding:7.2rem var(--gutter) 3.2rem;max-width:58ch;width:100%;margin-left:auto;text-align:right}
+  .hero-inner{justify-content:flex-end}
+  .hero-content{padding:7.2rem var(--gutter) 3.2rem;max-width:min(58ch,92vw);width:auto;margin-left:auto;margin-right:0;text-align:right;display:flex;flex-direction:column;align-items:flex-end}
   .hero-title,.hero-sub{width:100%;text-align:right}
   .hero-cta{justify-content:flex-end}
   .hero-line-main{font-size:clamp(2.3rem,8.3vw,3.25rem)}
@@ -390,7 +384,8 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
 @media(max-width:430px){
   .topbar{height:64px;padding:0 .9rem}
   .hero{min-height:clamp(500px,66vh,620px)}
-  .hero-content{padding:5.6rem .9rem 2.1rem;max-width:44ch;width:100%;margin-left:auto;text-align:right}
+  .hero-inner{justify-content:flex-end}
+  .hero-content{padding:5.6rem .9rem 2.1rem;max-width:min(44ch,93vw);width:auto;margin-left:auto;margin-right:0;text-align:right;display:flex;flex-direction:column;align-items:flex-end}
   .hero-line-main{font-size:clamp(2.05rem,8.9vw,2.45rem);line-height:.97}
   .hero-line-connector{font-size:.69rem;letter-spacing:.17em}
   .hero-line-secondary{font-size:clamp(1.08rem,4.9vw,1.38rem)}
@@ -444,6 +439,7 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
   .hero-btn{font-size:.54rem;padding:.68rem .88rem}
   .featured-item img{height:196px}
 }
+
 @media (prefers-reduced-motion: reduce) {
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
 }
