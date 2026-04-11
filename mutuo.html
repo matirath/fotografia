@@ -108,7 +108,7 @@
   .cta p{color:rgba(242,237,230,.82);margin-bottom:1.2rem;max-width:60ch;font-size:.94rem;line-height:1.78;}
   .cta a{display:inline-flex;align-items:center;justify-content:center;padding:.86rem 1.4rem;border-radius:999px;border:1px solid var(--gold);background:var(--gold);color:#0a0908;font-weight:500;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;transition:transform .24s ease,background .24s ease,border-color .24s ease;}
   .cta a:hover{transform:translateY(-2px);background:#c9a327;border-color:#c9a327;text-decoration:none;}
-  footer{padding:2rem 1.5rem 3rem;margin-top:2rem;border-top:1px solid rgba(176,140,24,.1);}
+  footer{padding:2rem 1.5rem 4.5rem;margin-top:2rem;border-top:1px solid rgba(176,140,24,.1);z-index:40;position:relative}
   .footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;font-size:.85rem;color:rgba(242,237,230,.65);}
   .footer-brand{display:inline-flex;align-items:center;gap:.55rem;}
   .footer-brand img{width:28px;height:28px;object-fit:contain;border-radius:50%;background:var(--gold);padding:2px;}
@@ -208,10 +208,10 @@
         <a class="back" href="comercial.html">← Volver a comercial</a>
       </div>
       <h1>Mutuo</h1>
-      <p class="note">Sesión completa de brand photography para un estudio de Pilates en Buenos Aires. Imágenes pensadas para retrato, ambiente y uso comercial en redes, web y piezas de marca.</p>
+      <p class="note">Sesión completa de brand photography para un estudio de Pilates en La Plata - La Pampa. Imágenes pensadas para retrato, ambiente y uso comercial en redes, web y piezas de marca.</p>
       <div class="meta">
         <span><strong>Cliente</strong> Estudio de Pilates y entrenamiento</span>
-        <span><strong>Ubicación</strong> Buenos Aires</span>
+        <span><strong>Ubicación</strong> La Plata - La Pampa</span>
         <span><strong>Formato</strong> Retrato y contenido editorial</span>
         <span><strong>Instagram</strong> <a href="https://www.instagram.com/mutuo.sr/" target="_blank" rel="noopener noreferrer" style="display:inline-flex;align-items:center;gap:.3em;"><svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;opacity:.78"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"/><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/><line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/></svg>@mutuo.sr</a></span>
       </div>
@@ -276,19 +276,18 @@
     </section>
   </main>
 
-  <footer>
-    <div class="footer-inner">
-      <span class="footer-brand"><img src="matirath_sistema_visual_v2.svg" alt="Logo Matirath"><span>matirath.jpg</span></span>
-      <span>© 2026 Matías Rath · Argentina</span>
-    </div>
-  </footer>
-
   <a href="https://wa.me/5492954230852?text=Hola%20Mat%C3%ADas%2C%20quiero%20contactarte%20por%20un%20proyecto%20de%20fotograf%C3%ADa" class="fab-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Canal de contacto inmediato por WhatsApp">
     <div class="fab-icon">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>
     </div>
     
   </a>
+
+  <footer class="s-dark">
+    <div class="fl"><div class="ph-logo ph-logo-sm"><img src="matirath_sistema_visual_v2.svg" alt="Logo Matirath"></div><span class="fm">matirath.jpg</span></div>
+    <span class="fh">@matirath.jpg</span>
+    <span class="fc">© <span id="yr"></span> Matías Rath · La Plata - La Pampa</span>
+  </footer>
 
   <div id="lightbox" class="lightbox">
     <button class="lightbox-close" onclick="closeLightbox()" aria-label="Cerrar">×</button>
