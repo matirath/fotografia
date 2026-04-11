@@ -3,10 +3,27 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0a0908" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f0ebe2" media="(prefers-color-scheme: light)">
+<meta name="color-scheme" content="dark light">
 <link rel="icon" type="image/png" href="/imgs/favicon.png">
 <link rel="icon" type="image/png" sizes="192x192" href="/imgs/favicon.png">
 <link rel="apple-touch-icon" href="/imgs/favicon.png">
 <title>Mutuo — matirath.jpg</title>
+<meta name="description" content="Caso Mutuo: sesión de brand photography para estudio de Pilates con dirección visual aplicada a redes, web y piezas comerciales."/>
+<meta property="og:type" content="website"/>
+<meta property="og:title" content="Mutuo — matirath.jpg"/>
+<meta property="og:description" content="Caso de fotografía de marca para estudio de Pilates con foco en consistencia visual y percepción de valor."/>
+<meta property="og:url" content="https://www.matirath.com.ar/mutuo.html"/>
+<link rel="canonical" href="https://www.matirath.com.ar/mutuo.html"/>
+<meta property="og:image" content="https://www.matirath.com.ar/imgs/og-cover.jpg"/>
+<meta property="og:image:secure_url" content="https://www.matirath.com.ar/imgs/og-cover.jpg"/>
+<meta property="og:image:type" content="image/jpeg"/>
+<meta property="og:locale" content="es_AR"/>
+<meta name="twitter:card" content="summary_large_image"/>
+<meta name="twitter:title" content="Mutuo — matirath.jpg"/>
+<meta name="twitter:description" content="Caso de fotografía de marca para estudio de Pilates con foco en consistencia visual y percepción de valor."/>
+<meta name="twitter:image" content="https://www.matirath.com.ar/imgs/og-cover.jpg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap" rel="stylesheet" />
@@ -36,31 +53,43 @@
   a{color:var(--gold);text-decoration:none;}
   a:hover{text-decoration:underline;}
   .page{max-width:1120px;margin:0 auto;padding:2.5rem 1.5rem;}
-  .hero{min-height:60vh;display:flex;align-items:flex-end;padding:3rem 0;position:relative;overflow:hidden;background:linear-gradient(135deg,#0f0d0b 0%,#1a1200 40%,#0a0908 100%);background-image:url('imgs/mutuo-portada.jpg');background-size:cover;background-position:center 140%;background-attachment:fixed;}
-  .hero::before{content:'';position:absolute;inset:0;background:rgba(10,9,8,.68);z-index:0;}
+  .hero{min-height:clamp(520px,76vh,860px);display:flex;align-items:flex-end;justify-content:flex-end;position:relative;overflow:hidden;background:#0a0908;background-image:url('imgs/mutuo-portada.jpg');background-size:cover;background-position:center 64%;}
+  .hero::before{content:'';position:absolute;inset:0;background:linear-gradient(to left,rgba(10,9,8,.94) 0%,rgba(10,9,8,.86) 20%,rgba(10,9,8,.66) 38%,rgba(10,9,8,.32) 52%,rgba(10,9,8,.08) 66%,transparent 78%);z-index:0;}
+  .hero::after{content:"";position:absolute;inset:0;z-index:0;opacity:.03;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px;pointer-events:none}
+  .hero > .page{position:relative;z-index:2;width:min(62%,720px);margin-left:auto;margin-right:clamp(1rem,4vw,3rem);padding:0 var(--gutter) 5.1rem;text-align:right;}
   .hero-content{position:relative;z-index:1;}
-  .back{display:inline-flex;align-items:center;gap:.4rem;color:var(--cream);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.75rem;margin-bottom:1rem;}
-  .hero-bar{width:100px;height:2px;background:linear-gradient(90deg,var(--gold),rgba(176,140,24,0));margin-bottom:1.5rem;}
+  .hero-top{display:inline-flex;align-items:center;justify-content:flex-end;gap:.75rem;margin-bottom:1.5rem;}
+  .back{display:inline-flex;align-items:center;gap:.4rem;color:var(--cream);font-weight:700;letter-spacing:.08em;text-transform:uppercase;font-size:.75rem;margin-bottom:0;}
+  .hero-bar{width:104px;height:2px;background:linear-gradient(90deg,var(--gold),rgba(176,140,24,0));}
+  .hero h1,.hero .note,.hero .meta{text-align:right;}
+  .hero .note{margin-left:auto;}
+  .hero .meta{justify-items:end;}
+  .hero > .page h1{font-size:clamp(2.5rem,7vw,5rem);line-height:1.05;letter-spacing:-.02em;font-weight:900;color:#f2ede6;margin:0 0 1rem;}
   h1{font-size:clamp(2.4rem,5vw,4rem);font-weight:900;line-height:1.03;margin-bottom:.75rem;}
   .note{max-width:58ch;font-size:1rem;color:rgba(242,237,230,.78);margin-bottom:2rem;}
-  .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;font-size:.95rem;color:rgba(242,237,230,.78);margin-bottom:2rem;}
+  .meta{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:1rem;font-size:.95rem;color:rgba(242,237,230,.78);margin-bottom:2rem;}
   .meta span{display:block;}
   .section{margin-bottom:3rem;}
-  .section h2{font-size:1.35rem;font-weight:700;margin-bottom:.75rem;letter-spacing:-.02em;}
-  .section p{max-width:72ch;font-size:1rem;color:rgba(242,237,230,.9);}
+  .section h2{font-size:clamp(1.45rem,3.1vw,2rem);font-weight:700;margin-bottom:1rem;letter-spacing:-.02em;line-height:1.08;}
+  .section p{max-width:72ch;font-size:1rem;color:rgba(242,237,230,.86);}
   .section p + p{margin-top:1rem;}
-  .impact-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:.5rem;}
-  .impact-card{padding:1.1rem 1.2rem;border:1px solid rgba(176,140,24,.2);border-radius:12px;background:rgba(242,237,230,.03);}
-  .impact-card h3{font-size:.82rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--gold);margin-bottom:.5rem;}
-  .impact-card p{font-size:.92rem;color:rgba(242,237,230,.9);max-width:none;}
-  .gallery-toggle{display:inline-flex;align-items:center;gap:.6rem;margin-top:.8rem;padding:.7rem 1.1rem;border:1px solid rgba(176,140,24,.45);border-radius:999px;background:rgba(176,140,24,.12);color:var(--gold);font-size:.76rem;font-weight:700;letter-spacing:.08em;text-transform:uppercase;cursor:pointer;transition:all .2s;}
-  .gallery-toggle:hover{background:rgba(176,140,24,.2);border-color:var(--gold);}
+  .section.bridge{padding:1.35rem 1.45rem;border:1px solid rgba(176,140,24,.18);border-radius:14px;background:linear-gradient(160deg,rgba(255,255,255,.06),rgba(255,255,255,.02));}
+  .section.bridge h2{font-size:clamp(1.35rem,2.7vw,1.75rem);margin-bottom:.85rem}
+  .section.bridge p{max-width:66ch;font-size:.94rem;line-height:1.8;color:rgba(242,237,230,.8)}
+  .impact-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:.8rem;counter-reset:impact;}
+  .impact-card{counter-increment:impact;position:relative;padding:1.5rem 1.3rem 1.35rem;border:1px solid rgba(176,140,24,.24);border-radius:12px;background:linear-gradient(165deg,rgba(255,255,255,.08),rgba(255,255,255,.03));transition:border-color .24s ease,transform .24s ease,box-shadow .24s ease;}
+  .impact-card::before{content:counter(impact,decimal-leading-zero);display:block;font-size:.56rem;font-weight:600;letter-spacing:.2em;color:rgba(176,140,24,.82);margin-bottom:.72rem}
+  .impact-card:hover{border-color:rgba(176,140,24,.42);transform:translateY(-2px);box-shadow:0 14px 28px rgba(0,0,0,.15)}
+  .impact-card h3{font-size:.9rem;font-weight:600;letter-spacing:.03em;color:#f2ede6;margin-bottom:.55rem;line-height:1.4;text-transform:none;}
+  .impact-card p{font-size:.82rem;line-height:1.75;color:rgba(242,237,230,.74);max-width:none;}
+  .gallery-toggle{display:inline-flex;align-items:center;gap:.62rem;margin-top:.95rem;padding:.82rem 1.22rem;border:1px solid rgba(176,140,24,.48);border-radius:999px;background:rgba(176,140,24,.1);color:#f2ede6;font-size:.66rem;font-weight:500;letter-spacing:.16em;text-transform:uppercase;cursor:pointer;transition:transform .22s ease,background .22s ease,border-color .22s ease;}
+  .gallery-toggle:hover{background:rgba(176,140,24,.18);border-color:rgba(176,140,24,.74);transform:translateY(-1px);}
   .gallery-toggle .arr{display:inline-block;transition:transform .28s ease;}
   .gallery-wrap{max-height:0;opacity:0;overflow:hidden;transition:max-height .45s ease,opacity .35s ease,margin-top .35s ease;margin-top:0;}
   .gallery-wrap.open{max-height:5000px;opacity:1;margin-top:1rem;}
   .gallery-wrap.open .gallery-toggle .arr{transform:rotate(180deg);}
-  .gallery{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-top:1rem;}
-  .gallery img{width:100%;height:auto;aspect-ratio:3/4;object-fit:cover;border-radius:14px;border:1px solid rgba(176,140,24,.2);box-shadow:0 12px 24px rgba(0,0,0,.4);cursor:zoom-in;transition:transform .3s ease,box-shadow .3s ease;}
+  .gallery{column-count:3;column-gap:1.5rem;margin-top:1rem;}
+  .gallery img{width:100%;display:inline-block;margin-bottom:1.5rem;break-inside:avoid;-webkit-column-break-inside:avoid;page-break-inside:avoid;object-fit:cover;border-radius:14px;border:1px solid rgba(176,140,24,.2);box-shadow:0 12px 24px rgba(0,0,0,.4);cursor:zoom-in;transition:transform .3s ease,box-shadow .3s ease;}
   .gallery img:hover{transform:translateY(-2px) scale(1.02);box-shadow:0 16px 30px rgba(0,0,0,.5);}
   .gallery img:active{transform:scale(.99);}
   .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:9000;align-items:center;justify-content:center;backdrop-filter:blur(8px);}
@@ -74,9 +103,11 @@
   .lightbox-close{position:absolute;top:20px;right:20px;background:rgba(176,140,24,.7);border:none;color:#fff;width:48px;height:48px;border-radius:50%;cursor:pointer;font-size:24px;display:flex;align-items:center;justify-content:center;transition:all .2s;z-index:9002;}
   .lightbox-close:hover{background:rgba(176,140,24,1)}
   .lightbox-counter{position:absolute;bottom:20px;right:40px;color:transparent;font-size:2.8rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase;-webkit-text-stroke:1px #fff;line-height:1;}
-  .cta{padding:1.8rem 2rem;border:1px solid rgba(176,140,24,.2);border-radius:18px;background:rgba(242,237,230,.04);}
-  .cta p{color:rgba(242,237,230,.92);margin-bottom:1rem;}
-  .cta a{font-weight:700;}
+  .cta{padding:2.25rem 2.2rem;border:1px solid rgba(176,140,24,.26);border-radius:16px;background:linear-gradient(155deg,rgba(255,255,255,.08),rgba(255,255,255,.03));}
+  .cta .cta-kicker{display:block;font-size:.55rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:rgba(176,140,24,.9);margin-bottom:.7rem;}
+  .cta p{color:rgba(242,237,230,.82);margin-bottom:1.2rem;max-width:60ch;font-size:.94rem;line-height:1.78;}
+  .cta a{display:inline-flex;align-items:center;justify-content:center;padding:.86rem 1.4rem;border-radius:999px;border:1px solid var(--gold);background:var(--gold);color:#0a0908;font-weight:500;font-size:.66rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;transition:transform .24s ease,background .24s ease,border-color .24s ease;}
+  .cta a:hover{transform:translateY(-2px);background:#c9a327;border-color:#c9a327;text-decoration:none;}
   footer{padding:2rem 1.5rem 3rem;margin-top:2rem;border-top:1px solid rgba(176,140,24,.1);}
   .footer-inner{display:flex;flex-wrap:wrap;justify-content:space-between;gap:1rem;font-size:.85rem;color:rgba(242,237,230,.65);}
   .footer-brand{display:inline-flex;align-items:center;gap:.55rem;}
@@ -96,7 +127,8 @@
     .fab-label{display:none}
   }
   @media(max-width:768px){
-    .hero{min-height:52vh;padding:1.6rem 0;background-attachment:scroll}
+    .hero{min-height:clamp(500px,70vh,720px);padding:1.6rem 0}
+    .hero > .page{width:min(100%,640px);margin-right:0;padding:0 1rem 2.2rem}
     .page{padding:1.6rem 1rem}
     h1{font-size:clamp(1.95rem,8.2vw,2.6rem);line-height:.98}
     .note{font-size:.84rem;line-height:1.72;margin-bottom:1.25rem}
@@ -104,9 +136,10 @@
     .section{margin-bottom:2.1rem}
     .section h2{font-size:1.1rem;margin-bottom:.55rem}
     .section p,.impact-card p{font-size:.8rem;line-height:1.68}
-    .impact-grid,.gallery{gap:.75rem}
+    .impact-grid{grid-template-columns:1fr;gap:.75rem}
+    .gallery{gap:.75rem}
     .gallery-toggle{font-size:.62rem;padding:.58rem .9rem}
-    .cta{padding:1.1rem 1rem;border-radius:12px}
+    .cta{padding:1.35rem 1.05rem;border-radius:12px}
     .cta a{font-size:.76rem}
     footer{padding:1.4rem 1rem 2.2rem}
     .footer-inner{font-size:.72rem;gap:.6rem}
@@ -151,6 +184,7 @@
   <nav class="topbar" id="topbar">
   <a href="/" class="logo">matirath.jpg</a>
   <div class="topbar-links">
+    <a href="/">Inicio</a>
     <a href="/comercial.html">Comercial</a>
     <a href="/eventos.html">Eventos</a>
     <a href="/quien-soy.html">Quién soy</a>
@@ -169,12 +203,14 @@
 </nav>
   <section class="hero">
     <div class="page hero-content">
-      <a class="back" href="comercial.html">← Volver a comercial</a>
-      <div class="hero-bar"></div>
+      <div class="hero-top">
+        <div class="hero-bar"></div>
+        <a class="back" href="comercial.html">← Volver a comercial</a>
+      </div>
       <h1>Mutuo</h1>
       <p class="note">Sesión completa de brand photography para un estudio de Pilates en Buenos Aires. Imágenes pensadas para retrato, ambiente y uso comercial en redes, web y piezas de marca.</p>
       <div class="meta">
-        <span><strong>Cliente</strong> Estudio de Pilates</span>
+        <span><strong>Cliente</strong> Estudio de Pilates y entrenamiento</span>
         <span><strong>Ubicación</strong> Buenos Aires</span>
         <span><strong>Formato</strong> Retrato y contenido editorial</span>
       </div>
@@ -182,10 +218,9 @@
   </section>
 
   <main class="page">
-    <section class="section">
-      <h2>Enfoque</h2>
-      <p>El objetivo fue ordenar la comunicación visual del estudio para que la marca se perciba consistente, profesional y confiable en cada punto de contacto.</p>
-      <p>La dirección se construyó sobre tres ejes: experiencia real de clase, identidad del espacio y claridad comercial para redes, web y piezas de captación.</p>
+    <section class="section bridge">
+      <h2>Dirección visual del caso</h2>
+      <p>El estudio necesitaba traducir su experiencia presencial a una comunicación visual con más criterio y continuidad. La sesión se planteó para resolver identidad de marca, percepción de servicio y claridad comercial en redes, web y piezas de captación.</p>
     </section>
 
     <section class="section">
@@ -199,24 +234,24 @@
       <h2>Impacto comercial</h2>
       <div class="impact-grid">
         <article class="impact-card">
-          <h3>Consistencia visible</h3>
-          <p>La marca dejó de depender de fotos aisladas y pasó a comunicar con una identidad reconocible en todos los canales.</p>
+          <h3>Consistencia de marca</h3>
+          <p>El estudio dejó de depender de imágenes sueltas y pasó a comunicar con una identidad visual reconocible en todo el sistema.</p>
         </article>
         <article class="impact-card">
-          <h3>Producción usable</h3>
-          <p>El equipo recibió material listo para operar durante semanas sin perder calidad ni coherencia de mensaje.</p>
+          <h3>Producción con criterio de uso</h3>
+          <p>El equipo recibió una biblioteca ordenada por escenarios concretos, lista para operar sin perder calidad ni dirección.</p>
         </article>
         <article class="impact-card">
-          <h3>Percepción de valor</h3>
-          <p>La comunicación visual elevó la forma de presentar servicios, experiencia y propuesta del estudio.</p>
+          <h3>Percepción de valor sostenida</h3>
+          <p>La comunicación del servicio ganó presencia y coherencia, elevando la forma en que el estudio presenta su propuesta.</p>
         </article>
       </div>
     </section>
 
     <section class="section">
       <h2>Galería del proyecto</h2>
-      <p>La galería está plegada. Abrila para ver las fotos.</p>
-      <button class="gallery-toggle" id="galleryToggle" type="button" aria-expanded="false" aria-controls="mutuoGalleryWrap">Ver galería <span class="arr">▾</span></button>
+      <p>Una edición curada para recorrer retratos, dinámica de clase y atmósfera de marca bajo una misma dirección visual.</p>
+      <button class="gallery-toggle" id="galleryToggle" type="button" aria-expanded="false" aria-controls="mutuoGalleryWrap">Abrir selección completa <span class="arr">▾</span></button>
       <div class="gallery-wrap" id="mutuoGalleryWrap">
         <div class="gallery">
           <img src="imgs/mutuo-galeria-01.jpg" alt="Mutuo galería 01" loading="lazy" />
@@ -234,7 +269,8 @@
     </section>
 
     <section class="section cta">
-      <p>Este tipo de dirección funciona para marcas que necesitan orden visual real, material de uso inmediato y una presencia comercial que sostenga valor percibido.</p>
+      <span class="cta-kicker">Próximo paso</span>
+      <p>Si querés que tu proyecto ordene su sistema visual con criterio comercial y continuidad entre canales, podemos conversar una dirección aplicada a tu caso.</p>
       <a href="mailto:hola@matirath.jpg">Hablemos de tu sistema visual →</a>
     </section>
   </main>
@@ -246,7 +282,7 @@
     </div>
   </footer>
 
-  <a href="https://wa.me/5492954230852?text=Hola%20Mat%C3%ADas%2C%20quiero%20contactarte%20por%20un%20proyecto%20de%20fotograf%C3%ADa" class="fab-whatsapp" target="_blank">
+  <a href="https://wa.me/5492954230852?text=Hola%20Mat%C3%ADas%2C%20quiero%20contactarte%20por%20un%20proyecto%20de%20fotograf%C3%ADa" class="fab-whatsapp" target="_blank" rel="noopener noreferrer" aria-label="Canal de contacto inmediato por WhatsApp">
     <div class="fab-icon">
       <svg viewBox="0 0 24 24" fill="currentColor"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893A11.821 11.821 0 0020.885 3.488"/></svg>
     </div>
@@ -301,7 +337,7 @@
       galleryToggle.addEventListener('click',function(){
         var isOpen=galleryWrap.classList.toggle('open');
         galleryToggle.setAttribute('aria-expanded',isOpen?'true':'false');
-        galleryToggle.innerHTML=isOpen?'Ocultar galería <span class="arr">▾</span>':'Ver galería <span class="arr">▾</span>';
+        galleryToggle.innerHTML=isOpen?'Ocultar selección <span class="arr">▾</span>':'Abrir selección completa <span class="arr">▾</span>';
       });
     }
 
