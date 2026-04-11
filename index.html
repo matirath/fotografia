@@ -427,26 +427,30 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
 
 /* Hero mobile text parity with comercial.html */
 @media(max-width:768px){
-  .hero-content{padding:7.2rem var(--gutter) 3.2rem;max-width:100%;margin:0;display:block;text-align:right}
-  .hero-line-main{font-size:clamp(2.3rem,8.3vw,3.25rem)}
-  .hero-line-connector{font-size:.78rem;letter-spacing:.2em}
-  .hero-line-secondary{font-size:clamp(1.28rem,4.9vw,1.92rem)}
-  .hero-sub{font-size:.88rem;line-height:1.65;max-width:36ch}
-  .hero-scroll{right:1rem;bottom:2rem;gap:.3rem}
-  .hero-scroll span{font-size:.4rem;letter-spacing:.26em}
-  .hero-bar{height:28px}
+  #hero .hero-inner{justify-content:flex-end}
+  #hero .hero-content{padding:7.2rem var(--gutter) 3.2rem;max-width:min(58ch,92vw);width:auto;margin-left:auto;margin-right:0;text-align:right;display:flex;flex-direction:column;align-items:flex-end}
+  #hero .hero-title,#hero .hero-sub{width:100%;text-align:right}
+  #hero .hero-cta{justify-content:flex-end;width:100%}
+  #hero .hero-line-main{font-size:clamp(2.3rem,8.3vw,3.25rem)}
+  #hero .hero-line-connector{font-size:.78rem;letter-spacing:.2em}
+  #hero .hero-line-secondary{font-size:clamp(1.28rem,4.9vw,1.92rem)}
+  #hero .hero-sub{font-size:.88rem;line-height:1.65;max-width:36ch}
+  #hero .hero-word{min-width:0}
+  #hero .hero-scroll{right:1rem;bottom:2rem;gap:.3rem}
+  #hero .hero-scroll span{font-size:.4rem;letter-spacing:.26em}
+  #hero .hero-bar{height:28px}
 }
 @media(max-width:480px){
-  .hero-content{padding:6.2rem var(--gutter) 2.6rem}
-  .hero-line-main{font-size:clamp(2rem,9.8vw,2.55rem)}
-  .hero-line-secondary{font-size:clamp(1.15rem,5.2vw,1.52rem)}
+  #hero .hero-content{padding:6.2rem var(--gutter) 2.6rem}
+  #hero .hero-line-main{font-size:clamp(2rem,9.8vw,2.55rem)}
+  #hero .hero-line-secondary{font-size:clamp(1.15rem,5.2vw,1.52rem)}
 }
 @media(max-width:430px){
-  .hero-content{padding:6.2rem var(--gutter) 2.6rem}
-  .hero-sub{font-size:.84rem;line-height:1.65}
+  #hero .hero-content{padding:6.2rem var(--gutter) 2.6rem}
+  #hero .hero-sub{font-size:.84rem;line-height:1.65}
 }
 @media(max-width:390px){
-  .hero-content{padding:6.2rem var(--gutter) 2.6rem}
+  #hero .hero-content{padding:6.2rem var(--gutter) 2.6rem}
 }
 
 @media (prefers-reduced-motion: reduce) {
