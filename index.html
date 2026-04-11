@@ -361,7 +361,6 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
   .hero-content{padding:6.2rem var(--gutter) 2.6rem}
   .hero-line-main{font-size:clamp(2rem,9.8vw,2.55rem)}
   .hero-line-secondary{font-size:clamp(1.15rem,5.2vw,1.52rem)}
-  .hero-sub{font-size:.84rem}
   .area-link{padding:1.5rem 1.2rem}
 
   .svc-nav-card p,.ap-item p{font-size:.74rem;line-height:1.65}
@@ -385,13 +384,6 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
   .topbar{height:64px;padding:0 .9rem}
   .hero{min-height:clamp(500px,66vh,620px)}
   .hero-inner{justify-content:flex-end}
-  .hero-content{padding:6.2rem var(--gutter) 2.6rem;max-width:min(44ch,93vw);width:auto;margin-left:auto;margin-right:0;text-align:right;display:flex;flex-direction:column;align-items:flex-end}
-  .hero-sub{margin-top:1.1rem;margin-bottom:1.6rem;font-size:.84rem;line-height:1.65}
-  .hero-cta{gap:.6rem}
-  .hero-btn{font-size:.56rem;padding:.74rem 1rem}
-  .hero-scroll{right:.9rem;bottom:1.1rem}
-  .hero-scroll span{font-size:.44rem}
-  .hero-bar{height:34px}
 
   .ix-block{padding:8.2vh .9rem}
   .ix-title{font-size:clamp(1.35rem,6.3vw,1.75rem);margin-bottom:1rem}
@@ -430,8 +422,31 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
   footer{padding:1.35rem .9rem}
 }
 @media(max-width:393px){
-  .hero-btn{font-size:.56rem;padding:.74rem 1rem}
   .featured-item img{height:196px}
+}
+
+/* Hero mobile text parity with comercial.html */
+@media(max-width:768px){
+  .hero-content{padding:7.2rem var(--gutter) 3.2rem;max-width:100%;margin:0;display:block;text-align:right}
+  .hero-line-main{font-size:clamp(2.3rem,8.3vw,3.25rem)}
+  .hero-line-connector{font-size:.78rem;letter-spacing:.2em}
+  .hero-line-secondary{font-size:clamp(1.28rem,4.9vw,1.92rem)}
+  .hero-sub{font-size:.88rem;line-height:1.65;max-width:36ch}
+  .hero-scroll{right:1rem;bottom:2rem;gap:.3rem}
+  .hero-scroll span{font-size:.4rem;letter-spacing:.26em}
+  .hero-bar{height:28px}
+}
+@media(max-width:480px){
+  .hero-content{padding:6.2rem var(--gutter) 2.6rem}
+  .hero-line-main{font-size:clamp(2rem,9.8vw,2.55rem)}
+  .hero-line-secondary{font-size:clamp(1.15rem,5.2vw,1.52rem)}
+}
+@media(max-width:430px){
+  .hero-content{padding:6.2rem var(--gutter) 2.6rem}
+  .hero-sub{font-size:.84rem;line-height:1.65}
+}
+@media(max-width:390px){
+  .hero-content{padding:6.2rem var(--gutter) 2.6rem}
 }
 
 @media (prefers-reduced-motion: reduce) {
