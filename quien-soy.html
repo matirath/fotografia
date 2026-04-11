@@ -337,6 +337,16 @@ titleTls.forEach((tl, i) => {
   });
 })();
 
+(function(){
+  var btn=document.getElementById('topbarBurger');
+  var drop=document.getElementById('topbarDrop');
+  if(!btn||!drop)return;
+  function close(){drop.classList.remove('open');btn.setAttribute('aria-expanded','false');}
+  btn.addEventListener('click',function(e){e.stopPropagation();var o=drop.classList.toggle('open');btn.setAttribute('aria-expanded',o?'true':'false');});
+  document.addEventListener('click',function(e){if(!btn.contains(e.target)&&!drop.contains(e.target))close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+})();
+
 </script>
 
 </body>
