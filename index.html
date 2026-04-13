@@ -14,19 +14,19 @@
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="Matías Rath | fotografía para marcas y eventos"/>
 <meta property="og:description" content="fotografía comercial, marca personal y eventos."/>
-<meta property="og:image" content="https://www.matirath.com.ar/imgs/og-cover.jpg"/>
+<meta property="og:image" content="https://www.matirath.com.ar/assets/og/og-inicio.jpg"/>
 <meta property="og:image:width" content="2250"/>
 <meta property="og:image:height" content="1276"/>
 <meta property="og:image:alt" content="Matías Rath - Fotografía de marca"/>
 <meta property="og:url" content="https://www.matirath.com.ar"/>
 <link rel="canonical" href="https://www.matirath.com.ar/"/>
-<meta property="og:image:secure_url" content="https://www.matirath.com.ar/imgs/og-cover.jpg"/>
+<meta property="og:image:secure_url" content="https://www.matirath.com.ar/assets/og/og-inicio.jpg"/>
 <meta property="og:image:type" content="image/jpeg"/>
 <meta property="og:locale" content="es_AR"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Matías Rath | fotografía para marcas y eventos"/>
 <meta name="twitter:description" content="fotografía comercial, marca personal y eventos."/>
-<meta name="twitter:image" content="https://www.matirath.com.ar/imgs/og-cover.jpg"/>
+<meta name="twitter:image" content="https://www.matirath.com.ar/assets/og/og-inicio.jpg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet"/>
@@ -96,8 +96,9 @@ section>*,footer>*,.cta>*{position:relative;z-index:1}
 .hero-title .itl{font-style:italic;font-weight:500;font-size:.52em;color:var(--gold);display:block;margin-top:.15em;letter-spacing:.04em;transition:color .1s linear}
 .hero-sub{margin-bottom:.9rem;font-size:clamp(.92rem,1.45vw,1.04rem);font-weight:300;letter-spacing:.02em;line-height:1.72;color:rgba(242,237,230,.74);max-width:39ch;margin-left:auto;opacity:0;transform:translateY(10px);animation:fu .7s .85s forwards}
 @keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.hero-scroll{position:fixed;right:var(--gutter);bottom:2rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;z-index:194;opacity:0;animation:fu .7s 1.3s forwards}
+.hero-scroll{position:fixed;right:var(--gutter);bottom:2rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;z-index:194;opacity:0;animation:fu .7s 1.3s forwards;transition:opacity .25s ease,transform .25s ease}
 .hero-scroll{background:none;border:0;padding:0;cursor:pointer}
+.hero-scroll.is-hidden{opacity:0;pointer-events:none;transform:translateY(10px)}
 .hero-scroll span{font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(242,237,230,.45);writing-mode:vertical-rl}
 .hero-bar{width:1px;height:44px;background:linear-gradient(to bottom,var(--gold),transparent);animation:sp 2s ease-in-out infinite}
 @keyframes sp{0%{opacity:0}20%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translateY(10px)}}
@@ -456,6 +457,58 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
 @media (prefers-reduced-motion: reduce) {
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
 }
+
+/* ── INDEX LEAD MODAL (encapsulated) ── */
+.lead-modal-overlay{position:fixed;inset:0;background:rgba(6,5,4,.46);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .32s ease,visibility .32s ease;z-index:1700}
+.lead-modal-overlay.is-open{opacity:1;visibility:visible;pointer-events:auto}
+.lead-modal{width:min(560px,100%);max-height:min(88vh,760px);overflow:auto;border-radius:16px;border:1px solid rgba(242,237,230,.18);background:url('imgs/lead-modal-bg.jpg') center/cover no-repeat,linear-gradient(160deg,rgba(20,17,14,.97),rgba(11,10,9,.99));box-shadow:0 18px 48px rgba(0,0,0,.52),inset 0 1px 0 rgba(255,255,255,.06);padding:1.4rem 1.25rem 1.2rem;color:#f2ede6;isolation:isolate;transform:scale(0.92) translateY(12px);opacity:0;transition:transform .44s cubic-bezier(0.34,1.56,0.64,1),opacity .32s ease .08s}
+.lead-modal-overlay.is-open .lead-modal{transform:scale(1) translateY(0);opacity:1}
+.lead-modal::before{content:'';position:absolute;inset:0;border-radius:16px;background:rgba(8,7,6,.78);z-index:0;pointer-events:none}
+.lead-modal>*{position:relative;z-index:1}
+.lead-modal-header{display:flex;align-items:flex-start;justify-content:space-between;gap:.8rem;margin-bottom:.95rem}
+.lead-modal-title{flex:1;font-size:clamp(.86rem,1.7vw,1rem);font-weight:500;line-height:1.2;letter-spacing:.005em;max-width:none;white-space:nowrap;padding-top:.38rem}
+.lead-modal-close{appearance:none;border:0;background:rgba(242,237,230,.08);color:rgba(242,237,230,.85);font-size:1.9rem;line-height:1;cursor:pointer;padding:.22rem .5rem;border-radius:8px;transition:color .2s ease,background .2s ease;min-width:2.4rem;min-height:2.4rem;display:flex;align-items:center;justify-content:center}
+.lead-modal-close:hover,.lead-modal-close:focus-visible{color:#fff;background:rgba(242,237,230,.18)}
+.lead-modal-copy{font-size:.83rem;line-height:1.68;color:rgba(242,237,230,.78);margin-bottom:1rem;max-width:52ch}
+.lead-modal-form{display:grid;gap:.72rem}
+.lead-modal-field{display:grid;gap:.28rem}
+.lead-modal-label{font-size:.62rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(242,237,230,.72);font-weight:500}
+.lead-modal-input,.lead-modal-select{width:100%;border-radius:9px;border:1px solid rgba(242,237,230,.28);background:rgba(255,255,255,.035);color:#f2ede6;padding:.74rem .8rem;font:300 .86rem/1.3 var(--R);outline:none;transition:border-color .2s ease,box-shadow .2s ease,background .2s ease}
+.lead-modal-select option{color:#1a1714;background:#f0ebe2}
+.lead-modal-input::placeholder{color:rgba(242,237,230,.38)}
+.lead-modal-input:focus,.lead-modal-select:focus{border-color:rgba(242,237,230,.7);box-shadow:0 0 0 2px rgba(242,237,230,.1);background:rgba(255,255,255,.05)}
+.lead-modal-actions{display:flex;align-items:center;gap:.68rem;flex-wrap:wrap;margin-top:.25rem}
+.lead-modal-submit{appearance:none;border:1px solid var(--gold);border-radius:999px;background:var(--gold);color:#0a0908;padding:.77rem 1.18rem;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background .2s ease,border-color .2s ease,transform .2s ease}
+.lead-modal-submit:hover,.lead-modal-submit:focus-visible{background:#c9a327;border-color:#c9a327;transform:translateY(-1px)}
+.lead-modal-submit[disabled]{opacity:.72;cursor:wait;transform:none}
+.lead-modal-later{appearance:none;border:0;background:none;color:rgba(242,237,230,.7);font-size:.74rem;text-decoration:underline;cursor:pointer;padding:.35rem .1rem}
+.lead-modal-later:hover,.lead-modal-later:focus-visible{color:#fff}
+.lead-modal-note{font-size:.68rem;line-height:1.5;color:rgba(242,237,230,.55)}
+.lead-modal-feedback{display:none;border:1px solid rgba(242,237,230,.3);background:rgba(242,237,230,.07);color:#f2ede6;font-size:.76rem;line-height:1.6;border-radius:10px;padding:.62rem .72rem;margin-top:.3rem}
+.lead-modal-feedback.is-visible{display:block}
+.lead-modal-feedback.is-error{border-color:rgba(198,89,89,.5);background:rgba(198,89,89,.14)}
+/* ── SUCCESS PANEL ── */
+.lead-modal-success{display:none;flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:2.4rem 1.5rem 2rem;gap:.7rem}
+.lead-modal-success.is-visible{display:flex}
+.lead-modal-success-heading{font-family:var(--R),sans-serif;font-size:clamp(2rem,7vw,3rem);font-weight:700;line-height:1.1;color:#f2ede6;letter-spacing:-.01em}
+.lead-modal-success-sub{font-size:clamp(.95rem,2.5vw,1.12rem);font-weight:400;color:#f2ede6;line-height:1.4}
+.lead-modal-success-note{font-size:clamp(.67rem,1.8vw,.76rem);color:rgba(242,237,230,.65);line-height:1.4;max-width:none;white-space:nowrap}
+.lead-modal-success-bar{width:100%;max-width:200px;height:2px;background:rgba(242,237,230,.15);border-radius:99px;overflow:hidden;margin-top:.6rem}
+.lead-modal-success-bar-fill{height:100%;width:0%;background:rgba(242,237,230,.5);border-radius:99px;transition:width linear}
+
+@media(max-width:640px){
+  .lead-modal-overlay{align-items:flex-end;padding:.5rem}
+  .lead-modal{width:100%;max-height:min(92vh,760px);padding:1rem .9rem .95rem;border-radius:14px 14px 0 0}
+  .lead-modal-header{margin-bottom:.72rem}
+  .lead-modal-title{font-size:clamp(.72rem,3.2vw,.82rem);padding-top:.34rem}
+  .lead-modal-copy{font-size:.78rem;line-height:1.62;margin-bottom:.85rem}
+  .lead-modal-actions{gap:.54rem}
+  .lead-modal-submit{width:100%;justify-content:center;padding:.85rem 1rem}
+  .lead-modal-close{font-size:1.75rem;padding:.25rem .55rem}
+  .lead-modal-success-heading{font-size:clamp(2rem,10vw,2.8rem)}
+  .lead-modal-success-note{font-size:clamp(.62rem,2.1vw,.7rem)}
+  .lead-modal-success{padding:2rem 1rem 1.8rem}
+}
 </style>
 <script type="application/ld+json">
 {
@@ -592,6 +645,89 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
   <span class="back-top-arr">↑</span>
 </button>
 
+<div class="lead-modal-overlay" id="leadModalOverlay" aria-hidden="true">
+  <div class="lead-modal" id="leadModal" role="dialog" aria-modal="true" aria-labelledby="leadModalTitle">
+    <div class="lead-modal-header">
+      <h2 class="lead-modal-title" id="leadModalTitle">Recibí novedades, propuestas e ideas de fotografia.</h2>
+      <button type="button" class="lead-modal-close" id="leadModalClose" aria-label="Cerrar ventana">&times;</button>
+    </div>
+    <p class="lead-modal-copy">Si queres que te contactemos, dejanos tus datos!</p>
+
+    <form class="lead-modal-form" id="leadModalForm" data-endpoint="https://script.google.com/macros/s/AKfycbztdsCYdzy_rPS7q2iEKYHFG4yFZm3VyPWEh6PgnZZNcAxHxC2iWd1xGBc1yNDChGaumA/exec" novalidate>
+      <div class="lead-modal-field">
+        <label class="lead-modal-label" for="leadFullName">Nombre y apellido</label>
+        <input class="lead-modal-input" id="leadFullName" name="fullName" type="text" autocomplete="name" required>
+      </div>
+
+      <div class="lead-modal-field">
+        <label class="lead-modal-label" for="leadEmail">Email</label>
+        <input class="lead-modal-input" id="leadEmail" name="email" type="email" autocomplete="email" inputmode="email" required>
+      </div>
+
+      <div class="lead-modal-field">
+        <label class="lead-modal-label" for="leadWhatsapp">WhatsApp</label>
+        <input class="lead-modal-input" id="leadWhatsapp" name="whatsapp" type="tel" autocomplete="tel" inputmode="tel" required>
+      </div>
+
+      <div class="lead-modal-field">
+        <label class="lead-modal-label" for="leadEventType">Tipo de evento de interes</label>
+        <select class="lead-modal-select" id="leadEventType" name="eventType" required>
+          <option value="" selected disabled>Seleccionar</option>
+          <option value="15 anos">15 años</option>
+          <option value="casamientos">Casamientos</option>
+          <option value="eventos sociales">Eventos sociales</option>
+          <option value="eventos corporativos">Eventos corporativos</option>
+          <option value="fotografia para marcas">Fotografia para marcas</option>
+          <option value="otro">Otro</option>
+        </select>
+      </div>
+
+      <div class="lead-modal-field" id="leadEventOtherField" style="display:none;">
+        <label class="lead-modal-label" for="leadEventOther">Especifica el tipo de evento</label>
+        <input class="lead-modal-input" id="leadEventOther" name="eventOther" type="text" placeholder="Ej: cumpleaños, maternidad, book...">
+      </div>
+
+      <div class="lead-modal-field">
+        <label class="lead-modal-label" for="leadLocation">¿Desde dónde nos escribís?</label>
+        <select class="lead-modal-select" id="leadLocation" name="location">
+          <option value="" selected disabled>Seleccionar</option>
+          <option value="Ciudad Autónoma de Buenos Aires">Ciudad Autónoma de Buenos Aires</option>
+          <option value="Gran Buenos Aires">Gran Buenos Aires</option>
+          <option value="La Plata">La Plata</option>
+          <option value="La Pampa">La Pampa</option>
+          <option value="Córdoba">Córdoba</option>
+          <option value="Rosario">Rosario</option>
+          <option value="Mendoza">Mendoza</option>
+          <option value="Mar del Plata">Mar del Plata</option>
+          <option value="Otro">Otro lugar</option>
+        </select>
+      </div>
+
+      <div class="lead-modal-field" id="leadLocationOtherField" style="display:none;">
+        <label class="lead-modal-label" for="leadLocationOther">Especificá tu localidad</label>
+        <input class="lead-modal-input" id="leadLocationOther" name="locationOther" type="text" placeholder="Ej: Santa Rosa, Neuquén...">
+      </div>
+
+      <!-- Honeypot anti-spam field -->
+      <input type="text" name="website" style="display:none;" autocomplete="off">
+
+      <div class="lead-modal-actions">
+        <button type="submit" class="lead-modal-submit">Quiero recibir info</button>
+        <button type="button" class="lead-modal-later" id="leadModalLater">Ahora no</button>
+      </div>
+      <p class="lead-modal-note">Tus datos se usan unicamente para enviarte informacion relevante.</p>
+      <p class="lead-modal-feedback" id="leadModalFeedback" aria-live="polite"></p>
+    </form>
+
+    <div class="lead-modal-success" id="leadModalSuccess" aria-live="polite">
+      <p class="lead-modal-success-heading">Gracias.</p>
+      <p class="lead-modal-success-sub">Recibimos tus datos</p>
+      <p class="lead-modal-success-note">Pronto te vamos a contactar con info pensada para vos.</p>
+      <div class="lead-modal-success-bar"><div class="lead-modal-success-bar-fill" id="leadSuccessBarFill"></div></div>
+    </div>
+  </div>
+</div>
+
 <script>
 /* ═══════════════════════════════════════════════════════════════════ */
 /* SHARED JAVASCRIPT — Used across all pages */
@@ -645,8 +781,15 @@ if(cur){
 /* ── BACK-TO-TOP ── */
 (function(){
   var btn=document.getElementById('backTop');
+  var scrollHint=document.querySelector('.hero-scroll');
   if(!btn)return;
-  window.addEventListener('scroll',function(){window.scrollY>400?btn.classList.add('visible'):btn.classList.remove('visible');},{passive:true});
+  function syncBackTopAndScrollHint(){
+    var showBackTop=window.scrollY>400;
+    btn.classList.toggle('visible',showBackTop);
+    if(scrollHint)scrollHint.classList.toggle('is-hidden',showBackTop);
+  }
+  window.addEventListener('scroll',syncBackTopAndScrollHint,{passive:true});
+  syncBackTopAndScrollHint();
   btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 })();
 
@@ -765,6 +908,222 @@ document.querySelectorAll('.r').forEach(function(el){obs.observe(el);});
   }
 
   setActiveUniverse(words[wordIdx]);
+})();
+
+/* ── INDEX LEAD MODAL ── */
+(function(){
+  var overlay=document.getElementById('leadModalOverlay');
+  var modal=document.getElementById('leadModal');
+  var closeBtn=document.getElementById('leadModalClose');
+  var laterBtn=document.getElementById('leadModalLater');
+  var form=document.getElementById('leadModalForm');
+  var feedback=document.getElementById('leadModalFeedback');
+  var firstInput=document.getElementById('leadFullName');
+  var endpoint=(form&&form.getAttribute('data-endpoint')||'').trim();
+  if(!overlay||!modal||!form)return;
+
+  var STORAGE_KEY='matirathLeadModalDismissedUntil';
+  var DISMISS_MS=1000*60*60*24*3; /* Ajustar ventana de reaparicion (actual: 3 dias) */
+  var OPEN_DELAY_MS=3500;
+  var lastFocused=null;
+
+  function setFeedback(message,isError){
+    if(!feedback)return;
+    feedback.textContent=message;
+    feedback.classList.add('is-visible');
+    feedback.classList.toggle('is-error',!!isError);
+  }
+
+  function safeNow(){return Date.now();}
+  function shouldOpen(){
+    if(window.location.search.indexOf('openLeadModal=1')!==-1)return true; /* Forzar apertura para pruebas */
+    try{
+      var raw=localStorage.getItem(STORAGE_KEY);
+      if(!raw)return true;
+      return safeNow()>Number(raw);
+    }catch(_e){
+      return true;
+    }
+  }
+  function persistDismiss(){
+    try{localStorage.setItem(STORAGE_KEY,String(safeNow()+DISMISS_MS));}catch(_e){}
+  }
+  function openModal(){
+    lastFocused=document.activeElement;
+    overlay.classList.add('is-open');
+    overlay.setAttribute('aria-hidden','false');
+    document.body.style.overflow='hidden';
+    if(firstInput)firstInput.focus();
+  }
+  function closeModal(remember){
+    overlay.classList.remove('is-open');
+    overlay.setAttribute('aria-hidden','true');
+    document.body.style.overflow='';
+    if(remember)persistDismiss();
+    if(lastFocused&&typeof lastFocused.focus==='function')lastFocused.focus();
+    // Reset success panel for next open
+    var successPanel=document.getElementById('leadModalSuccess');
+    var barFill=document.getElementById('leadSuccessBarFill');
+    var copyEl=modal.querySelector('.lead-modal-copy');
+    var headerEl=modal.querySelector('.lead-modal-header');
+    if(successPanel)successPanel.classList.remove('is-visible');
+    if(barFill){barFill.style.transition='none';barFill.style.width='0%';}
+    if(copyEl)copyEl.style.display='';
+    if(headerEl)headerEl.style.display='';
+    form.style.display='';
+  }
+
+  if(shouldOpen()){
+    window.setTimeout(openModal,OPEN_DELAY_MS);
+  }
+
+  overlay.addEventListener('click',function(e){if(e.target===overlay)closeModal(true);});
+  if(closeBtn)closeBtn.addEventListener('click',function(){closeModal(true);});
+  if(laterBtn)laterBtn.addEventListener('click',function(){closeModal(true);});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape'&&overlay.classList.contains('is-open'))closeModal(true);});
+
+  modal.addEventListener('keydown',function(e){
+    if(e.key!=='Tab')return;
+    var nodes=modal.querySelectorAll('button,[href],input,select,textarea,[tabindex]:not([tabindex="-1"])');
+    if(!nodes.length)return;
+    var first=nodes[0],last=nodes[nodes.length-1];
+    if(e.shiftKey&&document.activeElement===first){e.preventDefault();last.focus();}
+    else if(!e.shiftKey&&document.activeElement===last){e.preventDefault();first.focus();}
+  });
+
+  // Mostrar/ocultar campo "otro" segun seleccion
+  var eventTypeSelect=document.getElementById('leadEventType');
+  var eventOtherField=document.getElementById('leadEventOtherField');
+  var eventOtherInput=document.getElementById('leadEventOther');
+  if(eventTypeSelect&&eventOtherField){
+    eventTypeSelect.addEventListener('change',function(){
+      var isOtro=eventTypeSelect.value==='otro';
+      eventOtherField.style.display=isOtro?'':'none';
+      if(eventOtherInput)eventOtherInput.required=isOtro;
+    });
+  }
+
+  var locationSelect=document.getElementById('leadLocation');
+  var locationOtherField=document.getElementById('leadLocationOtherField');
+  var locationOtherInput=document.getElementById('leadLocationOther');
+  if(locationSelect&&locationOtherField){
+    locationSelect.addEventListener('change',function(){
+      var isOtro=locationSelect.value==='Otro';
+      locationOtherField.style.display=isOtro?'':'none';
+    });
+  }
+
+  function buildPayload(){
+    var evType=(form.eventType.value||'').trim();
+    if(evType==='otro'&&eventOtherInput){
+      var custom=(eventOtherInput.value||'').trim();
+      if(custom)evType='Otro: '+custom;
+    }
+    var loc=(form.location?form.location.value||'':'').trim();
+    if(loc==='Otro'&&locationOtherInput){
+      var customLoc=(locationOtherInput.value||'').trim();
+      if(customLoc)loc='Otro: '+customLoc;
+    }
+    return {
+      fullName:(form.fullName.value||'').trim(),
+      email:(form.email.value||'').trim(),
+      whatsapp:(form.whatsapp.value||'').trim(),
+      eventType:evType,
+      location:loc,
+      source:'index-modal',
+      submittedAt:new Date().toISOString()
+    };
+  }
+
+  form.addEventListener('submit',function(e){
+    e.preventDefault();
+
+    // Anti-spam honeypot check
+    if(form.website && form.website.value.trim()){
+      // Silently ignore spam submissions
+      return;
+    }
+
+    if(!form.checkValidity()){
+      form.reportValidity();
+      return;
+    }
+
+    var submitBtn=form.querySelector('.lead-modal-submit');
+    if(submitBtn)submitBtn.disabled=true;
+    if(feedback){
+      feedback.classList.remove('is-visible','is-error');
+      feedback.textContent='';
+    }
+
+    var payload=buildPayload();
+
+    var AUTO_CLOSE_MS=9000;
+    function onSuccess(){
+      form.reset();
+      persistDismiss();
+      if(submitBtn)submitBtn.disabled=false;
+      // Show success panel
+      form.style.display='none';
+      var copyEl=modal.querySelector('.lead-modal-copy');
+      if(copyEl)copyEl.style.display='none';
+      var headerEl=modal.querySelector('.lead-modal-header');
+      if(headerEl)headerEl.style.display='none';
+      var successPanel=document.getElementById('leadModalSuccess');
+      var barFill=document.getElementById('leadSuccessBarFill');
+      if(successPanel){
+        successPanel.classList.add('is-visible');
+        // Animate progress bar
+        if(barFill){
+          barFill.style.transition='none';
+          barFill.style.width='0%';
+          requestAnimationFrame(function(){
+            requestAnimationFrame(function(){
+              barFill.style.transition='width '+AUTO_CLOSE_MS+'ms linear';
+              barFill.style.width='100%';
+            });
+          });
+        }
+      }
+      // Auto-close
+      window.setTimeout(function(){closeModal(false);},AUTO_CLOSE_MS);
+    }
+
+    function onFailure(){
+      setFeedback('No se pudo enviar en este momento. Podes intentar nuevamente en unos minutos.',true);
+      if(submitBtn)submitBtn.disabled=false;
+    }
+
+    if(endpoint){
+      /* Integracion real: configurar data-endpoint en #leadModalForm para enviar a Google Sheets, Formspree, Mailchimp, backend propio o base de datos. */
+      var isGoogleScript=endpoint.indexOf('script.google.com')!==-1;
+      var requestOptions=isGoogleScript
+        ?{
+          method:'POST',
+          mode:'no-cors',
+          headers:{'Content-Type':'text/plain;charset=utf-8'},
+          body:JSON.stringify(payload)
+        }
+        :{
+          method:'POST',
+          headers:{'Content-Type':'application/json'},
+          body:JSON.stringify(payload)
+        };
+
+      fetch(endpoint,requestOptions).then(function(res){
+        if(!isGoogleScript && !res.ok)throw new Error('request_failed');
+        onSuccess();
+      }).catch(function(){
+        onFailure();
+      });
+      return;
+    }
+
+    /* Modo sin backend: simulacion de envio para no romper experiencia hasta conectar endpoint real. */
+    window.setTimeout(function(){
+      onSuccess();
+    },550);
+  });
 })();
 </script>
 </body>

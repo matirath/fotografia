@@ -13,12 +13,12 @@
 <meta property="og:description" content="Sesiones completas de brand photography. Flash off-camera. Sistema de imágenes."/>
 <meta property="og:url" content="https://www.matirath.com.ar/comercial"/>
 <link rel="canonical" href="https://www.matirath.com.ar/comercial"/>
-<meta property="og:image" content="https://www.matirath.com.ar/imgs/og-cover.jpg"/>
-<meta property="og:image:secure_url" content="https://www.matirath.com.ar/imgs/og-cover.jpg"/>
+<meta property="og:image" content="https://www.matirath.com.ar/assets/og/og-comercial.jpg"/>
+<meta property="og:image:secure_url" content="https://www.matirath.com.ar/assets/og/og-comercial.jpg"/>
 <meta property="og:image:type" content="image/jpeg"/>
 <meta property="og:locale" content="es_AR"/>
 <meta name="twitter:card" content="summary_large_image"/>
-<meta name="twitter:image" content="https://www.matirath.com.ar/imgs/og-cover.jpg"/>
+<meta name="twitter:image" content="https://www.matirath.com.ar/assets/og/og-comercial.jpg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet"/>
@@ -76,8 +76,9 @@ section>*,footer>*,.cta>*{position:relative;z-index:1}.topbar{position:fixed;top
 .hero-word{display:inline-block;text-align:right;font-weight:500;color:#f2ede6;vertical-align:bottom}
 .hero-sub{margin-top:1.35rem;margin-bottom:2.1rem;font-size:clamp(.94rem,1.45vw,1.06rem);font-weight:300;letter-spacing:.01em;line-height:1.72;color:rgba(242,237,230,.78);max-width:42ch;margin-left:auto;opacity:0;transform:translateY(10px);animation:fu .7s .85s forwards}
 @keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
-.hero-scroll{position:fixed;right:var(--gutter);bottom:2rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;z-index:194;opacity:0;animation:fu .7s 1.3s forwards}
+.hero-scroll{position:fixed;right:var(--gutter);bottom:2rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;z-index:194;opacity:0;animation:fu .7s 1.3s forwards;transition:opacity .25s ease,transform .25s ease}
 .hero-scroll{background:none;border:0;padding:0;cursor:pointer}
+.hero-scroll.is-hidden{opacity:0;pointer-events:none;transform:translateY(10px)}
 .hero-scroll span{font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(242,237,230,.45);writing-mode:vertical-rl}
 .hero-bar{width:1px;height:44px;background:linear-gradient(to bottom,var(--gold),transparent);animation:sp 2s ease-in-out infinite}
 @keyframes sp{0%{opacity:0}20%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translateY(10px)}}
@@ -536,8 +537,15 @@ if(cur){
 
 (function(){
   var btn=document.getElementById('backTop');
+  var scrollHint=document.querySelector('.hero-scroll');
   if(!btn)return;
-  window.addEventListener('scroll',function(){window.scrollY>400?btn.classList.add('visible'):btn.classList.remove('visible');},{passive:true});
+  function syncBackTopAndScrollHint(){
+    var showBackTop=window.scrollY>400;
+    btn.classList.toggle('visible',showBackTop);
+    if(scrollHint)scrollHint.classList.toggle('is-hidden',showBackTop);
+  }
+  window.addEventListener('scroll',syncBackTopAndScrollHint,{passive:true});
+  syncBackTopAndScrollHint();
 })();
 
 function navTo(id){

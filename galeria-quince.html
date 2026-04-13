@@ -11,6 +11,18 @@
 <link rel="apple-touch-icon" href="/imgs/favicon.png">
 <title>Galería Quinceañeras | matirath.jpg</title>
 <meta name="description" content="Galería editorial de quinceañeras por Matías Rath. Cobertura premium con mirada sobria y curada.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Galería Quinceañeras | matirath.jpg">
+<meta property="og:description" content="Galería editorial de quinceañeras por Matías Rath. Cobertura premium con mirada sobria y curada.">
+<meta property="og:url" content="https://www.matirath.com.ar/galeria-quince">
+<meta property="og:image" content="https://www.matirath.com.ar/assets/og/og-galeria-quince.jpg">
+<meta property="og:image:secure_url" content="https://www.matirath.com.ar/assets/og/og-galeria-quince.jpg">
+<meta property="og:image:type" content="image/jpeg">
+<meta property="og:locale" content="es_AR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Galería Quinceañeras | matirath.jpg">
+<meta name="twitter:description" content="Galería editorial de quinceañeras por Matías Rath. Cobertura premium con mirada sobria y curada.">
+<meta name="twitter:image" content="https://www.matirath.com.ar/assets/og/og-galeria-quince.jpg">
 <link rel="canonical" href="https://www.matirath.com.ar/galeria-quince">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -61,8 +73,9 @@ section>*,footer>*{position:relative;z-index:1}
 .hero-line-secondary{display:block;font-size:clamp(1.35rem,3.15vw,2.36rem);line-height:1.08;font-weight:300;letter-spacing:.02em;color:#f2ede6}
 .hero-sub{margin-top:1.35rem;font-size:clamp(.94rem,1.45vw,1.06rem);font-weight:300;letter-spacing:.01em;line-height:1.72;color:rgba(242,237,230,.78);max-width:43ch;margin-left:auto}
 .hero-meta{margin-top:1.1rem;font-size:.64rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(176,140,24,.8)}
-.hero-scroll{position:fixed;right:var(--gutter);bottom:2rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;z-index:194;opacity:.9}
+.hero-scroll{position:fixed;right:var(--gutter);bottom:2rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;z-index:194;opacity:.9;transition:opacity .25s ease,transform .25s ease}
 .hero-scroll{background:none;border:0;padding:0;cursor:pointer}
+.hero-scroll.is-hidden{opacity:0;pointer-events:none;transform:translateY(10px)}
 .hero-scroll span{font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(242,237,230,.45);writing-mode:vertical-rl}
 .hero-bar{width:1px;height:44px;background:linear-gradient(to bottom,var(--gold),transparent);animation:sp 2s ease-in-out infinite}
 @keyframes sp{0%{opacity:0}20%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translateY(10px)}}
@@ -340,8 +353,15 @@ if(cur){
 
 (function(){
   var btn=document.getElementById('backTop');
+  var scrollHint=document.querySelector('.hero-scroll');
   if(!btn)return;
-  window.addEventListener('scroll',function(){window.scrollY>400?btn.classList.add('visible'):btn.classList.remove('visible');},{passive:true});
+  function syncBackTopAndScrollHint(){
+    var showBackTop=window.scrollY>400;
+    btn.classList.toggle('visible',showBackTop);
+    if(scrollHint)scrollHint.classList.toggle('is-hidden',showBackTop);
+  }
+  window.addEventListener('scroll',syncBackTopAndScrollHint,{passive:true});
+  syncBackTopAndScrollHint();
   btn.addEventListener('click',function(){window.scrollTo({top:0,behavior:'smooth'});});
 })();
 
