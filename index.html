@@ -461,13 +461,13 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
 /* ── INDEX LEAD MODAL (encapsulated) ── */
 .lead-modal-overlay{position:fixed;inset:0;background:rgba(6,5,4,.46);backdrop-filter:blur(5px);-webkit-backdrop-filter:blur(5px);display:flex;align-items:center;justify-content:center;padding:1rem;opacity:0;visibility:hidden;pointer-events:none;transition:opacity .32s ease,visibility .32s ease;z-index:1700}
 .lead-modal-overlay.is-open{opacity:1;visibility:visible;pointer-events:auto}
-.lead-modal{width:min(560px,100%);max-height:min(88vh,760px);overflow:auto;border-radius:16px;border:1px solid rgba(242,237,230,.18);background:url('imgs/lead-modal-bg.jpg') center/cover no-repeat,linear-gradient(160deg,rgba(20,17,14,.97),rgba(11,10,9,.99));box-shadow:0 18px 48px rgba(0,0,0,.52),inset 0 1px 0 rgba(255,255,255,.06);padding:1.4rem 1.25rem 1.2rem;color:#f2ede6;isolation:isolate;transform:scale(0.92) translateY(12px);opacity:0;transition:transform .44s cubic-bezier(0.34,1.56,0.64,1),opacity .32s ease .08s}
+.lead-modal{width:min(560px,100%);max-height:min(88vh,760px);overflow:auto;border-radius:16px;border:0;background:url('imgs/lead-modal-bg.jpg') center/cover no-repeat,linear-gradient(160deg,rgba(20,17,14,.97),rgba(11,10,9,.99));box-shadow:0 18px 48px rgba(0,0,0,.52);padding:1.4rem 1.25rem 1.2rem;color:#f2ede6;isolation:isolate;transform:scale(0.92) translateY(12px);opacity:0;transition:transform .44s cubic-bezier(0.34,1.56,0.64,1),opacity .32s ease .08s;position:relative}
 .lead-modal-overlay.is-open .lead-modal{transform:scale(1) translateY(0);opacity:1}
 .lead-modal::before{content:'';position:absolute;inset:0;border-radius:16px;background:rgba(8,7,6,.78);z-index:0;pointer-events:none}
 .lead-modal>*{position:relative;z-index:1}
 .lead-modal-header{display:flex;align-items:flex-start;justify-content:space-between;gap:.8rem;margin-bottom:.95rem}
 .lead-modal-title{flex:1;font-size:clamp(.86rem,1.7vw,1rem);font-weight:500;line-height:1.2;letter-spacing:.005em;max-width:none;white-space:nowrap;padding-top:.38rem}
-.lead-modal-close{appearance:none;border:0;background:rgba(242,237,230,.08);color:rgba(242,237,230,.85);font-size:1.9rem;line-height:1;cursor:pointer;padding:.22rem .5rem;border-radius:8px;transition:color .2s ease,background .2s ease;min-width:2.4rem;min-height:2.4rem;display:flex;align-items:center;justify-content:center}
+.lead-modal-close{appearance:none;border:0;background:rgba(242,237,230,.08);color:rgba(242,237,230,.85);font-size:1.9rem;line-height:1;cursor:pointer;padding:.22rem .5rem;border-radius:8px;transition:color .2s ease,background .2s ease;min-width:2.4rem;min-height:2.4rem;display:flex;align-items:center;justify-content:center;position:absolute;top:.55rem;right:.55rem;z-index:4}
 .lead-modal-close:hover,.lead-modal-close:focus-visible{color:#fff;background:rgba(242,237,230,.18)}
 .lead-modal-copy{font-size:.83rem;line-height:1.68;color:rgba(242,237,230,.78);margin-bottom:1rem;max-width:52ch}
 .lead-modal-form{display:grid;gap:.72rem}
@@ -495,19 +495,25 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
 .lead-modal-success-note{font-size:clamp(.67rem,1.8vw,.76rem);color:rgba(242,237,230,.65);line-height:1.4;max-width:none;white-space:nowrap}
 .lead-modal-success-bar{width:100%;max-width:200px;height:2px;background:rgba(242,237,230,.15);border-radius:99px;overflow:hidden;margin-top:.6rem}
 .lead-modal-success-bar-fill{height:100%;width:0%;background:rgba(242,237,230,.5);border-radius:99px;transition:width linear}
+.lead-modal.is-success{display:flex;align-items:center;justify-content:center;min-height:min(76vh,680px);padding:1rem}
+.lead-modal.is-success .lead-modal-header{position:absolute;top:.55rem;right:.55rem;margin:0;z-index:4}
+.lead-modal.is-success .lead-modal-title{display:none}
+.lead-modal.is-success .lead-modal-success{display:flex;min-height:min(62vh,560px);width:100%;justify-content:center;padding:2.6rem 1.5rem}
 
 @media(max-width:640px){
-  .lead-modal-overlay{align-items:flex-end;padding:.5rem}
-  .lead-modal{width:100%;max-height:min(92vh,760px);padding:1rem .9rem .95rem;border-radius:14px 14px 0 0}
+  .lead-modal-overlay{align-items:center;padding:.7rem}
+  .lead-modal{width:100%;max-height:min(92vh,760px);padding:1rem .9rem .95rem;border-radius:14px}
   .lead-modal-header{margin-bottom:.72rem}
   .lead-modal-title{font-size:clamp(.72rem,3.2vw,.82rem);padding-top:.34rem}
   .lead-modal-copy{font-size:.78rem;line-height:1.62;margin-bottom:.85rem}
   .lead-modal-actions{gap:.54rem}
   .lead-modal-submit{width:100%;justify-content:center;padding:.85rem 1rem}
-  .lead-modal-close{font-size:1.75rem;padding:.25rem .55rem}
+  .lead-modal-close{font-size:1.75rem;padding:.25rem .55rem;top:.48rem;right:.48rem}
   .lead-modal-success-heading{font-size:clamp(2rem,10vw,2.8rem)}
   .lead-modal-success-note{font-size:clamp(.62rem,2.1vw,.7rem)}
   .lead-modal-success{padding:2rem 1rem 1.8rem}
+  .lead-modal.is-success{min-height:min(78vh,740px)}
+  .lead-modal.is-success .lead-modal-success{min-height:min(66vh,620px);padding:2rem 1rem 1.8rem}
 }
 </style>
 <script type="application/ld+json">
@@ -936,14 +942,7 @@ document.querySelectorAll('.r').forEach(function(el){obs.observe(el);});
 
   function safeNow(){return Date.now();}
   function shouldOpen(){
-    if(window.location.search.indexOf('openLeadModal=1')!==-1)return true; /* Forzar apertura para pruebas */
-    try{
-      var raw=localStorage.getItem(STORAGE_KEY);
-      if(!raw)return true;
-      return safeNow()>Number(raw);
-    }catch(_e){
-      return true;
-    }
+    return true;
   }
   function persistDismiss(){
     try{localStorage.setItem(STORAGE_KEY,String(safeNow()+DISMISS_MS));}catch(_e){}
@@ -959,6 +958,7 @@ document.querySelectorAll('.r').forEach(function(el){obs.observe(el);});
     overlay.classList.remove('is-open');
     overlay.setAttribute('aria-hidden','true');
     document.body.style.overflow='';
+    modal.classList.remove('is-success');
     if(remember)persistDismiss();
     if(lastFocused&&typeof lastFocused.focus==='function')lastFocused.focus();
     // Reset success panel for next open
@@ -1067,8 +1067,7 @@ document.querySelectorAll('.r').forEach(function(el){obs.observe(el);});
       form.style.display='none';
       var copyEl=modal.querySelector('.lead-modal-copy');
       if(copyEl)copyEl.style.display='none';
-      var headerEl=modal.querySelector('.lead-modal-header');
-      if(headerEl)headerEl.style.display='none';
+      modal.classList.add('is-success');
       var successPanel=document.getElementById('leadModalSuccess');
       var barFill=document.getElementById('leadSuccessBarFill');
       if(successPanel){
