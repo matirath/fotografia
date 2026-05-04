@@ -1,0 +1,64 @@
+{
+  "trabajos": [
+    {
+      "id": "evento-mutuo-26-001",
+      "tipo": "evento",
+      "cliente": "Mutuo",
+      "evento": "Inauguración",
+      "año": 2026,
+      "secuencia": 1,
+      "password": "mutuo-inag-26",
+      "carpeta": "mutuo-inauguracion",
+      "titulo": "Galería de la Inauguración - Mutuo",
+      "subtitulo": "Selecciona tus fotos favoritas",
+      "fecha_creacion": "2026-05-04",
+      "estado": "activo",
+      "notas": ""
+    },
+    {
+      "id": "marca-delfina-26-001",
+      "tipo": "marca",
+      "cliente": "Delfina",
+      "evento": "Quinceañera",
+      "año": 2026,
+      "secuencia": 1,
+      "password": "delfina-15-26",
+      "carpeta": "quince/delfina-15",
+      "titulo": "Galería de Quinceañera - Delfina",
+      "subtitulo": "Selecciona tus fotos favoritas",
+      "fecha_creacion": "2026-05-04",
+      "estado": "activo",
+      "notas": ""
+    },
+    {
+      "id": "evento-boda-26-001",
+      "tipo": "evento",
+      "cliente": "Boda",
+      "evento": "Ceremonia",
+      "año": 2026,
+      "secuencia": 1,
+      "password": "boda-2026",
+      "carpeta": "boda/ceremonia",
+      "titulo": "Galería Ceremonia - Boda",
+      "subtitulo": "Selecciona tus fotos favoritas",
+      "fecha_creacion": "2026-05-04",
+      "estado": "activo",
+      "notas": ""
+    },
+    {
+      "id": "evento-mutuo-26-002",
+      "tipo": "evento",
+      "cliente": "Mutuo",
+      "evento": "Inauguración",
+      "año": 2026,
+      "secuencia": 2,
+      "password": "mutuo-inag-26",
+      "carpeta": "mutuo/inauguración",
+      "titulo": "Galería Inauguración - Mutuo",
+      "subtitulo": "Selecciona tus fotos favoritas",
+      "fecha_creacion": "2026-05-04",
+      "estado": "activo",
+      "notas": ""
+    }
+  ]
+}

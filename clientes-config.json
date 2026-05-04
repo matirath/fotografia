@@ -1,0 +1,18 @@
+{
+  "clientes": [
+    {
+      "nombre": "Mutuo - Inauguración",
+      "id": "mutuo-inag",
+      "hash": "$2b$10$Y.cW0y8n0Vq0WvN8E3u2e.O9XqZ5f5g5h5i5j5k5l5m5n5o5p5q5r5",
+      "carpeta": "mutuo-inauguracion",
+      "titulo": "Galería de la Inauguración - Mutuo"
+    },
+    {
+      "nombre": "Delfina 15",
+      "id": "delfina-quince",
+      "hash": "$2b$10$Z.dX1z9o1Wr1XwO9F4v3f.P0YrA6g6h6i6j6k6l6m6n6o6p6q6s6",
+      "carpeta": "quince/delfina-15",
+      "titulo": "Galería de Quinceañera - Delfina"
+    }
+  ]
+}

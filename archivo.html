@@ -1,0 +1,2244 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="theme-color" content="#0a0908" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#f0ebe2" media="(prefers-color-scheme: light)">
+<meta name="color-scheme" content="dark light">
+<title>ARCHIVO. — Matirath</title>
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" type="image/png" href="/imgs/favicon.png?v=2">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
+<style>
+/* ══════════════════════════════════════════════════════
+   ARCHIVO. — Sistema Visual v1
+   Matirath.com.ar — Plataforma de entrega de activos
+   ══════════════════════════════════════════════════════ */
+
+:root {
+  --blk:       #0a0908;
+  --blk2:      #111009;
+  --bg:        #0d0c0a;
+  --cream:     #e8e1d5;
+  --cream2:    #f0ebe2;
+  --bone:      #e8e4da;
+  --amber:     #8c6820;
+  --gold:      #c49a3c;
+  --gold-dim:  rgba(196,154,60,.35);
+  --skeleton:  #1c1b18;
+  --surface:   #141310;
+  --R:         'Rubik', sans-serif;
+}
+
+*,*::before,*::after { margin:0; padding:0; box-sizing:border-box; }
+html { overflow-x:hidden; scroll-behavior:smooth; }
+body {
+  font-family:var(--R);
+  background:var(--bg);
+  color:var(--bone);
+  font-weight:300;
+  -webkit-font-smoothing:antialiased;
+  position:relative;
+}
+body::before {
+  content:'';
+  position:fixed;
+  inset:0;
+  pointer-events:none;
+  z-index:-1;
+  background:
+    radial-gradient(circle at 20% 20%, rgba(196,154,60,.06), transparent 32%),
+    radial-gradient(circle at 80% 0%, rgba(255,255,255,.025), transparent 26%),
+    linear-gradient(180deg, rgba(255,255,255,.018), rgba(255,255,255,0));
+  opacity:1;
+}
+
+.hidden { display:none !important; }
+
+/* ── TOPBAR COMPARTIDA ─────────────────────────────── */
+.topbar {
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:72px;
+  padding:0 3rem;
+  display:flex;
+  align-items:center;
+  z-index:1200;
+  background:rgba(13,12,10,.28);
+  backdrop-filter:blur(6px);
+  -webkit-backdrop-filter:blur(6px);
+  border-bottom:1px solid transparent;
+}
+.topbar .logo {
+  text-decoration:none;
+  color:#f3eee6;
+  font-size:14px;
+  font-weight:600;
+  letter-spacing:.14em;
+  line-height:1;
+  transition:opacity .2s ease;
+}
+.topbar-links {
+  display:flex;
+  gap:2rem;
+  align-items:center;
+  margin-left:auto;
+}
+.topbar-links a {
+  text-decoration:none;
+  color:rgba(243,238,230,.55);
+  font-size:.72rem;
+  font-weight:500;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  transition:color .2s ease;
+}
+.topbar-burger {
+  display:none;
+  flex-direction:column;
+  gap:5px;
+  cursor:pointer;
+  padding:.5rem;
+  background:none;
+  border:none;
+  outline:none;
+  margin-left:auto;
+}
+.topbar-burger span {
+  width:20px;
+  height:1.5px;
+  background:rgba(243,238,230,.7);
+  display:block;
+  transition:background .2s;
+}
+.topbar-drop {
+  display:none;
+  position:fixed;
+  top:72px;
+  right:24px;
+  background:rgba(13,12,10,.92);
+  backdrop-filter:blur(20px);
+  -webkit-backdrop-filter:blur(20px);
+  border:1px solid rgba(255,255,255,.07);
+  border-radius:10px;
+  padding:.4rem 0;
+  min-width:150px;
+  z-index:1201;
+}
+.topbar-drop.open { display:block; }
+.topbar-drop a {
+  display:block;
+  font-size:.6rem;
+  font-weight:500;
+  letter-spacing:.2em;
+  text-transform:uppercase;
+  color:rgba(243,238,230,.6);
+  text-decoration:none;
+  padding:.65rem 1.2rem;
+  transition:color .2s,background .2s;
+}
+
+@media(hover:hover){
+  .topbar .logo:hover { opacity:.82; }
+  .topbar-links a:hover { color:#f3eee6; }
+  .topbar-burger:hover span { background:#f3eee6; }
+  .topbar-drop a:hover { color:#f3eee6; background:rgba(255,255,255,.04); }
+}
+
+/* ── CURSOR ─────────────────────────────────────────── */
+@media(hover:hover){
+  body { cursor:none; }
+  #cur   { width:7px;height:7px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%); }
+  #cur-r { width:26px;height:26px;border:1px solid rgba(196,154,60,.3);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%); }
+}
+
+/* ── TIPOGRAFÍA BASE ─────────────────────────────────── */
+.eyebrow {
+  font-size:10px; letter-spacing:3px; color:var(--amber);
+  text-transform:uppercase; font-weight:400;
+}
+.sig-line {
+  border:none; border-top:.5px solid var(--gold-dim); margin:2rem 0;
+}
+
+/* ══════════════════════════════════════════════════════
+   PANTALLA: LOGIN
+   ══════════════════════════════════════════════════════ */
+#screen-login,
+#gateway {
+  min-height:100vh;
+  display:flex; flex-direction:column; align-items:center; justify-content:center;
+  padding:2rem; padding-top:72px; position:relative; overflow:hidden;
+}
+#gateway > *:not(.gateway-bg),
+#screen-login > *:not(.gateway-bg) { position:relative; z-index:2; }
+
+.gateway-bg {
+  position:absolute;
+  inset:0;
+  z-index:0;
+  overflow:hidden;
+  background:#0a0908;
+}
+
+.gateway-bg::after {
+  content:'';
+  position:absolute;
+  inset:0;
+  z-index:2;
+  background:rgba(10,9,8,.72);
+}
+
+@keyframes kb-zoom-in {
+  0%   { transform:scale(1)    translateX(0%)    translateY(0%); }
+  100% { transform:scale(1.10) translateX(-1.5%) translateY(-1%); }
+}
+@keyframes kb-zoom-out {
+  0%   { transform:scale(1.10) translateX(0%)    translateY(0%); }
+  100% { transform:scale(1)    translateX(1.5%)  translateY(1%); }
+}
+@keyframes kb-pan-left {
+  0%   { transform:scale(1.06) translateX(2%)   translateY(0%); }
+  100% { transform:scale(1.06) translateX(-2%)  translateY(0%); }
+}
+@keyframes kb-pan-right {
+  0%   { transform:scale(1.06) translateX(-2%)  translateY(0%); }
+  100% { transform:scale(1.06) translateX(2%)   translateY(0%); }
+}
+
+.gateway-bg img {
+  position:absolute;
+  inset:0;
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  opacity:0;
+  filter:brightness(1.18) contrast(1.06) saturate(1.04);
+  transform:scale(1.04);
+  transition:opacity 1.6s cubic-bezier(.22,.61,.36,1);
+  will-change:opacity, transform;
+}
+
+.gateway-bg img.active {
+  opacity:1;
+}
+
+#screen-login::before,
+#gateway::before {
+  content:''; position:absolute; inset:0; pointer-events:none; z-index:1;
+  background: radial-gradient(ellipse 60% 50% at 50% 60%, rgba(196,154,60,.04) 0%, transparent 70%);
+}
+.login-brand {
+  font-size:10px; letter-spacing:4px; color:var(--amber);
+  text-transform:uppercase; margin-bottom:4rem;
+}
+.login-stage {
+  width:min(100%, 1180px);
+  margin:0 auto;
+  display:flex;
+  flex-direction:column;
+  align-items:flex-end;
+}
+.archivo-title {
+  font-size:clamp(5rem,18vw,13rem); font-weight:700;
+  color:var(--bone); letter-spacing:-4px; line-height:1;
+  width:100%;
+  margin-bottom:2rem; text-align:right;
+}
+.login-shell {
+  width:100%;
+  max-width:430px;
+  padding:0 1rem;
+  margin-left:auto;
+  margin-right:0;
+}
+.login-form {
+  --login-field-width:100%;
+  width:100%;
+  align-items:flex-start;
+  display:flex; flex-direction:column; gap:1.6rem;
+}
+.login-panel {
+  width:min(430px,100%);
+  border-radius:16px;
+  border:1px solid rgba(242,237,230,.18);
+  border-left-color:rgba(242,237,230,.32);
+  background:linear-gradient(160deg,rgba(20,17,14,.09),rgba(11,10,9,.15));
+  backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
+  box-shadow:0 18px 48px rgba(0,0,0,.12), inset 1px 0 0 rgba(242,237,230,.2);
+  padding:1.2rem 1rem 1rem;
+  color:#f2ede6;
+  isolation:isolate;
+  position:relative;
+  overflow:hidden;
+  display:flex; flex-direction:column; gap:1.15rem;
+  animation:loginStatusIn .7s .08s cubic-bezier(.16,1,.3,1) both;
+}
+.login-panel::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:linear-gradient(180deg, rgba(8,7,6,.03), rgba(8,7,6,.08));
+  z-index:0;
+  pointer-events:none;
+}
+.login-panel > * { position:relative; z-index:1; }
+.login-panel-head {
+  display:grid;
+  gap:.45rem;
+  justify-items:start;
+  text-align:left;
+  margin-bottom:.35rem;
+}
+.login-panel-kicker {
+  font-size:.62rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:rgba(242,237,230,.66);
+  font-weight:500;
+}
+.login-panel-copy {
+  font-size:.83rem;
+  line-height:1.68;
+  color:rgba(242,237,230,.82);
+  max-width:46ch;
+}
+#clave-input {
+  width:min(100%, var(--login-field-width));
+  align-self:flex-start;
+  border-radius:9px;
+  border:1px solid rgba(242,237,230,.28);
+  background:rgba(255,255,255,.02);
+  outline:none; color:#f2ede6;
+  font-family:var(--R); font-size:.86rem; font-weight:300;
+  letter-spacing:.14em; padding:.92rem 1rem;
+  text-transform:uppercase; transition:border-color .2s ease, box-shadow .2s ease, background .2s ease;
+  text-align:left;
+}
+#clave-input:focus {
+  border-color:rgba(242,237,230,.7);
+  box-shadow:0 0 0 2px rgba(242,237,230,.1);
+  background:rgba(255,255,255,.035);
+}
+#clave-input::placeholder {
+  color:rgba(242,237,230,.38); font-size:.68rem; letter-spacing:.16em;
+}
+.login-actions {
+  width:min(100%, var(--login-field-width));
+  display:flex;
+  justify-content:flex-end;
+}
+#btn-validar {
+  appearance:none;
+  border:1px solid var(--gold);
+  border-radius:999px;
+  background:var(--gold);
+  color:#0a0908; font-family:var(--R);
+  font-size:.62rem; letter-spacing:.14em; font-weight:600;
+  padding:.82rem 1.22rem; cursor:pointer;
+  transition:background .2s ease, border-color .2s ease, transform .2s ease, color .2s ease;
+  text-transform:uppercase;
+}
+#btn-validar:hover:not(:disabled) {
+  background:#c9a327;
+  border-color:#c9a327;
+  color:#0a0908;
+  transform:translateY(-1px);
+}
+#btn-validar:disabled { opacity:.4; cursor:default; }
+#btn-validar.is-loading {
+  border-color:#c9a327;
+  color:#0a0908;
+  background:#c9a327;
+  opacity:1;
+  animation:validatePulse 1.1s ease-in-out infinite;
+}
+#btn-validar.is-feedback {
+  animation:validatePress .34s cubic-bezier(.16,1,.3,1);
+}
+
+@keyframes validatePulse {
+  0%, 100% { transform:translateY(0); box-shadow:0 0 0 rgba(176,140,24,0); }
+  50% { transform:translateY(-1px); box-shadow:0 8px 16px rgba(176,140,24,.16); }
+}
+
+@keyframes validatePress {
+  0% { transform:scale(1); }
+  38% { transform:scale(.985); }
+  100% { transform:scale(1); }
+}
+.login-status-card {
+  border:1px solid rgba(242,237,230,.3);
+  border-left-color:rgba(242,237,230,.5);
+  background:rgba(242,237,230,.04);
+  border-radius:10px;
+  padding:.75rem .8rem;
+  display:flex;
+  flex-direction:column;
+  gap:.3rem;
+  width:min(100%, var(--login-field-width));
+  text-align:left;
+  align-items:flex-start;
+  transition:border-color .28s ease, background .28s ease, box-shadow .28s ease;
+  margin-left:0;
+}
+.login-status-title {
+  font-size:.62rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:rgba(242,237,230,.82);
+  font-weight:500;
+}
+#login-error {
+  font-size:.76rem;
+  letter-spacing:.01em;
+  color:rgba(242,237,230,.7);
+  text-transform:none;
+  min-height:1.2em;
+  line-height:1.55;
+}
+.login-status-card.info { border-color:rgba(242,237,230,.3); }
+.login-status-card.info .login-status-title::after {
+  content:' •';
+  color:var(--gold);
+  animation:loginDot 1.2s ease-in-out infinite;
+}
+.login-status-card.success { border-color:rgba(124,176,98,.48); background:rgba(86,136,72,.14); }
+.login-status-card.success .login-status-title { color:#d3e7c7; }
+.login-status-card.success #login-error { color:rgba(211,231,199,.74); }
+.login-status-card.error { border-color:rgba(196,68,85,.45); background:rgba(198,89,89,.14); }
+.login-status-card.error .login-status-title { color:#e9bcc2; }
+.login-status-card.error #login-error { color:rgba(233,188,194,.82); }
+.login-status-card.muted { border-color:rgba(242,237,230,.14); background:rgba(242,237,230,.04); }
+.login-status-card.muted .login-status-title,
+.login-status-card.muted #login-error { color:rgba(232,228,218,.45); }
+
+.login-status-card.is-updating {
+  animation:loginStatusPulse .42s cubic-bezier(.16,1,.3,1);
+  box-shadow:0 12px 28px rgba(0,0,0,.18);
+}
+
+@keyframes loginStatusIn {
+  from { opacity:0; transform:translateY(8px); }
+  to { opacity:1; transform:translateY(0); }
+}
+
+@keyframes loginStatusPulse {
+  0% { transform:translateY(2px) scale(.997); }
+  60% { transform:translateY(0) scale(1); }
+  100% { transform:translateY(0) scale(1); }
+}
+
+@keyframes loginDot {
+  0%,100% { opacity:.35; }
+  50% { opacity:1; }
+}
+
+@media(max-width:460px){
+  .login-status-title { font-size:.58rem; }
+  #login-error { font-size:.72rem; }
+}
+.login-footer {
+  position:relative;
+  margin-top:.2rem;
+  font-size:.68rem; color:rgba(242,237,230,.62);
+  letter-spacing:.01em; text-transform:none; text-align:right;
+  line-height:1.5;
+  z-index:2;
+  max-width:480px;
+  margin-left:auto;
+}
+
+/* ══════════════════════════════════════════════════════
+   PANTALLA: GALERÍA
+   ══════════════════════════════════════════════════════ */
+#screen-gallery,
+#app-interface { min-height:100vh; padding-top:72px; }
+
+/* ── HERO DE CLIENTE (POST LOGIN) ───────────────────── */
+.archivo-hero {
+  position:relative;
+  min-height:clamp(300px, 54vh, 620px);
+  overflow:hidden;
+  border-bottom:1px solid rgba(196,154,60,.18);
+}
+.archivo-hero-bg {
+  position:absolute;
+  inset:0;
+  z-index:0;
+}
+.archivo-hero-bg img {
+  width:100%;
+  height:100%;
+  object-fit:cover;
+  display:block;
+  opacity:.9;
+}
+.archivo-hero-overlay {
+  position:absolute;
+  inset:0;
+  background:linear-gradient(120deg, rgba(10,9,8,.84) 0%, rgba(10,9,8,.7) 42%, rgba(10,9,8,.46) 67%, rgba(10,9,8,.22) 100%);
+}
+.archivo-hero-inner {
+  position:relative;
+  z-index:2;
+  min-height:inherit;
+  max-width:1400px;
+  margin:0 auto;
+  padding:7.5rem 5vw 3.4rem;
+  display:flex;
+  flex-direction:column;
+  justify-content:flex-end;
+}
+.archivo-hero-kicker {
+  font-size:.56rem;
+  letter-spacing:.32em;
+  color:var(--gold);
+  text-transform:uppercase;
+  margin-bottom:1rem;
+}
+.archivo-hero-title {
+  font-size:clamp(2.2rem, 6.6vw, 5.4rem);
+  line-height:.96;
+  letter-spacing:-.02em;
+  color:#f2ede6;
+  font-weight:700;
+  margin-bottom:1rem;
+  max-width:12ch;
+}
+.archivo-hero-copy {
+  max-width:56ch;
+  color:rgba(242,237,230,.78);
+  font-size:clamp(.92rem, 1.45vw, 1.04rem);
+  line-height:1.72;
+}
+.archivo-hero-meta {
+  margin-top:1.25rem;
+  font-size:.64rem;
+  letter-spacing:.18em;
+  color:rgba(242,237,230,.7);
+  text-transform:uppercase;
+}
+
+/* ── HEADER ESTÁTICO ──────────────────────────────────── */
+.g-header {
+  padding:3.6rem 5vw 2.1rem;
+  background:var(--blk2);
+  border-bottom:1px solid rgba(196,154,60,.12);
+}
+.g-header-inner { max-width:1400px; margin:0 auto; }
+.g-header-top {
+  display:flex; justify-content:space-between; align-items:flex-start;
+  margin-bottom:3.5rem;
+}
+.g-header-main { margin-bottom:.5rem; }
+.g-header-main .eyebrow { margin-bottom:.75rem; }
+.client-h {
+  font-size:clamp(3rem,7vw,6rem); font-weight:700;
+  color:var(--bone); letter-spacing:-1px; line-height:1;
+  margin-bottom:1.25rem;
+}
+.meta-row { display:flex; align-items:center; gap:1rem; }
+.meta     { font-size:11px; letter-spacing:2px; color:var(--amber); text-transform:uppercase; }
+.meta-sep { color:var(--gold-dim); font-weight:100; font-size:14px; }
+
+/* ── BARRA STICKY ─────────────────────────────────────── */
+.sticky-bar {
+  position:sticky; top:0; z-index:100;
+  background:rgba(13,12,10,.93);
+  backdrop-filter:blur(10px); -webkit-backdrop-filter:blur(10px);
+  border-bottom:.5px solid var(--gold-dim);
+  padding:.875rem 5vw;
+}
+.sticky-inner {
+  max-width:1400px; margin:0 auto;
+  display:flex; justify-content:space-between; align-items:center;
+  gap:1rem; flex-wrap:wrap;
+}
+.sec-nav { display:flex; gap:2rem; flex-wrap:wrap; }
+.nav-btn {
+  background:transparent; border:none;
+  color:rgba(232,228,218,.35); font-family:var(--R);
+  font-size:9px; letter-spacing:2.5px; cursor:pointer;
+  transition:color .25s; padding:0; text-transform:uppercase;
+}
+.nav-btn:hover { color:var(--amber); }
+.action-row { display:flex; align-items:center; gap:1.5rem; flex-wrap:wrap; }
+.btn-amber {
+  background:transparent; border:none;
+  color:var(--amber); font-family:var(--R);
+  font-size:9px; letter-spacing:2.5px; cursor:pointer;
+  transition:color .25s; padding:0; text-transform:uppercase;
+}
+.btn-amber:hover { color:var(--gold); }
+.btn-amber.active { color:var(--gold); }
+.btn-text {
+  background:transparent; border:none;
+  color:rgba(232,228,218,.35); font-family:var(--R);
+  font-size:9px; letter-spacing:2.5px; cursor:pointer;
+  transition:color .25s; padding:0; text-transform:uppercase;
+}
+.btn-text:hover { color:var(--bone); }
+.fav-count {
+  display:inline-flex; align-items:center; justify-content:center;
+  width:16px; height:16px;
+  background:var(--amber); color:#0d0c0a;
+  font-size:8px; font-weight:700; font-family:var(--R);
+  border-radius:50%; vertical-align:middle;
+  margin-left:.25rem;
+}
+
+/* Toggle hoja de contactos */
+.cs-wrap { display:flex; align-items:center; gap:.75rem; }
+.cs-label { font-size:9px; letter-spacing:2px; color:rgba(232,228,218,.3); text-transform:uppercase; }
+.tgl { position:relative; display:inline-block; width:36px; height:18px; cursor:pointer; }
+.tgl input { opacity:0; width:0; height:0; }
+.tgl-track {
+  position:absolute; inset:0;
+  background:#1c1b18; border:.5px solid var(--gold-dim); transition:background .3s;
+}
+.tgl-track::after {
+  content:''; position:absolute;
+  left:2px; top:2px; width:12px; height:12px;
+  background:rgba(196,154,60,.4); transition:transform .3s, background .3s;
+}
+.tgl input:checked + .tgl-track { background:rgba(196,154,60,.08); }
+.tgl input:checked + .tgl-track::after { transform:translateX(18px); background:var(--gold); }
+
+/* ── MAIN ─────────────────────────────────────────────── */
+.g-main {
+  width:100%;
+  max-width:none;
+  margin:0;
+  padding:0;
+}
+
+/* ── SECCIONES ────────────────────────────────────────── */
+.foto-section {
+  padding:3.8rem 5vw 4.2rem;
+  margin:0;
+  border-top:1px solid rgba(196,154,60,.08);
+  border-bottom:1px solid rgba(196,154,60,.08);
+}
+.sec-head {
+  margin:0 0 2.4rem;
+  max-width:none;
+}
+
+.sec-dark,
+.sec-dark2,
+.sec-light,
+.sec-light2 {
+  position:relative;
+  overflow:hidden;
+}
+.sec-dark { background:var(--blk); color:#f2ede6; }
+.sec-dark2 { background:var(--blk2); color:#f2ede6; }
+.sec-light { background:var(--cream); color:#1a1714; }
+.sec-light2 { background:var(--cream2); color:#1a1714; }
+
+.sec-dark::before,
+.sec-dark2::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    radial-gradient(circle at 18% 18%, rgba(196,154,60,.07), transparent 30%),
+    linear-gradient(180deg, rgba(255,255,255,.025), rgba(255,255,255,0));
+  opacity:1;
+}
+
+.foto-section > * { position:relative; z-index:1; }
+
+.sec-light .eyebrow,
+.sec-light2 .eyebrow { color:#7a5917; }
+
+.sec-light .sig-line,
+.sec-light2 .sig-line { border-top-color:rgba(122,89,23,.24); }
+
+/* ── GRILLA ASIMÉTRICA ────────────────────────────────── */
+.foto-grid {
+  display:grid;
+  grid-template-columns:repeat(12, minmax(0, 1fr));
+  grid-auto-rows:clamp(120px, 13vw, 220px);
+  grid-auto-flow:dense;
+  gap:1rem;
+  transition:grid-template-columns .4s ease, grid-auto-rows .4s ease, gap .4s ease;
+}
+.span-grande { grid-column:span 6; grid-row:span 2; }
+.span-tall   { grid-column:span 4; grid-row:span 2; }
+.span-wide   { grid-column:span 8; grid-row:span 1; }
+.span-small  { grid-column:span 4; grid-row:span 1; }
+
+/* Modo hoja de contactos */
+.contact-sheet .foto-grid {
+  grid-template-columns:repeat(10, minmax(0, 1fr));
+  grid-auto-rows:100px;
+  gap:6px;
+}
+.contact-sheet .span-grande { grid-column:span 3; grid-row:span 2; }
+.contact-sheet .span-tall   { grid-column:span 2; grid-row:span 2; }
+.contact-sheet .span-wide   { grid-column:span 4; grid-row:span 1; }
+.contact-sheet .span-small  { grid-column:span 2; grid-row:span 1; }
+.contact-sheet .card-foot   { display:none; }
+.contact-sheet .btn-fav     { opacity:.6; width:24px; height:24px; }
+
+body.delivery-kind-brand .archivo-hero-overlay {
+  background:linear-gradient(120deg, rgba(10,9,8,.9) 0%, rgba(10,9,8,.76) 34%, rgba(10,9,8,.52) 64%, rgba(10,9,8,.18) 100%);
+}
+
+body.delivery-kind-brand .archivo-hero-copy {
+  max-width:64ch;
+}
+
+body.delivery-kind-brand .sec-light {
+  background:#ece4d7;
+}
+
+body.delivery-kind-brand .sec-light2 {
+  background:#f3ede4;
+}
+
+body.delivery-kind-brand .span-grande { grid-column:span 5; }
+body.delivery-kind-brand .span-tall   { grid-column:span 3; }
+body.delivery-kind-brand .span-wide   { grid-column:span 6; }
+body.delivery-kind-brand .span-small  { grid-column:span 3; }
+
+/* ── CARD DE FOTO ─────────────────────────────────────── */
+.foto-card {
+  position:relative; overflow:hidden;
+  background:var(--skeleton); cursor:pointer;
+}
+.foto-card:hover .foto-img { transform:scale(1.025); }
+.foto-card:hover .btn-fav  { opacity:1; }
+.foto-card:hover .card-foot{ transform:translateY(0); }
+
+/* Skeleton */
+.skeleton {
+  position:absolute; inset:0; z-index:1;
+  background:var(--skeleton);
+  transition:opacity .5s;
+  animation:shimmer 1.8s ease-in-out infinite;
+}
+@keyframes shimmer {
+  0%,100% { background:#1c1b18; }
+  50%      { background:#232118; }
+}
+
+/* Imagen */
+.foto-img {
+  width:100%; height:100%; object-fit:cover; display:block;
+  position:relative; z-index:2;
+  opacity:0; transition:opacity .45s, transform .5s;
+}
+.foto-img.loaded { opacity:1; }
+
+/* Botón favorito */
+.btn-fav {
+  position:absolute; top:10px; right:10px; z-index:10;
+  background:rgba(13,12,10,.72); border:.5px solid var(--gold-dim);
+  width:34px; height:34px;
+  display:flex; align-items:center; justify-content:center;
+  cursor:pointer; color:rgba(232,228,218,.45);
+  opacity:0; transition:opacity .25s, color .25s;
+  backdrop-filter:blur(4px);
+}
+.btn-fav svg { width:15px; height:15px; }
+.btn-fav.is-fav { opacity:1; color:var(--gold); }
+.btn-fav.is-fav svg path { fill:currentColor; }
+
+/* Badge reedición */
+.reed-dot {
+  position:absolute; top:10px; left:10px; z-index:10;
+  background:var(--amber); color:#0d0c0a;
+  font-family:var(--R); font-size:7px; font-weight:700; letter-spacing:1px;
+  padding:2px 6px;
+}
+
+/* Footer de card */
+.card-foot {
+  position:absolute; bottom:0; left:0; right:0; z-index:10;
+  background:linear-gradient(transparent, rgba(13,12,10,.92));
+  padding:1.5rem .75rem .75rem;
+  transform:translateY(100%); transition:transform .3s;
+  display:flex; justify-content:space-between; align-items:center;
+}
+.pf-label {
+  font-family:var(--R); font-size:7px; letter-spacing:2px;
+  color:rgba(232,228,218,.45); text-transform:uppercase;
+}
+
+/* Toggle portfolio (pequeño) */
+.sw { position:relative; display:inline-block; width:28px; height:14px; cursor:pointer; }
+.sw input { opacity:0; width:0; height:0; }
+.sw-track {
+  position:absolute; inset:0;
+  background:#1c1b18; border:.5px solid rgba(196,154,60,.25);
+  transition:background .3s;
+}
+.sw-track::after {
+  content:''; position:absolute;
+  left:2px; top:2px; width:8px; height:8px;
+  background:#3a3830; transition:transform .3s, background .3s;
+}
+.pf-check:checked + .sw-track { background:rgba(196,154,60,.12); }
+.pf-check:checked + .sw-track::after { transform:translateX(14px); background:var(--gold); }
+
+/* Grid vacío */
+.grid-empty {
+  font-size:10px; color:var(--amber); letter-spacing:2px; text-transform:uppercase;
+  padding:2rem 0; grid-column:1/-1;
+}
+
+/* ── ÁREA FINAL ───────────────────────────────────────── */
+.final-section {
+  padding:4.2rem 5vw 5rem;
+  background:var(--cream2);
+  color:#1a1714;
+  border-top:1px solid rgba(122,89,23,.14);
+}
+.final-inner   { max-width:800px; }
+.final-block   { margin-bottom:3.5rem; }
+.final-block .eyebrow { margin-bottom:.6rem; }
+.block-h {
+  font-size:clamp(1.5rem,3vw,2.5rem); font-weight:700;
+  color:#1a1714; letter-spacing:-1px; margin-bottom:1.5rem;
+}
+.private-tag { font-size:9px; letter-spacing:2px; color:rgba(122,89,23,.7); }
+textarea {
+  width:100%; background:transparent; border:none;
+  border-bottom:.5px solid rgba(122,89,23,.3); outline:none;
+  color:#1a1714; font-family:var(--R); font-size:14px; font-weight:300;
+  line-height:1.85; padding:.875rem 0 1.25rem; resize:none;
+  min-height:100px; transition:border-color .3s;
+}
+textarea:focus { border-bottom-color:#8c6820; }
+textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
+
+.btn-finalizar {
+  background:#1a1714;
+  border:.5px solid #1a1714;
+  color:#f0ebe2; font-family:var(--R);
+  font-size:10px; letter-spacing:4px; font-weight:400;
+  padding:1.25rem 3rem; cursor:pointer;
+  transition:border-color .35s, color .35s, background .35s;
+  text-transform:uppercase; display:inline-block; margin-top:3rem;
+}
+.btn-finalizar:hover {
+  border-color:#2b2620;
+  color:#f0ebe2;
+  background:#2b2620;
+}
+
+/* ══════════════════════════════════════════════════════
+   LIGHTBOX
+   ══════════════════════════════════════════════════════ */
+#lightbox {
+  position:fixed; inset:0; z-index:500;
+  display:flex; align-items:center; justify-content:center;
+}
+.lb-back {
+  position:absolute; inset:0;
+  background:rgba(13,12,10,.97); cursor:pointer;
+}
+.lb-inner {
+  position:relative; z-index:1;
+  width:min(90vw, 1000px);
+  display:flex; flex-direction:column; gap:1.25rem;
+}
+.lb-top {
+  display:flex; justify-content:space-between; align-items:center;
+}
+.lb-img-wrap {
+  position:relative; background:var(--skeleton);
+  display:flex; align-items:center; justify-content:center;
+  min-height:200px;
+}
+#lb-img {
+  max-height:72vh; max-width:100%; object-fit:contain; display:block;
+  opacity:0; transition:opacity .4s;
+}
+#lb-img.loaded { opacity:1; }
+.lb-bottom {
+  display:flex; justify-content:space-between; align-items:center;
+  flex-wrap:wrap; gap:1rem;
+}
+
+/* Área reedición en lightbox */
+.lb-reed-area {
+  border-top:.5px solid var(--gold-dim);
+  padding-top:1.5rem;
+  display:flex; flex-direction:column; gap:.75rem;
+}
+.lb-reed-head { display:flex; justify-content:space-between; align-items:center; }
+#lb-reed-foto { font-size:9px; letter-spacing:1px; color:rgba(232,228,218,.5); }
+.lb-reed-area textarea { min-height:70px; font-size:13px; }
+
+/* ══════════════════════════════════════════════════════
+   TOAST
+   ══════════════════════════════════════════════════════ */
+.toast {
+  position:fixed; bottom:2rem; right:2rem; z-index:2000;
+  background:var(--surface); border:.5px solid var(--gold-dim);
+  color:var(--bone); font-family:var(--R);
+  font-size:9px; letter-spacing:2.5px; text-transform:uppercase;
+  padding:.75rem 1.5rem;
+  opacity:0; transform:translateY(.75rem);
+  transition:opacity .3s, transform .3s; pointer-events:none;
+}
+.toast.show { opacity:1; transform:translateY(0); }
+
+/* ══════════════════════════════════════════════════════
+   RESPONSIVE
+   ══════════════════════════════════════════════════════ */
+@media(max-width:900px){
+  .foto-grid { grid-template-columns:repeat(6, minmax(0, 1fr)); grid-auto-rows:190px; gap:.75rem; }
+  .span-grande,
+  body.delivery-kind-brand .span-grande { grid-column:span 6; }
+  .span-wide,
+  body.delivery-kind-brand .span-wide { grid-column:span 6; }
+  .span-tall,
+  body.delivery-kind-brand .span-tall { grid-column:span 3; }
+  .span-small,
+  body.delivery-kind-brand .span-small { grid-column:span 3; }
+  .contact-sheet .foto-grid { grid-template-columns:repeat(6, minmax(0, 1fr)); grid-auto-rows:80px; }
+}
+@media(max-width:640px){
+  .topbar { padding:0 1rem; }
+  .topbar-drop { right:12px; }
+  .archivo-hero-inner { padding:6.1rem 5vw 2.7rem; }
+  .g-header,
+  .sticky-bar,
+  .foto-section,
+  .final-section { padding-left:1rem; padding-right:1rem; }
+  .foto-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); grid-auto-rows:150px; gap:.5rem; }
+  .span-grande,
+  .span-wide,
+  .span-tall,
+  .span-small,
+  body.delivery-kind-brand .span-grande,
+  body.delivery-kind-brand .span-wide,
+  body.delivery-kind-brand .span-tall,
+  body.delivery-kind-brand .span-small { grid-column:span 2; grid-row:span 1; }
+  .contact-sheet .foto-grid { grid-template-columns:repeat(2, minmax(0, 1fr)); grid-auto-rows:120px; }
+  .contact-sheet .span-grande,
+  .contact-sheet .span-wide,
+  .contact-sheet .span-tall,
+  .contact-sheet .span-small { grid-column:span 1; grid-row:span 1; }
+  .sticky-inner { flex-direction:column; align-items:flex-start; }
+  .g-header { padding:2rem 5vw 0; }
+  .login-stage { width:100%; align-items:center; }
+  .login-brand { margin-bottom:2.2rem; }
+  .archivo-title { letter-spacing:-2px; }
+  .login-shell { padding:0; }
+  .login-panel { padding:1rem .85rem .95rem; border-radius:14px; }
+  .login-panel-copy { font-size:.78rem; line-height:1.62; }
+  .login-actions,
+  .login-status-card,
+  .login-footer { max-width:none; width:100%; }
+  #btn-validar { justify-content:center; }
+  .login-footer { font-size:.72rem; }
+}
+@media(max-width:768px){
+  .topbar-links { display:none; }
+  .topbar-burger { display:flex; }
+}
+@media(max-width:400px){
+  .foto-grid { grid-template-columns:1fr; }
+  .span-grande,.span-wide,.span-tall,.span-small { grid-column:span 1; }
+  body.delivery-kind-brand .span-grande,
+  body.delivery-kind-brand .span-wide,
+  body.delivery-kind-brand .span-tall,
+  body.delivery-kind-brand .span-small { grid-column:span 1; }
+}
+</style>
+</head>
+<body>
+
+<!-- CURSOR -->
+<div id="cur"></div>
+<div id="cur-r"></div>
+
+<header class="topbar" aria-label="Navegación principal">
+  <a class="logo" href="index.html">matirath.jpg</a>
+  <nav class="topbar-links" aria-label="Navegación">
+    <a href="comercial.html">Marcas</a>
+    <a href="eventos.html">Eventos</a>
+    <a href="contacto.html">Contacto</a>
+    <a href="archivo.html">Archivo</a>
+  </nav>
+  <button id="topbar-burger" class="topbar-burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="topbar-drop">
+    <span></span><span></span><span></span>
+  </button>
+  <div id="topbar-drop" class="topbar-drop" role="menu" aria-label="Menú móvil">
+    <a href="comercial.html" role="menuitem">Marcas</a>
+    <a href="eventos.html" role="menuitem">Eventos</a>
+    <a href="contacto.html" role="menuitem">Contacto</a>
+    <a href="archivo.html" role="menuitem">Archivo</a>
+  </div>
+</header>
+
+<!-- ══ PANTALLA: LOGIN ══════════════════════════════════ -->
+<div id="gateway">
+  <div id="gateway-bg" class="gateway-bg" aria-hidden="true">
+    <img src="imgs/entrada-galeria.web.jpg" alt="" class="active" loading="eager" decoding="async">
+    <img src="imgs/hero-galeria-15-web.jpg" alt="" loading="lazy" decoding="async">
+    <img src="imgs/hero-eventos.jpg" alt="" loading="lazy" decoding="async">
+    <img src="imgs/hero-comercial.jpg" alt="" loading="lazy" decoding="async">
+  </div>
+  <div class="login-stage">
+    <p class="login-brand">MATIRATH.JPG</p>
+    <h1 class="archivo-title">ARCHIVO.</h1>
+    <div class="login-shell">
+      <div class="login-panel">
+        <div class="login-panel-head">
+          <p class="login-panel-kicker">Acceso privado</p>
+          <p class="login-panel-copy">Tu clave habilita una galería privada con selección, entregas y material reservado para ese trabajo.</p>
+        </div>
+        <div class="login-form">
+          <input
+            type="password"
+            id="clave-input"
+            placeholder="Ingresar clave"
+            autocomplete="off"
+            spellcheck="false"
+            aria-label="Clave técnica de acceso"
+          >
+          <div class="login-actions">
+            <button id="btn-validar">Validar acceso</button>
+          </div>
+          <div id="login-status" class="login-status-card info" role="status" aria-live="polite" aria-atomic="true">
+            <p id="login-status-title" class="login-status-title">Esperando clave</p>
+            <p id="login-error">Ingresá tu clave técnica para continuar.</p>
+          </div>
+        </div>
+        <p class="login-footer">Acceso pensado para revisar y descargar las previsualizaciones.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- ══ PANTALLA: GALERÍA ════════════════════════════════ -->
+<div id="app-interface" class="hidden">
+
+  <section class="archivo-hero s-dark" aria-label="Cabecera del proyecto">
+    <div class="archivo-hero-bg">
+      <img id="archivo-hero-img" src="imgs/entrada-galeria.web.jpg" alt="Imagen destacada del proyecto" loading="eager" decoding="async">
+      <div class="archivo-hero-overlay"></div>
+    </div>
+    <div class="archivo-hero-inner">
+      <p class="archivo-hero-kicker">Archivo privado · Matirath.jpg</p>
+      <h1 id="hero-client-name" class="archivo-hero-title">Proyecto.</h1>
+      <p class="archivo-hero-copy">Una entrega editorial organizada por secciones para revisar con calma, marcar selección y dejar observaciones con mejor legibilidad.</p>
+      <p id="hero-meta" class="archivo-hero-meta">— · —</p>
+    </div>
+  </section>
+
+  <!-- Header estático -->
+  <header class="g-header">
+    <div class="g-header-inner">
+      <div class="g-header-top">
+        <p class="eyebrow">MATIRATH.JPG</p>
+        <button id="btn-logout" class="btn-text">[ SALIR ]</button>
+      </div>
+      <div class="g-header-main">
+        <p class="eyebrow">ENTREGA DIGITAL · SELECCIÓN FINAL</p>
+        <h2 id="client-name" class="client-h">—.</h2>
+        <div class="meta-row">
+          <span id="meta-fecha" class="meta">—</span>
+          <span class="meta-sep">|</span>
+          <span id="meta-lugar" class="meta">—</span>
+        </div>
+      </div>
+      <div class="sig-line"></div>
+    </div>
+  </header>
+
+  <!-- Barra sticky -->
+  <div class="sticky-bar">
+    <div class="sticky-inner">
+      <nav class="sec-nav" aria-label="Secciones">
+        <button class="nav-btn" data-target="sec-01">[ 01 PREPARATIVOS ]</button>
+        <button class="nav-btn" data-target="sec-02">[ 02 EVENTO ]</button>
+        <button class="nav-btn" data-target="sec-03">[ 03 RETRATOS ]</button>
+      </nav>
+      <div class="action-row">
+        <button id="btn-ver-sel" class="btn-amber">
+          [ VER SELECCIÓN ]<span id="fav-count" class="fav-count">0</span>
+        </button>
+        <button id="btn-descargar" class="btn-amber">[ DESCARGAR ]</button>
+        <div class="cs-wrap">
+          <span class="cs-label">CONTACTOS</span>
+          <label class="tgl" title="Modo hoja de contactos">
+            <input type="checkbox" id="toggle-cs" aria-label="Hoja de contactos">
+            <span class="tgl-track"></span>
+          </label>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main gallery -->
+  <main class="g-main" id="g-main">
+
+    <div class="foto-section sec-dark" id="sec-01">
+      <div class="sec-head">
+        <p class="eyebrow">01 / PREPARATIVOS</p>
+        <div class="sig-line"></div>
+      </div>
+      <div class="foto-grid" id="grid-01"></div>
+    </div>
+
+    <div class="foto-section sec-light" id="sec-02">
+      <div class="sec-head">
+        <p class="eyebrow">02 / EVENTO</p>
+        <div class="sig-line"></div>
+      </div>
+      <div class="foto-grid" id="grid-02"></div>
+    </div>
+
+    <div class="foto-section sec-dark2" id="sec-03">
+      <div class="sec-head">
+        <p class="eyebrow">03 / RETRATOS</p>
+        <div class="sig-line"></div>
+      </div>
+      <div class="foto-grid" id="grid-03"></div>
+    </div>
+
+    <!-- Área final -->
+    <section class="final-section">
+      <div class="sig-line"></div>
+      <div class="final-inner">
+
+        <div class="final-block">
+          <p class="eyebrow">VALORACIÓN DE OBRA</p>
+          <h2 class="block-h">Testimonio editorial.</h2>
+          <textarea
+            id="inp-testimonio"
+            rows="5"
+            placeholder="Describí tu experiencia con la obra…"
+            aria-label="Testimonio editorial"
+          ></textarea>
+        </div>
+
+        <div class="final-block">
+          <p class="eyebrow">NOTAS DE PROYECTO <span class="private-tag">— PRIVADO</span></p>
+          <h2 class="block-h">Observaciones técnicas.</h2>
+          <textarea
+            id="inp-notas"
+            rows="4"
+            placeholder="Notas internas del proyecto…"
+            aria-label="Notas privadas"
+          ></textarea>
+        </div>
+
+        <div class="sig-line"></div>
+        <button id="btn-finalizar" class="btn-finalizar">[ FINALIZAR Y NOTIFICAR ]</button>
+
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- ══ LIGHTBOX ═════════════════════════════════════════ -->
+<div id="lightbox" class="hidden" role="dialog" aria-modal="true" aria-label="Vista de imagen">
+  <div class="lb-back" id="lb-back"></div>
+  <div class="lb-inner">
+
+    <div class="lb-top">
+      <span id="lb-counter" class="eyebrow">—</span>
+      <button id="lb-close" class="btn-text">[ CERRAR ]</button>
+    </div>
+
+    <div class="lb-img-wrap">
+      <img id="lb-img" src="" alt="" loading="lazy" decoding="async">
+    </div>
+
+    <div class="lb-bottom">
+      <button id="lb-fav-btn" class="btn-amber">[ ♡ AGREGAR A SELECCIÓN ]</button>
+      <button id="lb-reed-btn" class="btn-text">[ SOLICITAR REEDICIÓN TÉCNICA ]</button>
+    </div>
+
+    <div id="lb-reed-area" class="lb-reed-area hidden">
+      <div class="lb-reed-head">
+        <p class="eyebrow">AJUSTE TÉCNICO &mdash; <span id="lb-reed-foto-id" style="color:var(--bone);letter-spacing:1px"></span></p>
+      </div>
+      <textarea
+        id="lb-reed-text"
+        rows="3"
+        placeholder="Describí el ajuste específico para esta imagen…"
+        aria-label="Nota de reedición"
+      ></textarea>
+      <button id="lb-reed-save" class="btn-amber">[ GUARDAR AJUSTE ]</button>
+    </div>
+
+  </div>
+</div>
+
+<!-- ══ TOAST ════════════════════════════════════════════ -->
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+
+<!-- ══ SCRIPTS ══════════════════════════════════════════ -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.10.1/jszip.min.js"></script>
+
+<script>
+'use strict';
+
+/* ================================================================
+   ARCHIVO. — Lógica de plataforma
+   Matirath.com.ar
+
+   ⚙️  CONFIGURACIÓN ANTES DE PUBLICAR:
+   ─────────────────────────────────────────────────────────────
+   1. SUPABASE_URL      → URL de tu proyecto (supabase.com)
+   2. SUPABASE_ANON_KEY → Anon/public key
+   3. WA_NUMERO         → WhatsApp del fotógrafo (sin + ni espacios)
+   4. DEMO_MODE         → false para activar Supabase real
+
+   📦  ESQUEMA SUPABASE — Ejecutar en SQL Editor:
+   ─────────────────────────────────────────────────────────────
+   CREATE TABLE claves (
+     clave          TEXT PRIMARY KEY,
+     cliente_nombre TEXT NOT NULL,
+     fecha          TEXT,
+     lugar          TEXT,
+     seccion_01     JSONB DEFAULT '[]',
+     seccion_02     JSONB DEFAULT '[]',
+     seccion_03     JSONB DEFAULT '[]'
+   );
+
+   CREATE TABLE selecciones (
+     id             UUID  DEFAULT gen_random_uuid() PRIMARY KEY,
+     clave          TEXT  NOT NULL,
+     foto_id        TEXT  NOT NULL,
+     favorito       BOOLEAN DEFAULT FALSE,
+     portfolio_auth BOOLEAN DEFAULT FALSE,
+     reedicion      TEXT    DEFAULT '',
+     updated_at     TIMESTAMPTZ DEFAULT NOW(),
+     UNIQUE(clave, foto_id)
+   );
+
+   CREATE TABLE testimonios (
+     clave          TEXT PRIMARY KEY,
+     testimonio     TEXT DEFAULT '',
+     notas          TEXT DEFAULT '',
+     updated_at     TIMESTAMPTZ DEFAULT NOW()
+   );
+
+   -- RLS (recomendado)
+   ALTER TABLE claves      ENABLE ROW LEVEL SECURITY;
+   ALTER TABLE selecciones ENABLE ROW LEVEL SECURITY;
+   ALTER TABLE testimonios ENABLE ROW LEVEL SECURITY;
+
+   CREATE POLICY "read_claves"     ON claves      FOR SELECT USING (true);
+   CREATE POLICY "all_selecciones" ON selecciones  FOR ALL    USING (true) WITH CHECK (true);
+   CREATE POLICY "all_testimonios" ON testimonios  FOR ALL    USING (true) WITH CHECK (true);
+
+   📸  ESTRUCTURA DE FOTO EN JSONB:
+   ─────────────────────────────────────────────────────────────
+   {
+     "id":    "foto_001",
+     "url":   "https://tu-storage.supabase.co/foto.webp",
+     "thumb": "https://tu-storage.supabase.co/foto_thumb.webp",
+     "span":  "grande | tall | wide | small"
+   }
+   ================================================================ */
+
+const SUPABASE_URL     = 'https://yniwgdsxitavcyfoxros.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_n8XEay7s5GJW-HVz8iW6iQ_qEYDLK64';
+const WA_NUMERO        = '5492954230852'; // sin + ni espacios
+const DEMO_MODE        = false;           // → false en producción
+const ARCHIVO_SESSION_KEY = 'archivo.session';
+const ARCHIVO_SESSION_TTL_MS = 1000 * 60 * 60 * 18;
+const LOGIN_BG_POOL = [
+  'imgs/entrada-galeria.web.jpg',
+  'imgs/hero-galeria-15-web.jpg',
+  'imgs/hero-eventos.jpg',
+  'imgs/hero-comercial.jpg',
+  'imgs/hero-proyectos.jpg',
+  'imgs/mutuo-portada.jpg',
+  'imgs/galeriainicio2.jpg',
+  'imgs/galeriainicio5.jpg',
+  'imgs/galeriainicio7.jpg',
+  'imgs/galeriainicio8.jpg'
+];
+
+/* ── DEMO DATA ─────────────────────────────────────────── */
+const DEMO_CLAVE  = 'DEMO2024';
+const DEMO_CLIENT = {
+  cliente_nombre : 'Geraldine',
+  fecha          : '14 · 09 · 2024',
+  lugar          : 'Estancia El Cardal, Buenos Aires',
+  seccion_01     : [
+    { id:'p01a', url:'https://picsum.photos/seed/ar11/900/1200', span:'grande' },
+    { id:'p01b', url:'https://picsum.photos/seed/ar12/900/1200', span:'tall'   },
+    { id:'p01c', url:'https://picsum.photos/seed/ar13/700/700',  span:'small'  },
+    { id:'p01d', url:'https://picsum.photos/seed/ar14/1200/800', span:'wide'   },
+    { id:'p01e', url:'https://picsum.photos/seed/ar15/700/700',  span:'small'  },
+    { id:'p01f', url:'https://picsum.photos/seed/ar16/900/1200', span:'tall'   },
+  ],
+  seccion_02     : [
+    { id:'p02a', url:'https://picsum.photos/seed/ar21/700/700',  span:'small'  },
+    { id:'p02b', url:'https://picsum.photos/seed/ar22/900/1200', span:'grande' },
+    { id:'p02c', url:'https://picsum.photos/seed/ar23/1200/800', span:'wide'   },
+    { id:'p02d', url:'https://picsum.photos/seed/ar24/700/700',  span:'small'  },
+    { id:'p02e', url:'https://picsum.photos/seed/ar25/900/1200', span:'tall'   },
+    { id:'p02f', url:'https://picsum.photos/seed/ar26/700/700',  span:'small'  },
+    { id:'p02g', url:'https://picsum.photos/seed/ar27/900/1200', span:'small'  },
+    { id:'p02h', url:'https://picsum.photos/seed/ar28/1200/800', span:'wide'   },
+  ],
+  seccion_03     : [
+    { id:'p03a', url:'https://picsum.photos/seed/ar31/900/1200', span:'tall'   },
+    { id:'p03b', url:'https://picsum.photos/seed/ar32/900/1200', span:'grande' },
+    { id:'p03c', url:'https://picsum.photos/seed/ar33/700/700',  span:'small'  },
+    { id:'p03d', url:'https://picsum.photos/seed/ar34/900/1200', span:'small'  },
+    { id:'p03e', url:'https://picsum.photos/seed/ar35/900/1200', span:'tall'   },
+  ],
+};
+
+/* ── ESTADO GLOBAL ─────────────────────────────────────── */
+let sb            = null;
+let currentClave  = null;
+let clientData    = null;
+let selecciones   = {};   // { foto_id: { favorito, portfolio_auth, reedicion } }
+let allFotos      = [];
+let showingFavs   = false;
+let isContactSheet = false;
+let currentLbFoto = null;
+let autoSaveTimer = null;
+let toastTimer    = null;
+let loginStatusAnimTimer = null;
+
+const DELIVERY_THEMES = {
+  event: {
+    heroKicker: 'Archivo privado · Evento',
+    heroCopy: 'Una entrega editorial organizada por tramos del evento para revisar con calma, marcar selección y descargar el material con mejor lectura visual.',
+    headerKicker: 'ENTREGA DE EVENTO · SELECCIÓN FINAL',
+    sections: ['Preparativos', 'Evento', 'Retratos'],
+  },
+  brand: {
+    heroKicker: 'Archivo privado · Marca',
+    heroCopy: 'Tu entrega de marca. Revisá el material, marcá lo que querés conservar y descargá tu selección.',
+    headerKicker: 'ENTREGA DE MARCA · SELECCIÓN FINAL',
+    sections: ['Parte 01', 'Parte 02', 'Parte 03'],
+  },
+};
+
+/* ══════════════════════════════════════════════════════
+   INIT
+   ══════════════════════════════════════════════════════ */
+document.addEventListener('DOMContentLoaded', async () => {
+  if (!DEMO_MODE && typeof window.supabase !== 'undefined') {
+    sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+  }
+  initGatewayBackground();
+  initCursor();
+  bindTopbar();
+  hydrateLoginNoticeFromQuery();
+  bindLogin();
+  bindGalleryUI();
+  // El acceso vuelve a pedir clave en cada recarga de archivo.html.
+});
+
+/* ══════════════════════════════════════════════════════
+   CURSOR
+   ══════════════════════════════════════════════════════ */
+function initCursor() {
+  if (!window.matchMedia('(hover:hover)').matches) return;
+  const dot  = document.getElementById('cur');
+  const ring = document.getElementById('cur-r');
+  if (!dot || !ring) return;
+  let mx = -200, my = -200, rx = -200, ry = -200;
+  document.addEventListener('mousemove', e => { mx = e.clientX; my = e.clientY; });
+  (function loop() {
+    rx += (mx - rx) * 0.12;
+    ry += (my - ry) * 0.12;
+    dot.style.left  = mx + 'px';
+    dot.style.top   = my + 'px';
+    ring.style.left = rx + 'px';
+    ring.style.top  = ry + 'px';
+    requestAnimationFrame(loop);
+  })();
+}
+
+function initGatewayBackground() {
+  const holder = document.getElementById('gateway-bg');
+  if (!holder) return;
+
+  const frames = Array.from(holder.querySelectorAll('img'));
+  if (!frames.length) return;
+
+  const picks = pickRandom(LOGIN_BG_POOL, frames.length);
+  frames.forEach((img, i) => {
+    img.src = picks[i % picks.length];
+    img.classList.toggle('active', i === 0);
+  });
+
+  // Asigna el atributo nth-child simulado via data para el zig-zag de animaciones
+  frames.forEach((img, i) => img.dataset.kbIdx = i);
+
+  // Keyframes a aplicar en orden alternado (zig-zag)
+  const KB_ANIMS = ['kb-zoom-in', 'kb-zoom-out', 'kb-pan-left', 'kb-pan-right'];
+  let idx = 0;
+  let kbStep = 0;
+
+  // Aplica animación inicial a la primera
+  frames[0].style.animation = `${KB_ANIMS[0]} 8s ease-in-out forwards`;
+
+  window.setInterval(() => {
+    frames[idx].classList.remove('active');
+    frames[idx].style.animation = '';
+    idx = (idx + 1) % frames.length;
+    kbStep = (kbStep + 1) % KB_ANIMS.length;
+    frames[idx].style.animation = `${KB_ANIMS[kbStep]} 8s ease-in-out forwards`;
+    frames[idx].classList.add('active');
+  }, 8000);
+}
+
+function pickRandom(source, amount) {
+  const list = Array.isArray(source) ? source.slice() : [];
+  for (let i = list.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [list[i], list[j]] = [list[j], list[i]];
+  }
+  return list.slice(0, Math.max(1, amount));
+}
+
+function getRuntimeOrigin() {
+  if (window.location.protocol === 'file:') return 'http://localhost:8000';
+  return window.location.origin;
+}
+
+function buildRuntimeUrl(resourcePath) {
+  const raw = String(resourcePath || '').trim();
+  if (!raw) return '';
+  if (/^(https?:)?\/\//i.test(raw)) return raw;
+  const normalized = raw.startsWith('/') ? raw : `/${raw.replace(/^\.?\//, '')}`;
+  return new URL(normalized, `${getRuntimeOrigin()}/`).toString();
+}
+
+function normalizeAssetUrl(resourcePath) {
+  return buildRuntimeUrl(resourcePath);
+}
+
+function inferDeliveryKind(data = {}) {
+  const explicit = String(data.tipo_entrega || '').trim().toLowerCase();
+  if (explicit === 'marca' || explicit === 'brand' || explicit === 'comercial') return 'brand';
+  if (explicit === 'evento' || explicit === 'event') return 'event';
+
+  const legacy = String(data.tipo || '').trim().toLowerCase();
+  if (legacy.includes('marca') || legacy.includes('brand') || legacy.includes('comercial')) return 'brand';
+  if (legacy.includes('evento')) return 'event';
+
+  const clave = String(data.clave_tecnica || '').toLowerCase();
+  const carpeta = String(data.carpeta || '').toLowerCase();
+  const detalle = String(data.evento_detalles || '').toLowerCase();
+
+  if (
+    clave.startsWith('marca') ||
+    carpeta.includes('marca') ||
+    carpeta.includes('brand') ||
+    carpeta.includes('producto') ||
+    carpeta.includes('campaign') ||
+    detalle.includes('marca') ||
+    detalle.includes('campaña')
+  ) {
+    return 'brand';
+  }
+
+  return 'event';
+}
+
+function getDeliveryTheme(data = clientData) {
+  return DELIVERY_THEMES[inferDeliveryKind(data)] || DELIVERY_THEMES.event;
+}
+
+function getGallerySpan(index, kind) {
+  const patterns = {
+    event: ['grande', 'small', 'tall', 'wide', 'small', 'tall', 'small', 'wide', 'small'],
+    brand: ['wide', 'small', 'small', 'tall', 'grande', 'small', 'wide', 'small', 'tall'],
+  };
+  const active = patterns[kind] || patterns.event;
+  return active[index % active.length];
+}
+
+function getClientMeta(data = clientData) {
+  const fecha = String(data?.fecha || '').trim();
+  const lugar = String(data?.lugar || '').trim();
+  if (fecha || lugar) {
+    return {
+      primary: fecha || data?.cliente_nombre || '—',
+      secondary: lugar || data?.evento_detalles || '—',
+    };
+  }
+
+  const detalle = String(data?.evento_detalles || '').trim();
+  if (detalle.includes('|')) {
+    const parts = detalle.split('|').map((part) => part.trim()).filter(Boolean);
+    if (parts.length >= 2) {
+      return {
+        primary: parts[0],
+        secondary: parts.slice(1).join(' · '),
+      };
+    }
+  }
+
+  return {
+    primary: data?.cliente_nombre || '—',
+    secondary: detalle || (inferDeliveryKind(data) === 'brand' ? 'Entrega comercial' : 'Entrega editorial'),
+  };
+}
+
+function applyDeliveryTheme() {
+  const kind = inferDeliveryKind(clientData);
+  const theme = getDeliveryTheme(clientData);
+  const heroKicker = document.querySelector('.archivo-hero-kicker');
+  const heroCopy = document.querySelector('.archivo-hero-copy');
+  const headerKicker = document.querySelector('.g-header-main .eyebrow');
+  const navButtons = Array.from(document.querySelectorAll('.nav-btn'));
+  const sectionLabels = Array.from(document.querySelectorAll('.sec-head .eyebrow'));
+
+  document.body.classList.remove('delivery-kind-event', 'delivery-kind-brand');
+  document.body.classList.add(`delivery-kind-${kind}`);
+
+  if (heroKicker) heroKicker.textContent = theme.heroKicker;
+  if (heroCopy) heroCopy.textContent = theme.heroCopy;
+  if (headerKicker) headerKicker.textContent = theme.headerKicker;
+
+  theme.sections.forEach((label, index) => {
+    const order = String(index + 1).padStart(2, '0');
+    if (navButtons[index]) navButtons[index].textContent = `[ ${order} ${label.toUpperCase()} ]`;
+    if (sectionLabels[index]) sectionLabels[index].textContent = `${order} / ${label.toUpperCase()}`;
+  });
+
+  return theme;
+}
+
+function slugifyLabel(value) {
+  return String(value || '')
+    .normalize('NFD')
+    .replace(/[\u0300-\u036f]/g, '')
+    .toLowerCase()
+    .replace(/[^a-z0-9]+/g, '-')
+    .replace(/^-+|-+$/g, '');
+}
+
+function setImageFromCandidates(imgEl, candidates) {
+  if (!imgEl) return;
+  const queue = candidates.filter(Boolean).map((item) => normalizeAssetUrl(item));
+  const assignNext = () => {
+    const next = queue.shift();
+    if (!next) {
+      imgEl.onerror = null;
+      return;
+    }
+    imgEl.src = next;
+  };
+
+  imgEl.onerror = assignNext;
+  assignNext();
+}
+
+function bindTopbar() {
+  const burger = document.getElementById('topbar-burger');
+  const drop = document.getElementById('topbar-drop');
+  if (!burger || !drop) return;
+
+  burger.addEventListener('click', e => {
+    e.stopPropagation();
+    const open = drop.classList.toggle('open');
+    burger.setAttribute('aria-expanded', String(open));
+  });
+
+  document.addEventListener('click', e => {
+    if (!drop.contains(e.target) && e.target !== burger) {
+      drop.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    }
+  });
+
+  drop.querySelectorAll('a').forEach(a => {
+    a.addEventListener('click', () => {
+      drop.classList.remove('open');
+      burger.setAttribute('aria-expanded', 'false');
+    });
+  });
+}
+
+/* ══════════════════════════════════════════════════════
+   LOGIN
+   ══════════════════════════════════════════════════════ */
+function bindLogin() {
+  const inp = document.getElementById('clave-input');
+  const btn = document.getElementById('btn-validar');
+  btn.addEventListener('click', () => validateAccess());
+  inp.addEventListener('keydown', e => { if (e.key === 'Enter') validateAccess(); });
+}
+
+async function validateAccess(key, options = {}) {
+  const opts = {
+    diagnostic: false,
+    fromSession: false,
+    ...options,
+  };
+
+  const input = document.getElementById('gateway-input') || document.getElementById('clave-input');
+  const typedKey = input ? String(input.value || '').trim().toLowerCase() : '';
+  key = String(key || typedKey || '').trim().toLowerCase();
+
+  if (!key) {
+    setLoginStatus('error', 'Falta la clave', 'Ingresá tu clave para iniciar sesión.');
+    return { data: null, error: null };
+  }
+
+  triggerValidateButtonFeedback();
+  setLoginLoading(true);
+  setLoginStatus('info', 'Iniciando sesión', 'Validando tu clave de acceso...');
+
+  console.log('Consultando clave:', key);
+
+  try {
+    let data = null;
+    let error = null;
+
+    if (DEMO_MODE) {
+      await new Promise(r => setTimeout(r, 300));
+      if (String(key).toUpperCase() !== DEMO_CLAVE) {
+        data = null;
+      } else {
+        data = DEMO_CLIENT;
+      }
+    } else {
+      if (!sb) throw new Error('SUPABASE NO CONFIGURADO.');
+
+      const result = await sb
+        .from('archivo_clientes')
+        .select('*')
+        .eq('clave_tecnica', key)
+        .single();
+
+      data = result.data;
+      error = result.error;
+    }
+
+    if (error) {
+      console.error(error);
+      setLoginStatus('error', 'Error de conexión', 'No pudimos validar la clave en este momento.');
+      setLoginLoading(false);
+      return { data: null, error };
+    }
+
+    if (!data) {
+      setLoginStatus('error', 'Clave no reconocida', 'Verificá la clave e intentá nuevamente.');
+      setLoginLoading(false);
+      return { data: null, error: null };
+    }
+
+    currentClave = String(data.clave_tecnica || data.clave || key).trim();
+    clientData = data;
+
+    selecciones = {};
+    if (!DEMO_MODE) {
+      const { data: sels } = await sb
+        .from('selecciones').select('*').eq('clave', currentClave);
+      (sels || []).forEach(s => {
+        selecciones[s.foto_id] = {
+          favorito      : s.favorito,
+          portfolio_auth: s.portfolio_auth,
+          reedicion     : s.reedicion || '',
+        };
+      });
+
+      const { data: test } = await sb
+        .from('testimonios').select('*').eq('clave', currentClave).single();
+      if (test) {
+        document.getElementById('inp-testimonio').value = test.testimonio || '';
+        document.getElementById('inp-notas').value      = test.notas      || '';
+      }
+    }
+
+    persistClientSession(currentClave || key, clientData || {});
+    localStorage.setItem('archivo_session_key', key);
+
+    await buildAllFotos();
+    renderGallery();
+    setLoginStatus('success', 'Acceso concedido', `Cargando entrega de ${(data.cliente_nombre || 'cliente').toUpperCase()}...`);
+    showScreen('gallery');
+
+    setLoginLoading(false);
+    return { data, error: null };
+  } catch (err) {
+    setLoginLoading(false);
+    setLoginStatus('error', 'Error al iniciar sesión', String(err?.message || 'No se pudo completar el acceso.'));
+    return { data: null, error: err };
+  }
+}
+
+function readSessionClave() {
+  const legacy = String(localStorage.getItem('archivo_session_key') || '').trim().toLowerCase();
+  if (legacy) return legacy;
+
+  try {
+    const raw = localStorage.getItem(ARCHIVO_SESSION_KEY);
+    if (!raw) return '';
+    const parsed = JSON.parse(raw);
+    if (!parsed || !parsed.clave || !parsed.ts) return '';
+    const age = Date.now() - Number(parsed.ts);
+    if (Number.isNaN(age) || age < 0 || age > ARCHIVO_SESSION_TTL_MS) return '';
+    return String(parsed.clave).trim().toLowerCase();
+  } catch (err) {
+    return '';
+  }
+}
+
+async function restoreSessionIfPossible() {
+  const savedKey = readSessionClave();
+  if (!savedKey) return;
+
+  await validateAccess(savedKey, { diagnostic: false, fromSession: true });
+}
+
+function setLoginLoading(on) {
+  const btn = document.getElementById('btn-validar');
+  if (!btn) return;
+  btn.textContent = on ? '[ · · · ]' : '[ VALIDAR ]';
+  btn.disabled = on;
+  btn.classList.toggle('is-loading', on);
+  if (!on) btn.classList.remove('is-feedback');
+}
+
+function triggerValidateButtonFeedback() {
+  const btn = document.getElementById('btn-validar');
+  if (!btn) return;
+  btn.classList.remove('is-feedback');
+  void btn.offsetWidth;
+  btn.classList.add('is-feedback');
+}
+
+function setLoginStatus(kind, title, detail) {
+  const card = document.getElementById('login-status');
+  const titleEl = document.getElementById('login-status-title');
+  const detailEl = document.getElementById('login-error');
+  if (!card || !titleEl || !detailEl) return;
+
+  card.classList.remove('is-updating');
+  void card.offsetWidth;
+  card.classList.remove('info', 'success', 'error', 'muted');
+  card.classList.add(kind || 'info');
+  card.classList.add('is-updating');
+  clearTimeout(loginStatusAnimTimer);
+  loginStatusAnimTimer = setTimeout(() => card.classList.remove('is-updating'), 460);
+
+  titleEl.textContent = title || 'Estado de sesión';
+  detailEl.textContent = detail || '';
+}
+
+function persistClientSession(clave, payload) {
+  const safeClave = (clave || '').toUpperCase().trim();
+  const safePayload = payload || {};
+
+  localStorage.setItem('archivo_session_key', safeClave.toLowerCase());
+  localStorage.setItem('archivo.clave', safeClave);
+  localStorage.setItem('archivo.cliente_nombre', safePayload.cliente_nombre || 'Cliente');
+  localStorage.setItem('archivo.fecha', safePayload.fecha || '—');
+  localStorage.setItem('archivo.lugar', safePayload.lugar || '—');
+  localStorage.setItem('archivo.payload', JSON.stringify(safePayload));
+  localStorage.setItem(ARCHIVO_SESSION_KEY, JSON.stringify({
+    clave: safeClave,
+    ts: Date.now(),
+  }));
+}
+
+function hydrateLoginNoticeFromQuery() {
+  const params = new URLSearchParams(window.location.search);
+  const reason = (params.get('reason') || '').toLowerCase();
+  if (!document.getElementById('login-status')) return;
+
+  if (reason === 'session') {
+    setLoginStatus('muted', 'Sesión finalizada', 'La sesión caducó. Ingresá tu clave para continuar.');
+  } else if (reason === 'auth') {
+    setLoginStatus('error', 'Acceso inválido', 'Iniciá sesión con tu clave para continuar.');
+  } else if (reason === 'cliente') {
+    setLoginStatus('error', 'Proyecto no disponible', 'No se pudo cargar tu proyecto. Volvé a validar clave.');
+  } else {
+    setLoginStatus('info', 'Esperando clave', 'Ingresá tu clave técnica para continuar.');
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   RENDERIZADO DE GALERÍA
+   ══════════════════════════════════════════════════════ */
+async function buildAllFotosFromCarpeta(carpeta) {
+  try {
+    const kind = inferDeliveryKind(clientData);
+    const resp = await fetch(buildRuntimeUrl(`/api/gallery?folder=${encodeURIComponent(carpeta)}`));
+    if (!resp.ok) return [];
+    const { images } = await resp.json();
+    return (images || []).map((img, i) => ({
+      id:    img.src,
+      url:   normalizeAssetUrl(img.src),
+      thumb: normalizeAssetUrl(img.src),
+      span:  getGallerySpan(i, kind),
+    }));
+  } catch (e) {
+    return [];
+  }
+}
+
+async function buildAllFotos() {
+  if (clientData.carpeta) {
+    allFotos = await buildAllFotosFromCarpeta(clientData.carpeta);
+    // Distribuye en secciones para que renderGrid funcione igual
+    clientData.seccion_01 = allFotos.slice(0, Math.ceil(allFotos.length / 3));
+    clientData.seccion_02 = allFotos.slice(Math.ceil(allFotos.length / 3), Math.ceil(allFotos.length * 2 / 3));
+    clientData.seccion_03 = allFotos.slice(Math.ceil(allFotos.length * 2 / 3));
+  } else {
+    const kind = inferDeliveryKind(clientData);
+    const normalizeSection = (items = []) => items.map((foto, index) => ({
+      ...foto,
+      url: normalizeAssetUrl(foto.url || foto.thumb || ''),
+      thumb: normalizeAssetUrl(foto.thumb || foto.url || ''),
+      span: foto.span || getGallerySpan(index, kind),
+    }));
+
+    clientData.seccion_01 = normalizeSection(clientData.seccion_01 || []);
+    clientData.seccion_02 = normalizeSection(clientData.seccion_02 || []);
+    clientData.seccion_03 = normalizeSection(clientData.seccion_03 || []);
+
+    allFotos = [
+      ...(clientData.seccion_01 || []),
+      ...(clientData.seccion_02 || []),
+      ...(clientData.seccion_03 || []),
+    ];
+  }
+}
+
+function renderGallery() {
+  applyDeliveryTheme();
+  const meta = getClientMeta(clientData);
+  document.getElementById('client-name').textContent = clientData.evento_detalles || clientData.cliente_nombre || '—';
+  document.getElementById('meta-fecha').textContent  = meta.primary || '—';
+  document.getElementById('meta-lugar').textContent  = meta.secondary || '—';
+  const heroName = document.getElementById('hero-client-name');
+  const heroMeta = document.getElementById('hero-meta');
+  if (heroName) heroName.textContent = (clientData.cliente_nombre || clientData.evento_detalles || 'Proyecto') + '.';
+  if (heroMeta) heroMeta.textContent = `${meta.primary || '—'} · ${String(meta.secondary || '—').toUpperCase()}`;
+  syncGalleryHeroImage();
+  renderGrid('grid-01', clientData.seccion_01 || []);
+  renderGrid('grid-02', clientData.seccion_02 || []);
+  renderGrid('grid-03', clientData.seccion_03 || []);
+  updateFavCount();
+}
+
+function syncGalleryHeroImage() {
+  const heroImg = document.getElementById('archivo-hero-img');
+  if (!heroImg) return;
+  const slug = slugifyLabel(clientData?.cliente_nombre || clientData?.carpeta || '');
+  const first = allFotos.find(f => f && (f.url || f.thumb));
+
+  setImageFromCandidates(heroImg, [
+    clientData.hero_img,
+    slug ? `imgs/${slug}-portada.jpg` : '',
+    slug ? `imgs/${slug}.jpg` : '',
+    clientData.carpeta ? `imgs/${clientData.carpeta}-portada.jpg` : '',
+    clientData.carpeta ? `imgs/${clientData.carpeta}/portada.jpg` : '',
+    first ? (first.url || first.thumb) : '',
+    'imgs/entrada-galeria.web.jpg',
+  ]);
+}
+
+function renderGrid(gridId, fotos) {
+  const grid = document.getElementById(gridId);
+  grid.innerHTML = '';
+  if (!fotos.length) {
+    grid.innerHTML = '<p class="grid-empty">Sin imágenes en esta sección.</p>';
+    return;
+  }
+  fotos.forEach((foto, i) => {
+    grid.appendChild(buildCard(foto, i));
+  });
+}
+
+/* ── CONSTRUIR CARD ─────────────────────────────────── */
+function buildCard(foto, idx) {
+  const span   = foto.span || 'small';
+  const sel    = selecciones[foto.id] || {};
+  const isFav  = !!sel.favorito;
+  const isPF   = !!sel.portfolio_auth;
+  const hasR   = !!(sel.reedicion);
+  const imgSrc = escAttr(foto.thumb || foto.url);
+
+  const card = document.createElement('article');
+  card.className  = `foto-card span-${span}`;
+  card.dataset.id = foto.id;
+
+  card.innerHTML = `
+    <div class="skeleton"></div>
+    <img class="foto-img" src="${imgSrc}"
+         alt="Fotografía ${idx + 1}"
+         loading="lazy" decoding="async">
+    <button class="btn-fav${isFav ? ' is-fav' : ''}" aria-label="Marcar como favorito">
+      <svg viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}"
+           stroke="currentColor" stroke-width="1.5"
+           stroke-linecap="round" stroke-linejoin="round">
+        <path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06
+                 a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23
+                 l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
+      </svg>
+    </button>
+    ${hasR ? '<div class="reed-dot" title="Reedición solicitada">R</div>' : ''}
+    <div class="card-foot">
+      <span class="pf-label">USO EN PORTFOLIO</span>
+      <label class="sw">
+        <input type="checkbox" class="pf-check"${isPF ? ' checked' : ''}
+               aria-label="Autorizar uso en portfolio">
+        <span class="sw-track"></span>
+      </label>
+    </div>
+  `;
+
+  const img    = card.querySelector('.foto-img');
+  const btnFav = card.querySelector('.btn-fav');
+  const pfChk  = card.querySelector('.pf-check');
+
+  img.addEventListener('load', () => {
+    card.querySelector('.skeleton').style.opacity = '0';
+    img.classList.add('loaded');
+  });
+  img.addEventListener('click', () => openLightbox(foto, idx));
+  btnFav.addEventListener('click', e => { e.stopPropagation(); toggleFav(foto.id); });
+  pfChk.addEventListener('change', e => { e.stopPropagation(); togglePortfolio(foto.id, e.target.checked); });
+
+  return card;
+}
+
+/* ══════════════════════════════════════════════════════
+   ACCIONES — FAVORITO / PORTFOLIO / REEDICIÓN
+   ══════════════════════════════════════════════════════ */
+async function toggleFav(fotoId) {
+  if (!selecciones[fotoId]) selecciones[fotoId] = {};
+  const newVal = !selecciones[fotoId].favorito;
+  selecciones[fotoId].favorito = newVal;
+
+  // Actualizar card visual
+  const card = document.querySelector(`.foto-card[data-id="${fotoId}"]`);
+  if (card) {
+    const btn = card.querySelector('.btn-fav');
+    btn.classList.toggle('is-fav', newVal);
+    btn.querySelector('svg path').setAttribute('fill', newVal ? 'currentColor' : 'none');
+  }
+
+  updateFavCount();
+  if (showingFavs) applyFavFilter();
+  toast(newVal ? 'AGREGADA A SELECCIÓN' : 'REMOVIDA DE SELECCIÓN');
+  if (!DEMO_MODE) await upsertSeleccion(fotoId);
+
+  // Sync lightbox si está abierto
+  if (currentLbFoto && currentLbFoto.id === fotoId) updateLbFavBtn();
+}
+
+async function togglePortfolio(fotoId, val) {
+  if (!selecciones[fotoId]) selecciones[fotoId] = {};
+  selecciones[fotoId].portfolio_auth = val;
+  toast(val ? 'AUTORIZADO PARA PORTFOLIO' : 'AUTORIZACIÓN REVOCADA');
+  if (!DEMO_MODE) await upsertSeleccion(fotoId);
+}
+
+async function saveReedicion(fotoId, texto) {
+  if (!selecciones[fotoId]) selecciones[fotoId] = {};
+  selecciones[fotoId].reedicion = texto;
+
+  // Actualizar badge en card
+  const card = document.querySelector(`.foto-card[data-id="${fotoId}"]`);
+  if (card) {
+    let dot = card.querySelector('.reed-dot');
+    if (texto && !dot) {
+      dot = document.createElement('div');
+      dot.className = 'reed-dot';
+      dot.textContent = 'R';
+      dot.title = 'Reedición solicitada';
+      card.appendChild(dot);
+    } else if (!texto && dot) {
+      dot.remove();
+    }
+  }
+
+  toast('AJUSTE TÉCNICO GUARDADO');
+  if (!DEMO_MODE) await upsertSeleccion(fotoId);
+}
+
+/* ══════════════════════════════════════════════════════
+   SUPABASE — ESCRITURA
+   ══════════════════════════════════════════════════════ */
+async function upsertSeleccion(fotoId) {
+  if (!sb) return;
+  const s = selecciones[fotoId] || {};
+  await sb.from('selecciones').upsert({
+    clave         : currentClave,
+    foto_id       : fotoId,
+    favorito      : s.favorito       || false,
+    portfolio_auth: s.portfolio_auth  || false,
+    reedicion     : s.reedicion      || '',
+    updated_at    : new Date().toISOString(),
+  }, { onConflict: 'clave,foto_id' });
+}
+
+async function saveTestimony() {
+  if (!sb) return;
+  await sb.from('testimonios').upsert({
+    clave     : currentClave,
+    testimonio: document.getElementById('inp-testimonio').value,
+    notas     : document.getElementById('inp-notas').value,
+    updated_at: new Date().toISOString(),
+  }, { onConflict: 'clave' });
+}
+
+/* ══════════════════════════════════════════════════════
+   UI GALERÍA — BINDINGS
+   ══════════════════════════════════════════════════════ */
+function bindGalleryUI() {
+
+  // Logout
+  document.getElementById('btn-logout').addEventListener('click', () => {
+    currentClave = null; clientData = null;
+    selecciones  = {}; allFotos = [];
+    showingFavs  = false; isContactSheet = false;
+    document.body.classList.remove('delivery-kind-event', 'delivery-kind-brand');
+    document.getElementById('clave-input').value       = '';
+    setLoginStatus('info', 'Sesión cerrada', 'Ingresá tu clave técnica para volver a entrar.');
+    document.getElementById('inp-testimonio').value    = '';
+    document.getElementById('inp-notas').value         = '';
+    document.getElementById('toggle-cs').checked       = false;
+    document.getElementById('g-main').classList.remove('contact-sheet');
+    localStorage.removeItem('archivo_session_key');
+    localStorage.removeItem(ARCHIVO_SESSION_KEY);
+    setLoginLoading(false);
+    showScreen('login');
+  });
+
+  // Nav de secciones
+  document.querySelectorAll('.nav-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const el = document.getElementById(btn.dataset.target);
+      if (el) el.scrollIntoView({ behavior:'smooth', block:'start' });
+    });
+  });
+
+  // Ver selección
+  document.getElementById('btn-ver-sel').addEventListener('click', () => {
+    showingFavs = !showingFavs;
+    document.getElementById('btn-ver-sel').classList.toggle('active', showingFavs);
+    applyFavFilter();
+    toast(showingFavs ? 'MOSTRANDO SELECCIÓN' : 'MOSTRANDO TODAS');
+  });
+
+  // Descargar
+  document.getElementById('btn-descargar').addEventListener('click', handleDownload);
+
+  // Hoja de contactos
+  document.getElementById('toggle-cs').addEventListener('change', e => {
+    isContactSheet = e.target.checked;
+    document.getElementById('g-main').classList.toggle('contact-sheet', isContactSheet);
+    toast(isContactSheet ? 'MODO HOJA DE CONTACTOS' : 'MODO EDITORIAL');
+  });
+
+  // Lightbox — cerrar
+  document.getElementById('lb-back').addEventListener('click', closeLightbox);
+  document.getElementById('lb-close').addEventListener('click', closeLightbox);
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+
+  // Lightbox — favorito
+  document.getElementById('lb-fav-btn').addEventListener('click', () => {
+    if (currentLbFoto) toggleFav(currentLbFoto.id);
+  });
+
+  // Lightbox — reedición toggle
+  document.getElementById('lb-reed-btn').addEventListener('click', () => {
+    const area = document.getElementById('lb-reed-area');
+    area.classList.toggle('hidden');
+    if (!area.classList.contains('hidden') && currentLbFoto) {
+      document.getElementById('lb-reed-foto-id').textContent = currentLbFoto.id;
+      document.getElementById('lb-reed-text').value =
+        selecciones[currentLbFoto.id]?.reedicion || '';
+      document.getElementById('lb-reed-text').focus();
+    }
+  });
+
+  // Lightbox — guardar reedición
+  document.getElementById('lb-reed-save').addEventListener('click', async () => {
+    if (!currentLbFoto) return;
+    const texto = document.getElementById('lb-reed-text').value.trim();
+    await saveReedicion(currentLbFoto.id, texto);
+    document.getElementById('lb-reed-area').classList.add('hidden');
+  });
+
+  // Testimony — auto-guardado con debounce
+  ['inp-testimonio', 'inp-notas'].forEach(id => {
+    document.getElementById(id).addEventListener('input', () => {
+      clearTimeout(autoSaveTimer);
+      autoSaveTimer = setTimeout(async () => {
+        if (!DEMO_MODE) await saveTestimony();
+        toast('GUARDADO AUTOMÁTICAMENTE');
+      }, 2200);
+    });
+  });
+
+  // Finalizar
+  document.getElementById('btn-finalizar').addEventListener('click', handleFinalizar);
+}
+
+/* ── HELPERS DE UI ──────────────────────────────────── */
+function updateFavCount() {
+  const n = Object.values(selecciones).filter(s => s.favorito).length;
+  document.getElementById('fav-count').textContent = n;
+}
+
+function applyFavFilter() {
+  document.querySelectorAll('.foto-card').forEach(card => {
+    const isFav = !!selecciones[card.dataset.id]?.favorito;
+    card.style.display = (!showingFavs || isFav) ? '' : 'none';
+  });
+}
+
+function showScreen(which) {
+  const loginEl = document.getElementById('gateway') || document.getElementById('screen-login');
+  const galleryEl = document.getElementById('app-interface') || document.getElementById('screen-gallery');
+  if (loginEl) loginEl.classList.toggle('hidden', which !== 'login');
+  if (galleryEl) galleryEl.classList.toggle('hidden', which !== 'gallery');
+}
+
+/* ══════════════════════════════════════════════════════
+   LIGHTBOX
+   ══════════════════════════════════════════════════════ */
+function openLightbox(foto, idx) {
+  currentLbFoto = foto;
+  const img = document.getElementById('lb-img');
+  img.classList.remove('loaded');
+  img.src = '';
+  img.src = escAttr(foto.url);
+  img.addEventListener('load', () => img.classList.add('loaded'), { once:true });
+
+  const total = allFotos.length;
+  const pos   = allFotos.findIndex(f => f.id === foto.id);
+  document.getElementById('lb-counter').textContent =
+    `IMG ${String((pos >= 0 ? pos : idx) + 1).padStart(3,'0')} / ${String(total).padStart(3,'0')}`;
+
+  document.getElementById('lb-reed-area').classList.add('hidden');
+  updateLbFavBtn();
+
+  document.getElementById('lightbox').classList.remove('hidden');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeLightbox() {
+  document.getElementById('lightbox').classList.add('hidden');
+  document.body.style.overflow = '';
+  currentLbFoto = null;
+}
+
+function updateLbFavBtn() {
+  if (!currentLbFoto) return;
+  const isFav = !!selecciones[currentLbFoto.id]?.favorito;
+  const btn   = document.getElementById('lb-fav-btn');
+  btn.textContent = isFav ? '[ ♥ EN SELECCIÓN ]' : '[ ♡ AGREGAR A SELECCIÓN ]';
+  btn.classList.toggle('active', isFav);
+}
+
+/* ══════════════════════════════════════════════════════
+   DESCARGA — JSZip
+   ══════════════════════════════════════════════════════ */
+async function handleDownload() {
+  const favs = allFotos.filter(f => !!selecciones[f.id]?.favorito);
+  if (!favs.length) {
+    toast('SIN FOTOS EN SELECCIÓN');
+    return;
+  }
+  toast(`PREPARANDO ${favs.length} ARCHIVOS…`);
+  try {
+    const zip    = new JSZip();
+    const folder = zip.folder((clientData.cliente_nombre || 'seleccion').replace(/[^a-zA-Z0-9]/g,'_'));
+
+    await Promise.all(favs.map(async (foto, i) => {
+      const res  = await fetch(foto.url, { mode:'cors' });
+      if (!res.ok) throw new Error(`Error al obtener ${foto.id}`);
+      const blob = await res.blob();
+      const ext  = blob.type.includes('webp') ? 'webp'
+                 : blob.type.includes('png')  ? 'png' : 'jpg';
+      folder.file(`foto_${String(i + 1).padStart(3,'0')}.${ext}`, blob);
+    }));
+
+    const content = await zip.generateAsync({ type:'blob', compression:'DEFLATE' });
+    const url     = URL.createObjectURL(content);
+    const a       = document.createElement('a');
+    a.href        = url;
+    a.download    = `${(clientData.cliente_nombre || 'seleccion').toLowerCase()}_matirath.zip`;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    toast('DESCARGA INICIADA');
+  } catch (err) {
+    console.error('[ARCHIVO] Error de descarga:', err);
+    toast('ERROR EN DESCARGA — REVISÁ LA CONSOLA');
+  }
+}
+
+/* ══════════════════════════════════════════════════════
+   FINALIZAR Y NOTIFICAR — WhatsApp
+   ══════════════════════════════════════════════════════ */
+async function handleFinalizar() {
+  if (!DEMO_MODE) await saveTestimony();
+
+  const favs  = allFotos.filter(f => !!selecciones[f.id]?.favorito).length;
+  const pf    = allFotos.filter(f => !!selecciones[f.id]?.portfolio_auth).length;
+  const reeds = allFotos.filter(f => !!(selecciones[f.id]?.reedicion)).length;
+  const test  = document.getElementById('inp-testimonio').value.trim().slice(0,120) || '—';
+
+  const mensaje = [
+    `Hola Matías! Soy ${clientData.cliente_nombre}.`,
+    `Acabo de revisar mi entrega (${currentClave}).`,
+    ``,
+    `✦ Fotos seleccionadas: ${favs}`,
+    `✦ Autorizadas para portfolio: ${pf}`,
+    `✦ Solicitudes de reedición: ${reeds}`,
+    ``,
+    `Testimonio: "${test}…"`,
+    ``,
+    `Quedo a disposición.`,
+  ].join('\n');
+
+  window.open(`https://wa.me/${WA_NUMERO}?text=${encodeURIComponent(mensaje)}`, '_blank', 'noopener,noreferrer');
+}
+
+/* ══════════════════════════════════════════════════════
+   TOAST
+   ══════════════════════════════════════════════════════ */
+function toast(msg) {
+  const el = document.getElementById('toast');
+  el.textContent = msg;
+  el.classList.add('show');
+  clearTimeout(toastTimer);
+  toastTimer = setTimeout(() => el.classList.remove('show'), 2500);
+}
+
+/* ══════════════════════════════════════════════════════
+   UTILS — SEGURIDAD
+   ══════════════════════════════════════════════════════ */
+function escAttr(str) {
+  if (typeof str !== 'string') return '';
+  return str.replace(/&/g,'&amp;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')
+            .replace(/</g,'&lt;').replace(/>/g,'&gt;');
+}
+</script>
+</body>
+</html>

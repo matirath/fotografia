@@ -118,6 +118,7 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
 
 .back-top{position:fixed;bottom:6rem;right:var(--gutter);z-index:190;width:40px;height:40px;background:rgba(176,140,24,.1);border:1px solid rgba(176,140,24,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:all .3s;outline:none}
 .back-top.visible{opacity:1;pointer-events:auto}
+.back-top.is-near-footer{bottom:8.8rem}
 .back-top:hover{background:rgba(176,140,24,.2);border-color:var(--gold)}
 .back-top-arr{display:block;font-size:1rem;color:var(--gold)}
 
@@ -156,6 +157,7 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
   .fc{text-align:center;font-size:.55rem;margin-top:.5rem}
   .fab-whatsapp{bottom:8.2rem;right:1.2rem}
   .back-top{bottom:6.5rem;right:1.2rem;width:36px;height:36px}
+  .back-top.is-near-footer{bottom:8.8rem}
 }
 @media(max-width:430px){
   .topbar-drop{right:var(--gutter);left:var(--gutter);min-width:0}
@@ -179,6 +181,7 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
     <a href="/eventos.html">Eventos</a>
     <a href="/quien-soy.html">Quién soy</a>
     <a href="/contacto.html">Contacto</a>
+    <a href="/archivo.html">Archivo</a>
   </div>
   <button class="topbar-burger" id="topbarBurger" aria-label="Menú" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -189,12 +192,13 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
     <a href="/eventos.html">Eventos</a>
     <a href="/quien-soy.html">Quién soy</a>
     <a href="/contacto.html">Contacto</a>
+    <a href="/archivo.html">Archivo</a>
   </div>
 </nav>
 
 <section class="hero s-dark" id="hero">
   <div class="hero-bg">
-    <img src="imgs/galeriacontacto1.jpg" alt="Retrato editorial en locacion">
+    <img src="imgs/galeriacontacto1.jpg" alt="Retrato editorial en locacion" loading="lazy" decoding="async">
   </div>
   <div class="hero-overlay"></div>
   <div class="hero-noise"></div>
@@ -267,7 +271,7 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
 
 <footer class="s-dark">
   <div class="fl">
-    <div class="ph-logo"><img src="imgs/LOGOMATIRATH.png" alt="Logo Matirath"></div>
+    <div class="ph-logo"><img src="imgs/LOGOMATIRATH.png" alt="Logo Matirath" loading="lazy" decoding="async"></div>
     <span class="fm">matirath.jpg</span>
   </div>
   <span class="fh">@matirath.jpg</span>
@@ -321,7 +325,14 @@ if(cur){
 (function(){
   var btn=document.getElementById('backTop');
   if(!btn)return;
-  window.addEventListener('scroll',function(){window.scrollY>400?btn.classList.add('visible'):btn.classList.remove('visible');},{passive:true});
+  function syncBackTop(){
+    var showBackTop=window.scrollY>400;
+    var nearFooter=window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-180;
+    btn.classList.toggle('visible',showBackTop);
+    btn.classList.toggle('is-near-footer',nearFooter);
+  }
+  window.addEventListener('scroll',syncBackTop,{passive:true});
+  syncBackTop();
 }());
 
 function navTo(id){

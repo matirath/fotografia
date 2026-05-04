@@ -78,7 +78,7 @@ section>*,footer>*,.cta>*{position:relative;z-index:1}.topbar{position:fixed;top
 @keyframes fu{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
 .hero-scroll{position:fixed;right:var(--gutter);bottom:2rem;display:flex;flex-direction:column;align-items:center;gap:.5rem;z-index:194;opacity:0;animation:fu .7s 1.3s forwards;transition:opacity .25s ease,transform .25s ease}
 .hero-scroll{background:none;border:0;padding:0;cursor:pointer}
-.hero-scroll.is-hidden{opacity:0;pointer-events:none;transform:translateY(10px)}
+.hero-scroll.is-hidden{opacity:0 !important;pointer-events:none;transform:translateY(10px);visibility:hidden;animation:none !important}
 .hero-scroll span{font-size:.48rem;letter-spacing:.3em;text-transform:uppercase;color:rgba(242,237,230,.45);writing-mode:vertical-rl}
 .hero-bar{width:1px;height:44px;background:linear-gradient(to bottom,var(--gold),transparent);animation:sp 2s ease-in-out infinite}
 @keyframes sp{0%{opacity:0}20%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translateY(10px)}}
@@ -94,6 +94,7 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
 
 .back-top{position:fixed;bottom:6rem;right:var(--gutter);z-index:190;width:40px;height:40px;background:rgba(176,140,24,.1);border:1px solid rgba(176,140,24,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:all .3s;outline:none}
 .back-top.visible{opacity:1;pointer-events:auto}
+.back-top.is-near-footer{bottom:8.8rem}
 .back-top:hover{background:rgba(176,140,24,.2);border-color:var(--gold)}
 .back-top-arr{display:block;font-size:1rem;color:var(--gold)}
 .fab-whatsapp{position:fixed;bottom:10.5rem;right:var(--gutter);z-index:195;display:inline-flex;align-items:center;gap:.8rem;padding:.85rem 1rem;border-radius:999px;background:rgba(37,211,102,.08);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(37,211,102,.15);color:#25d366;font-weight:700;text-decoration:none;box-shadow:0 20px 40px rgba(0,0,0,.08);transition:transform .2s ease,box-shadow .2s ease,opacity .2s ease;}
@@ -113,6 +114,7 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
   .fab-whatsapp{bottom:7.2rem;right:.9rem;padding:.65rem .8rem;gap:.6rem}
   .fab-label{display:none}
   .back-top{bottom:5.5rem;right:.9rem}
+  .back-top.is-near-footer{bottom:7.8rem}
   footer{padding:1.8rem var(--gutter);gap:.6rem}
   .fm,.fh{font-size:.6rem}
   .fc{font-size:.52rem}
@@ -224,6 +226,7 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
   .fl{justify-content:center;flex-direction:column}
   .fc{text-align:center;font-size:.55rem;margin-top:.5rem}
   .back-top{bottom:6.5rem;right:1.2rem;width:36px;height:36px}
+  .back-top.is-near-footer{bottom:8.8rem}
   .fab-whatsapp{bottom:8.2rem;right:1.2rem;padding:.7rem .9rem;font-size:.75rem}
   .fab-label{font-size:.7rem}
   .stmt,.gallery,.process,.why,.faq,.testi,.cta{padding:10vh var(--gutter) 12vh}
@@ -292,6 +295,7 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
     <a href="/eventos.html">Eventos</a>
     <a href="/quien-soy.html">Quién soy</a>
     <a href="/contacto.html">Contacto</a>
+    <a href="/archivo.html">Archivo</a>
   </div>
   <button class="topbar-burger" id="topbarBurger" aria-label="Menú" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -302,6 +306,7 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
     <a href="/eventos.html">Eventos</a>
     <a href="/quien-soy.html">Quién soy</a>
     <a href="/contacto.html">Contacto</a>
+    <a href="/archivo.html">Archivo</a>
   </div>
 </nav>
 
@@ -472,7 +477,7 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
 </section>
 
 <footer class="s-dark">
-  <div class="fl"><div class="ph-logo ph-logo-sm"><img src="imgs/LOGOMATIRATH.png" alt="Logo Matirath"></div><span class="fm">matirath.jpg</span></div>
+  <div class="fl"><div class="ph-logo ph-logo-sm"><img src="imgs/LOGOMATIRATH.png" alt="Logo Matirath" loading="lazy" decoding="async"></div><span class="fm">matirath.jpg</span></div>
   <span class="fh">@matirath.jpg</span>
   <span class="fc">© <span id="yr"></span> Matías Rath · Argentina</span>
 </footer>
@@ -541,7 +546,9 @@ if(cur){
   if(!btn)return;
   function syncBackTopAndScrollHint(){
     var showBackTop=window.scrollY>400;
+    var nearFooter=window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-180;
     btn.classList.toggle('visible',showBackTop);
+    btn.classList.toggle('is-near-footer',nearFooter);
     if(scrollHint)scrollHint.classList.toggle('is-hidden',showBackTop);
   }
   window.addEventListener('scroll',syncBackTopAndScrollHint,{passive:true});
