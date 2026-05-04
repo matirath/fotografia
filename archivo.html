@@ -429,6 +429,21 @@ body::before {
   to { opacity:1; transform:translateY(0); }
 }
 
+@keyframes loginIntroScan {
+  0%   { background-size:0% 1px, 0 0; opacity:.5; }
+  40%  { opacity:.85; }
+  100% { background-size:100% 1px, 0 0; opacity:1; }
+}
+
+.login-status-card.is-intro {
+  animation:loginIntroScan 2s cubic-bezier(.4,0,.2,1) forwards;
+  background-image:linear-gradient(90deg, var(--gold) 0%, transparent 100%);
+  background-repeat:no-repeat;
+  background-position:bottom left;
+  background-size:0% 1px;
+  opacity:.5;
+}
+
 @keyframes loginStatusPulse {
   0% { transform:translateY(2px) scale(.997); }
   60% { transform:translateY(0) scale(1); }
@@ -1014,7 +1029,7 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
           <div class="login-actions">
             <button id="btn-validar">Validar acceso</button>
           </div>
-          <div id="login-status" class="login-status-card info" role="status" aria-live="polite" aria-atomic="true">
+          <div id="login-status" class="login-status-card info is-intro" role="status" aria-live="polite" aria-atomic="true">
             <p id="login-status-title" class="login-status-title">Esperando clave</p>
             <p id="login-error">Ingresá tu clave técnica para continuar.</p>
           </div>
@@ -1341,6 +1356,11 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (!DEMO_MODE && typeof window.supabase !== 'undefined') {
     sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   }
+  // Animación de intro de 2 segundos en la barra de estado
+  setTimeout(() => {
+    const statusCard = document.getElementById('login-status');
+    if (statusCard) statusCard.classList.remove('is-intro');
+  }, 2000);
   initGatewayBackground();
   initCursor();
   bindTopbar();
