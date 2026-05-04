@@ -387,6 +387,38 @@ body::before {
   align-items:flex-start;
   transition:border-color .28s ease, background .28s ease, box-shadow .28s ease;
   margin-left:0;
+  overflow:hidden;
+  isolation:isolate;
+  position:relative;
+}
+.login-status-card::before {
+  content:'';
+  position:absolute;
+  inset:-1px;
+  border-radius:inherit;
+  background:linear-gradient(110deg, transparent 0%, rgba(201,163,39,.08) 28%, rgba(255,236,180,.18) 48%, rgba(201,163,39,.1) 62%, transparent 100%);
+  transform:translateX(-130%);
+  opacity:0;
+  pointer-events:none;
+  z-index:0;
+}
+.login-status-card::after {
+  content:'';
+  position:absolute;
+  left:0;
+  bottom:0;
+  height:1px;
+  width:100%;
+  background:linear-gradient(90deg, rgba(201,163,39,.65) 0%, rgba(255,233,174,.9) 40%, rgba(201,163,39,0) 100%);
+  transform:scaleX(.18);
+  transform-origin:left center;
+  opacity:.24;
+  pointer-events:none;
+  z-index:0;
+}
+.login-status-card > * {
+  position:relative;
+  z-index:1;
 }
 .login-status-title {
   font-size:.62rem;
@@ -424,6 +456,22 @@ body::before {
   box-shadow:0 12px 28px rgba(0,0,0,.18);
 }
 
+.login-status-card.is-typing {
+  border-color:rgba(201,163,39,.34);
+  background:linear-gradient(180deg, rgba(242,237,230,.06) 0%, rgba(201,163,39,.06) 100%);
+  box-shadow:0 14px 32px rgba(0,0,0,.18), 0 0 0 1px rgba(201,163,39,.06) inset;
+}
+
+.login-status-card.is-typing::before {
+  opacity:1;
+  animation:loginStatusSweep 1.35s cubic-bezier(.16,1,.3,1) 1;
+}
+
+.login-status-card.is-typing::after {
+  opacity:.88;
+  animation:loginStatusBar 1.35s cubic-bezier(.16,1,.3,1) 1;
+}
+
 @keyframes loginStatusIn {
   from { opacity:0; transform:translateY(8px); }
   to { opacity:1; transform:translateY(0); }
@@ -448,6 +496,17 @@ body::before {
   0% { transform:translateY(2px) scale(.997); }
   60% { transform:translateY(0) scale(1); }
   100% { transform:translateY(0) scale(1); }
+}
+
+@keyframes loginStatusSweep {
+  0% { transform:translateX(-130%); }
+  100% { transform:translateX(130%); }
+}
+
+@keyframes loginStatusBar {
+  0% { transform:scaleX(.12); opacity:.18; }
+  35% { transform:scaleX(.54); opacity:.7; }
+  100% { transform:scaleX(1); opacity:.38; }
 }
 
 @keyframes loginDot {
@@ -506,6 +565,7 @@ body::before {
   min-height:inherit;
   max-width:1400px;
   margin:0 auto;
+  box-sizing:border-box;
   padding:7.5rem 5vw 3.4rem;
   display:flex;
   flex-direction:column;
@@ -713,6 +773,27 @@ body.delivery-kind-brand .archivo-hero-copy {
   max-width:64ch;
 }
 
+body.delivery-kind-brand .g-header {
+  background:#f2ede6;
+  border-bottom:1px solid rgba(10,9,8,.12);
+}
+
+body.delivery-kind-brand .g-header-top .eyebrow,
+body.delivery-kind-brand .g-header-main .eyebrow,
+body.delivery-kind-brand .meta,
+body.delivery-kind-brand .meta-sep,
+body.delivery-kind-brand #btn-logout {
+  color:rgba(10,9,8,.62);
+}
+
+body.delivery-kind-brand .client-h {
+  color:#0a0908;
+}
+
+body.delivery-kind-brand .sig-line {
+  border-color:rgba(10,9,8,.14);
+}
+
 body.delivery-kind-brand .sec-light {
   background:#ece4d7;
 }
@@ -875,15 +956,66 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
   position:relative; background:var(--skeleton);
   display:flex; align-items:center; justify-content:center;
   min-height:200px;
+  overflow:hidden;
 }
 #lb-img {
   max-height:72vh; max-width:100%; object-fit:contain; display:block;
-  opacity:0; transition:opacity .4s;
+  opacity:0; transition:opacity .4s, transform .28s ease;
+  cursor:zoom-in;
 }
 #lb-img.loaded { opacity:1; }
+.lb-img-wrap.is-zoomed {
+  overflow:auto;
+  cursor:grab;
+}
+.lb-img-wrap.is-zoomed #lb-img {
+  transform:scale(var(--lb-zoom, 1.9));
+  transform-origin:center center;
+  cursor:grab;
+}
+.lb-img-wrap.is-zoomed.is-dragging,
+.lb-img-wrap.is-zoomed.is-dragging #lb-img {
+  cursor:grabbing;
+}
+.lb-img-wrap.is-zoomed #lb-img {
+  user-select:none;
+  -webkit-user-drag:none;
+}
+.lb-nav {
+  position:absolute;
+  top:50%;
+  transform:translateY(-50%);
+  width:44px;
+  height:44px;
+  border:1px solid rgba(242,237,230,.24);
+  background:rgba(10,9,8,.5);
+  color:var(--bone);
+  border-radius:999px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  cursor:pointer;
+  backdrop-filter:blur(8px);
+  transition:background .2s ease, border-color .2s ease, transform .2s ease;
+}
+.lb-nav:hover {
+  background:rgba(10,9,8,.72);
+  border-color:rgba(201,163,39,.44);
+}
+.lb-nav:active {
+  transform:translateY(-50%) scale(.97);
+}
+.lb-prev { left:1rem; }
+.lb-next { right:1rem; }
 .lb-bottom {
   display:flex; justify-content:space-between; align-items:center;
   flex-wrap:wrap; gap:1rem;
+}
+.lb-actions {
+  display:flex;
+  align-items:center;
+  gap:.75rem;
+  flex-wrap:wrap;
 }
 
 /* Área reedición en lightbox */
@@ -1174,11 +1306,16 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
     </div>
 
     <div class="lb-img-wrap">
+      <button id="lb-prev" class="lb-nav lb-prev" type="button" aria-label="Foto anterior">&#8592;</button>
       <img id="lb-img" src="" alt="" loading="lazy" decoding="async">
+      <button id="lb-next" class="lb-nav lb-next" type="button" aria-label="Foto siguiente">&#8594;</button>
     </div>
 
     <div class="lb-bottom">
-      <button id="lb-fav-btn" class="btn-amber">[ ♡ AGREGAR A SELECCIÓN ]</button>
+      <div class="lb-actions">
+        <button id="lb-fav-btn" class="btn-amber">[ ♡ AGREGAR A SELECCIÓN ]</button>
+        <button id="lb-download-btn" class="btn-text">[ DESCARGAR ESTA FOTO ]</button>
+      </div>
       <button id="lb-reed-btn" class="btn-text">[ SOLICITAR REEDICIÓN TÉCNICA ]</button>
     </div>
 
@@ -1330,6 +1467,9 @@ let allFotos      = [];
 let showingFavs   = false;
 let isContactSheet = false;
 let currentLbFoto = null;
+let currentLbIndex = -1;
+let lightboxDrag = null;
+let lightboxZoomLevel = 1.9;
 let autoSaveTimer = null;
 let toastTimer    = null;
 let loginStatusAnimTimer = null;
@@ -1603,6 +1743,32 @@ function bindLogin() {
   const btn = document.getElementById('btn-validar');
   btn.addEventListener('click', () => validateAccess());
   inp.addEventListener('keydown', e => { if (e.key === 'Enter') validateAccess(); });
+  inp.addEventListener('input', () => handleLoginTypingFeedback(inp.value));
+  inp.addEventListener('focus', () => handleLoginTypingFeedback(inp.value, true));
+}
+
+let loginTypingTimer = null;
+
+function handleLoginTypingFeedback(rawValue, force = false) {
+  const card = document.getElementById('login-status');
+  if (!card) return;
+
+  const value = String(rawValue || '').trim();
+  card.classList.remove('is-typing');
+
+  if (!value && !force) {
+    clearTimeout(loginTypingTimer);
+    return;
+  }
+
+  if (value) {
+    setLoginStatus('info', 'Clave detectada', 'Listo para validar acceso.');
+  }
+
+  void card.offsetWidth;
+  card.classList.add('is-typing');
+  clearTimeout(loginTypingTimer);
+  loginTypingTimer = setTimeout(() => card.classList.remove('is-typing'), 1350);
 }
 
 async function validateAccess(key, options = {}) {
@@ -2087,9 +2253,29 @@ function bindGalleryUI() {
   });
 
   // Lightbox — cerrar
+  const lbWrap = document.querySelector('.lb-img-wrap');
   document.getElementById('lb-back').addEventListener('click', closeLightbox);
   document.getElementById('lb-close').addEventListener('click', closeLightbox);
-  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+  document.getElementById('lb-prev').addEventListener('click', () => navigateLightbox(-1));
+  document.getElementById('lb-next').addEventListener('click', () => navigateLightbox(1));
+  document.getElementById('lb-img').addEventListener('click', () => toggleLightboxZoom());
+  document.getElementById('lb-download-btn').addEventListener('click', handleSingleDownload);
+  lbWrap.addEventListener('mousedown', beginLightboxDrag);
+  lbWrap.addEventListener('touchstart', beginLightboxDrag, { passive:true });
+  lbWrap.addEventListener('mousemove', moveLightboxDrag);
+  lbWrap.addEventListener('touchmove', moveLightboxDrag, { passive:false });
+  lbWrap.addEventListener('wheel', handleLightboxWheelZoom, { passive:false });
+  lbWrap.addEventListener('mouseleave', endLightboxDrag);
+  document.addEventListener('mouseup', endLightboxDrag);
+  document.addEventListener('touchend', endLightboxDrag);
+  document.addEventListener('touchcancel', endLightboxDrag);
+  document.addEventListener('keydown', e => {
+    const lightboxOpen = !document.getElementById('lightbox').classList.contains('hidden');
+    if (!lightboxOpen) return;
+    if (e.key === 'Escape') closeLightbox();
+    if (e.key === 'ArrowLeft') navigateLightbox(-1);
+    if (e.key === 'ArrowRight') navigateLightbox(1);
+  });
 
   // Lightbox — favorito
   document.getElementById('lb-fav-btn').addEventListener('click', () => {
@@ -2154,30 +2340,155 @@ function showScreen(which) {
 /* ══════════════════════════════════════════════════════
    LIGHTBOX
    ══════════════════════════════════════════════════════ */
-function openLightbox(foto, idx) {
-  currentLbFoto = foto;
-  const img = document.getElementById('lb-img');
-  img.classList.remove('loaded');
-  img.src = '';
-  img.src = escAttr(foto.url);
-  img.addEventListener('load', () => img.classList.add('loaded'), { once:true });
+function syncLightboxFrame(idx) {
+  if (!allFotos.length) return;
 
   const total = allFotos.length;
-  const pos   = allFotos.findIndex(f => f.id === foto.id);
+  currentLbIndex = ((idx % total) + total) % total;
+  currentLbFoto = allFotos[currentLbIndex];
+
+  const img = document.getElementById('lb-img');
+  const wrap = document.querySelector('.lb-img-wrap');
+  if (wrap) {
+    wrap.classList.remove('is-zoomed');
+    wrap.style.setProperty('--lb-zoom', '1.9');
+    wrap.scrollTop = 0;
+    wrap.scrollLeft = 0;
+  }
+  lightboxZoomLevel = 1.9;
+
+  img.classList.remove('loaded');
+  img.src = '';
+  img.alt = `Fotografía ${currentLbIndex + 1}`;
+  img.src = escAttr(currentLbFoto.url);
+  img.addEventListener('load', () => img.classList.add('loaded'), { once:true });
+
   document.getElementById('lb-counter').textContent =
-    `IMG ${String((pos >= 0 ? pos : idx) + 1).padStart(3,'0')} / ${String(total).padStart(3,'0')}`;
+    `IMG ${String(currentLbIndex + 1).padStart(3,'0')} / ${String(total).padStart(3,'0')}`;
 
   document.getElementById('lb-reed-area').classList.add('hidden');
   updateLbFavBtn();
+}
+
+function openLightbox(foto, idx) {
+  const pos = allFotos.findIndex(f => f.id === foto.id);
+  syncLightboxFrame(pos >= 0 ? pos : idx);
 
   document.getElementById('lightbox').classList.remove('hidden');
   document.body.style.overflow = 'hidden';
 }
 
 function closeLightbox() {
+  const wrap = document.querySelector('.lb-img-wrap');
+  if (wrap) {
+    wrap.classList.remove('is-zoomed');
+    wrap.style.setProperty('--lb-zoom', '1.9');
+  }
   document.getElementById('lightbox').classList.add('hidden');
   document.body.style.overflow = '';
   currentLbFoto = null;
+  currentLbIndex = -1;
+  lightboxZoomLevel = 1.9;
+}
+
+function navigateLightbox(step) {
+  if (currentLbIndex < 0 || !allFotos.length) return;
+  syncLightboxFrame(currentLbIndex + step);
+}
+
+function toggleLightboxZoom(forceState) {
+  const wrap = document.querySelector('.lb-img-wrap');
+  if (!wrap) return;
+  const nextState = typeof forceState === 'boolean'
+    ? forceState
+    : !wrap.classList.contains('is-zoomed');
+  wrap.classList.toggle('is-zoomed', nextState);
+  lightboxZoomLevel = nextState ? Math.max(lightboxZoomLevel, 1.9) : 1.9;
+  wrap.style.setProperty('--lb-zoom', String(lightboxZoomLevel));
+  wrap.classList.remove('is-dragging');
+  if (!nextState) lightboxDrag = null;
+}
+
+function handleLightboxWheelZoom(event) {
+  const wrap = document.querySelector('.lb-img-wrap');
+  if (!wrap) return;
+  if (event.cancelable) event.preventDefault();
+
+  const delta = event.deltaY < 0 ? 0.18 : -0.18;
+  const nextZoom = Math.min(4, Math.max(1, lightboxZoomLevel + delta));
+  lightboxZoomLevel = Number(nextZoom.toFixed(2));
+
+  if (lightboxZoomLevel <= 1.02) {
+    lightboxZoomLevel = 1;
+    wrap.scrollTop = 0;
+    wrap.scrollLeft = 0;
+    toggleLightboxZoom(false);
+    return;
+  }
+
+  wrap.classList.add('is-zoomed');
+  wrap.style.setProperty('--lb-zoom', String(lightboxZoomLevel));
+}
+
+function beginLightboxDrag(event) {
+  const wrap = document.querySelector('.lb-img-wrap');
+  if (!wrap || !wrap.classList.contains('is-zoomed')) return;
+
+  const point = 'touches' in event ? event.touches[0] : event;
+  if (!point) return;
+
+  lightboxDrag = {
+    startX: point.clientX,
+    startY: point.clientY,
+    scrollLeft: wrap.scrollLeft,
+    scrollTop: wrap.scrollTop,
+  };
+  wrap.classList.add('is-dragging');
+}
+
+function moveLightboxDrag(event) {
+  const wrap = document.querySelector('.lb-img-wrap');
+  if (!wrap || !lightboxDrag || !wrap.classList.contains('is-zoomed')) return;
+
+  const point = 'touches' in event ? event.touches[0] : event;
+  if (!point) return;
+
+  wrap.scrollLeft = lightboxDrag.scrollLeft - (point.clientX - lightboxDrag.startX);
+  wrap.scrollTop = lightboxDrag.scrollTop - (point.clientY - lightboxDrag.startY);
+  if (event.cancelable) event.preventDefault();
+}
+
+function endLightboxDrag() {
+  const wrap = document.querySelector('.lb-img-wrap');
+  if (wrap) wrap.classList.remove('is-dragging');
+  lightboxDrag = null;
+}
+
+function getLightboxFileName(foto) {
+  const source = String(foto?.id || foto?.url || 'foto.jpg');
+  const rawName = source.split('/').pop() || 'foto.jpg';
+  return rawName.split('?')[0] || 'foto.jpg';
+}
+
+async function handleSingleDownload() {
+  if (!currentLbFoto) return;
+  try {
+    const res = await fetch(currentLbFoto.url, { mode:'cors' });
+    if (!res.ok) throw new Error('No se pudo obtener la imagen');
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = getLightboxFileName(currentLbFoto);
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+    toast('DESCARGA INICIADA');
+  } catch (err) {
+    console.error('[ARCHIVO] Error al descargar foto:', err);
+    toast('NO SE PUDO DESCARGAR LA FOTO');
+  }
 }
 
 function updateLbFavBtn() {
