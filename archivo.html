@@ -1473,6 +1473,10 @@ let lightboxZoomLevel = 1.9;
 let autoSaveTimer = null;
 let toastTimer    = null;
 let loginStatusAnimTimer = null;
+let photoObserver = null;
+
+const GRID_RENDER_BATCH = 18;
+const GRID_RENDER_FRAME_DELAY = 16;
 
 const DELIVERY_THEMES = {
   event: {
@@ -1496,6 +1500,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   if (!DEMO_MODE && typeof window.supabase !== 'undefined') {
     sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
   }
+  initPhotoObserver();
   // Animación de intro de 2 segundos en la barra de estado
   setTimeout(() => {
     const statusCard = document.getElementById('login-status');
@@ -2057,6 +2062,41 @@ function syncGalleryHeroImage() {
   ]);
 }
 
+function initPhotoObserver() {
+  if (photoObserver || typeof IntersectionObserver === 'undefined') return;
+
+  photoObserver = new IntersectionObserver((entries) => {
+    entries.forEach((entry) => {
+      if (!entry.isIntersecting) return;
+      const img = entry.target;
+      const source = img.dataset.src;
+      if (source && img.src !== source) img.src = source;
+      photoObserver.unobserve(img);
+    });
+  }, {
+    rootMargin: '320px 0px',
+    threshold: 0.01,
+  });
+}
+
+function observePhotoImage(img) {
+  const source = img?.dataset?.src;
+  if (!img || !source) return;
+  if (!photoObserver) {
+    img.src = source;
+    return;
+  }
+  photoObserver.observe(img);
+}
+
+function scheduleGridBatch(callback) {
+  if (typeof window.requestAnimationFrame === 'function') {
+    window.requestAnimationFrame(callback);
+    return;
+  }
+  window.setTimeout(callback, GRID_RENDER_FRAME_DELAY);
+}
+
 function renderGrid(gridId, fotos) {
   const grid = document.getElementById(gridId);
   grid.innerHTML = '';
@@ -2064,9 +2104,24 @@ function renderGrid(gridId, fotos) {
     grid.innerHTML = '<p class="grid-empty">Sin imágenes en esta sección.</p>';
     return;
   }
-  fotos.forEach((foto, i) => {
-    grid.appendChild(buildCard(foto, i));
-  });
+
+  let cursor = 0;
+  const renderChunk = () => {
+    const fragment = document.createDocumentFragment();
+    const upperBound = Math.min(cursor + GRID_RENDER_BATCH, fotos.length);
+
+    for (; cursor < upperBound; cursor += 1) {
+      fragment.appendChild(buildCard(fotos[cursor], cursor));
+    }
+
+    grid.appendChild(fragment);
+
+    if (cursor < fotos.length) {
+      scheduleGridBatch(renderChunk);
+    }
+  };
+
+  renderChunk();
 }
 
 /* ── CONSTRUIR CARD ─────────────────────────────────── */
@@ -2084,7 +2139,7 @@ function buildCard(foto, idx) {
 
   card.innerHTML = `
     <div class="skeleton"></div>
-    <img class="foto-img" src="${imgSrc}"
+    <img class="foto-img" data-src="${imgSrc}"
          alt="Fotografía ${idx + 1}"
          loading="lazy" decoding="async">
     <button class="btn-fav${isFav ? ' is-fav' : ''}" aria-label="Marcar como favorito">
@@ -2110,6 +2165,8 @@ function buildCard(foto, idx) {
   const img    = card.querySelector('.foto-img');
   const btnFav = card.querySelector('.btn-fav');
   const pfChk  = card.querySelector('.pf-check');
+
+  observePhotoImage(img);
 
   img.addEventListener('load', () => {
     card.querySelector('.skeleton').style.opacity = '0';
