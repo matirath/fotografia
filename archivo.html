@@ -1781,10 +1781,24 @@ function hydrateLoginNoticeFromQuery() {
 async function buildAllFotosFromCarpeta(carpeta) {
   try {
     const kind = inferDeliveryKind(clientData);
-    const resp = await fetch(buildRuntimeUrl(`/api/gallery?folder=${encodeURIComponent(carpeta)}`));
-    if (!resp.ok) return [];
-    const { images } = await resp.json();
-    return (images || []).map((img, i) => ({
+    // Intentar primero con index.json estático (compatible con hosting estático)
+    const jsonUrl = normalizeAssetUrl(`/imgs/${encodeURIComponent(carpeta)}/index.json`);
+    let images = null;
+    try {
+      const jsonResp = await fetch(jsonUrl);
+      if (jsonResp.ok) {
+        const data = await jsonResp.json();
+        images = data.images || null;
+      }
+    } catch (_) {}
+    // Fallback al API local (cuando corre server.js)
+    if (!images) {
+      const apiResp = await fetch(buildRuntimeUrl(`/api/gallery?folder=${encodeURIComponent(carpeta)}`));
+      if (!apiResp.ok) return [];
+      const data = await apiResp.json();
+      images = data.images || [];
+    }
+    return images.map((img, i) => ({
       id:    img.src,
       url:   normalizeAssetUrl(img.src),
       thumb: normalizeAssetUrl(img.src),
