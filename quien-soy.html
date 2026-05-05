@@ -11,16 +11,16 @@
 <meta property="og:type" content="website"/>
 <meta property="og:title" content="Quién soy — matirath.jpg"/>
 <meta property="og:description" content="Mi historia, filosofía y visión como fotógrafo de marca."/>
-<meta property="og:url" content="https://www.matirath.com.ar/quien-soy"/>
-<link rel="canonical" href="https://www.matirath.com.ar/quien-soy"/>
-<meta property="og:image" content="https://www.matirath.com.ar/assets/og/og-quien-soy.jpg"/>
-<meta property="og:image:secure_url" content="https://www.matirath.com.ar/assets/og/og-quien-soy.jpg"/>
+<meta property="og:url" content="https://www.matirath.com.ar/quien-soy.html"/>
+<link rel="canonical" href="https://www.matirath.com.ar/quien-soy.html"/>
+<meta property="og:image" content="https://www.matirath.com.ar/imgs/og-cover.jpg"/>
+<meta property="og:image:secure_url" content="https://www.matirath.com.ar/imgs/og-cover.jpg"/>
 <meta property="og:image:type" content="image/jpeg"/>
 <meta property="og:locale" content="es_AR"/>
 <meta name="twitter:card" content="summary_large_image"/>
 <meta name="twitter:title" content="Quién soy — matirath.jpg"/>
 <meta name="twitter:description" content="Mi historia, filosofía y visión como fotógrafo de marca."/>
-<meta name="twitter:image" content="https://www.matirath.com.ar/assets/og/og-quien-soy.jpg"/>
+<meta name="twitter:image" content="https://www.matirath.com.ar/imgs/og-cover.jpg"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
 <link href="https://fonts.googleapis.com/css2?family=Rubik:ital,wght@0,300;0,400;0,500;0,700;0,900;1,300;1,400&display=swap" rel="stylesheet"/>
@@ -63,7 +63,6 @@ section>*,footer>*{position:relative;z-index:1}.topbar{position:fixed;top:0;left
 .hero{min-height:clamp(520px,76vh,860px);display:flex;align-items:flex-end;position:relative;overflow:hidden;background:#0a0908}
 .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
 .hero-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center 11%;filter:saturate(.92) contrast(1.02);transform:scale(1.02)}
-.hero-bg .hero-mobile{display:none}
 .hero-overlay{position:absolute;inset:0;z-index:1;background:linear-gradient(to left,rgba(10,9,8,.93) 0%,rgba(10,9,8,.86) 22%,rgba(10,9,8,.64) 40%,rgba(10,9,8,.24) 58%,rgba(10,9,8,.08) 70%,transparent 80%)}
 .hero-depth{position:absolute;inset:0;z-index:1;background:radial-gradient(circle at 78% 36%,rgba(176,140,24,.16),transparent 30%),linear-gradient(to top,rgba(10,9,8,.34),transparent 28%);pointer-events:none}
 .hero-noise{position:absolute;inset:0;z-index:1;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");background-size:200px 200px;pointer-events:none}
@@ -137,17 +136,15 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
 @media(max-width:900px){.qs-grid{grid-template-columns:1fr}.qs-intro-grid{grid-template-columns:1fr;gap:2.4rem}.qs-intro-images{height:auto;grid-template-columns:1fr;gap:1.2rem}.qs-intro-img-1{grid-row:span 1}}
 @media(max-width:768px){
   :root{--gutter:1.2rem}
-  .hero{min-height:clamp(500px,72vh,720px);width:100vw;margin-left:calc(-50vw + 50%)}
-  .hero-bg .hero-desktop{display:none}
-  .hero-bg .hero-mobile{display:block}
+  .hero{min-height:clamp(380px,55vh,550px);width:100vw;margin-left:calc(-50vw + 50%)}
   .hero-bg img{object-position:center 30%;transform:scale(1.02)}
-  .hero-overlay{background:linear-gradient(to top,rgba(10,9,8,.65) 0%,rgba(10,9,8,.5) 35%,rgba(10,9,8,.28) 58%,rgba(10,9,8,.1) 78%,transparent 100%)}
-  .hero-content{padding:9.2rem var(--gutter) 2.2rem;max-width:42ch}
+  .hero-overlay{background:linear-gradient(to top,rgba(10,9,8,.92) 0%,rgba(10,9,8,.78) 35%,rgba(10,9,8,.45) 58%,rgba(10,9,8,.18) 78%,transparent 100%)}
+  .hero-content{padding:8rem var(--gutter) 2rem;max-width:42ch}
   .hero-eyebrow{margin-bottom:1rem}
   .hero-title .tl:first-child{font-size:clamp(2.2rem,8vw,3.6rem)}
   .hero-title .tl:last-child{font-size:clamp(1.35rem,5vw,2rem)}
   .hero-sub{font-size:.88rem;line-height:1.68;max-width:36ch}
-  .hero-scroll{display:none}
+  .hero-scroll{right:1rem;bottom:2rem;gap:.3rem}
   .hero-scroll span{font-size:.4rem;letter-spacing:.26em}
   .hero-bar{height:28px}
   .topbar{padding:0 var(--gutter)}
@@ -156,14 +153,14 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
   .qs-section-portrait .qs-grid{min-height:auto}
   .qs-section-portrait .qs-copy-wrap{justify-content:flex-start;padding:8.8vh var(--gutter) 4vh}
   .qs-section-portrait .qs-copy{max-width:none}
-  .qs-portrait-media{min-height:320pxmn}
+  .qs-portrait-media{min-height:320px}
   .fc{text-align:center;font-size:.55rem;margin-top:.5rem}
   .back-top{bottom:6.5rem;right:1.2rem;width:36px;height:36px}
   .fab-whatsapp{bottom:8.2rem;right:1.2rem;padding:.5rem;gap:0}
   .fab-label{font-size:.7rem}
 }
 @media(max-width:480px){
-  .hero-content{padding:8.6rem var(--gutter) 1.7rem}
+  .hero-content{padding:8.1rem var(--gutter) 1.8rem}
   .hero-title .tl:first-child{font-size:clamp(1.9rem,8.8vw,2.9rem)}
   .hero-title .tl:last-child{font-size:clamp(1.2rem,5.5vw,1.7rem)}
   .qs-intro-text p{font-size:.8rem;line-height:1.66}
@@ -172,7 +169,7 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
   .cta-btn{font-size:.62rem;padding:.78rem 1.2rem}
 }
 @media(max-width:390px){
-  :rooportrait-media{min-height:260px var(--gutter) 1.8rem}
+  .qs-portrait-media{min-height:260px}
   .qs-card{padding:1rem}
 }
 @media(max-width:430px){
@@ -193,7 +190,6 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
     <a href="/eventos.html">Eventos</a>
     <a href="/quien-soy.html">Quién soy</a>
     <a href="/contacto.html">Contacto</a>
-    <a href="/archivo.html">Archivo</a>
   </div>
   <button class="topbar-burger" id="topbarBurger" aria-label="Menú" aria-expanded="false">
     <span></span><span></span><span></span>
@@ -204,14 +200,12 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
     <a href="/eventos.html">Eventos</a>
     <a href="/quien-soy.html">Quién soy</a>
     <a href="/contacto.html">Contacto</a>
-    <a href="/archivo.html">Archivo</a>
   </div>
 </nav>
 
 <section class="hero s-dark" id="hero">
   <div class="hero-bg" aria-hidden="true">
-    <img class="hero-desktop" src="imgs/HERO-quien-soy.jpg" alt="" loading="eager" decoding="async" />
-    <img class="hero-mobile" src="imgs/heromobile-quien-soy.jpg" alt="" loading="eager" decoding="async" />
+    <img src="imgs/HERO-quien-soy.jpg" alt="" />
   </div>
   <div class="hero-depth"></div>
   <div class="hero-noise"></div>
@@ -242,7 +236,7 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
       </div>
     </div>
     <div class="qs-portrait-media" aria-hidden="true">
-      <img src="imgs/quien-soy-portrait.jpg" alt="" loading="lazy" decoding="async" />
+      <img src="imgs/quien-soy-portrait.jpg" alt="" />
     </div>
   </div>
 </section>
@@ -284,7 +278,7 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
 
 <footer>
   <div class="fl">
-    <div class="ph-logo ph-logo-sm"><img src="imgs/LOGOMATIRATH.png" alt="Logo Matirath" loading="lazy" decoding="async"></div>
+    <div class="ph-logo ph-logo-sm"><img src="imgs/LOGOMATIRATH.png" alt="Logo Matirath"></div>
     <span class="fm">matirath.jpg</span>
   </div>
   <span class="fh">Matías Rath © 2026</span>
