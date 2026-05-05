@@ -75,7 +75,7 @@ section>*,footer>*{position:relative;z-index:1}
 .section-eyebrow{display:inline-block;font-size:.62rem;font-weight:600;letter-spacing:.26em;text-transform:uppercase;color:rgba(176,140,24,.8);margin-bottom:1.05rem}
 .section-title{font-size:clamp(1.9rem,3.7vw,2.8rem);font-weight:600;line-height:1.08;letter-spacing:-.015em;margin-bottom:1.55rem;color:#f2ede6}
 
-.paths-grid{display:grid;grid-template-columns:1.45fr 1fr .95fr;gap:1.05rem;align-items:stretch}
+.paths-grid{display:grid;grid-template-columns:1.45fr 1fr;gap:1.05rem;align-items:stretch}
 .path-card{position:relative;overflow:hidden;min-height:clamp(230px,24vw,295px);padding:clamp(1.15rem,1.8vw,1.55rem);border:1px solid rgba(176,140,24,.24);border-radius:14px;background:#10100d;display:flex;align-items:flex-end;text-decoration:none;color:inherit;cursor:pointer}
 .path-card::before{content:"";position:absolute;inset:0;background-image:var(--card-bg);background-size:cover;background-position:center;opacity:.7;transform:scale(1.02);transition:transform .45s ease,opacity .45s ease}
 .path-card::after{content:"";position:absolute;inset:0;background:linear-gradient(168deg,rgba(0,0,0,.18) 0%,rgba(0,0,0,.48) 42%,rgba(0,0,0,.86) 100%)}
@@ -91,10 +91,12 @@ section>*,footer>*{position:relative;z-index:1}
   .path-btn:hover{transform:translateY(-2px);background:rgba(176,140,24,.14);border-color:rgba(176,140,24,.9)}
 }
 
-.other-channels{min-height:clamp(230px,24vw,295px);padding:1.4rem 1.12rem;border:1px solid rgba(160,155,148,.22);border-radius:12px;background:rgba(255,255,255,.07);display:flex;flex-direction:column;justify-content:flex-start;gap:.52rem}
-.other-title{font-size:.82rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:rgba(180,176,170,.9);margin-bottom:0}
-.channel-list{display:grid;grid-template-columns:1fr;gap:.52rem}
-.channel-link{display:inline-flex;align-items:center;gap:.62rem;padding:.55rem .62rem;border-radius:8px;text-decoration:none;color:rgba(180,176,170,.85);font-size:.73rem;letter-spacing:.04em;border:1px solid rgba(160,155,148,.18);background:rgba(10,9,8,.14);transition:border-color .2s ease,color .2s ease,background .2s ease,transform .2s ease}
+.channels-strip{padding:0 var(--gutter) 3rem}
+.other-channels{min-height:auto;padding:.9rem 1rem;border:1px solid rgba(160,155,148,.22);border-radius:12px;background:rgba(255,255,255,.07);display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.other-title{font-size:.74rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:rgba(180,176,170,.9);margin-bottom:0;white-space:nowrap}
+.channel-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:.52rem;flex:1}
+.channel-link{display:inline-flex;align-items:center;justify-content:center;gap:.62rem;width:100%;min-height:42px;padding:.55rem .62rem;border-radius:8px;text-decoration:none;color:rgba(180,176,170,.85);font-size:.73rem;letter-spacing:.04em;border:1px solid rgba(160,155,148,.18);background:rgba(10,9,8,.14);transition:border-color .2s ease,color .2s ease,background .2s ease,transform .2s ease}
+.channel-link span{white-space:nowrap}
 .channel-link svg{width:1rem;height:1rem;display:block;flex:0 0 1rem;color:rgba(160,155,148,.75)}
 @media(hover:hover){.channel-link:hover{border-color:rgba(176,140,24,.38);background:rgba(176,140,24,.12);color:#f2ede6;transform:translateY(-1px)}}
 
@@ -118,7 +120,7 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
 
 .back-top{position:fixed;bottom:6rem;right:var(--gutter);z-index:190;width:40px;height:40px;background:rgba(176,140,24,.1);border:1px solid rgba(176,140,24,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:all .3s;outline:none}
 .back-top.visible{opacity:1;pointer-events:auto}
-.back-top.is-near-footer{bottom:8.8rem}
+.back-top.is-near-footer{bottom:12rem;right:calc(var(--gutter) + 3.8rem)}
 .back-top:hover{background:rgba(176,140,24,.2);border-color:var(--gold)}
 .back-top-arr{display:block;font-size:1rem;color:var(--gold)}
 
@@ -129,12 +131,13 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
 @keyframes rv{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
 
 @media(max-width:1024px){
-  .paths-grid{grid-template-columns:1.2fr 1fr;gap:.95rem}
-  .other-channels{grid-column:1 / -1;min-height:auto}
-  .channel-list{grid-template-columns:repeat(3,minmax(140px,1fr))}
+  .paths-grid{grid-template-columns:1.35fr 1fr;gap:.95rem}
+  .other-channels{flex-direction:column;align-items:flex-start}
+  .channel-list{width:100%}
 }
 @media(max-width:900px){
-  .channel-list{grid-template-columns:1fr 1fr}
+  .paths-grid{grid-template-columns:1fr 1fr}
+  .channel-list{width:100%}
 }
 @media(max-width:768px){
   :root{--gutter:1.2rem}
@@ -150,14 +153,15 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
   .path-card{min-height:240px;padding:1.35rem 1.15rem}
   .path-card h3{font-size:clamp(1.2rem,6.2vw,1.55rem)}
   .path-card p{font-size:.78rem;line-height:1.65}
-  .other-channels{min-height:auto;padding:1rem}
-  .channel-list{grid-template-columns:1fr}
+  .channels-strip{padding:0 var(--gutter) 2rem}
+  .other-channels{padding:.9rem;gap:.72rem}
+  .channel-list{display:grid;grid-template-columns:1fr}
   footer{grid-template-columns:1fr;gap:.8rem;text-align:center;padding:2rem var(--gutter)}
   .fl{justify-content:center;flex-direction:column}
   .fc{text-align:center;font-size:.55rem;margin-top:.5rem}
   .fab-whatsapp{bottom:8.2rem;right:1.2rem}
   .back-top{bottom:6.5rem;right:1.2rem;width:36px;height:36px}
-  .back-top.is-near-footer{bottom:8.8rem}
+  .back-top.is-near-footer{bottom:11.2rem;right:4.9rem}
 }
 @media(max-width:430px){
   .topbar-drop{right:var(--gutter);left:var(--gutter);min-width:0}
@@ -234,24 +238,6 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
           <span class="path-btn">Consultar por Eventos</span>
         </div>
       </a>
-
-      <aside class="other-channels r d2" aria-labelledby="otros-canales-title">
-        <h3 class="other-title" id="otros-canales-title">Otros canales</h3>
-        <div class="channel-list">
-          <a class="channel-link" target="_blank" rel="noopener noreferrer" href="https://instagram.com/matirath.jpg" aria-label="Instagram">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5Zm4.25 3.25a5.25 5.25 0 1 1 0 10.5a5.25 5.25 0 0 1 0-10.5Zm0 1.5a3.75 3.75 0 1 0 0 7.5a3.75 3.75 0 0 0 0-7.5Zm5.5-.75a1.25 1.25 0 1 1 0 2.5a1.25 1.25 0 0 1 0-2.5Z"/></svg>
-            <span>Instagram</span>
-          </a>
-          <a class="channel-link" target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/@matirath_jpg?_r=1&amp;_t=ZS-95FFx9fDeCu" aria-label="TikTok">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15 3h2.25a4.5 4.5 0 0 0 3.75 3.75V9a7 7 0 0 1-3.75-1.1v6.35a6.25 6.25 0 1 1-6.25-6.25v2.34a3.9 3.9 0 1 0 3.9 3.91V3Z"/></svg>
-            <span>TikTok</span>
-          </a>
-          <a class="channel-link" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/PhMatiasRath" aria-label="Facebook">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 22v-8.22h2.8l.42-3.28H13.5V8.41c0-.95.26-1.6 1.62-1.6h1.73V3.88A23 23 0 0 0 14.33 3c-2.5 0-4.2 1.53-4.2 4.35v3.15H7.3v3.28h2.83V22h3.37Z"/></svg>
-            <span>Facebook</span>
-          </a>
-        </div>
-      </aside>
     </div>
   </div>
 </section>
@@ -261,6 +247,26 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
     <h2>Hablemos</h2>
     <p>Si ya sabés qué querés, estás a un paso de empezar.</p>
   </div>
+</section>
+
+<section class="channels-strip s-dark2">
+  <aside class="other-channels r d2" aria-labelledby="otros-canales-title">
+    <h3 class="other-title" id="otros-canales-title">Otros canales</h3>
+    <div class="channel-list">
+      <a class="channel-link" target="_blank" rel="noopener noreferrer" href="https://instagram.com/matirath.jpg" aria-label="Instagram">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M7.75 2h8.5A5.75 5.75 0 0 1 22 7.75v8.5A5.75 5.75 0 0 1 16.25 22h-8.5A5.75 5.75 0 0 1 2 16.25v-8.5A5.75 5.75 0 0 1 7.75 2Zm0 1.5A4.25 4.25 0 0 0 3.5 7.75v8.5A4.25 4.25 0 0 0 7.75 20.5h8.5a4.25 4.25 0 0 0 4.25-4.25v-8.5a4.25 4.25 0 0 0-4.25-4.25h-8.5Zm4.25 3.25a5.25 5.25 0 1 1 0 10.5a5.25 5.25 0 0 1 0-10.5Zm0 1.5a3.75 3.75 0 1 0 0 7.5a3.75 3.75 0 0 0 0-7.5Zm5.5-.75a1.25 1.25 0 1 1 0 2.5a1.25 1.25 0 0 1 0-2.5Z"/></svg>
+        <span>Instagram</span>
+      </a>
+      <a class="channel-link" target="_blank" rel="noopener noreferrer" href="https://www.tiktok.com/@matirath_jpg?_r=1&amp;_t=ZS-95FFx9fDeCu" aria-label="TikTok">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M15 3h2.25a4.5 4.5 0 0 0 3.75 3.75V9a7 7 0 0 1-3.75-1.1v6.35a6.25 6.25 0 1 1-6.25-6.25v2.34a3.9 3.9 0 1 0 3.9 3.91V3Z"/></svg>
+        <span>TikTok</span>
+      </a>
+      <a class="channel-link" target="_blank" rel="noopener noreferrer" href="https://www.facebook.com/PhMatiasRath" aria-label="Facebook">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" d="M13.5 22v-8.22h2.8l.42-3.28H13.5V8.41c0-.95.26-1.6 1.62-1.6h1.73V3.88A23 23 0 0 0 14.33 3c-2.5 0-4.2 1.53-4.2 4.35v3.15H7.3v3.28h2.83V22h3.37Z"/></svg>
+        <span>Facebook</span>
+      </a>
+    </div>
+  </aside>
 </section>
 
 <a class="fab-whatsapp" href="https://wa.me/5492954230852?text=Hola%20Mat%C3%ADas%2C%20quiero%20contactarte%20por%20un%20proyecto%20de%20fotograf%C3%ADa" target="_blank" rel="noopener noreferrer" aria-label="Canal de contacto inmediato por WhatsApp">
