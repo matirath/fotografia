@@ -28,18 +28,19 @@
 /* ═══════════════════════════════════════════════════════════════════ */
 
 *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
-:root{--blk:#0a0908;--blk2:#111009;--cream:#e8e1d5;--cream2:#f0ebe2;--gold:#b08c18;--gutter:3rem;--R:"Rubik",sans-serif}
+:root{--blk:#0d0c0a;--blk2:#111009;--cream:#e8e1d5;--cream2:#f0ebe2;--gold:#c49a3c;--bone:#e8e4da;--muted:#4a4740;--gutter:3rem;--floating-gap:14px;--floating-base-bottom:max(1rem,calc(env(safe-area-inset-bottom,0px) + 1rem));--floating-footer-offset:0px;--R:"Rubik",sans-serif}
 html{overflow-x:clip}
-body{font-family:var(--R);font-weight:300;background:var(--blk)}
+body{font-family:var(--R);font-weight:300;background:var(--blk);color:var(--bone);line-height:1.6}
+.scroll-progress{position:fixed;top:0;left:0;width:100%;height:2px;transform-origin:left center;transform:scaleX(0);background:linear-gradient(90deg,var(--gold),rgba(196,154,60,.18));z-index:997;pointer-events:none}
 
 @media(hover:hover){
   body{cursor:none}
   #cur{width:7px;height:7px;background:var(--gold);border-radius:50%;position:fixed;pointer-events:none;z-index:9999;transform:translate(-50%,-50%);transition:width .18s,height .18s}
-  #cur-r{width:26px;height:26px;border:1px solid rgba(176,140,24,.3);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%)}
+  #cur-r{width:26px;height:26px;border:1px solid rgba(196,154,60,.3);border-radius:50%;position:fixed;pointer-events:none;z-index:9998;transform:translate(-50%,-50%)}
 }
 
-.s-dark{background:var(--blk);color:#f2ede6;position:relative}
-.s-dark2{background:var(--blk2);color:#f2ede6;position:relative}
+.s-dark{background:var(--blk);color:var(--bone);position:relative}
+.s-dark2{background:var(--blk2);color:var(--bone);position:relative}
 .s-light{background:var(--cream);color:#1a1714;position:relative}
 .s-light2{background:var(--cream2);color:#1a1714;position:relative}
 .s-dark::before,.s-dark2::before{content:"";position:absolute;inset:0;pointer-events:none;z-index:0;background-image:url("imgs/concrete.webp");background-size:cover;background-position:center;opacity:.13;mix-blend-mode:screen}
@@ -59,7 +60,7 @@ section>*,footer>*,.cta>*{position:relative;z-index:1}.topbar{position:fixed;top
 @media(hover:hover){.topbar-drop a:hover{color:#f3eee6;background:rgba(255,255,255,.04)}}
 @media(max-width:768px){.topbar-links{display:none}.topbar-burger{display:flex}}
 
-.hero{min-height:clamp(520px,76vh,860px);display:flex;align-items:flex-end;position:relative;overflow:hidden;background:#0a0908}
+.hero{min-height:clamp(520px,76vh,860px);display:flex;align-items:flex-end;position:relative;overflow:hidden;background:#0d0c0a}
 .hero-bg{position:absolute;inset:0;z-index:0;overflow:hidden}
 .hero-bg img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:1}
 @keyframes bMC{0%{transform:rotate(0deg)}50%{transform:rotate(180deg)}100%{transform:rotate(360deg)}}
@@ -83,27 +84,33 @@ section>*,footer>*,.cta>*{position:relative;z-index:1}.topbar{position:fixed;top
 .hero-bar{width:1px;height:44px;background:linear-gradient(to bottom,var(--gold),transparent);animation:sp 2s ease-in-out infinite}
 @keyframes sp{0%{opacity:0}20%{opacity:1}80%{opacity:1}100%{opacity:0;transform:translateY(10px)}}
 
-footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr auto 1fr;gap:2rem;align-items:center;border-top:1px solid rgba(176,140,24,.1);z-index:40;position:relative}
+footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr auto 1fr;gap:2rem;align-items:center;border-top:.5px solid rgba(74,71,64,.45);z-index:40;position:relative}
 .fl{display:flex;align-items:center;gap:.8rem}
-.ph-logo{width:40px;height:40px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.65rem;color:#0a0908}
+.ph-logo{width:40px;height:40px;background:var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-weight:700;font-size:.65rem;color:#0d0c0a}
 .ph-logo img{width:100%;height:100%;object-fit:contain;border-radius:50%;display:block}
 .ph-logo-sm{width:32px;height:32px;font-size:.55rem}
-.fm{font-size:.7rem;font-weight:600;letter-spacing:.08em;color:#f2ede6}
-.fh{font-size:.65rem;color:rgba(242,237,230,.6);letter-spacing:.08em}
-.fc{font-size:.6rem;color:rgba(242,237,230,.5);text-align:right}
+.fm{font-size:.7rem;font-weight:600;letter-spacing:.08em;color:var(--bone)}
+.fh{font-size:.65rem;color:rgba(232,228,218,.66);letter-spacing:.08em}
+.fc{font-size:.6rem;color:var(--muted);text-align:right}
 
-.back-top{position:fixed;bottom:6rem;right:var(--gutter);z-index:190;width:40px;height:40px;background:rgba(176,140,24,.1);border:1px solid rgba(176,140,24,.3);border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;opacity:0;pointer-events:none;transition:all .3s;outline:none}
+.floating-ui{position:fixed;right:max(var(--gutter),calc(env(safe-area-inset-right,0px) + var(--gutter)));bottom:calc(var(--floating-base-bottom) + var(--floating-footer-offset));display:flex;flex-direction:column;align-items:flex-end;gap:var(--floating-gap);z-index:996;pointer-events:none;opacity:1;transform:translate3d(0,0,0);transition:bottom .3s cubic-bezier(0.4,0,0.2,1),transform .3s cubic-bezier(0.4,0,0.2,1),opacity .3s cubic-bezier(0.4,0,0.2,1)}
+.floating-ui.is-hidden{opacity:0;transform:translate3d(0,18px,0)}
+.fab-whatsapp,.back-top{position:relative;display:inline-flex;align-items:center;justify-content:center;width:3rem;height:3rem;padding:0;border-radius:999px;pointer-events:auto;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);box-shadow:0 20px 40px rgba(0,0,0,.18);transition:transform .3s cubic-bezier(0.4,0,0.2,1),box-shadow .3s cubic-bezier(0.4,0,0.2,1),background .3s cubic-bezier(0.4,0,0.2,1),border-color .3s cubic-bezier(0.4,0,0.2,1),opacity .3s cubic-bezier(0.4,0,0.2,1)}
+.fab-whatsapp{z-index:999;background:rgba(37,211,102,.1);border:1px solid rgba(37,211,102,.18);color:#25d366;font-weight:700;text-decoration:none}
+.fab-whatsapp .fab-icon{width:1.5rem;height:1.5rem;display:inline-flex;align-items:center;justify-content:center;background:transparent;border-radius:50%;padding:.25rem}
+.fab-whatsapp .fab-icon svg,.fab-whatsapp .fab-icon img{width:1rem;height:1rem;display:block;object-fit:contain}
+.back-top{z-index:998;background:rgba(196,154,60,.1);border:1px solid rgba(196,154,60,.26);cursor:pointer;opacity:0;pointer-events:none;outline:none}
 .back-top.visible{opacity:1;pointer-events:auto}
-.back-top.is-near-footer{bottom:8.8rem}
-.back-top:hover{background:rgba(176,140,24,.2);border-color:var(--gold)}
 .back-top-arr{display:block;font-size:1rem;color:var(--gold)}
-.fab-whatsapp{position:fixed;bottom:10.5rem;right:var(--gutter);z-index:195;display:inline-flex;align-items:center;gap:.8rem;padding:.85rem 1rem;border-radius:999px;background:rgba(37,211,102,.08);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(37,211,102,.15);color:#25d366;font-weight:700;text-decoration:none;box-shadow:0 20px 40px rgba(0,0,0,.08);transition:transform .2s ease,box-shadow .2s ease,opacity .2s ease;}
-.fab-whatsapp:hover{transform:translateY(-2px);box-shadow:0 24px 48px rgba(0,0,0,.12);background:rgba(37,211,102,.12)}
-.fab-whatsapp:active{transform:translateY(0)}
-.fab-whatsapp .fab-icon{width:1.5rem;height:1.5rem;display:inline-flex;align-items:center;justify-content:center;background:transparent;border-radius:50%;padding:.25rem;}
-.fab-whatsapp .fab-icon svg,.fab-whatsapp .fab-icon img{width:1rem;height:1rem;display:block;object-fit:contain;}
-.fab-label{display:none;}
-.fab-label{display:inline-block;font-size:.82rem;letter-spacing:.06em;text-transform:uppercase;}
+.fab-label{display:none}
+
+@media(hover:hover){
+  .fab-whatsapp:hover,.back-top:hover{transform:scale(1.1);box-shadow:0 24px 52px rgba(0,0,0,.24)}
+  .fab-whatsapp:hover{background:rgba(37,211,102,.16);border-color:rgba(37,211,102,.3)}
+  .back-top:hover{background:rgba(196,154,60,.18);border-color:rgba(196,154,60,.42)}
+}
+
+.fab-whatsapp:active,.back-top:active{transform:scale(1.1)}
 @media(max-width:640px){
   :root{--gutter:.9rem}
   .hero-content{padding:6rem .9rem 1.6rem}
@@ -178,8 +185,8 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
 .why{padding:12vh var(--gutter)}
 .why-hdr{font-size:1.4rem;font-weight:700;margin-bottom:2.4rem;text-align:center}
 .why-inner{display:grid;grid-template-columns:repeat(auto-fit,minmax(250px,1fr));gap:1.4rem}
-.why-block{padding:2.5rem;background:rgba(20,15,10,.8);border:1px solid rgba(176,140,24,.15);border-radius:8px;transition:all .3s}
-.why-block:hover{border-color:rgba(176,140,24,.4);background:rgba(20,15,10,.95)}
+.why-block{padding:2.5rem;background:rgba(20,15,10,.8);border:1px solid rgba(196,154,60,.15);border-radius:8px;transition:all .3s}
+.why-block:hover{border-color:rgba(196,154,60,.4);background:rgba(20,15,10,.95)}
 .why-block h3{font-size:.95rem;font-weight:700;margin-bottom:.8rem;color:#f2ede6}
 .why-block p{font-size:.75rem;line-height:1.7;color:rgba(242,237,230,.75);max-width:35ch}
 
@@ -205,7 +212,7 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
 .shine-box{text-align:center}
 .cta h2{font-size:clamp(1.9rem,4.6vw,3rem);font-weight:700;line-height:1.2;margin-bottom:1.8rem;letter-spacing:-.01em;max-width:26ch;margin-left:auto;margin-right:auto}
 .cta-email{display:inline-block;font-size:.7rem;font-weight:500;letter-spacing:.15em;text-transform:uppercase;color:var(--gold);text-decoration:none;padding:.8rem 1.8rem;border:1px solid var(--gold);border-radius:6px;transition:all .3s}
-.cta-email:hover{background:var(--gold);color:#0a0908}
+.cta-email:hover{background:var(--gold);color:#0d0c0a}
 
 @media(max-width:768px){
   :root{--gutter:1.2rem}
@@ -284,6 +291,7 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
 </style>
 </head>
 <body>
+<div class="scroll-progress" id="scrollProgressBar" aria-hidden="true"></div>
 <div id="cur"></div>
 <div id="cur-r"></div>
 
@@ -482,15 +490,16 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
   <span class="fc">© <span id="yr"></span> Matías Rath · Argentina</span>
 </footer>
 
-<a class="fab-whatsapp" href="https://wa.me/5492954230852?text=Hola%20Mat%C3%ADas%2C%20quiero%20contactarte%20por%20un%20proyecto%20de%20fotograf%C3%ADa" target="_blank" rel="noopener noreferrer" aria-label="Canal de contacto inmediato por WhatsApp">
-  <span class="fab-icon" aria-hidden="true">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 509 511.514"><path fill="currentColor" d="M434.762 74.334C387.553 26.81 323.245 0 256.236 0h-.768C115.795.001 2.121 113.696 2.121 253.456l.001.015a253.516 253.516 0 0033.942 126.671L0 511.514l134.373-35.269a253.416 253.416 0 00121.052 30.9h.003.053C395.472 507.145 509 393.616 509 253.626c0-67.225-26.742-131.727-74.252-179.237l.014-.055zM255.555 464.453c-37.753 0-74.861-10.22-107.293-29.479l-7.72-4.602-79.741 20.889 21.207-77.726-4.984-7.975c-21.147-33.606-32.415-72.584-32.415-112.308 0-116.371 94.372-210.743 210.741-210.743 56.011 0 109.758 22.307 149.277 61.98a210.93 210.93 0 0161.744 149.095c0 116.44-94.403 210.869-210.844 210.869h.028zm115.583-157.914c-6.363-3.202-37.474-18.472-43.243-20.593-5.769-2.121-10.01-3.202-14.315 3.203-4.305 6.404-16.373 20.593-20.063 24.855-3.69 4.263-7.401 4.815-13.679 1.612-6.278-3.202-26.786-9.883-50.899-31.472a192.748 192.748 0 01-35.411-43.867c-3.712-6.363-.404-9.777 2.82-12.873 3.224-3.096 6.363-7.381 9.48-11.092a41.58 41.58 0 006.357-10.597a11.678 11.678 0 00-.508-11.09c-1.718-3.18-14.444-34.357-19.534-47.06-5.09-12.703-10.37-10.603-14.272-10.901-3.902-.297-7.911-.19-12.089-.19a23.322 23.322 0 00-16.964 7.911c-5.707 6.298-22.1 21.673-22.1 52.849s22.671 61.249 25.852 65.532c3.182 4.284 44.663 68.227 108.288 95.649 15.099 6.489 26.891 10.392 36.053 13.403a87.504 87.504 0 0025.216 3.718c4.905 0 9.82-.416 14.65-1.237 12.174-1.782 37.453-15.291 42.776-30.073s5.303-27.57 3.711-30.093c-1.591-2.524-5.704-4.369-12.088-7.615l-.038.021z"/></svg>
-  </span>
-</a>
-
-<button class="back-top" id="backTop" onclick="navTo('hero')" aria-label="Volver al inicio">
-  <span class="back-top-arr">↑</span>
-</button>
+<div class="floating-ui" id="floatingUi">
+  <a class="fab-whatsapp" href="https://wa.me/5492954230852?text=Hola%20Mat%C3%ADas%2C%20quiero%20contactarte%20por%20un%20proyecto%20de%20fotograf%C3%ADa" target="_blank" rel="noopener noreferrer" aria-label="Canal de contacto inmediato por WhatsApp">
+    <span class="fab-icon" aria-hidden="true">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 509 511.514"><path fill="currentColor" d="M434.762 74.334C387.553 26.81 323.245 0 256.236 0h-.768C115.795.001 2.121 113.696 2.121 253.456l.001.015a253.516 253.516 0 0033.942 126.671L0 511.514l134.373-35.269a253.416 253.416 0 00121.052 30.9h.003.053C395.472 507.145 509 393.616 509 253.626c0-67.225-26.742-131.727-74.252-179.237l.014-.055zM255.555 464.453c-37.753 0-74.861-10.22-107.293-29.479l-7.72-4.602-79.741 20.889 21.207-77.726-4.984-7.975c-21.147-33.606-32.415-72.584-32.415-112.308 0-116.371 94.372-210.743 210.741-210.743 56.011 0 109.758 22.307 149.277 61.98a210.93 210.93 0 0161.744 149.095c0 116.44-94.403 210.869-210.844 210.869h.028zm115.583-157.914c-6.363-3.202-37.474-18.472-43.243-20.593-5.769-2.121-10.01-3.202-14.315 3.203-4.305 6.404-16.373 20.593-20.063 24.855-3.69 4.263-7.401 4.815-13.679 1.612-6.278-3.202-26.786-9.883-50.899-31.472a192.748 192.748 0 01-35.411-43.867c-3.712-6.363-.404-9.777 2.82-12.873 3.224-3.096 6.363-7.381 9.48-11.092a41.58 41.58 0 006.357-10.597a11.678 11.678 0 00-.508-11.09c-1.718-3.18-14.444-34.357-19.534-47.06-5.09-12.703-10.37-10.603-14.272-10.901-3.902-.297-7.911-.19-12.089-.19a23.322 23.322 0 00-16.964 7.911c-5.707 6.298-22.1 21.673-22.1 52.849s22.671 61.249 25.852 65.532c3.182 4.284 44.663 68.227 108.288 95.649 15.099 6.489 26.891 10.392 36.053 13.403a87.504 87.504 0 0025.216 3.718c4.905 0 9.82-.416 14.65-1.237 12.174-1.782 37.453-15.291 42.776-30.073s5.303-27.57 3.711-30.093c-1.591-2.524-5.704-4.369-12.088-7.615l-.038.021z"/></svg>
+    </span>
+  </a>
+  <button class="back-top" id="backTop" aria-label="Volver al inicio">
+    <span class="back-top-arr">↑</span>
+  </button>
+</div>
 
 <script>
 /* ═══════════════════════════════════════════════════════════════════ */
@@ -541,18 +550,36 @@ if(cur){
 })();
 
 (function(){
+  var dock=document.getElementById('floatingUi');
   var btn=document.getElementById('backTop');
   var scrollHint=document.querySelector('.hero-scroll');
-  if(!btn)return;
-  function syncBackTopAndScrollHint(){
-    var showBackTop=window.scrollY>400;
-    var nearFooter=window.innerHeight+window.scrollY>=document.documentElement.scrollHeight-180;
-    btn.classList.toggle('visible',showBackTop);
-    btn.classList.toggle('is-near-footer',nearFooter);
-    if(scrollHint)scrollHint.classList.toggle('is-hidden',showBackTop);
+  var progress=document.getElementById('scrollProgressBar');
+  var footer=document.querySelector('footer');
+  if(!dock||!btn)return;
+  var lastY=window.scrollY;
+  var footerVisible=false;
+  var ticking=false;
+  function updateFloatingUi(){
+    ticking=false;
+    var currentY=window.scrollY;
+    var maxScroll=Math.max(document.documentElement.scrollHeight-window.innerHeight,1);
+    var delta=currentY-lastY;
+    btn.classList.toggle('visible',currentY>400);
+    if(scrollHint)scrollHint.classList.toggle('is-hidden',currentY>120);
+    if(currentY<=80||delta<-8)dock.classList.remove('is-hidden');
+    else if(delta>10&&currentY>140)dock.classList.add('is-hidden');
+    if(progress)progress.style.transform='scaleX('+Math.min(Math.max(currentY/maxScroll,0),1).toFixed(4)+')';
+    dock.style.setProperty('--floating-footer-offset',(footer&&footerVisible?Math.max(0,window.innerHeight-footer.getBoundingClientRect().top+16):0).toFixed(1)+'px');
+    lastY=currentY;
   }
-  window.addEventListener('scroll',syncBackTopAndScrollHint,{passive:true});
-  syncBackTopAndScrollHint();
+  if(footer&&'IntersectionObserver' in window){
+    var footerObserver=new IntersectionObserver(function(entries){footerVisible=entries.some(function(entry){return entry.isIntersecting;});updateFloatingUi();},{threshold:[0,.01,1]});
+    footerObserver.observe(footer);
+  }else footerVisible=!!footer;
+  window.addEventListener('scroll',function(){if(!ticking){requestAnimationFrame(updateFloatingUi);ticking=true;}},{passive:true});
+  window.addEventListener('resize',updateFloatingUi);
+  updateFloatingUi();
+  btn.addEventListener('click',function(){navTo('hero');});
 })();
 
 function navTo(id){

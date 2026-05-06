@@ -1,0 +1,389 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="theme-color" content="#0d0c0a">
+<title>Galería Cliente | matirath.jpg</title>
+<link rel="icon" type="image/png" href="/imgs/favicon.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+<style>
+*,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+:root{--blk:#0d0c0a;--cream:#e8e4da;--gold:#c49a3c;--gutter:3rem}
+html{overflow-x:clip}
+body{font-family:'Rubik',sans-serif;font-weight:300;background:var(--blk);color:#f2ede6;overflow-x:hidden}
+
+.topbar{position:fixed;top:0;left:0;width:100%;height:72px;padding:0 var(--gutter);display:flex;align-items:center;z-index:1000;background:rgba(13,12,10,.28);backdrop-filter:blur(6px);border-bottom:1px solid transparent}
+.topbar .logo{text-decoration:none;color:#f3eee6;font-size:14px;font-weight:600;letter-spacing:.14em;line-height:1}
+.topbar-right{display:flex;gap:1.5rem;margin-left:auto;align-items:center}
+.topbar-right button{background:rgba(176,140,24,.2);border:1px solid rgba(176,140,24,.3);color:var(--gold);padding:.5rem 1.2rem;border-radius:6px;cursor:pointer;font-size:.7rem;font-weight:600;transition:all .2s}
+.topbar-right button:hover{background:rgba(176,140,24,.4)}
+
+.auth-screen{display:none;position:fixed;inset:0;background:linear-gradient(136deg,#080807 0%,#100d09 52%,#070707 100%);z-index:500;flex-direction:column;align-items:center;justify-content:center;padding:2rem}
+.auth-screen.active{display:flex}
+.auth-box{background:rgba(13,12,10,.85);backdrop-filter:blur(20px);border:1px solid rgba(176,140,24,.2);border-radius:12px;padding:3rem 2.5rem;max-width:420px;width:100%}
+.auth-box h1{font-size:1.8rem;margin-bottom:.5rem;text-align:center}
+.auth-box .subtitle{font-size:.85rem;color:rgba(242,237,230,.6);text-align:center;margin-bottom:2rem}
+.auth-group{margin-bottom:1.5rem;display:flex;flex-direction:column}
+.auth-group label{font-size:.75rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.6rem;color:rgba(242,237,230,.7)}
+.auth-group input{background:rgba(255,255,255,.05);border:1px solid rgba(176,140,24,.3);color:#f2ede6;padding:.8rem 1rem;border-radius:6px;font-size:1rem;font-family:inherit;transition:all .2s}
+.auth-group input:focus{outline:none;background:rgba(255,255,255,.08);border-color:var(--gold)}
+.auth-error{color:#ff6b6b;font-size:.8rem;margin-top:.5rem;display:none}
+.auth-error.show{display:block}
+.auth-btn{background:var(--gold);border:none;color:#0d0c0a;padding:1rem;border-radius:6px;font-weight:700;font-size:.9rem;cursor:pointer;margin-top:1rem;transition:all .2s;width:100%}
+.auth-btn:hover{opacity:.9;transform:translateY(-1px)}
+.auth-loading{opacity:.6;pointer-events:none}
+
+.gallery-container{display:none}
+.gallery-container.active{display:block;padding-top:100px}
+
+.page-header{padding:3rem var(--gutter) 2rem;background:rgba(13,12,10,.5)}
+.page-header h2{font-size:clamp(1.5rem,4vw,2.5rem);margin-bottom:.5rem}
+.page-header .subtitle{font-size:.95rem;color:rgba(242,237,230,.7);max-width:60ch}
+
+.controls{padding:2rem var(--gutter);display:flex;gap:1rem;align-items:center;flex-wrap:wrap;border-bottom:1px solid rgba(176,140,24,.1)}
+.controls .count{font-size:.85rem;color:rgba(242,237,230,.6)}
+.btn{background:rgba(176,140,24,.2);border:1px solid rgba(176,140,24,.3);color:var(--gold);padding:.7rem 1.5rem;border-radius:6px;cursor:pointer;font-size:.8rem;font-weight:600;transition:all .2s;text-decoration:none}
+.btn:hover{background:rgba(176,140,24,.4)}
+.btn.primary{background:var(--gold);color:#0d0c0a}
+.btn.primary:hover{opacity:.9}
+
+.gallery-wrap{padding:3rem var(--gutter)}
+.gallery{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:2rem}
+.gallery-item{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:10px;border:1px solid rgba(196,154,60,.2);cursor:pointer}
+.gallery-item img{width:100%;height:100%;object-fit:cover;transition:transform .3s ease}
+.gallery-item:hover img{transform:scale(1.05)}
+.gallery-item .overlay{position:absolute;inset:0;background:rgba(0,0,0,.6);opacity:0;transition:opacity .3s ease;display:flex;align-items:center;justify-content:center}
+.gallery-item:hover .overlay{opacity:1}
+.favorite-btn{width:60px;height:60px;background:none;border:none;font-size:2rem;cursor:pointer;z-index:10;transition:transform .2s}
+.favorite-btn:hover{transform:scale(1.15)}
+.gallery-item.favorited .favorite-btn{filter:drop-shadow(0 0 2px rgba(255,200,0,.8))}
+
+.no-images{padding:3rem;text-align:center;color:rgba(242,237,230,.5)}
+
+footer{padding:2rem var(--gutter);text-align:center;border-top:1px solid rgba(176,140,24,.1);font-size:.75rem;color:rgba(242,237,230,.5)}
+
+.modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,.92);z-index:2000;align-items:center;justify-content:center}
+.modal.active{display:flex}
+.modal-content{position:relative;width:90%;max-width:850px;max-height:90vh;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.modal-img{max-width:100%;max-height:90vh;object-fit:contain}
+.modal-close{position:absolute;top:20px;right:30px;background:none;border:none;font-size:2rem;color:#fff;cursor:pointer;z-index:2001}
+
+@media(max-width:768px){
+  :root{--gutter:1.2rem}
+  .gallery{grid-template-columns:repeat(auto-fill,minmax(180px,1fr));gap:1rem}
+  .controls{flex-direction:column;align-items:flex-start}
+  .auth-box{padding:2rem 1.5rem}
+}
+</style>
+</head>
+<body>
+
+<nav class="topbar">
+  <a href="/" class="logo">matirath.jpg</a>
+  <div class="topbar-right">
+    <button id="btnLogout" style="display:none">Salir</button>
+  </div>
+</nav>
+
+<!-- LOGIN SCREEN -->
+<div class="auth-screen active" id="authScreen">
+  <div class="auth-box">
+    <h1 id="authTitle">Acceso a Galería</h1>
+    <p class="subtitle" id="authSubtitle">Ingresá tu contraseña para ver tus fotos</p>
+    <div class="auth-group">
+      <label for="authPassword">Contraseña</label>
+      <input type="password" id="authPassword" placeholder="Contraseña" autocomplete="off">
+      <div class="auth-error" id="authError"></div>
+    </div>
+    <button class="auth-btn" id="authBtn">Acceder</button>
+  </div>
+</div>
+
+<!-- GALLERY SCREEN -->
+<div class="gallery-container" id="galleryContainer">
+  <div class="page-header">
+    <h2 id="galleryTitle">Galería</h2>
+    <p class="subtitle" id="gallerySubtitle">Selecciona tus fotos favoritas</p>
+  </div>
+
+  <div class="controls">
+    <span class="count">Favoritos: <strong id="favCount">0</strong></span>
+    <button class="btn primary" id="btnDownload" disabled>Descargar Seleccionadas</button>
+  </div>
+
+  <div class="gallery-wrap">
+    <div class="gallery" id="galleryGrid"></div>
+    <div class="no-images" id="noImages" style="display:none">No hay imágenes en esta galería.</div>
+  </div>
+</div>
+
+<!-- IMAGE MODAL -->
+<div class="modal" id="modal">
+  <button class="modal-close" onclick="closeModal()">×</button>
+  <div class="modal-content">
+    <img id="modalImg" class="modal-img" src="" alt="" loading="lazy" decoding="async">
+  </div>
+</div>
+
+<footer>© 2026 matirath.jpg — Entregas de cliente</footer>
+
+<script>
+const SUPABASE_URL = 'https://yniwgdsxitavcyfoxros.supabase.co';
+const SUPABASE_ANON_KEY = 'sb_publishable_n8XEay7s5GJW-HVz8iW6iQ_qEYDLK64';
+
+let sb = null;
+let currentClave = null;
+let currentClientConfig = null;
+let favorites = new Set();
+let allImages = [];
+
+// Init Supabase
+if (typeof window.supabase !== 'undefined') {
+  sb = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+}
+
+const authScreen = document.getElementById('authScreen');
+const galleryContainer = document.getElementById('galleryContainer');
+const authPassword = document.getElementById('authPassword');
+const authBtn = document.getElementById('authBtn');
+const authError = document.getElementById('authError');
+const btnLogout = document.getElementById('btnLogout');
+
+// Config en memoria (cargarás desde archivo luego)
+const CLIENTS_CONFIG = {
+  'mutuo-inag': {
+    nombre: 'Mutuo - Inauguración',
+    carpeta: 'mutuo-inauguracion',
+    titulo: 'Galería de la Inauguración - Mutuo',
+    subtitulo: 'Selecciona tus fotos favoritas'
+  },
+  'delfina-quince': {
+    nombre: 'Delfina 15',
+    carpeta: 'quince/delfina-15',
+    titulo: 'Galería de Quinceañera - Delfina',
+    subtitulo: 'Selecciona tus fotos favoritas'
+  }
+};
+
+authBtn.addEventListener('click', handleLogin);
+authPassword.addEventListener('keypress', (e) => {
+  if (e.key === 'Enter') handleLogin();
+});
+btnLogout.addEventListener('click', handleLogout);
+
+async function handleLogin() {
+  const pwd = authPassword.value.trim();
+  if (!pwd) {
+    showAuthError('Ingresá una contraseña');
+    return;
+  }
+
+  authBtn.classList.add('auth-loading');
+  authBtn.textContent = 'Validando...';
+
+  try {
+    const { data, error } = await sb.from('claves').select('clave, titulo, subtitulo, carpeta').eq('clave_tecnica', pwd).single();
+    
+    if (error || !data) {
+      showAuthError('Contraseña incorrecta');
+      authBtn.classList.remove('auth-loading');
+      authBtn.textContent = 'Acceder';
+      return;
+    }
+
+    currentClave = data.clave;
+    currentClientConfig = data;
+    
+    // Cargar favoritos existentes
+    await loadFavorites();
+    
+    // Cargar galería
+    await loadGallery();
+    
+    // Cambiar pantalla
+    authScreen.classList.remove('active');
+    galleryContainer.classList.add('active');
+    btnLogout.style.display = 'block';
+    
+    authBtn.classList.remove('auth-loading');
+    authBtn.textContent = 'Acceder';
+  } catch (err) {
+    console.error('Login error:', err);
+    showAuthError('Error al conectar. Intenta de nuevo.');
+    authBtn.classList.remove('auth-loading');
+    authBtn.textContent = 'Acceder';
+  }
+}
+
+function showAuthError(msg) {
+  authError.textContent = msg;
+  authError.classList.add('show');
+  setTimeout(() => authError.classList.remove('show'), 5000);
+}
+
+async function loadFavorites() {
+  if (!currentClave || !sb) return;
+  try {
+    const { data, error } = await sb.from('selecciones').select('foto_id').eq('clave', currentClave);
+    if (data) {
+      favorites = new Set(data.map(d => d.foto_id));
+    }
+  } catch (err) {
+    console.error('Load favorites error:', err);
+  }
+}
+
+async function loadGallery() {
+  if (!currentClientConfig) return;
+  
+  const carpeta = currentClientConfig.carpeta;
+  
+  try {
+    const resp = await fetch(`/api/gallery?folder=${encodeURIComponent(carpeta)}`);
+    if (!resp.ok) throw new Error('Gallery load failed');
+    
+    const { images } = await resp.json();
+    allImages = images || [];
+    
+    updateGalleryTitle();
+    renderGallery();
+  } catch (err) {
+    console.error('Gallery load error:', err);
+    document.getElementById('noImages').style.display = 'block';
+  }
+}
+
+function updateGalleryTitle() {
+  document.getElementById('galleryTitle').textContent = currentClientConfig?.titulo || 'Galería';
+  document.getElementById('gallerySubtitle').textContent = currentClientConfig?.subtitulo || '';
+}
+
+function renderGallery() {
+  const grid = document.getElementById('galleryGrid');
+  
+  if (!allImages.length) {
+    grid.style.display = 'none';
+    document.getElementById('noImages').style.display = 'block';
+    return;
+  }
+  
+  grid.style.display = 'grid';
+  document.getElementById('noImages').style.display = 'none';
+  
+  grid.innerHTML = allImages.map((img, idx) => {
+    const isFav = favorites.has(img.src);
+    return `
+      <div class="gallery-item ${isFav ? 'favorited' : ''}" data-index="${idx}" data-src="${img.src}">
+        <img src="${img.src}" alt="${img.alt}" loading="lazy">
+        <div class="overlay">
+          <button class="favorite-btn" data-src="${img.src}">
+            ${isFav ? '❤️' : '🤍'}
+          </button>
+        </div>
+      </div>
+    `;
+  }).join('');
+
+  // Bind events
+  document.querySelectorAll('.gallery-item').forEach(item => {
+    item.querySelector('img').addEventListener('click', () => openModal(item.querySelector('img').src));
+    item.querySelector('.favorite-btn').addEventListener('click', (e) => {
+      e.stopPropagation();
+      toggleFavorite(e.target.closest('.favorite-btn').dataset.src);
+    });
+  });
+}
+
+async function toggleFavorite(src) {
+  if (!currentClave || !sb) return;
+  
+  const isFav = favorites.has(src);
+  
+  try {
+    if (isFav) {
+      favorites.delete(src);
+      await sb.from('selecciones').delete().eq('clave', currentClave).eq('foto_id', src);
+    } else {
+      favorites.add(src);
+      await sb.from('selecciones').insert({ clave: currentClave, foto_id: src });
+    }
+    
+    renderGallery();
+    updateFavCount();
+  } catch (err) {
+    console.error('Toggle favorite error:', err);
+  }
+}
+
+function updateFavCount() {
+  document.getElementById('favCount').textContent = favorites.size;
+  document.getElementById('btnDownload').disabled = favorites.size === 0;
+}
+
+function openModal(src) {
+  document.getElementById('modalImg').src = src;
+  document.getElementById('modal').classList.add('active');
+}
+
+function closeModal() {
+  document.getElementById('modal').classList.remove('active');
+}
+
+async function handleDownload() {
+  if (favorites.size === 0) return;
+  
+  document.getElementById('btnDownload').disabled = true;
+  document.getElementById('btnDownload').textContent = 'Generando...';
+  
+  try {
+    const favoritesList = Array.from(favorites);
+    const resp = await fetch('/api/download-favorites', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ fotos: favoritesList, clave: currentClave })
+    });
+    
+    if (!resp.ok) throw new Error('Download failed');
+    
+    const blob = await resp.blob();
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = `galeria-${currentClave}-${Date.now()}.zip`;
+    document.body.appendChild(a);
+    a.click();
+    document.body.removeChild(a);
+    URL.revokeObjectURL(url);
+  } catch (err) {
+    alert('Error al descargar: ' + err.message);
+  } finally {
+    document.getElementById('btnDownload').disabled = false;
+    document.getElementById('btnDownload').textContent = 'Descargar Seleccionadas';
+  }
+}
+
+function handleLogout() {
+  currentClave = null;
+  currentClientConfig = null;
+  favorites.clear();
+  allImages = [];
+  
+  authPassword.value = '';
+  authError.classList.remove('show');
+  
+  authScreen.classList.add('active');
+  galleryContainer.classList.remove('active');
+  btnLogout.style.display = 'none';
+}
+
+document.getElementById('btnDownload').addEventListener('click', handleDownload);
+
+// Init
+updateFavCount();
+</script>
+</body>
+</html>
