@@ -22,8 +22,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Rubik:wght@300;400;500;700&display=swap" rel="stylesheet">
 <style>
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   ARCHIVO. â€” Sistema Visual v1
-   Matirath.com.ar â€” Plataforma de entrega de activos
+   ARCHIVO. — Sistema Visual v1
+   Matirath.com.ar — Plataforma de entrega de activos
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
 :root {
@@ -328,7 +328,7 @@ body::before {
   #cur-r { width:26px;height:26px;border:1px solid rgba(196,154,60,.3);border-radius:50%;position:fixed;pointer-events:none;z-index:var(--z-cursor-ring);transform:translate(-50%,-50%); }
 }
 
-/* â”€â”€ TIPOGRAFÃA BASE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* â”€â”€ TIPOGRAFÍA BASE â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .eyebrow {
   font-size:10px; letter-spacing:3px; color:var(--amber);
   text-transform:uppercase; font-weight:400;
@@ -411,6 +411,7 @@ body::before {
 .login-stage {
   width:min(100%, 1180px);
   margin:0 auto;
+  padding:0 1rem;
   display:flex;
   flex-direction:column;
   align-items:flex-end;
@@ -424,7 +425,7 @@ body::before {
 .login-shell {
   width:100%;
   max-width:430px;
-  padding:0 1rem;
+  padding:0;
   margin-left:auto;
   margin-right:0;
 }
@@ -656,7 +657,7 @@ body::before {
 }
 .login-status-card.info { border-color:rgba(242,237,230,.3); }
 .login-status-card.info .login-status-title::after {
-  content:' â€¢';
+  content:' •';
   color:var(--gold);
   animation:loginDot 1.2s ease-in-out infinite;
 }
@@ -779,7 +780,7 @@ body::before {
 }
 
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   PANTALLA: GALERÃA
+   PANTALLA: GALERÍA
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 #screen-gallery,
 #app-interface { min-height:100vh; padding-top:72px; }
@@ -867,7 +868,7 @@ body::before {
   padding-left:var(--hero-text-align-offset);
 }
 
-/* â”€â”€ HEADER ESTÃTICO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* â”€â”€ HEADER ESTÁTICO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .g-header {
   padding:3.6rem 5vw 2.1rem;
   background:var(--blk2);
@@ -964,6 +965,136 @@ body::before {
 .dimmer-slider {
   width:90px;
   accent-color:var(--gold);
+}
+
+.theme-toggle-btn {
+  background:transparent;
+  border:.5px solid rgba(196,154,60,.28);
+  border-radius:999px;
+  color:rgba(232,228,218,.58);
+  font-family:var(--R);
+  font-size:9px;
+  letter-spacing:2.1px;
+  text-transform:uppercase;
+  padding:.38rem .72rem;
+  cursor:pointer;
+  transition:color .25s ease, border-color .25s ease, background .25s ease;
+}
+
+.theme-toggle-btn:hover,
+.theme-toggle-btn[aria-pressed="true"] {
+  color:var(--gold);
+  border-color:rgba(196,154,60,.58);
+  background:rgba(196,154,60,.08);
+}
+
+body.theme-light {
+  --bg:#f2ede6;
+  --blk:#f4ede3;
+  --blk2:#ece3d7;
+  --cream:#fff8ef;
+  --cream2:#f7efe3;
+  --bone:#1b1815;
+  --skeleton:#d9cfbf;
+  --surface:#f1e8dc;
+  --gold-dim:rgba(122,89,23,.25);
+}
+
+body.theme-light::before {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(196,154,60,.1), transparent 34%),
+    radial-gradient(circle at 80% 0%, rgba(125,90,35,.06), transparent 26%),
+    linear-gradient(180deg, rgba(255,255,255,.55), rgba(255,255,255,0));
+}
+
+body.theme-light .topbar {
+  background:rgba(242,237,230,.76);
+  border-bottom:1px solid rgba(122,89,23,.15);
+}
+
+body.theme-light .topbar .logo,
+body.theme-light .topbar-links a,
+body.theme-light .guide-trigger,
+body.theme-light .topbar-burger span,
+body.theme-light .topbar-drop a,
+body.theme-light .topbar-drop button {
+  color:rgba(41,32,20,.72);
+  background:none;
+}
+
+body.theme-light .topbar-drop {
+  background:rgba(242,237,230,.96);
+  border-color:rgba(122,89,23,.2);
+}
+
+body.theme-light .gateway-bg::after {
+  background:rgba(242,237,230,.58);
+}
+
+body.theme-light #screen-login::before,
+body.theme-light #gateway::before {
+  background:radial-gradient(ellipse 60% 50% at 50% 60%, rgba(196,154,60,.1) 0%, transparent 72%);
+}
+
+body.theme-light .archivo-title,
+body.theme-light .login-panel,
+body.theme-light .login-panel-kicker,
+body.theme-light .login-panel-copy,
+body.theme-light .login-footer,
+body.theme-light .login-status-title,
+body.theme-light #login-error {
+  color:#1f1a13;
+}
+
+body.theme-light .login-panel {
+  border-color:rgba(122,89,23,.24);
+  background:linear-gradient(160deg, rgba(255,255,255,.62), rgba(242,237,230,.68));
+  box-shadow:0 14px 34px rgba(0,0,0,.08), inset 1px 0 0 rgba(122,89,23,.12);
+}
+
+body.theme-light #clave-input {
+  color:#1f1a13;
+  border-color:rgba(122,89,23,.38);
+  background:rgba(255,255,255,.42);
+}
+
+body.theme-light #clave-input::placeholder,
+body.theme-light #btn-eye {
+  color:rgba(63,49,31,.5);
+}
+
+body.theme-light .sticky-bar {
+  background:rgba(242,237,230,.92);
+}
+
+body.theme-light .g-header {
+  background:var(--blk2);
+  border-bottom:1px solid rgba(122,89,23,.18);
+}
+
+body.theme-light .nav-btn,
+body.theme-light .btn-text,
+body.theme-light .cs-label,
+body.theme-light .dimmer-btn,
+body.theme-light .theme-toggle-btn {
+  color:rgba(41,32,20,.66);
+  border-color:rgba(122,89,23,.25);
+}
+
+body.theme-light .btn-amber,
+body.theme-light .meta,
+body.theme-light .archivo-pres-eyebrow,
+body.theme-light .eyebrow {
+  color:#7a5917;
+}
+
+body.theme-light .client-h,
+body.theme-light .meta-sep {
+  color:#1f1a13;
+}
+
+body.theme-light .sig-line {
+  border-top-color:rgba(122,89,23,.2);
 }
 
 .playback-overlay {
@@ -1100,7 +1231,7 @@ body::before {
 .sec-light .sig-line,
 .sec-light2 .sig-line { border-top-color:rgba(122,89,23,.24); }
 
-/* â”€â”€ GRILLA ASIMÃ‰TRICA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* â”€â”€ GRILLA ASIMÉTRICA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .foto-grid {
   position:relative;
   z-index:1;
@@ -1222,7 +1353,7 @@ body.delivery-kind-brand .span-small  { grid-column:span 3; }
 }
 .foto-img.loaded { opacity:1; }
 
-/* BotÃ³n favorito */
+/* Botón favorito */
 .btn-fav {
   position:absolute; top:10px; right:10px; z-index:10;
   background:rgba(13,12,10,.72); border:.5px solid var(--gold-dim);
@@ -1237,7 +1368,7 @@ body.delivery-kind-brand .span-small  { grid-column:span 3; }
 .btn-fav.is-fav { opacity:1; color:var(--gold); }
 .btn-fav.is-fav svg path { fill:currentColor; }
 
-/* Badge reediciÃ³n */
+/* Badge reedición */
 .reed-dot {
   position:absolute; top:10px; left:10px; z-index:10;
   background:var(--amber); color:#0d0c0a;
@@ -1258,7 +1389,7 @@ body.delivery-kind-brand .span-small  { grid-column:span 3; }
   color:rgba(232,228,218,.45); text-transform:uppercase;
 }
 
-/* Toggle portfolio (pequeÃ±o) */
+/* Toggle portfolio (pequeño) */
 .sw { position:relative; display:inline-block; width:28px; height:14px; cursor:pointer; }
 .sw input { opacity:0; width:0; height:0; }
 .sw-track {
@@ -1276,13 +1407,13 @@ body.delivery-kind-brand .span-small  { grid-column:span 3; }
 .pf-check:checked + .sw-track { background:rgba(196,154,60,.12); }
 .pf-check:checked + .sw-track::after { transform:translateX(14px); background:var(--gold); }
 
-/* Grid vacÃ­o */
+/* Grid vacío */
 .grid-empty {
   font-size:10px; color:var(--amber); letter-spacing:2px; text-transform:uppercase;
   padding:2rem 0; grid-column:1/-1;
 }
 
-/* â”€â”€ ÃREA FINAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* â”€â”€ ÁREA FINAL â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .final-section {
   padding:4.2rem 5vw 5rem;
   background:var(--cream2);
@@ -1367,7 +1498,7 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
   background:#2b2620;
 }
 
-/* â”€â”€ PANEL GUÃA DE USO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* â”€â”€ PANEL GUÍA DE USO â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .guide-panel {
   position:fixed;
   inset:0;
@@ -1457,7 +1588,7 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
   gap:1.55rem;
 }
 
-/* â”€â”€ CARRUSEL DE GUÃA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* â”€â”€ CARRUSEL DE GUÍA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .guide-carousel-wrap {
   position:relative;
   width:100%;
@@ -1723,7 +1854,7 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
   flex-wrap:wrap;
 }
 
-/* Ãrea reediciÃ³n en lightbox */
+/* Área reedición en lightbox */
 .lb-reed-area {
   border-top:.5px solid var(--gold-dim);
   padding-top:1.5rem;
@@ -1913,22 +2044,22 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
 <div id="cur"></div>
 <div id="cur-r"></div>
 
-<header class="topbar" aria-label="NavegaciÃ³n principal">
+<header class="topbar" aria-label="Navegación principal">
   <a class="logo" href="index.html">matirath.jpg</a>
-  <nav class="topbar-links" aria-label="NavegaciÃ³n">
+  <nav class="topbar-links" aria-label="Navegación">
     <a href="comercial.html">Comercial</a>
     <a href="eventos.html">Eventos</a>
-    <a href="quien-soy.html">QuiÃ©n soy</a>
+    <a href="quien-soy.html">Quién soy</a>
     <a href="contacto.html">Contacto</a>
     <a href="archivo.html">Archivo</a>
   </nav>
-  <button id="topbar-burger" class="topbar-burger" aria-label="Abrir menÃº" aria-expanded="false" aria-controls="topbar-drop">
+  <button id="topbar-burger" class="topbar-burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="topbar-drop">
     <span></span><span></span><span></span>
   </button>
-  <div id="topbar-drop" class="topbar-drop" role="menu" aria-label="MenÃº mÃ³vil">
+  <div id="topbar-drop" class="topbar-drop" role="menu" aria-label="Menú móvil">
     <a href="comercial.html" role="menuitem">Comercial</a>
     <a href="eventos.html" role="menuitem">Eventos</a>
-    <a href="quien-soy.html" role="menuitem">QuiÃ©n soy</a>
+    <a href="quien-soy.html" role="menuitem">Quién soy</a>
     <a href="contacto.html" role="menuitem">Contacto</a>
     <a href="archivo.html" role="menuitem">Archivo</a>
   </div>
@@ -1936,13 +2067,13 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
 
 <div id="guide-panel" class="guide-panel hidden" aria-hidden="true">
   <div id="guide-panel-backdrop" class="guide-panel-backdrop"></div>
-  <aside class="guide-panel-aside" role="dialog" aria-modal="true" aria-label="GuÃ­a de uso">
+  <aside class="guide-panel-aside" role="dialog" aria-modal="true" aria-label="Guía de uso">
     <div class="guide-panel-head">
-      <p class="guide-panel-title">GUÃA DE USO.</p>
-      <button id="btn-guide-close" class="guide-panel-close" type="button" aria-label="Cerrar guÃ­a de uso">&#10005;</button>
+      <p class="guide-panel-title">GUÍA DE USO.</p>
+      <button id="btn-guide-close" class="guide-panel-close" type="button" aria-label="Cerrar guía de uso">&#10005;</button>
     </div>
     <div class="guide-panel-body">
-      <div class="guide-carousel-wrap" aria-label="Carrusel de guÃ­a de uso">
+      <div class="guide-carousel-wrap" aria-label="Carrusel de guía de uso">
         <div class="guide-carousel-viewport">
           <div id="guide-carousel-track" class="guide-carousel-track"></div>
           <div id="guide-carousel-flash" class="guide-carousel-flash"></div>
@@ -1952,10 +2083,10 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
 
       <article class="guide-block">
         <ul class="guide-copy-list">
-          <li>Tus fotos favoritas se guardan automÃ¡ticamente para tu prÃ³xima visita.</li>
-          <li>Tu selecciÃ³n es privada y solo visible para el poseedor de la clave de acceso.</li>
-          <li>Este archivo es un respaldo de cortesÃ­a garantizado por 13 meses desde la fecha de entrega.</li>
-          <li>El modo reproducir activa la visualizaciÃ³n automatica en pantalla completa.</li>
+          <li>Tus fotos favoritas se guardan automáticamente para tu próxima visita.</li>
+          <li>Tu selección es privada y solo visible para el poseedor de la clave de acceso.</li>
+          <li>Este archivo es un respaldo de cortesía garantizado por 13 meses desde la fecha de entrega.</li>
+          <li>El modo reproducir activa la visualización automatica en pantalla completa.</li>
           <li>El control DIMMER para ajustar el brillo de la pantalla en ambientes oscuros.</li>
         </ul>
       </article>
@@ -1966,7 +2097,7 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
         href="https://wa.me/5492954230852"
         target="_blank"
         rel="noopener noreferrer"
-      >ASISTENCIA TÃ‰CNICA DIRECTA.</a>
+      >ASISTENCIA TÉCNICA DIRECTA.</a>
     </div>
   </aside>
 </div>
@@ -1984,17 +2115,17 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
       <div class="login-panel">
         <div class="login-panel-head">
           <p class="login-panel-kicker">Acceso privado</p>
-          <p class="login-panel-copy">Tu clave habilita una galerÃ­a privada con selecciÃ³n, entregas y material reservado para ese trabajo.</p>
+          <p class="login-panel-copy">Tu clave habilita una galería privada con selección, entregas y material reservado para ese trabajo.</p>
         </div>
         <div class="login-form">
           <div class="clave-field">
             <input
               type="password"
               id="clave-input"
-              placeholder="Cï¿½digo de Acceso Privado."
+              placeholder="Código de Acceso Privado."
               autocomplete="off"
               spellcheck="false"
-              aria-label="CÃ³digo de Acceso Privado."
+              aria-label="Código de Acceso Privado."
             >
             <button id="btn-eye" type="button" aria-label="Mostrar/ocultar clave" tabindex="-1">
               <svg id="eye-icon" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
@@ -2008,7 +2139,7 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
           </div>
           <div id="login-status" class="login-status-card info is-intro" role="status" aria-live="polite" aria-atomic="true">
             <p id="login-status-title" class="login-status-title">Esperando clave</p>
-            <p id="login-error">IngresÃ¡ tu CÃ³digo de Acceso Privado.</p>
+            <p id="login-error">Ingresá tu Código de Acceso Privado.</p>
           </div>
         </div>
         <p class="login-footer">Acceso pensado para revisar y descargar las previsualizaciones.</p>
@@ -2017,7 +2148,7 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
   </div>
 </div>
 
-<!-- â•â• PANTALLA: GALERÃA â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
+<!-- â•â• PANTALLA: GALERÍA â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
 <div id="app-interface" class="hidden">
 
   <section class="archivo-hero s-dark" aria-label="Cabecera del proyecto">
@@ -2027,15 +2158,15 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
     </div>
     <div class="archivo-hero-inner">
       <div class="archivo-hero-content">
-        <p class="archivo-hero-kicker">Archivo privado Â· Matirath.jpg</p>
+        <p class="archivo-hero-kicker">Archivo privado · Matirath.jpg</p>
         <h1 id="hero-client-name" class="archivo-hero-title">Proyecto.</h1>
-        <p class="archivo-hero-copy">Una entrega editorial organizada por secciones para revisar con calma, marcar selecciÃ³n y dejar observaciones con mejor legibilidad.</p>
-        <p id="hero-meta" class="archivo-hero-meta">â€” Â· â€”</p>
+        <p class="archivo-hero-copy">Una entrega editorial organizada por secciones para revisar con calma, marcar selección y dejar observaciones con mejor legibilidad.</p>
+        <p id="hero-meta" class="archivo-hero-meta">— · —</p>
       </div>
     </div>
   </section>
 
-  <!-- Header estÃ¡tico -->
+  <!-- Header estático -->
   <header class="g-header">
     <div class="g-header-inner">
       <div class="g-header-top">
@@ -2043,12 +2174,12 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
         <button id="btn-logout" class="btn-amber">SALIR</button>
       </div>
       <div class="g-header-main">
-        <p class="eyebrow archivo-pres-eyebrow">ARCHIVO DE PRESERVACIÃ“N.</p>
-        <h2 id="client-name" class="client-h">â€”.</h2>
+        <p class="eyebrow archivo-pres-eyebrow">ARCHIVO DE PRESERVACIÓN.</p>
+        <h2 id="client-name" class="client-h">—.</h2>
         <div class="meta-row">
-          <span id="meta-fecha" class="meta">â€”</span>
+          <span id="meta-fecha" class="meta">—</span>
           <span class="meta-sep">|</span>
-          <span id="meta-lugar" class="meta">â€”</span>
+          <span id="meta-lugar" class="meta">—</span>
         </div>
       </div>
       <div class="sig-line"></div>
@@ -2078,6 +2209,7 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
           </button>
           <input id="dimmer-slider" class="dimmer-slider" type="range" min="0" max="80" value="0" step="1" aria-label="Intensidad dimmer">
         </div>
+        <button id="btn-theme-mode" class="theme-toggle-btn" type="button" aria-label="Alternar modo claro y oscuro" aria-pressed="false">MODO CLARO</button>
         <div class="cs-wrap">
           <span class="cs-label">CONTACTOS</span>
           <label class="tgl" title="Modo hoja de contactos">
@@ -2116,40 +2248,40 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
       <div class="foto-grid" id="grid-03"></div>
     </div>
 
-    <!-- Ãrea final -->
+    <!-- Área final -->
     <section class="final-section">
       <div class="sig-line"></div>
       <div class="final-inner">
 
         <div class="final-block">
-          <p class="eyebrow">VALORACIÃ“N DE OBRA</p>
+          <p class="eyebrow">VALORACIÓN DE OBRA</p>
           <h2 class="block-h">Testimonio editorial.</h2>
           <textarea
             id="inp-testimonio"
             rows="5"
-            placeholder="DescribÃ­ tu experiencia con la obraâ€¦"
+            placeholder="Describí tu experiencia con la obra…"
             aria-label="Testimonio editorial"
           ></textarea>
         </div>
 
         <div class="final-block">
-          <p class="eyebrow">NOTAS DE PROYECTO <span class="private-tag">â€” PRIVADO</span></p>
-          <h2 class="block-h">Observaciones tÃ©cnicas.</h2>
+          <p class="eyebrow">NOTAS DE PROYECTO <span class="private-tag">— PRIVADO</span></p>
+          <h2 class="block-h">Observaciones técnicas.</h2>
           <textarea
             id="inp-notas"
             rows="4"
-            placeholder="Notas internas del proyectoâ€¦"
+            placeholder="Notas internas del proyecto…"
             aria-label="Notas privadas"
           ></textarea>
         </div>
 
         <div class="sig-line"></div>
-        <div class="acta-deposito" aria-label="Acta de depÃ³sito">
-          <p class="eyebrow">ACTA DE DEPÃ“SITO</p>
+        <div class="acta-deposito" aria-label="Acta de depósito">
+          <p class="eyebrow">ACTA DE DEPÓSITO</p>
           <div class="acta-card">
             <img id="acta-cover" class="acta-thumb" src="imgs/entrada-galeria.web.jpg" alt="Miniatura de portada del evento" loading="lazy" decoding="async">
             <div>
-              <h3 id="acta-title" class="acta-title">ARCHIVO DE PRESERVACIÃ“N. â€” Cliente</h3>
+              <h3 id="acta-title" class="acta-title">ARCHIVO DE PRESERVACIÓN. — Cliente</h3>
               <p id="acta-copy" class="acta-copy">Espacio privado de respaldo digital curado por matirath.jpg.</p>
             </div>
           </div>
@@ -2161,7 +2293,7 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
 
   </main>
 
-  <button class="guide-fab" type="button" data-open-guide aria-label="Abrir guÃ­a de uso">GUÃA DE USO.</button>
+  <button class="guide-fab" type="button" data-open-guide aria-label="Abrir guía de uso">GUÍA DE USO.</button>
 </div>
 
 <!-- â•â• LIGHTBOX â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• -->
@@ -2170,7 +2302,7 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
   <div class="lb-inner">
 
     <div class="lb-top">
-      <span id="lb-counter" class="eyebrow">â€”</span>
+      <span id="lb-counter" class="eyebrow">—</span>
       <button id="lb-close" class="btn-text">[ CERRAR ]</button>
     </div>
 
@@ -2182,21 +2314,21 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
 
     <div class="lb-bottom">
       <div class="lb-actions">
-        <button id="lb-fav-btn" class="btn-amber">[ â™¡ AGREGAR A SELECCIÃ“N ]</button>
+        <button id="lb-fav-btn" class="btn-amber">[ ♡ AGREGAR A SELECCIÓN ]</button>
         <button id="lb-download-btn" class="btn-text">[ DESCARGAR ESTA FOTO ]</button>
       </div>
-      <button id="lb-reed-btn" class="btn-text">[ SOLICITAR REEDICIÃ“N TÃ‰CNICA ]</button>
+      <button id="lb-reed-btn" class="btn-text">[ SOLICITAR REEDICIÓN TÉCNICA ]</button>
     </div>
 
     <div id="lb-reed-area" class="lb-reed-area hidden">
       <div class="lb-reed-head">
-        <p class="eyebrow">AJUSTE TÃ‰CNICO &mdash; <span id="lb-reed-foto-id" style="color:var(--bone);letter-spacing:1px"></span></p>
+        <p class="eyebrow">AJUSTE TÉCNICO &mdash; <span id="lb-reed-foto-id" style="color:var(--bone);letter-spacing:1px"></span></p>
       </div>
       <textarea
         id="lb-reed-text"
         rows="3"
-        placeholder="DescribÃ­ el ajuste especÃ­fico para esta imagenâ€¦"
-        aria-label="Nota de reediciÃ³n"
+        placeholder="Describí el ajuste específico para esta imagen…"
+        aria-label="Nota de reedición"
       ></textarea>
       <button id="lb-reed-save" class="btn-amber">[ GUARDAR AJUSTE ]</button>
     </div>
@@ -2210,7 +2342,7 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
 <div id="opening-ritual" class="opening-ritual hidden" aria-hidden="true">
   <div class="opening-inner">
     <img src="imgs/LOGOMATIRATH.png" alt="matirath.jpg" class="opening-logo" loading="eager" decoding="async">
-    <p class="opening-text">Sincronizando Archivo de PreservaciÃ³n...</p>
+    <p class="opening-text">Sincronizando Archivo de Preservación...</p>
   </div>
 </div>
 
@@ -2223,8 +2355,8 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
 <div id="logout-modal" class="logout-modal hidden" aria-hidden="true" role="dialog" aria-modal="true" aria-label="Confirmar salida">
   <div id="logout-modal-backdrop" class="logout-modal-backdrop"></div>
   <div class="logout-modal-card">
-    <h3 class="logout-title">Â¿Cerrar sesiÃ³n ahora?</h3>
-    <p class="logout-copy">Tu selecciÃ³n local se conserva por cliente. PodÃ©s volver a entrar cuando quieras con tu CÃ³digo de Acceso Privado.</p>
+    <h3 class="logout-title">¿Cerrar sesión ahora?</h3>
+    <p class="logout-copy">Tu selección local se conserva por cliente. Podés volver a entrar cuando quieras con tu Código de Acceso Privado.</p>
     <div class="logout-actions">
       <button id="btn-logout-cancel" class="btn-text" type="button">CANCELAR</button>
       <button id="btn-logout-confirm" class="btn-amber" type="button">SI, SALIR</button>
@@ -2241,17 +2373,17 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
 'use strict';
 
 /* ================================================================
-   ARCHIVO. â€” LÃ³gica de plataforma
+   ARCHIVO. — Lógica de plataforma
    Matirath.com.ar
 
-   âš™ï¸  CONFIGURACIÃ“N ANTES DE PUBLICAR:
+   ★  CONFIGURACIÓN ANTES DE PUBLICAR:
    â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    1. SUPABASE_URL      â†’ URL de tu proyecto (supabase.com)
    2. SUPABASE_ANON_KEY â†’ Anon/public key
-   3. WA_NUMERO         â†’ WhatsApp del fotÃ³grafo (sin + ni espacios)
+   3. WA_NUMERO         â†’ WhatsApp del fotógrafo (sin + ni espacios)
    4. DEMO_MODE         â†’ false para activar Supabase real
 
-   ðŸ“¦  ESQUEMA SUPABASE â€” Ejecutar en SQL Editor:
+   •  ESQUEMA SUPABASE — Ejecutar en SQL Editor:
    â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    CREATE TABLE claves (
      clave          TEXT PRIMARY KEY,
@@ -2290,8 +2422,8 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
    CREATE POLICY "all_selecciones" ON selecciones  FOR ALL    USING (true) WITH CHECK (true);
    CREATE POLICY "all_testimonios" ON testimonios  FOR ALL    USING (true) WITH CHECK (true);
 
-   ðŸ“¸  ESTRUCTURA DE FOTO EN JSONB:
-   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
+   •  ESTRUCTURA DE FOTO EN JSONB:
+   â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€
    {
      "id":    "foto_001",
      "url":   "https://tu-storage.supabase.co/foto.webp",
@@ -2305,12 +2437,13 @@ const SUPABASE_ANON_KEY = 'sb_publishable_n8XEay7s5GJW-HVz8iW6iQ_qEYDLK64';
 const SECURE_AUTH_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/archivo-auth`;
 const SECURE_SYNC_FUNCTION_URL = `${SUPABASE_URL}/functions/v1/archivo-sync`;
 const WA_NUMERO        = '5492954230852'; // sin + ni espacios
-const DEMO_MODE        = false;           // â†’ false en producciÃ³n
+const DEMO_MODE        = false;           // â†’ false en producción
 const ARCHIVO_SESSION_KEY = 'archivo.session';
 const ARCHIVO_SESSION_TOKEN_KEY = 'archivo.session.token';
 const ARCHIVO_SESSION_TTL_MS = 1000 * 60 * 60 * 18;
 const ARCHIVO_LOCAL_FAVS_PREFIX = 'archivo.favoritas.';
 const ARCHIVO_LOCAL_DIMMER_PREFIX = 'archivo.dimmer.';
+const ARCHIVO_UI_THEME_KEY = 'archivo.ui.theme';
 const RESTORE_SESSION_ON_RELOAD = false;
 const LOGIN_BG_POOL = [
   'imgs/entrada-galeria.web.jpg',
@@ -2329,7 +2462,7 @@ const LOGIN_BG_POOL = [
 const DEMO_CLAVE  = 'DEMO2024';
 const DEMO_CLIENT = {
   cliente_nombre : 'Geraldine',
-  fecha          : '14 Â· 09 Â· 2024',
+  fecha          : '14 · 09 · 2024',
   lugar          : 'Estancia El Cardal, Buenos Aires',
   seccion_01     : [
     { id:'p01a', url:'https://picsum.photos/seed/ar11/900/1200', span:'grande' },
@@ -2391,15 +2524,15 @@ let playbackFrame = 0;
 
 const DELIVERY_THEMES = {
   event: {
-    heroKicker: 'Archivo privado Â· Evento',
-    heroCopy: 'Una entrega editorial organizada por tramos del evento para revisar con calma, marcar selecciÃ³n y descargar el material con mejor lectura visual.',
-    headerKicker: 'ARCHIVO DE PRESERVACIÃ“N.',
+    heroKicker: 'Archivo privado · Evento',
+    heroCopy: 'Una entrega editorial organizada por tramos del evento para revisar con calma, marcar selección y descargar el material con mejor lectura visual.',
+    headerKicker: 'ARCHIVO DE PRESERVACIÓN.',
     sections: ['Parte 01', 'Parte 02', 'Parte 03'],
   },
   brand: {
-    heroKicker: 'Archivo privado Â· Marca',
-    heroCopy: 'Tu entrega de marca. RevisÃ¡ el material, marcÃ¡ lo que querÃ©s conservar y descargÃ¡ tu selecciÃ³n.',
-    headerKicker: 'ARCHIVO DE PRESERVACIÃ“N.',
+    heroKicker: 'Archivo privado · Marca',
+    heroCopy: 'Tu entrega de marca. Revisá el material, marcá lo que querés conservar y descargá tu selección.',
+    headerKicker: 'ARCHIVO DE PRESERVACIÓN.',
     sections: ['Parte 01', 'Parte 02', 'Parte 03'],
   },
 };
@@ -2414,7 +2547,7 @@ document.addEventListener('DOMContentLoaded', async () => {
   }
 
   initPhotoObserver();
-  // AnimaciÃ³n de intro de 2 segundos en la barra de estado
+  // Animación de intro de 2 segundos en la barra de estado
   setTimeout(() => {
     const statusCard = document.getElementById('login-status');
     if (statusCard) statusCard.classList.remove('is-intro');
@@ -2472,7 +2605,7 @@ function initGatewayBackground() {
   let idx = 0;
   let kbStep = 0;
 
-  // Aplica animaciÃ³n inicial a la primera
+  // Aplica animación inicial a la primera
   frames[0].style.animation = `${KB_ANIMS[0]} 8s ease-in-out forwards`;
 
   window.setInterval(() => {
@@ -2531,7 +2664,7 @@ function inferDeliveryKind(data = {}) {
     carpeta.includes('producto') ||
     carpeta.includes('campaign') ||
     detalle.includes('marca') ||
-    detalle.includes('campaÃ±a')
+    detalle.includes('campaña')
   ) {
     return 'brand';
   }
@@ -2557,8 +2690,8 @@ function getClientMeta(data = clientData) {
   const lugar = String(data?.lugar || '').trim();
   if (fecha || lugar) {
     return {
-      primary: fecha || data?.cliente_nombre || 'â€”',
-      secondary: lugar || data?.evento_detalles || 'â€”',
+      primary: fecha || data?.cliente_nombre || '—',
+      secondary: lugar || data?.evento_detalles || '—',
     };
   }
 
@@ -2568,13 +2701,13 @@ function getClientMeta(data = clientData) {
     if (parts.length >= 2) {
       return {
         primary: parts[0],
-        secondary: parts.slice(1).join(' Â· '),
+        secondary: parts.slice(1).join(' · '),
       };
     }
   }
 
   return {
-    primary: data?.cliente_nombre || 'â€”',
+    primary: data?.cliente_nombre || '—',
     secondary: detalle || (inferDeliveryKind(data) === 'brand' ? 'Entrega comercial' : 'Entrega editorial'),
   };
 }
@@ -2634,6 +2767,32 @@ function applyStoredDimmerValue() {
   setDimmerOpacity(safe);
 }
 
+function getStoredUiTheme() {
+  const saved = String(localStorage.getItem(ARCHIVO_UI_THEME_KEY) || '').toLowerCase();
+  if (saved === 'light' || saved === 'dark') return saved;
+  return 'dark';
+}
+
+function applyUiTheme(mode) {
+  const safeMode = mode === 'light' ? 'light' : 'dark';
+  const isLight = safeMode === 'light';
+  document.body.classList.toggle('theme-light', isLight);
+
+  const themeBtn = document.getElementById('btn-theme-mode');
+  if (themeBtn) {
+    themeBtn.setAttribute('aria-pressed', String(isLight));
+    themeBtn.textContent = isLight ? 'MODO OSCURO' : 'MODO CLARO';
+  }
+}
+
+function persistUiTheme(mode) {
+  localStorage.setItem(ARCHIVO_UI_THEME_KEY, mode === 'light' ? 'light' : 'dark');
+}
+
+function applyStoredUiTheme() {
+  applyUiTheme(getStoredUiTheme());
+}
+
 function isMobileViewport() {
   return window.matchMedia('(max-width: 900px)').matches || !window.matchMedia('(hover:hover)').matches;
 }
@@ -2656,7 +2815,7 @@ function resolveOgImageUrl() {
 
 function updateOpenGraphMeta() {
   const clientName = clientData?.cliente_nombre || clientData?.evento_detalles || 'Cliente';
-  const title = `ARCHIVO DE PRESERVACIÃ“N. â€” ${clientName}`;
+  const title = `ARCHIVO DE PRESERVACIÓN. — ${clientName}`;
   const description = 'Espacio privado de respaldo digital curado por matirath.jpg.';
   const image = resolveOgImageUrl();
 
@@ -2674,7 +2833,7 @@ function renderActaDeposito() {
   const titleEl = document.getElementById('acta-title');
   const copyEl = document.getElementById('acta-copy');
   const coverEl = document.getElementById('acta-cover');
-  if (titleEl) titleEl.textContent = `ARCHIVO DE PRESERVACIÃ“N. â€” ${clientName}`;
+  if (titleEl) titleEl.textContent = `ARCHIVO DE PRESERVACIÓN. — ${clientName}`;
   if (copyEl) copyEl.textContent = 'Espacio privado de respaldo digital curado por matirath.jpg.';
   if (coverEl) coverEl.src = resolveOgImageUrl();
 }
@@ -2958,14 +3117,14 @@ async function validateAccess(key, options = {}) {
     fromSession: false,
     ...options,
   };
-  const ACCESS_DENIED_MESSAGE = 'Acceso denegado. Por favor, revisÃ¡ los datos ingresados o contactate con MatÃ­as Rath para restaurar tu acceso';
+  const ACCESS_DENIED_MESSAGE = 'Acceso denegado. Por favor, revisá los datos ingresados o contactate con Matías Rath para restaurar tu acceso';
 
   const input = document.getElementById('gateway-input') || document.getElementById('clave-input');
   const typedKey = input ? String(input.value || '').trim().toLowerCase() : '';
   key = String(key || typedKey || '').trim().toLowerCase();
 
   if (!key) {
-    setLoginStatus('error', 'Falta la clave', 'IngresÃ¡ tu clave para iniciar sesiÃ³n.');
+    setLoginStatus('error', 'Falta la clave', 'Ingresá tu clave para iniciar sesión.');
     return { data: null, error: null };
   }
 
@@ -2976,7 +3135,7 @@ async function validateAccess(key, options = {}) {
   triggerValidateButtonFeedback();
   setLoginLoading(true);
   document.getElementById('login-status')?.classList.add('is-validating');
-  setLoginStatus('info', 'Iniciando sesiÃ³n', 'Validando tu clave de acceso...');
+  setLoginStatus('info', 'Iniciando sesión', 'Validando tu clave de acceso...');
 
   try {
     let data = null;
@@ -3091,7 +3250,7 @@ async function restoreSessionIfPossible() {
 function setLoginLoading(on) {
   const btn = document.getElementById('btn-validar');
   if (!btn) return;
-  btn.textContent = on ? '[ Â· Â· Â· ]' : '[ VALIDAR ]';
+  btn.textContent = on ? '[ · · · ]' : '[ VALIDAR ]';
   btn.disabled = on;
   btn.classList.toggle('is-loading', on);
   if (!on) {
@@ -3123,7 +3282,7 @@ function setLoginStatus(kind, title, detail) {
   clearTimeout(loginStatusAnimTimer);
   loginStatusAnimTimer = setTimeout(() => card.classList.remove('is-updating'), 460);
 
-  titleEl.textContent = title || 'Estado de sesiÃ³n';
+  titleEl.textContent = title || 'Estado de sesión';
   detailEl.textContent = detail || '';
 }
 
@@ -3147,8 +3306,8 @@ function persistClientSession(clave, payload, token = null) {
   if (token) localStorage.setItem(ARCHIVO_SESSION_TOKEN_KEY, token);
   localStorage.setItem('archivo.clave', safeClave);
   localStorage.setItem('archivo.cliente_nombre', safePayload.cliente_nombre || 'Cliente');
-  localStorage.setItem('archivo.fecha', safePayload.fecha || 'â€”');
-  localStorage.setItem('archivo.lugar', safePayload.lugar || 'â€”');
+  localStorage.setItem('archivo.fecha', safePayload.fecha || '—');
+  localStorage.setItem('archivo.lugar', safePayload.lugar || '—');
   localStorage.setItem('archivo.payload', JSON.stringify(safePayload));
   localStorage.setItem(ARCHIVO_SESSION_KEY, JSON.stringify({
     clave: safeClave,
@@ -3162,23 +3321,23 @@ function hydrateLoginNoticeFromQuery() {
   if (!document.getElementById('login-status')) return;
 
   if (reason === 'session') {
-    setLoginStatus('muted', 'SesiÃ³n finalizada', 'La sesiÃ³n caducÃ³. IngresÃ¡ tu clave para continuar.');
+    setLoginStatus('muted', 'Sesión finalizada', 'La sesión caducó. Ingresá tu clave para continuar.');
   } else if (reason === 'auth') {
-    setLoginStatus('error', 'Acceso invÃ¡lido', 'IniciÃ¡ sesiÃ³n con tu clave para continuar.');
+    setLoginStatus('error', 'Acceso inválido', 'Iniciá sesión con tu clave para continuar.');
   } else if (reason === 'cliente') {
-    setLoginStatus('error', 'Proyecto no disponible', 'No se pudo cargar tu proyecto. VolvÃ© a validar clave.');
+    setLoginStatus('error', 'Proyecto no disponible', 'No se pudo cargar tu proyecto. Volvé a validar clave.');
   } else {
-    setLoginStatus('info', 'Esperando clave', 'IngresÃ¡ tu CÃ³digo de Acceso Privado.');
+    setLoginStatus('info', 'Esperando clave', 'Ingresá tu Código de Acceso Privado.');
   }
 }
 
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   RENDERIZADO DE GALERÃA
+   RENDERIZADO DE GALERÍA
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 async function buildAllFotosFromCarpeta(carpeta) {
   try {
     const kind = inferDeliveryKind(clientData);
-    // Intentar primero con index.json estÃ¡tico (compatible con hosting estÃ¡tico)
+    // Intentar primero con index.json estático (compatible con hosting estático)
     const jsonUrl = normalizeAssetUrl(`/imgs/${encodeURIComponent(carpeta)}/index.json`);
     let images = null;
     try {
@@ -3239,13 +3398,13 @@ function renderGallery() {
   applyLocalFavs();
   applyStoredDimmerValue();
   const meta = getClientMeta(clientData);
-  document.getElementById('client-name').textContent = clientData.evento_detalles || clientData.cliente_nombre || 'â€”';
-  document.getElementById('meta-fecha').textContent  = meta.primary || 'â€”';
-  document.getElementById('meta-lugar').textContent  = meta.secondary || 'â€”';
+  document.getElementById('client-name').textContent = clientData.evento_detalles || clientData.cliente_nombre || '—';
+  document.getElementById('meta-fecha').textContent  = meta.primary || '—';
+  document.getElementById('meta-lugar').textContent  = meta.secondary || '—';
   const heroName = document.getElementById('hero-client-name');
   const heroMeta = document.getElementById('hero-meta');
   if (heroName) heroName.textContent = (clientData.cliente_nombre || clientData.evento_detalles || 'Proyecto') + '.';
-  if (heroMeta) heroMeta.textContent = `${meta.primary || 'â€”'} Â· ${String(meta.secondary || 'â€”').toUpperCase()}`;
+  if (heroMeta) heroMeta.textContent = `${meta.primary || '—'} · ${String(meta.secondary || '—').toUpperCase()}`;
   syncGalleryHeroImage();
   renderGrid('grid-01', clientData.seccion_01 || []);
   renderGrid('grid-02', clientData.seccion_02 || []);
@@ -3311,7 +3470,7 @@ function renderGrid(gridId, fotos) {
   const grid = document.getElementById(gridId);
   grid.innerHTML = '';
   if (!fotos.length) {
-    grid.innerHTML = '<p class="grid-empty">Sin imÃ¡genes en esta secciÃ³n.</p>';
+    grid.innerHTML = '<p class="grid-empty">Sin imágenes en esta sección.</p>';
     return;
   }
 
@@ -3350,7 +3509,7 @@ function buildCard(foto, idx) {
   card.innerHTML = `
     <div class="skeleton"></div>
     <img class="foto-img" data-src="${imgSrc}"
-         alt="FotografÃ­a ${idx + 1}"
+         alt="Fotografía ${idx + 1}"
          loading="lazy" decoding="async">
     <button class="btn-fav${isFav ? ' is-fav' : ''}" aria-label="Marcar como favorito">
       <svg viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}"
@@ -3361,7 +3520,7 @@ function buildCard(foto, idx) {
                  l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
       </svg>
     </button>
-    ${hasR ? '<div class="reed-dot" title="ReediciÃ³n solicitada">R</div>' : ''}
+    ${hasR ? '<div class="reed-dot" title="Reedición solicitada">R</div>' : ''}
     <div class="card-foot">
       <span class="pf-label">USO EN PORTFOLIO</span>
       <label class="sw">
@@ -3390,7 +3549,7 @@ function buildCard(foto, idx) {
 }
 
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   ACCIONES â€” FAVORITO / PORTFOLIO / REEDICIÃ“N
+   ACCIONES — FAVORITO / PORTFOLIO / REEDICIÓN
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 async function toggleFav(fotoId) {
   if (!selecciones[fotoId]) selecciones[fotoId] = {};
@@ -3408,17 +3567,17 @@ async function toggleFav(fotoId) {
   updateFavCount();
   persistLocalFavs();
   if (showingFavs) applyFavFilter();
-  toast(newVal ? 'AGREGADA A SELECCIÃ“N' : 'REMOVIDA DE SELECCIÃ“N');
+  toast(newVal ? 'AGREGADA A SELECCIÓN' : 'REMOVIDA DE SELECCIÓN');
   if (!DEMO_MODE) await upsertSeleccion(fotoId);
 
-  // Sync lightbox si estÃ¡ abierto
+  // Sync lightbox si está abierto
   if (currentLbFoto && currentLbFoto.id === fotoId) updateLbFavBtn();
 }
 
 async function togglePortfolio(fotoId, val) {
   if (!selecciones[fotoId]) selecciones[fotoId] = {};
   selecciones[fotoId].portfolio_auth = val;
-  toast(val ? 'AUTORIZADO PARA PORTFOLIO' : 'AUTORIZACIÃ“N REVOCADA');
+  toast(val ? 'AUTORIZADO PARA PORTFOLIO' : 'AUTORIZACIÓN REVOCADA');
   if (!DEMO_MODE) await upsertSeleccion(fotoId);
 }
 
@@ -3434,19 +3593,19 @@ async function saveReedicion(fotoId, texto) {
       dot = document.createElement('div');
       dot.className = 'reed-dot';
       dot.textContent = 'R';
-      dot.title = 'ReediciÃ³n solicitada';
+      dot.title = 'Reedición solicitada';
       card.appendChild(dot);
     } else if (!texto && dot) {
       dot.remove();
     }
   }
 
-  toast('AJUSTE TÃ‰CNICO GUARDADO');
+  toast('AJUSTE TÉCNICO GUARDADO');
   if (!DEMO_MODE) await upsertSeleccion(fotoId);
 }
 
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   SUPABASE â€” ESCRITURA
+   SUPABASE — ESCRITURA
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 async function upsertSeleccion(fotoId) {
   if (DEMO_MODE) return;
@@ -3476,10 +3635,10 @@ async function saveTestimony() {
 }
 
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   UI GALERÃA â€” BINDINGS
+   UI GALERÍA — BINDINGS
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 
-/* â”€â”€ CARRUSEL DE GUÃA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
+/* â”€â”€ CARRUSEL DE GUÍA â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 const GUIDE_CAROUSEL_PLATES = [
   { name: 'matirath_01-acceso.jpg', readingTime: 4500 },
   { name: 'matirath_02-presentacion.jpg', readingTime: 4500 },
@@ -3511,7 +3670,7 @@ function initGuideCarousel() {
     frame.className = 'guide-carousel-frame' + (i === 0 ? ' is-active' : '');
     const img = document.createElement('img');
     img.src = 'imgs/guia-uso/' + plate.name;
-    img.alt = 'Placa guÃ­a ' + (i + 1);
+    img.alt = 'Placa guía ' + (i + 1);
     img.decoding = 'async';
     frame.appendChild(img);
     track.appendChild(frame);
@@ -3563,7 +3722,7 @@ function goToCarouselSlide(index) {
     });
   }
 
-  // Resetear rotaciÃ³n
+  // Resetear rotación
   if (guideCarouselState.isPlaying) {
     stopCarouselRotation();
     startCarouselRotation();
@@ -3605,7 +3764,7 @@ function bindGalleryUI() {
       guidePanelTimer = null;
     }
     
-    // Pre-cargar imÃ¡genes
+    // Pre-cargar imágenes
     GUIDE_CAROUSEL_PLATES.forEach(plate => {
       const img = new Image();
       img.src = 'imgs/guia-uso/' + plate.name;
@@ -3683,7 +3842,7 @@ function bindGalleryUI() {
     showingFavs  = false; isContactSheet = false;
     document.body.classList.remove('delivery-kind-event', 'delivery-kind-brand');
     document.getElementById('clave-input').value       = '';
-    setLoginStatus('info', 'SesiÃ³n cerrada', 'IngresÃ¡ tu CÃ³digo de Acceso Privado.');
+    setLoginStatus('info', 'Sesión cerrada', 'Ingresá tu Código de Acceso Privado.');
     document.getElementById('inp-testimonio').value    = '';
     document.getElementById('inp-notas').value         = '';
     document.getElementById('toggle-cs').checked       = false;
@@ -3721,7 +3880,7 @@ function bindGalleryUI() {
     });
   });
 
-  // Ver selecciÃ³n
+  // Ver selección
   document.getElementById('btn-ver-sel').addEventListener('click', () => {
     showingFavs = !showingFavs;
     document.getElementById('btn-ver-sel').classList.toggle('active', showingFavs);
@@ -3736,6 +3895,7 @@ function bindGalleryUI() {
 
   const dimmerSlider = document.getElementById('dimmer-slider');
   const dimmerBtn = document.getElementById('btn-dimmer');
+  const themeModeBtn = document.getElementById('btn-theme-mode');
   if (dimmerSlider) {
     dimmerSlider.addEventListener('input', (event) => {
       const value = Number(event.target.value || 0);
@@ -3749,6 +3909,13 @@ function bindGalleryUI() {
       dimmerSlider.value = String(next);
       setDimmerOpacity(next);
       persistDimmerValue(next);
+    });
+  }
+  if (themeModeBtn) {
+    themeModeBtn.addEventListener('click', () => {
+      const nextMode = document.body.classList.contains('theme-light') ? 'dark' : 'light';
+      applyUiTheme(nextMode);
+      persistUiTheme(nextMode);
     });
   }
 
@@ -3768,7 +3935,7 @@ function bindGalleryUI() {
     toast(isContactSheet ? 'MODO HOJA DE CONTACTOS' : 'MODO EDITORIAL');
   });
 
-  // Lightbox â€” cerrar
+  // Lightbox — cerrar
   const lbWrap = document.querySelector('.lb-img-wrap');
   document.getElementById('lb-back').addEventListener('click', closeLightbox);
   document.getElementById('lb-close').addEventListener('click', closeLightbox);
@@ -3808,12 +3975,12 @@ function bindGalleryUI() {
     if (e.key === 'ArrowRight') navigateLightbox(1);
   });
 
-  // Lightbox â€” favorito
+  // Lightbox — favorito
   document.getElementById('lb-fav-btn').addEventListener('click', () => {
     if (currentLbFoto) toggleFav(currentLbFoto.id);
   });
 
-  // Lightbox â€” reediciÃ³n toggle
+  // Lightbox — reedición toggle
   document.getElementById('lb-reed-btn').addEventListener('click', () => {
     const area = document.getElementById('lb-reed-area');
     area.classList.toggle('hidden');
@@ -3825,7 +3992,7 @@ function bindGalleryUI() {
     }
   });
 
-  // Lightbox â€” guardar reediciÃ³n
+  // Lightbox — guardar reedición
   document.getElementById('lb-reed-save').addEventListener('click', async () => {
     if (!currentLbFoto) return;
     const texto = document.getElementById('lb-reed-text').value.trim();
@@ -3833,13 +4000,13 @@ function bindGalleryUI() {
     document.getElementById('lb-reed-area').classList.add('hidden');
   });
 
-  // Testimony â€” auto-guardado con debounce
+  // Testimony — auto-guardado con debounce
   ['inp-testimonio', 'inp-notas'].forEach(id => {
     document.getElementById(id).addEventListener('input', () => {
       clearTimeout(autoSaveTimer);
       autoSaveTimer = setTimeout(async () => {
         if (!DEMO_MODE) await saveTestimony();
-        toast('GUARDADO AUTOMÃTICAMENTE');
+        toast('GUARDADO AUTOMÁTICAMENTE');
       }, 2200);
     });
   });
@@ -3867,6 +4034,7 @@ function showScreen(which) {
   if (loginEl) loginEl.classList.toggle('hidden', which !== 'login');
   if (galleryEl) galleryEl.classList.toggle('hidden', which !== 'gallery');
   if (which === 'login') stopPlayback();
+  if (which === 'gallery') applyStoredUiTheme();
 }
 
 function resolveMainJpgUrl(foto) {
@@ -3921,7 +4089,7 @@ function syncLightboxFrame(idx) {
 
   img.classList.remove('loaded');
   img.src = '';
-  img.alt = `FotografÃ­a ${currentLbIndex + 1}`;
+  img.alt = `Fotografía ${currentLbIndex + 1}`;
   const mainJpgUrl = resolveMainJpgUrl(currentLbFoto);
   img.onload = () => img.classList.add('loaded');
   img.onerror = () => {
@@ -4105,20 +4273,20 @@ function updateLbFavBtn() {
   if (!currentLbFoto) return;
   const isFav = !!selecciones[currentLbFoto.id]?.favorito;
   const btn   = document.getElementById('lb-fav-btn');
-  btn.textContent = isFav ? '[ â™¥ EN SELECCIÃ“N ]' : '[ â™¡ AGREGAR A SELECCIÃ“N ]';
+  btn.textContent = isFav ? '[ ♥ EN SELECCIÓN ]' : '[ ♡ AGREGAR A SELECCIÓN ]';
   btn.classList.toggle('active', isFav);
 }
 
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   DESCARGA â€” JSZip
+   DESCARGA — JSZip
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 async function handleDownload() {
   const favs = allFotos.filter(f => !!selecciones[f.id]?.favorito);
   if (!favs.length) {
-    toast('SIN FOTOS EN SELECCIÃ“N');
+    toast('SIN FOTOS EN SELECCIÓN');
     return;
   }
-  toast(`PREPARANDO ${favs.length} ARCHIVOSâ€¦`);
+  toast(`PREPARANDO ${favs.length} ARCHIVOS…`);
   try {
     const zip    = new JSZip();
     const folder = zip.folder((clientData.cliente_nombre || 'seleccion').replace(/[^a-zA-Z0-9]/g,'_'));
@@ -4144,12 +4312,12 @@ async function handleDownload() {
     toast('DESCARGA INICIADA');
   } catch (err) {
     console.error('[ARCHIVO] Error de descarga:', err);
-    toast('ERROR EN DESCARGA â€” REVISÃ LA CONSOLA');
+    toast('ERROR EN DESCARGA — REVISÁ LA CONSOLA');
   }
 }
 
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   FINALIZAR Y NOTIFICAR â€” WhatsApp
+   FINALIZAR Y NOTIFICAR — WhatsApp
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 async function handleFinalizar() {
   if (!DEMO_MODE) await saveTestimony();
@@ -4157,19 +4325,19 @@ async function handleFinalizar() {
   const favs  = allFotos.filter(f => !!selecciones[f.id]?.favorito).length;
   const pf    = allFotos.filter(f => !!selecciones[f.id]?.portfolio_auth).length;
   const reeds = allFotos.filter(f => !!(selecciones[f.id]?.reedicion)).length;
-  const test  = document.getElementById('inp-testimonio').value.trim().slice(0,120) || 'â€”';
+  const test  = document.getElementById('inp-testimonio').value.trim().slice(0,120) || '—';
 
   const mensaje = [
-    `Hola MatÃ­as! Soy ${clientData.cliente_nombre}.`,
+    `Hola Matías! Soy ${clientData.cliente_nombre}.`,
     `Acabo de revisar mi entrega (${currentClave}).`,
     ``,
     `âœ¦ Fotos seleccionadas: ${favs}`,
     `âœ¦ Autorizadas para portfolio: ${pf}`,
-    `âœ¦ Solicitudes de reediciÃ³n: ${reeds}`,
+    `âœ¦ Solicitudes de reedición: ${reeds}`,
     ``,
-    `Testimonio: "${test}â€¦"`,
+    `Testimonio: "${test}…"`,
     ``,
-    `Quedo a disposiciÃ³n.`,
+    `Quedo a disposición.`,
   ].join('\n');
 
   window.open(`https://wa.me/${WA_NUMERO}?text=${encodeURIComponent(mensaje)}`, '_blank', 'noopener,noreferrer');
@@ -4187,7 +4355,7 @@ function toast(msg) {
 }
 
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   UTILS â€” SEGURIDAD
+   UTILS — SEGURIDAD
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function escAttr(str) {
   if (typeof str !== 'string') return '';
