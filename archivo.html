@@ -79,21 +79,10 @@ body::before {
 
 .hidden { display:none !important; }
 
-#dimmer-overlay {
-  position:fixed;
-  inset:0;
-  z-index:var(--z-dimmer);
-  background:#000;
-  opacity:0;
-  pointer-events:none;
-  transition:opacity .28s ease;
-}
-
 .opening-ritual {
   position:fixed;
   inset:0;
   z-index:var(--z-opening);
-  background:#000;
   display:flex;
   align-items:center;
   justify-content:center;
@@ -101,12 +90,22 @@ body::before {
   pointer-events:none;
 }
 
-.opening-ritual.is-fading {
+.opening-ritual::before {
+  content:'';
+  position:absolute;
+  inset:0;
+  background:#000;
+  opacity:1;
+  transition:opacity var(--opening-bg-fade-duration, 1300ms) cubic-bezier(.22,1,.36,1);
+}
+
+.opening-ritual.is-background-fading::before {
   opacity:0;
-  transition:opacity var(--opening-fade-duration, 1300ms) cubic-bezier(.22,.61,.36,1);
 }
 
 .opening-inner {
+  position:relative;
+  z-index:1;
   text-align:center;
   display:flex;
   flex-direction:column;
@@ -115,6 +114,12 @@ body::before {
   padding:1.5rem 1.2rem;
   transform:translateY(-.9vh);
   width:min(560px, 92vw);
+}
+
+.opening-ritual.is-logo-fading .opening-inner {
+  opacity:0;
+  transform:translateY(-.65vh) scale(.99);
+  transition:opacity var(--opening-logo-fade-duration, 700ms) cubic-bezier(.33,1,.68,1), transform var(--opening-logo-fade-duration, 700ms) cubic-bezier(.33,1,.68,1);
 }
 
 .opening-logo {
@@ -436,8 +441,9 @@ body::before {
   display:flex; flex-direction:column; gap:1.6rem;
 }
 .login-panel {
+  --login-panel-radius:16px;
   width:min(430px,100%);
-  border-radius:16px;
+  border-radius:var(--login-panel-radius);
   border:1px solid rgba(242,237,230,.09);
   border-left-color:rgba(242,237,230,.16);
   background:linear-gradient(160deg,rgba(20,17,14,.025),rgba(11,10,9,.06));
@@ -779,6 +785,61 @@ body::before {
   margin-left:auto;
 }
 
+.login-assist {
+  width:100%;
+  margin-top:.2rem;
+  padding-top:.8rem;
+  border-top:.5px solid rgba(196,154,60,.15);
+  display:flex;
+  flex-direction:column;
+  gap:.55rem;
+}
+
+.login-assist-label {
+  margin:0;
+  font-family:'Rubik', sans-serif;
+  font-size:8px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:rgba(232,228,218,.58);
+}
+
+.login-assist-actions {
+  width:100%;
+  display:flex;
+  gap:.5rem;
+}
+
+.login-assist-btn {
+  flex:1;
+  min-height:34px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  border:.5px solid rgba(196,154,60,.28);
+  border-radius:var(--login-panel-radius);
+  padding:.15rem .45rem;
+  font-family:'Rubik', sans-serif;
+  font-size:9px;
+  font-weight:500;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  text-decoration:none;
+  color:rgba(232,228,218,.42);
+  transition:border-color .4s ease, color .4s ease, background-color .4s ease;
+}
+
+.login-assist-btn:hover,
+.login-assist-btn:focus-visible {
+  border-color:rgba(196,154,60,.72);
+  color:#e8e4da;
+  background-color:rgba(232,228,218,.03);
+}
+
+.login-assist-btn:focus-visible {
+  outline:none;
+}
+
 /* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
    PANTALLA: GALERÍA
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
@@ -788,6 +849,7 @@ body::before {
 /* â”€â”€ HERO DE CLIENTE (POST LOGIN) â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .archivo-hero {
   position:relative;
+  z-index:calc(var(--z-dimmer) + 1);
   min-height:clamp(300px, 54vh, 620px);
   overflow:hidden;
   border-bottom:1px solid rgba(196,154,60,.18);
@@ -928,43 +990,11 @@ body::before {
   cursor:not-allowed;
 }
 
-.play-btn svg,
-.dimmer-btn svg {
+.play-btn svg {
   width:11px;
   height:11px;
   stroke:currentColor;
   fill:none;
-}
-
-.dimmer-wrap {
-  display:flex;
-  align-items:center;
-  gap:.5rem;
-}
-
-.dimmer-btn {
-  display:inline-flex;
-  align-items:center;
-  justify-content:center;
-  width:24px;
-  height:24px;
-  background:transparent;
-  border:.5px solid rgba(196,154,60,.28);
-  border-radius:7px;
-  color:rgba(232,228,218,.55);
-  cursor:pointer;
-  transition:color .25s ease, border-color .25s ease;
-}
-
-.dimmer-btn:hover,
-.dimmer-btn.active {
-  color:var(--gold);
-  border-color:rgba(196,154,60,.58);
-}
-
-.dimmer-slider {
-  width:90px;
-  accent-color:var(--gold);
 }
 
 .theme-toggle-btn {
@@ -1040,10 +1070,27 @@ body.theme-light .archivo-title,
 body.theme-light .login-panel,
 body.theme-light .login-panel-kicker,
 body.theme-light .login-panel-copy,
-body.theme-light .login-footer,
+body.theme-light .login-assist-label,
 body.theme-light .login-status-title,
 body.theme-light #login-error {
   color:#1f1a13;
+}
+
+body.theme-light .login-assist {
+  border-top-color:rgba(122,89,23,.2);
+}
+
+body.theme-light .login-assist-btn {
+  border-color:rgba(122,89,23,.3);
+  color:rgba(41,32,20,.52);
+  background:rgba(255,255,255,.28);
+}
+
+body.theme-light .login-assist-btn:hover,
+body.theme-light .login-assist-btn:focus-visible {
+  border-color:rgba(122,89,23,.62);
+  color:#1f1a13;
+  background:rgba(255,255,255,.52);
 }
 
 body.theme-light .login-panel {
@@ -1075,7 +1122,6 @@ body.theme-light .g-header {
 body.theme-light .nav-btn,
 body.theme-light .btn-text,
 body.theme-light .cs-label,
-body.theme-light .dimmer-btn,
 body.theme-light .theme-toggle-btn {
   color:rgba(41,32,20,.66);
   border-color:rgba(122,89,23,.25);
@@ -1181,6 +1227,8 @@ body.theme-light .sig-line {
 
 /* â”€â”€ MAIN â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€â”€ */
 .g-main {
+  position:relative;
+  z-index:calc(var(--z-dimmer) + 1);
   width:100%;
   max-width:none;
   margin:0;
@@ -2003,7 +2051,6 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
   .sticky-inner { flex-direction:column; align-items:flex-start; gap:.6rem; }
   .sec-nav { gap:1rem; }
   .acta-card { grid-template-columns:1fr; }
-  .dimmer-wrap { width:100%; }
   .g-header { padding:1.6rem 1rem 1.4rem; }
   .g-header-top { margin-bottom:1.2rem; }
   .client-h { font-size:clamp(2rem,8vw,3.5rem); margin-bottom:.85rem; }
@@ -2013,13 +2060,15 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
   .login-brand { margin-bottom:2.2rem; }
   .archivo-title { font-size:clamp(3.4rem,14vw,7rem); letter-spacing:-2px; }
   .login-shell { padding:0; }
-  .login-panel { padding:1rem .85rem .95rem; border-radius:14px; }
+  .login-panel { --login-panel-radius:14px; padding:1rem .85rem .95rem; border-radius:var(--login-panel-radius); }
   .login-panel-copy { font-size:.78rem; line-height:1.62; }
   .login-actions,
   .login-status-card,
-  .login-footer { max-width:none; width:100%; }
+  .login-assist { max-width:none; width:100%; }
+  .login-assist-actions { flex-direction:column; }
+  .login-assist-btn { min-height:36px; }
   #btn-validar { justify-content:center; }
-  .login-footer { font-size:.72rem; }
+  .login-assist-label { font-size:8px; }
 }
 @media(max-width:768px){
   .topbar-links { display:none; }
@@ -2038,8 +2087,6 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
 </head>
 <body>
 
-<div id="dimmer-overlay" aria-hidden="true"></div>
-
 <!-- CURSOR -->
 <div id="cur"></div>
 <div id="cur-r"></div>
@@ -2052,6 +2099,7 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
     <a href="quien-soy.html">Quién soy</a>
     <a href="contacto.html">Contacto</a>
     <a href="archivo.html">Archivo</a>
+    <button class="guide-trigger" type="button" data-open-guide aria-label="Abrir guía de uso">Guía de uso</button>
   </nav>
   <button id="topbar-burger" class="topbar-burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="topbar-drop">
     <span></span><span></span><span></span>
@@ -2062,6 +2110,7 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
     <a href="quien-soy.html" role="menuitem">Quién soy</a>
     <a href="contacto.html" role="menuitem">Contacto</a>
     <a href="archivo.html" role="menuitem">Archivo</a>
+    <button type="button" role="menuitem" data-open-guide aria-label="Abrir guía de uso">Guía de uso</button>
   </div>
 </header>
 
@@ -2087,7 +2136,7 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
           <li>Tu selección es privada y solo visible para el poseedor de la clave de acceso.</li>
           <li>Este archivo es un respaldo de cortesía garantizado por 13 meses desde la fecha de entrega.</li>
           <li>El modo reproducir activa la visualización automatica en pantalla completa.</li>
-          <li>El control DIMMER para ajustar el brillo de la pantalla en ambientes oscuros.</li>
+          <li>Podes alternar entre modo claro y modo oscuro segun tu entorno.</li>
         </ul>
       </article>
     </div>
@@ -2142,7 +2191,23 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
             <p id="login-error">Ingresá tu Código de Acceso Privado.</p>
           </div>
         </div>
-        <p class="login-footer">Acceso pensado para revisar y descargar las previsualizaciones.</p>
+        <div class="login-assist" aria-label="Asistencia de acceso">
+          <p class="login-assist-label">Asistencia de acceso.</p>
+          <div class="login-assist-actions">
+            <a
+              href="https://wa.me/5492954230852?text=CONSULTA%20DE%20ACCESO%20|%20Solicitud%20de%20Invitado%20para%20el%20archivo:"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="login-assist-btn"
+            >SOLICITUD DE INVITADO.</a>
+            <a
+              href="https://wa.me/5492954230852?text=SOPORTE%20PRIORITARIO%20|%20Titular%20necesita%20recuperar%20acceso%20al%20archivo:"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="login-assist-btn"
+            >SOPORTE DE ARCHIVO.</a>
+          </div>
+        </div>
       </div>
     </div>
   </div>
@@ -2203,12 +2268,6 @@ textarea::placeholder { color:rgba(26,23,20,.34); font-style:italic; }
           <svg viewBox="0 0 24 24" aria-hidden="true"><polygon points="8,5 19,12 8,19"></polygon></svg>
           REPRODUCIR.
         </button>
-        <div class="dimmer-wrap">
-          <button id="btn-dimmer" class="dimmer-btn" type="button" aria-label="Control de dimmer">
-            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 1 0 9.8 9.8z"></path></svg>
-          </button>
-          <input id="dimmer-slider" class="dimmer-slider" type="range" min="0" max="80" value="0" step="1" aria-label="Intensidad dimmer">
-        </div>
         <button id="btn-theme-mode" class="theme-toggle-btn" type="button" aria-label="Alternar modo claro y oscuro" aria-pressed="false">MODO CLARO</button>
         <div class="cs-wrap">
           <span class="cs-label">CONTACTOS</span>
@@ -2442,7 +2501,6 @@ const ARCHIVO_SESSION_KEY = 'archivo.session';
 const ARCHIVO_SESSION_TOKEN_KEY = 'archivo.session.token';
 const ARCHIVO_SESSION_TTL_MS = 1000 * 60 * 60 * 18;
 const ARCHIVO_LOCAL_FAVS_PREFIX = 'archivo.favoritas.';
-const ARCHIVO_LOCAL_DIMMER_PREFIX = 'archivo.dimmer.';
 const ARCHIVO_UI_THEME_KEY = 'archivo.ui.theme';
 const RESTORE_SESSION_ON_RELOAD = false;
 const LOGIN_BG_POOL = [
@@ -2497,6 +2555,7 @@ let currentClave  = null;
 let clientData    = null;
 let selecciones   = {};   // { foto_id: { favorito, portfolio_auth, reedicion } }
 let allFotos      = [];
+let visibleFotos  = [];
 let showingFavs   = false;
 let isContactSheet = false;
 let currentLbFoto = null;
@@ -2509,12 +2568,20 @@ let autoSaveTimer = null;
 let toastTimer    = null;
 let loginStatusAnimTimer = null;
 let photoObserver = null;
+let currentAccessMode = 'originales';
+
+const ACCESS_MODES = {
+  ORIGINALES: 'originales',
+  MEMORIAS: 'memorias',
+};
 
 const GRID_RENDER_BATCH = 18;
 const GRID_RENDER_FRAME_DELAY = 16;
 const LOGIN_SUCCESS_HOLD_MS = 1550;
-const OPENING_RITUAL_HOLD_MS = 5200;
-const OPENING_RITUAL_FADE_MS = 2300;
+const OPENING_RITUAL_HOLD_MS = 3000;
+const OPENING_RITUAL_FADE_MS = 1450;
+const OPENING_RITUAL_LOGO_HOLD_MS = 520;
+const OPENING_RITUAL_LOGO_FADE_MS = 560;
 const LOGOUT_MODAL_TRANSITION_MS = 380;
 const PLAYBACK_INTERVAL_MS = 5000;
 
@@ -2676,6 +2743,94 @@ function getDeliveryTheme(data = clientData) {
   return DELIVERY_THEMES[inferDeliveryKind(data)] || DELIVERY_THEMES.event;
 }
 
+function detectAccessMode(rawKey) {
+  const key = String(rawKey || '').trim().toLowerCase();
+  if (/\.memorias$/i.test(key)) return ACCESS_MODES.MEMORIAS;
+  return ACCESS_MODES.ORIGINALES;
+}
+
+function isMemoriasAccess() {
+  return currentAccessMode === ACCESS_MODES.MEMORIAS;
+}
+
+function normalizeVisibilityTags(raw) {
+  if (Array.isArray(raw)) {
+    const cleaned = raw
+      .map((tag) => String(tag || '').trim().toLowerCase())
+      .filter(Boolean)
+      .map((tag) => {
+        if (tag === 'invitados') return ACCESS_MODES.MEMORIAS;
+        if (tag === 'completo' || tag === 'full') return ACCESS_MODES.ORIGINALES;
+        return tag;
+      });
+    return cleaned.length ? Array.from(new Set(cleaned)) : [ACCESS_MODES.ORIGINALES, ACCESS_MODES.MEMORIAS];
+  }
+
+  const single = String(raw || '').trim().toLowerCase();
+  if (!single) return [ACCESS_MODES.ORIGINALES, ACCESS_MODES.MEMORIAS];
+  return normalizeVisibilityTags(single.split(','));
+}
+
+function normalizePhotoRecord(rawFoto = {}, index = 0, kind = 'event') {
+  const previewUrl = normalizeAssetUrl(rawFoto.thumb || rawFoto.preview || rawFoto.webp || rawFoto.url || rawFoto.src || '');
+  const fullUrl = normalizeAssetUrl(rawFoto.full || rawFoto.jpg || rawFoto.url || rawFoto.src || previewUrl);
+  const fallbackId = String(rawFoto.src || rawFoto.url || rawFoto.thumb || rawFoto.preview || `foto-${index + 1}`);
+  const visibility = normalizeVisibilityTags(rawFoto.visibility);
+
+  return {
+    id: String(rawFoto.id || fallbackId),
+    url: fullUrl,
+    thumb: previewUrl || fullUrl,
+    span: rawFoto.span || getGallerySpan(index, kind),
+    visibility,
+  };
+}
+
+function photoIsVisibleForCurrentAccess(foto) {
+  const visibility = normalizeVisibilityTags(foto?.visibility);
+  return visibility.includes(currentAccessMode);
+}
+
+function filterFotosForCurrentAccess(items = []) {
+  return (items || []).filter((foto) => photoIsVisibleForCurrentAccess(foto));
+}
+
+function applyAccessModeUI() {
+  const memorias = isMemoriasAccess();
+  const app = document.getElementById('app-interface');
+  if (app) app.classList.toggle('is-memorias', memorias);
+
+  const adminSelectors = [
+    '#btn-ver-sel',
+    '.cs-wrap',
+    '#btn-finalizar',
+    '#lb-fav-btn',
+    '#lb-reed-btn',
+  ];
+  adminSelectors.forEach((selector) => {
+    const node = document.querySelector(selector);
+    if (node) node.classList.toggle('hidden', memorias);
+  });
+
+  const notesBlock = document.getElementById('inp-notas')?.closest('.final-block');
+  const testimonyBlock = document.getElementById('inp-testimonio')?.closest('.final-block');
+  if (notesBlock) notesBlock.classList.toggle('hidden', memorias);
+  if (testimonyBlock) testimonyBlock.classList.toggle('hidden', memorias);
+  const reedArea = document.getElementById('lb-reed-area');
+  if (reedArea && memorias) reedArea.classList.add('hidden');
+
+  if (memorias) {
+    showingFavs = false;
+    const favBtn = document.getElementById('btn-ver-sel');
+    if (favBtn) favBtn.classList.remove('active');
+
+    const contactSheetToggle = document.getElementById('toggle-cs');
+    const gMain = document.getElementById('g-main');
+    if (contactSheetToggle) contactSheetToggle.checked = false;
+    if (gMain) gMain.classList.remove('contact-sheet');
+  }
+}
+
 function getGallerySpan(index, kind) {
   const patterns = {
     event: ['grande', 'small', 'tall', 'wide', 'small', 'tall', 'small', 'wide', 'small'],
@@ -2722,10 +2877,6 @@ function getFavStorageKey() {
   return `${ARCHIVO_LOCAL_FAVS_PREFIX}${getClientStorageToken()}`;
 }
 
-function getDimmerStorageKey() {
-  return `${ARCHIVO_LOCAL_DIMMER_PREFIX}${getClientStorageToken()}`;
-}
-
 function persistLocalFavs() {
   const key = getFavStorageKey();
   if (!key) return;
@@ -2747,24 +2898,6 @@ function applyLocalFavs() {
   } catch (_) {
     // noop
   }
-}
-
-function persistDimmerValue(percent) {
-  const key = getDimmerStorageKey();
-  if (!key) return;
-  const safe = Math.max(0, Math.min(80, Number(percent) || 0));
-  localStorage.setItem(key, String(safe));
-}
-
-function applyStoredDimmerValue() {
-  const key = getDimmerStorageKey();
-  const slider = document.getElementById('dimmer-slider');
-  if (!key || !slider) return;
-
-  const saved = Number(localStorage.getItem(key));
-  const safe = Number.isFinite(saved) ? Math.max(0, Math.min(80, saved)) : 0;
-  slider.value = String(safe);
-  setDimmerOpacity(safe);
 }
 
 function getStoredUiTheme() {
@@ -2804,7 +2937,8 @@ function setMetaContentBySelector(selector, value) {
 
 function resolveOgImageUrl() {
   const slug = slugifyLabel(clientData?.cliente_nombre || clientData?.carpeta || '');
-  const first = allFotos.find((f) => f && (f.url || f.thumb));
+  const sourcePool = visibleFotos.length ? visibleFotos : allFotos;
+  const first = sourcePool.find((f) => f && (f.url || f.thumb));
   const candidate = clientData?.hero_img
     || (slug ? `imgs/${slug}-portada.jpg` : '')
     || (clientData?.carpeta ? `imgs/${clientData.carpeta}/portada.jpg` : '')
@@ -2844,27 +2978,24 @@ async function playOpeningRitual() {
 
   const logoDuration = Math.max(2200, OPENING_RITUAL_HOLD_MS - 300);
   overlay.style.setProperty('--opening-logo-duration', `${logoDuration}ms`);
-  overlay.style.setProperty('--opening-fade-duration', `${OPENING_RITUAL_FADE_MS}ms`);
-  overlay.classList.remove('hidden', 'is-fading');
+  overlay.style.setProperty('--opening-bg-fade-duration', `${OPENING_RITUAL_FADE_MS}ms`);
+  overlay.style.setProperty('--opening-logo-fade-duration', `${OPENING_RITUAL_LOGO_FADE_MS}ms`);
+  overlay.classList.remove('hidden', 'is-background-fading', 'is-logo-fading');
   void overlay.offsetWidth;
   overlay.classList.add('is-active');
 
   await new Promise((resolve) => window.setTimeout(resolve, OPENING_RITUAL_HOLD_MS));
 
-  overlay.classList.remove('is-active');
-  overlay.classList.add('is-fading');
+  overlay.classList.add('is-background-fading');
   await new Promise((resolve) => window.setTimeout(resolve, OPENING_RITUAL_FADE_MS));
 
-  overlay.classList.add('hidden');
-  overlay.classList.remove('is-fading');
-}
+  await new Promise((resolve) => window.setTimeout(resolve, OPENING_RITUAL_LOGO_HOLD_MS));
 
-function setDimmerOpacity(percent) {
-  const safe = Math.max(0, Math.min(80, Number(percent) || 0));
-  const dimmer = document.getElementById('dimmer-overlay');
-  const button = document.getElementById('btn-dimmer');
-  if (dimmer) dimmer.style.opacity = String(safe / 100);
-  if (button) button.classList.toggle('active', safe > 0);
+  overlay.classList.add('is-logo-fading');
+  await new Promise((resolve) => window.setTimeout(resolve, OPENING_RITUAL_LOGO_FADE_MS));
+
+  overlay.classList.add('hidden');
+  overlay.classList.remove('is-active', 'is-background-fading', 'is-logo-fading');
 }
 
 function stopPlayback() {
@@ -2889,12 +3020,12 @@ function stopPlayback() {
 }
 
 function advancePlayback() {
-  if (!allFotos.length) return;
+  if (!visibleFotos.length) return;
   const frameA = document.getElementById('playback-frame-a');
   const frameB = document.getElementById('playback-frame-b');
   if (!frameA || !frameB) return;
 
-  const nextFoto = allFotos[playbackIndex % allFotos.length];
+  const nextFoto = visibleFotos[playbackIndex % visibleFotos.length];
   const nextSrc = resolveMainJpgUrl(nextFoto);
   const targetFrame = playbackFrame % 2 === 0 ? frameA : frameB;
   const prevFrame = playbackFrame % 2 === 0 ? frameB : frameA;
@@ -2913,7 +3044,7 @@ function startPlayback() {
     toast('REPRODUCIR. NO DISPONIBLE EN MOVIL');
     return;
   }
-  if (!allFotos.length) {
+  if (!visibleFotos.length) {
     toast('SIN FOTOS PARA REPRODUCIR');
     return;
   }
@@ -2948,6 +3079,11 @@ function applyDeliveryTheme() {
   if (heroKicker) heroKicker.textContent = theme.heroKicker;
   if (heroCopy) heroCopy.textContent = theme.heroCopy;
   if (headerKicker) headerKicker.textContent = theme.headerKicker;
+
+  if (isMemoriasAccess()) {
+    if (heroKicker) heroKicker.textContent = 'Archivo compartido · Memorias';
+    if (heroCopy) heroCopy.textContent = 'Una edición curada para revivir el evento con navegación fluida, lectura limpia y descarga individual en calidad JPG.';
+  }
 
   theme.sections.forEach((label, index) => {
     const order = String(index + 1).padStart(2, '0');
@@ -3105,10 +3241,11 @@ function applyAuthPayload(payload, fallbackKey = '') {
   const data = payload?.client || payload;
   currentSessionToken = String(payload?.token || currentSessionToken || '').trim() || null;
   currentClave = String(data?.clave_tecnica || data?.clave || fallbackKey).trim();
+  currentAccessMode = payload?.access_mode || detectAccessMode(fallbackKey || data?.clave_tecnica || data?.clave || '');
   clientData = data || null;
   hydrateSelectionState(payload?.selecciones || []);
   hydrateTestimonyState(payload?.testimonio || null);
-  persistClientSession(currentClave || fallbackKey, clientData || {}, currentSessionToken);
+  persistClientSession(currentClave || fallbackKey, clientData || {}, currentSessionToken, currentAccessMode);
 }
 
 async function validateAccess(key, options = {}) {
@@ -3122,6 +3259,7 @@ async function validateAccess(key, options = {}) {
   const input = document.getElementById('gateway-input') || document.getElementById('clave-input');
   const typedKey = input ? String(input.value || '').trim().toLowerCase() : '';
   key = String(key || typedKey || '').trim().toLowerCase();
+  currentAccessMode = detectAccessMode(key);
 
   if (!key) {
     setLoginStatus('error', 'Falta la clave', 'Ingresá tu clave para iniciar sesión.');
@@ -3181,7 +3319,7 @@ async function validateAccess(key, options = {}) {
     if (DEMO_MODE) {
       currentClave = String(data.clave_tecnica || data.clave || key).trim();
       clientData = data;
-      persistClientSession(currentClave || key, clientData || {}, null);
+      persistClientSession(currentClave || key, clientData || {}, null, currentAccessMode);
     }
 
     await buildAllFotos();
@@ -3232,6 +3370,7 @@ async function restoreSessionIfPossible() {
   const restore = await callSecureFunction(SECURE_AUTH_FUNCTION_URL, {
     action: 'restore',
     token,
+    access_mode: getStoredSessionAccessMode(),
   });
 
   if (!restore.ok || !restore.data?.client) {
@@ -3242,6 +3381,7 @@ async function restoreSessionIfPossible() {
   }
 
   applyAuthPayload(restore.data, '');
+  currentAccessMode = restore.data?.access_mode || getStoredSessionAccessMode();
   await buildAllFotos();
   renderGallery();
   showScreen('gallery');
@@ -3299,7 +3439,7 @@ async function playLoginSuccessConfirmFx() {
   });
 }
 
-function persistClientSession(clave, payload, token = null) {
+function persistClientSession(clave, payload, token = null, accessMode = currentAccessMode) {
   const safeClave = (clave || '').toUpperCase().trim();
   const safePayload = payload || {};
 
@@ -3311,8 +3451,20 @@ function persistClientSession(clave, payload, token = null) {
   localStorage.setItem('archivo.payload', JSON.stringify(safePayload));
   localStorage.setItem(ARCHIVO_SESSION_KEY, JSON.stringify({
     clave: safeClave,
+    access_mode: accessMode,
     ts: Date.now(),
   }));
+}
+
+function getStoredSessionAccessMode() {
+  try {
+    const raw = localStorage.getItem(ARCHIVO_SESSION_KEY);
+    if (!raw) return ACCESS_MODES.ORIGINALES;
+    const parsed = JSON.parse(raw);
+    return parsed?.access_mode === ACCESS_MODES.MEMORIAS ? ACCESS_MODES.MEMORIAS : ACCESS_MODES.ORIGINALES;
+  } catch (_) {
+    return ACCESS_MODES.ORIGINALES;
+  }
 }
 
 function hydrateLoginNoticeFromQuery() {
@@ -3354,12 +3506,17 @@ async function buildAllFotosFromCarpeta(carpeta) {
       const data = await apiResp.json();
       images = data.images || [];
     }
-    return images.map((img, i) => ({
-      id:    img.src,
-      url:   normalizeAssetUrl(img.src),
-      thumb: normalizeAssetUrl(img.thumb || img.src),
-      span:  getGallerySpan(i, kind),
-    }));
+    return images.map((img, i) => normalizePhotoRecord({
+      id: img.id || img.src,
+      src: img.src,
+      thumb: img.thumb,
+      preview: img.preview,
+      full: img.full,
+      jpg: img.jpg,
+      webp: img.webp,
+      visibility: img.visibility,
+      span: img.span,
+    }, i, kind));
   } catch (e) {
     return [];
   }
@@ -3374,12 +3531,7 @@ async function buildAllFotos() {
     clientData.seccion_03 = allFotos.slice(Math.ceil(allFotos.length * 2 / 3));
   } else {
     const kind = inferDeliveryKind(clientData);
-    const normalizeSection = (items = []) => items.map((foto, index) => ({
-      ...foto,
-      url: normalizeAssetUrl(foto.url || foto.thumb || ''),
-      thumb: normalizeAssetUrl(foto.thumb || foto.url || ''),
-      span: foto.span || getGallerySpan(index, kind),
-    }));
+    const normalizeSection = (items = []) => items.map((foto, index) => normalizePhotoRecord(foto, index, kind));
 
     clientData.seccion_01 = normalizeSection(clientData.seccion_01 || []);
     clientData.seccion_02 = normalizeSection(clientData.seccion_02 || []);
@@ -3395,8 +3547,9 @@ async function buildAllFotos() {
 
 function renderGallery() {
   applyDeliveryTheme();
+  visibleFotos = filterFotosForCurrentAccess(allFotos);
+  applyAccessModeUI();
   applyLocalFavs();
-  applyStoredDimmerValue();
   const meta = getClientMeta(clientData);
   document.getElementById('client-name').textContent = clientData.evento_detalles || clientData.cliente_nombre || '—';
   document.getElementById('meta-fecha').textContent  = meta.primary || '—';
@@ -3406,9 +3559,9 @@ function renderGallery() {
   if (heroName) heroName.textContent = (clientData.cliente_nombre || clientData.evento_detalles || 'Proyecto') + '.';
   if (heroMeta) heroMeta.textContent = `${meta.primary || '—'} · ${String(meta.secondary || '—').toUpperCase()}`;
   syncGalleryHeroImage();
-  renderGrid('grid-01', clientData.seccion_01 || []);
-  renderGrid('grid-02', clientData.seccion_02 || []);
-  renderGrid('grid-03', clientData.seccion_03 || []);
+  renderGrid('grid-01', filterFotosForCurrentAccess(clientData.seccion_01 || []));
+  renderGrid('grid-02', filterFotosForCurrentAccess(clientData.seccion_02 || []));
+  renderGrid('grid-03', filterFotosForCurrentAccess(clientData.seccion_03 || []));
   updateOpenGraphMeta();
   renderActaDeposito();
   updateFavCount();
@@ -3418,7 +3571,8 @@ function syncGalleryHeroImage() {
   const heroImg = document.getElementById('archivo-hero-img');
   if (!heroImg) return;
   const slug = slugifyLabel(clientData?.cliente_nombre || clientData?.carpeta || '');
-  const first = allFotos.find(f => f && (f.url || f.thumb));
+  const sourcePool = visibleFotos.length ? visibleFotos : allFotos;
+  const first = sourcePool.find(f => f && (f.url || f.thumb));
 
   setImageFromCandidates(heroImg, [
     clientData.hero_img,
@@ -3501,6 +3655,7 @@ function buildCard(foto, idx) {
   const isPF   = !!sel.portfolio_auth;
   const hasR   = !!(sel.reedicion);
   const imgSrc = escAttr(foto.thumb || foto.url);
+  const memorias = isMemoriasAccess();
 
   const card = document.createElement('article');
   card.className  = `foto-card span-${span}`;
@@ -3511,7 +3666,7 @@ function buildCard(foto, idx) {
     <img class="foto-img" data-src="${imgSrc}"
          alt="Fotografía ${idx + 1}"
          loading="lazy" decoding="async">
-    <button class="btn-fav${isFav ? ' is-fav' : ''}" aria-label="Marcar como favorito">
+    ${memorias ? '' : `<button class="btn-fav${isFav ? ' is-fav' : ''}" aria-label="Marcar como favorito">
       <svg viewBox="0 0 24 24" fill="${isFav ? 'currentColor' : 'none'}"
            stroke="currentColor" stroke-width="1.5"
            stroke-linecap="round" stroke-linejoin="round">
@@ -3519,16 +3674,16 @@ function buildCard(foto, idx) {
                  a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23
                  l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"/>
       </svg>
-    </button>
-    ${hasR ? '<div class="reed-dot" title="Reedición solicitada">R</div>' : ''}
-    <div class="card-foot">
+    </button>`}
+    ${!memorias && hasR ? '<div class="reed-dot" title="Reedición solicitada">R</div>' : ''}
+    ${memorias ? '' : `<div class="card-foot">
       <span class="pf-label">USO EN PORTFOLIO</span>
       <label class="sw">
         <input type="checkbox" class="pf-check"${isPF ? ' checked' : ''}
                aria-label="Autorizar uso en portfolio">
         <span class="sw-track"></span>
       </label>
-    </div>
+    </div>`}
   `;
 
   const img    = card.querySelector('.foto-img');
@@ -3542,8 +3697,12 @@ function buildCard(foto, idx) {
     img.classList.add('loaded');
   });
   img.addEventListener('click', () => openLightbox(foto, idx));
-  btnFav.addEventListener('click', e => { e.stopPropagation(); toggleFav(foto.id); });
-  pfChk.addEventListener('change', e => { e.stopPropagation(); togglePortfolio(foto.id, e.target.checked); });
+  if (btnFav) {
+    btnFav.addEventListener('click', e => { e.stopPropagation(); toggleFav(foto.id); });
+  }
+  if (pfChk) {
+    pfChk.addEventListener('change', e => { e.stopPropagation(); togglePortfolio(foto.id, e.target.checked); });
+  }
 
   return card;
 }
@@ -3552,6 +3711,7 @@ function buildCard(foto, idx) {
    ACCIONES — FAVORITO / PORTFOLIO / REEDICIÓN
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 async function toggleFav(fotoId) {
+  if (isMemoriasAccess()) return;
   if (!selecciones[fotoId]) selecciones[fotoId] = {};
   const newVal = !selecciones[fotoId].favorito;
   selecciones[fotoId].favorito = newVal;
@@ -3575,6 +3735,7 @@ async function toggleFav(fotoId) {
 }
 
 async function togglePortfolio(fotoId, val) {
+  if (isMemoriasAccess()) return;
   if (!selecciones[fotoId]) selecciones[fotoId] = {};
   selecciones[fotoId].portfolio_auth = val;
   toast(val ? 'AUTORIZADO PARA PORTFOLIO' : 'AUTORIZACIÓN REVOCADA');
@@ -3582,6 +3743,7 @@ async function togglePortfolio(fotoId, val) {
 }
 
 async function saveReedicion(fotoId, texto) {
+  if (isMemoriasAccess()) return;
   if (!selecciones[fotoId]) selecciones[fotoId] = {};
   selecciones[fotoId].reedicion = texto;
 
@@ -3623,6 +3785,7 @@ async function upsertSeleccion(fotoId) {
 }
 
 async function saveTestimony() {
+  if (isMemoriasAccess()) return;
   if (DEMO_MODE) return;
   if (!currentSessionToken) return;
 
@@ -3838,6 +4001,7 @@ function bindGalleryUI() {
 
     currentSessionToken = null;
     currentClave = null; clientData = null;
+    currentAccessMode = ACCESS_MODES.ORIGINALES;
     selecciones  = {}; allFotos = [];
     showingFavs  = false; isContactSheet = false;
     document.body.classList.remove('delivery-kind-event', 'delivery-kind-brand');
@@ -3846,8 +4010,6 @@ function bindGalleryUI() {
     document.getElementById('inp-testimonio').value    = '';
     document.getElementById('inp-notas').value         = '';
     document.getElementById('toggle-cs').checked       = false;
-    document.getElementById('dimmer-slider').value     = '0';
-    setDimmerOpacity(0);
     document.getElementById('g-main').classList.remove('contact-sheet');
     localStorage.removeItem(ARCHIVO_SESSION_TOKEN_KEY);
     localStorage.removeItem(ARCHIVO_SESSION_KEY);
@@ -3893,24 +4055,7 @@ function bindGalleryUI() {
   document.getElementById('btn-reproducir').addEventListener('click', startPlayback);
   document.getElementById('btn-playback-close').addEventListener('click', stopPlayback);
 
-  const dimmerSlider = document.getElementById('dimmer-slider');
-  const dimmerBtn = document.getElementById('btn-dimmer');
   const themeModeBtn = document.getElementById('btn-theme-mode');
-  if (dimmerSlider) {
-    dimmerSlider.addEventListener('input', (event) => {
-      const value = Number(event.target.value || 0);
-      setDimmerOpacity(value);
-      persistDimmerValue(value);
-    });
-  }
-  if (dimmerBtn && dimmerSlider) {
-    dimmerBtn.addEventListener('click', () => {
-      const next = Number(dimmerSlider.value || 0) > 0 ? 0 : 45;
-      dimmerSlider.value = String(next);
-      setDimmerOpacity(next);
-      persistDimmerValue(next);
-    });
-  }
   if (themeModeBtn) {
     themeModeBtn.addEventListener('click', () => {
       const nextMode = document.body.classList.contains('theme-light') ? 'dark' : 'light';
@@ -4071,11 +4216,11 @@ function resolveMainJpgUrl(foto) {
    LIGHTBOX
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 function syncLightboxFrame(idx) {
-  if (!allFotos.length) return;
+  if (!visibleFotos.length) return;
 
-  const total = allFotos.length;
+  const total = visibleFotos.length;
   currentLbIndex = ((idx % total) + total) % total;
-  currentLbFoto = allFotos[currentLbIndex];
+  currentLbFoto = visibleFotos[currentLbIndex];
 
   const img = document.getElementById('lb-img');
   const wrap = document.querySelector('.lb-img-wrap');
@@ -4106,7 +4251,7 @@ function syncLightboxFrame(idx) {
 }
 
 function openLightbox(foto, idx) {
-  const pos = allFotos.findIndex(f => f.id === foto.id);
+  const pos = visibleFotos.findIndex(f => f.id === foto.id);
   syncLightboxFrame(pos >= 0 ? pos : idx);
 
   document.getElementById('lightbox').classList.remove('hidden');
@@ -4128,7 +4273,7 @@ function closeLightbox() {
 }
 
 function navigateLightbox(step) {
-  if (currentLbIndex < 0 || !allFotos.length) return;
+  if (currentLbIndex < 0 || !visibleFotos.length) return;
   syncLightboxFrame(currentLbIndex + step);
 }
 
@@ -4245,13 +4390,15 @@ function endLightboxDrag() {
 function getLightboxFileName(foto) {
   const source = String(foto?.id || foto?.url || 'foto.jpg');
   const rawName = source.split('/').pop() || 'foto.jpg';
-  return rawName.split('?')[0] || 'foto.jpg';
+  const clean = rawName.split('?')[0] || 'foto.jpg';
+  return clean.replace(/\.(webp|png)$/i, '.jpg');
 }
 
 async function handleSingleDownload() {
   if (!currentLbFoto) return;
   try {
-    const res = await fetch(currentLbFoto.url, { mode:'cors' });
+    const jpgUrl = resolveMainJpgUrl(currentLbFoto);
+    const res = await fetch(jpgUrl, { mode:'cors' });
     if (!res.ok) throw new Error('No se pudo obtener la imagen');
     const blob = await res.blob();
     const url = URL.createObjectURL(blob);
@@ -4281,6 +4428,10 @@ function updateLbFavBtn() {
    DESCARGA — JSZip
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 async function handleDownload() {
+  if (isMemoriasAccess()) {
+    toast('DESCARGA DISPONIBLE FOTO POR FOTO');
+    return;
+  }
   const favs = allFotos.filter(f => !!selecciones[f.id]?.favorito);
   if (!favs.length) {
     toast('SIN FOTOS EN SELECCIÓN');
@@ -4292,12 +4443,11 @@ async function handleDownload() {
     const folder = zip.folder((clientData.cliente_nombre || 'seleccion').replace(/[^a-zA-Z0-9]/g,'_'));
 
     await Promise.all(favs.map(async (foto, i) => {
-      const res  = await fetch(foto.url, { mode:'cors' });
+      const jpgUrl = resolveMainJpgUrl(foto);
+      const res  = await fetch(jpgUrl, { mode:'cors' });
       if (!res.ok) throw new Error(`Error al obtener ${foto.id}`);
       const blob = await res.blob();
-      const ext  = blob.type.includes('webp') ? 'webp'
-                 : blob.type.includes('png')  ? 'png' : 'jpg';
-      folder.file(`foto_${String(i + 1).padStart(3,'0')}.${ext}`, blob);
+      folder.file(`foto_${String(i + 1).padStart(3,'0')}.jpg`, blob);
     }));
 
     const content = await zip.generateAsync({ type:'blob', compression:'DEFLATE' });
@@ -4320,6 +4470,7 @@ async function handleDownload() {
    FINALIZAR Y NOTIFICAR — WhatsApp
    â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
 async function handleFinalizar() {
+  if (isMemoriasAccess()) return;
   if (!DEMO_MODE) await saveTestimony();
 
   const favs  = allFotos.filter(f => !!selecciones[f.id]?.favorito).length;

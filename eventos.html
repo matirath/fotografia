@@ -330,6 +330,24 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
 @media(prefers-reduced-motion:reduce){
   *,*::before,*::after{animation-duration:.01ms !important;animation-iteration-count:1 !important;transition-duration:.01ms !important;scroll-behavior:auto !important}
 }
+
+/* ═══════════════════════════════════════════════════════════════════ */
+/* BRANDING DE EVENTO — NEW SECTION                                   */
+/* ═══════════════════════════════════════════════════════════════════ */
+.evs-branding { padding: 12vh var(--gutter); position: relative; border-top: 1px solid rgba(196,154,60,.15); }
+.branding-container { max-width: 1100px; margin: 0 auto; }
+.branding-lead { max-width: 65ch; font-size: clamp(1rem, 1.6vw, 1.15rem); font-weight: 300; line-height: 1.7; color: rgba(232,228,218,.8); margin-bottom: 4rem; }
+.branding-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 2rem; }
+.branding-item { padding: 2.5rem; border: 1px solid rgba(196,154,60,.18); border-radius: 4px; background: rgba(255,255,255,.02); transition: transform .4s ease, border-color .4s ease, background .4s ease; }
+.branding-item:hover { border-color: var(--gold); background: rgba(196,154,60,0.05); transform: translateY(-4px); }
+.branding-item h3 { font-size: .85rem; font-weight: 600; text-transform: uppercase; letter-spacing: .15em; color: var(--gold); margin-bottom: 1.2rem; display: flex; align-items: center; gap: 10px; }
+.branding-item h3::after { content: ""; width: 20px; height: 1px; background: var(--gold); opacity: 0.4; }
+.branding-item p { font-size: .82rem; font-weight: 300; line-height: 1.8; color: rgba(232,228,218,.7); }
+
+@media(max-width: 768px) {
+  .branding-grid { grid-template-columns: 1fr; gap: 1.2rem; }
+  .branding-item { padding: 1.8rem; }
+}
 </style>
 </head>
 <body>
@@ -555,6 +573,34 @@ footer{padding:3rem var(--gutter) 7.5rem;display:grid;grid-template-columns:1fr 
     <div class="diff-item r">
       <h3>Confianza para la familia</h3>
       <p>Saber que la memoria del evento está en buenas manos genera una calma que se nota. Esa es, también, parte de la experiencia.</p>
+    </div>
+  </div>
+</section>
+
+<!-- BRANDING DE EVENTO -->
+<section class="evs-branding s-dark" id="branding">
+  <div class="branding-container">
+    <span class="evs-intro-label r">Propuesta de Autor</span>
+    <h2 class="section-hdr r d1">Identidad de Evento</h2>
+    <p class="branding-lead r d2">No creo en las entregas genéricas. Aplico el rigor del branding comercial para convertir cada evento en una marca personal, logrando una coherencia visual que trasciende el simple registro.</p>
+    
+    <div class="branding-grid">
+      <div class="branding-item r">
+        <h3>Logotipado y Estilo</h3>
+        <p>Creación de un sistema visual único para la fecha. Un identificador que unifica tipografías y elementos gráficos aplicados a toda la entrega, desde las proyecciones hasta el fotolibro final.</p>
+      </div>
+      <div class="branding-item r d1">
+        <h3>Curaduría Cromática</h3>
+        <p>El color cuenta una historia. Desarrollo una paleta específica para la edición del evento, asegurando que cada imagen conviva en un mismo universo estético coherente con la identidad elegida.</p>
+      </div>
+      <div class="branding-item r d2">
+        <h3>Sistemas de Entrega</h3>
+        <p>La experiencia no termina en el evento. El material se presenta en interfaces personalizadas —estilo plataforma de streaming— diseñadas para navegar los recuerdos con una lógica editorial propia.</p>
+      </div>
+      <div class="branding-item r d3">
+        <h3>Dirección de Imagen</h3>
+        <p>Acompañamiento en la estética general: desde la selección de locaciones para la Pre 15 hasta la coherencia visual de las piezas de video y soportes físicos.</p>
+      </div>
     </div>
   </div>
 </section>

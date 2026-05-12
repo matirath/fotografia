@@ -496,6 +496,9 @@ section>*,.svc-nav-inner{position:relative;z-index:2}
 .lead-modal-submit{appearance:none;border:1px solid var(--gold);border-radius:999px;background:var(--gold);color:#0d0c0a;padding:.77rem 1.18rem;font-size:.62rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;cursor:pointer;transition:background .2s ease,border-color .2s ease,transform .2s ease}
 .lead-modal-submit:hover,.lead-modal-submit:focus-visible{background:#c9a327;border-color:#c9a327;transform:translateY(-1px)}
 .lead-modal-submit[disabled]{opacity:.72;cursor:wait;transform:none}
+.lead-modal-submit.is-loading{position:relative;overflow:hidden}
+.lead-modal-submit.is-loading::before{content:'';position:absolute;inset:0;background:linear-gradient(105deg,transparent 0%,rgba(255,255,255,.18) 42%,rgba(255,255,255,.38) 50%,rgba(255,255,255,.18) 58%,transparent 100%);transform:translateX(-120%);animation:leadSubmitShimmer 1.1s ease-in-out infinite;pointer-events:none}
+@keyframes leadSubmitShimmer{0%{transform:translateX(-120%)}100%{transform:translateX(120%)}}
 .lead-modal-later{appearance:none;border:0;background:none;color:rgba(242,237,230,.7);font-size:.74rem;text-decoration:underline;cursor:pointer;padding:.35rem .1rem}
 .lead-modal-later:hover,.lead-modal-later:focus-visible{color:#fff}
 .lead-modal-note{font-size:.68rem;line-height:1.5;color:rgba(242,237,230,.55)}
@@ -976,6 +979,8 @@ document.querySelectorAll('.r').forEach(function(el){obs.observe(el);});
   var STORAGE_KEY='matirathLeadModalDismissedUntil';
   var DISMISS_MS=1000*60*60*24*3; /* Ajustar ventana de reaparicion (actual: 3 dias) */
   var OPEN_DELAY_MS=3500;
+  var MIN_SUBMIT_ANIM_MS=950;
+  var SUBMIT_TIMEOUT_MS=12000;
   var lastFocused=null;
 
   function setFeedback(message,isError){
@@ -1016,6 +1021,12 @@ document.querySelectorAll('.r').forEach(function(el){obs.observe(el);});
     if(copyEl)copyEl.style.display='';
     if(headerEl)headerEl.style.display='';
     form.style.display='';
+    var submitBtn=form.querySelector('.lead-modal-submit');
+    if(submitBtn){
+      submitBtn.disabled=false;
+      submitBtn.classList.remove('is-loading');
+      submitBtn.textContent='Quiero recibir info';
+    }
   }
 
   if(shouldOpen()){
@@ -1069,15 +1080,46 @@ document.querySelectorAll('.r').forEach(function(el){obs.observe(el);});
       var customLoc=(locationOtherInput.value||'').trim();
       if(customLoc)loc='Otro: '+customLoc;
     }
+    var fullName=(form.fullName.value||'').trim();
+    var whatsapp=(form.whatsapp.value||'').trim();
+    var whatsappDigits=whatsapp.replace(/\D+/g,'');
+    var whatsappE164=whatsappDigits?('+'+whatsappDigits):'';
+    var submittedAt=new Date().toISOString();
     return {
-      fullName:(form.fullName.value||'').trim(),
+      fullName:fullName,
+      nombre:fullName,
+      name:fullName,
       email:(form.email.value||'').trim(),
-      whatsapp:(form.whatsapp.value||'').trim(),
+      whatsapp:whatsapp,
+      telefono:whatsapp,
+      phone:whatsapp,
+      celular:whatsapp,
+      whatsappDigits:whatsappDigits,
+      whatsappE164:whatsappE164,
       eventType:evType,
+      tipoEvento:evType,
+      tipo_evento:evType,
+      event_type:evType,
       location:loc,
       source:'index-modal',
-      submittedAt:new Date().toISOString()
+      action:'submitLead',
+      submittedAt:submittedAt,
+      submitted_at:submittedAt,
+      landing_path:window.location.pathname
     };
+  }
+
+  function setSubmitState(submitBtn,isSubmitting){
+    if(!submitBtn)return;
+    if(isSubmitting){
+      submitBtn.disabled=true;
+      submitBtn.classList.add('is-loading');
+      submitBtn.textContent='Enviando...';
+      return;
+    }
+    submitBtn.disabled=false;
+    submitBtn.classList.remove('is-loading');
+    submitBtn.textContent='Quiero recibir info';
   }
 
   form.addEventListener('submit',function(e){
@@ -1095,19 +1137,27 @@ document.querySelectorAll('.r').forEach(function(el){obs.observe(el);});
     }
 
     var submitBtn=form.querySelector('.lead-modal-submit');
-    if(submitBtn)submitBtn.disabled=true;
+    setSubmitState(submitBtn,true);
     if(feedback){
       feedback.classList.remove('is-visible','is-error');
       feedback.textContent='';
     }
 
-    var payload=buildPayload();
+    var payload;
+    try{
+      payload=buildPayload();
+    }catch(_err){
+      setFeedback('No se pudo preparar el envio. Probá nuevamente.',true);
+      setSubmitState(submitBtn,false);
+      return;
+    }
+    var submitStartedAt=Date.now();
 
     var AUTO_CLOSE_MS=9000;
     function onSuccess(){
       form.reset();
       persistDismiss();
-      if(submitBtn)submitBtn.disabled=false;
+      setSubmitState(submitBtn,false);
       // Show success panel
       form.style.display='none';
       var copyEl=modal.querySelector('.lead-modal-copy');
@@ -1135,29 +1185,47 @@ document.querySelectorAll('.r').forEach(function(el){obs.observe(el);});
 
     function onFailure(){
       setFeedback('No se pudo enviar en este momento. Podes intentar nuevamente en unos minutos.',true);
-      if(submitBtn)submitBtn.disabled=false;
+      setSubmitState(submitBtn,false);
+    }
+
+    function onSuccessAfterMinAnimation(){
+      var elapsed=Date.now()-submitStartedAt;
+      var wait=Math.max(0,MIN_SUBMIT_ANIM_MS-elapsed);
+      window.setTimeout(onSuccess,wait);
     }
 
     if(endpoint){
-      /* Integracion real: configurar data-endpoint en #leadModalForm para enviar a Google Sheets, Formspree, Mailchimp, backend propio o base de datos. */
       var isGoogleScript=endpoint.indexOf('script.google.com')!==-1;
+      var canAbort=(typeof AbortController!=='undefined');
+      var controller=canAbort?new AbortController():null;
+      var timeoutId=window.setTimeout(function(){
+        if(controller)controller.abort();
+      },SUBMIT_TIMEOUT_MS);
       var requestOptions=isGoogleScript
         ?{
           method:'POST',
           mode:'no-cors',
           headers:{'Content-Type':'text/plain;charset=utf-8'},
-          body:JSON.stringify(payload)
+          body:JSON.stringify(payload),
+          signal:controller?controller.signal:undefined
         }
         :{
           method:'POST',
           headers:{'Content-Type':'application/json'},
-          body:JSON.stringify(payload)
+          body:JSON.stringify(payload),
+          signal:controller?controller.signal:undefined
         };
 
       fetch(endpoint,requestOptions).then(function(res){
+        window.clearTimeout(timeoutId);
         if(!isGoogleScript && !res.ok)throw new Error('request_failed');
-        onSuccess();
+        if(isGoogleScript)return { ok:true };
+        return res.json().catch(function(){return { ok:true };});
+      }).then(function(data){
+        if(data && data.ok===false)throw new Error('request_rejected');
+        onSuccessAfterMinAnimation();
       }).catch(function(){
+        window.clearTimeout(timeoutId);
         onFailure();
       });
       return;
@@ -1165,7 +1233,7 @@ document.querySelectorAll('.r').forEach(function(el){obs.observe(el);});
 
     /* Modo sin backend: simulacion de envio para no romper experiencia hasta conectar endpoint real. */
     window.setTimeout(function(){
-      onSuccess();
+      onSuccessAfterMinAnimation();
     },550);
   });
 })();

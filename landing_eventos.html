@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex,max-snippet:0,max-image-preview:none">
+  <meta name="googlebot" content="noindex,nofollow,noarchive,nosnippet,noimageindex,max-snippet:0,max-image-preview:none">
+  <title>matirath.jpg | experiencias eventos</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="page">
+    <main class="layout">
+      <section class="frame">
+        <header class="hero">
+          <p class="eyebrow" id="hero-eyebrow"></p>
+          <h1 id="hero-title"></h1>
+          <p id="hero-subtext"></p>
+        </header>
+
+        <div class="form-wrap fade-target" id="form-block">
+          <form id="exp-form" novalidate>
+            <p class="section-label">Memoria</p>
+            <div id="questions-root"></div>
+
+            <section class="final-fields">
+              <p class="section-label">Cierre</p>
+
+              <div class="grid-2">
+                <label>
+                  <span class="question-title">Nombre</span>
+                  <input class="field" type="text" name="nombre" maxlength="120" required>
+                </label>
+
+                <label>
+                  <span class="question-title">Instagram</span>
+                  <input class="field" type="text" name="instagram" maxlength="120" placeholder="@usuario">
+                </label>
+
+                <label>
+                  <span class="question-title">WhatsApp (opcional)</span>
+                  <input class="field" type="text" name="whatsapp" maxlength="60" inputmode="tel">
+                </label>
+
+                <label>
+                  <span class="question-title">Frase destacada (opcional)</span>
+                  <input class="field" type="text" name="frase_destacada" maxlength="220" placeholder="Una frase que quieras dejar registrada">
+                </label>
+              </div>
+
+              <div style="margin-top:22px">
+                <p class="question-title">Autorizacion de uso</p>
+                <div class="options">
+                  <label class="radio-line">
+                    <input type="radio" name="autorizacion" value="nombre_completo" required>
+                    <span>Nombre completo</span>
+                  </label>
+                  <label class="radio-line">
+                    <input type="radio" name="autorizacion" value="solo_nombre" required>
+                    <span>Solo nombre</span>
+                  </label>
+                  <label class="radio-line">
+                    <input type="radio" name="autorizacion" value="anonimo" required>
+                    <span>Anonimo</span>
+                  </label>
+                </div>
+              </div>
+
+              <label class="checkbox-line">
+                <input type="checkbox" name="consentimiento" required>
+                <span class="consent-text">Autorizo que fragmentos de estas respuestas puedan utilizarse en web, redes o piezas editoriales de matirath.jpg.</span>
+              </label>
+
+              <input class="hp" type="text" name="hp_site" tabindex="-1" autocomplete="off" aria-hidden="true">
+
+              <p class="meta-note">Acceso privado. Uso interno de seleccion y archivo.</p>
+              <div class="actions">
+                <button type="submit" class="btn" id="submit-btn">Enviar experiencia</button>
+              </div>
+              <p class="error" id="submit-error"></p>
+              <p class="footer-note">matirath.jpg · experiencias eventos privadas</p>
+            </section>
+          </form>
+        </div>
+
+        <section class="success" id="success-block" aria-live="polite">
+          <div class="success-logo-wrap">
+            <img class="success-logo" src="/imgs/LOGOMATIRATH.png" alt="Logo matirath.jpg">
+          </div>
+          <p class="section-label">Gracias</p>
+          <h2 id="success-title"></h2>
+          <div class="small-divider"></div>
+          <p id="success-text"></p>
+          <p class="success-gratitude">Gracias a cada una de las personas que confiaron en mi trabajo, permitiendome llegar hasta donde estoy hoy.</p>
+          <div class="success-cta-wrap">
+            <a class="success-cta-btn" href="/" aria-label="Ir al inicio de matirath.jpg">Queres ver la web completa?</a>
+          </div>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    window.EXPERIENCIA_CONFIG = {
+      tipoCliente: 'eventos',
+      endpoint: '/api/experiencias/submit',
+      eyebrow: 'matirath.jpg · experiencias eventos',
+      title: 'Hay momentos que siguen existiendo despues de las fotos.',
+      subtext: 'Estoy armando una seleccion privada de experiencias y recuerdos de personas que confiaron en mi para acompanar momentos importantes.',
+      successTitle: 'Gracias por abrir este recuerdo.',
+      successText: 'Tu experiencia ya quedo guardada dentro del archivo privado de matirath.jpg. Gracias por compartir este tramo tan personal.',
+      questions: [
+        'Que fue lo que mas tranquilidad te dio de trabajar conmigo?',
+        'Como se sintieron durante la sesion o el evento?',
+        'Que fue lo que mas valoraron del acompanamiento durante ese dia?',
+        'Que sentiste al ver las fotos por primera vez?',
+        'Hay alguna imagen o momento que te haya quedado especialmente marcado?',
+        'Si tuvieras que describir toda la experiencia en una frase, cual seria?'
+      ]
+    };
+  </script>
+  <script src="/app.js" defer></script>
+</body>
+</html>
