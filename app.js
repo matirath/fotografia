@@ -17,6 +17,7 @@
   const successText = document.getElementById('success-text');
 
   const ENDPOINT_STORAGE_KEY = 'matirath_experiencias_endpoint';
+  const APPS_SCRIPT_ENDPOINT = 'https://script.google.com/macros/s/AKfycby9ymEEfHKPm1j31YuEZKxhwCtgplRggoLR8lRteKUV8dge-oeV9J6DRbRr4dzrgyronQ/exec';
   const MIN_ANSWER_LENGTH = 4;
 
   let sending = false;
@@ -35,14 +36,74 @@
     return cleaned ? '@' + cleaned : '';
   }
 
-  function getEndpoint() {
+  function getEndpoints() {
+    const endpoints = [];
     const fromQuery = new URLSearchParams(window.location.search).get('endpoint');
-    if (fromQuery) return fromQuery.trim();
+    if (fromQuery && fromQuery.trim()) {
+      endpoints.push(fromQuery.trim());
+    }
 
     const fromConfig = (config.endpoint || '').trim();
-    if (fromConfig) return fromConfig;
+    if (fromConfig) {
+      endpoints.push(fromConfig);
+    }
 
-    return (localStorage.getItem(ENDPOINT_STORAGE_KEY) || '').trim();
+    const fromStorage = (localStorage.getItem(ENDPOINT_STORAGE_KEY) || '').trim();
+    if (fromStorage) {
+      endpoints.push(fromStorage);
+    }
+
+    endpoints.push(APPS_SCRIPT_ENDPOINT);
+
+    return Array.from(new Set(endpoints));
+  }
+
+  async function sendToEndpoint(endpoint, payload) {
+    const apiKeyMeta = document.querySelector('meta[name="x-api-key"]');
+    const isGoogleScript = endpoint.indexOf('script.google.com') !== -1;
+    const headers = {
+      'Content-Type': isGoogleScript ? 'text/plain;charset=utf-8' : 'application/json'
+    };
+    const payloadBody = { ...payload };
+
+    if (apiKeyMeta && apiKeyMeta.content) {
+      headers['X-API-Key'] = apiKeyMeta.content;
+      payloadBody.api_key = apiKeyMeta.content;
+    }
+
+    const response = await fetch(endpoint, {
+      method: 'POST',
+      mode: isGoogleScript ? 'no-cors' : 'same-origin',
+      headers: headers,
+      body: JSON.stringify(payloadBody)
+    });
+
+    if (isGoogleScript) {
+      return { ok: true };
+    }
+
+    const raw = await response.text();
+    let data = null;
+
+    if (raw && raw.trim()) {
+      try {
+        data = JSON.parse(raw);
+      } catch (_err) {
+        if (!response.ok) {
+          throw new Error('No se pudo registrar la experiencia.');
+        }
+      }
+    }
+
+    if (!response.ok) {
+      throw new Error((data && data.error) || 'No se pudo registrar la experiencia.');
+    }
+
+    if (data && data.ok === false) {
+      throw new Error(data.error || 'No se pudo registrar la experiencia.');
+    }
+
+    return data || { ok: true };
   }
 
   function showError(message) {
@@ -168,54 +229,21 @@
   }
 
   async function sendPayload(payload) {
-    const endpoint = getEndpoint();
-    if (!endpoint) {
+    const endpoints = getEndpoints();
+    if (!endpoints.length) {
       throw new Error('Falta configurar el endpoint de Google Apps Script.');
     }
 
-    const apiKeyMeta = document.querySelector('meta[name="x-api-key"]');
-    const isGoogleScript = endpoint.indexOf('script.google.com') !== -1;
-    const headers = {
-      'Content-Type': isGoogleScript ? 'text/plain;charset=utf-8' : 'application/json'
-    };
-    if (apiKeyMeta && apiKeyMeta.content) {
-      headers['X-API-Key'] = apiKeyMeta.content;
-      payload.api_key = apiKeyMeta.content;
-    }
-
-    const response = await fetch(endpoint, {
-      method: 'POST',
-      mode: isGoogleScript ? 'no-cors' : 'same-origin',
-      headers: headers,
-      body: JSON.stringify(payload)
-    });
-
-    if (isGoogleScript) {
-      return { ok: true };
-    }
-
-    const raw = await response.text();
-    let data = null;
-
-    if (raw && raw.trim()) {
+    let lastError = null;
+    for (let i = 0; i < endpoints.length; i += 1) {
       try {
-        data = JSON.parse(raw);
-      } catch (_err) {
-        if (!response.ok) {
-          throw new Error('No se pudo registrar la experiencia.');
-        }
+        return await sendToEndpoint(endpoints[i], payload);
+      } catch (err) {
+        lastError = err;
       }
     }
 
-    if (!response.ok) {
-      throw new Error((data && data.error) || 'No se pudo registrar la experiencia.');
-    }
-
-    if (data && data.ok === false) {
-      throw new Error(data.error || 'No se pudo registrar la experiencia.');
-    }
-
-    return data || { ok: true };
+    throw lastError || new Error('No se pudo registrar la experiencia.');
   }
 
   function showSuccess() {
