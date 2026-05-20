@@ -21,8 +21,10 @@
   const progressFill = document.getElementById('questions-progress-fill');
   const progressLabel = document.getElementById('questions-progress-label');
   const npsReasonWrap = document.getElementById('nps-reason-wrap');
+  const themeToggle = document.getElementById('theme-toggle');
 
   const ENDPOINT_STORAGE_KEY = 'matirath_experiencias_endpoint';
+  const THEME_STORAGE_KEY = 'matirath_landing_theme';
   const APPS_SCRIPT_ENDPOINT = 'https://script.google.com/macros/s/AKfycby9ymEEfHKPm1j31YuEZKxhwCtgplRggoLR8lRteKUV8dge-oeV9J6DRbRr4dzrgyronQ/exec';
   const MIN_ANSWER_LENGTH = 4;
   const WHATSAPP_MOBILE_DELAY_MS = 2600;
@@ -41,6 +43,40 @@
   function normalizeInstagram(value) {
     const cleaned = String(value || '').trim().replace(/^@+/, '');
     return cleaned ? '@' + cleaned : '';
+  }
+
+  function getStoredTheme() {
+    try {
+      const stored = localStorage.getItem(THEME_STORAGE_KEY);
+      return stored === 'light' ? 'light' : 'dark';
+    } catch (_err) {
+      return 'dark';
+    }
+  }
+
+  function applyTheme(theme) {
+    const isLight = theme === 'light';
+    document.body.classList.toggle('light-theme', isLight);
+    if (!themeToggle) return;
+    themeToggle.setAttribute('aria-pressed', String(isLight));
+    themeToggle.textContent = isLight ? 'Modo oscuro' : 'Modo claro';
+    themeToggle.setAttribute('aria-label', isLight ? 'Cambiar a modo oscuro' : 'Cambiar a modo claro');
+  }
+
+  function bindThemeToggle() {
+    applyTheme(getStoredTheme());
+    if (!themeToggle) return;
+
+    themeToggle.addEventListener('click', function () {
+      const isLight = document.body.classList.contains('light-theme');
+      const nextTheme = isLight ? 'dark' : 'light';
+      applyTheme(nextTheme);
+      try {
+        localStorage.setItem(THEME_STORAGE_KEY, nextTheme);
+      } catch (_err) {
+        // Ignore storage errors (private mode, denied access).
+      }
+    });
   }
 
   function getEndpoints() {
@@ -153,7 +189,7 @@
         return '' +
           '<div class="question-block" style="animation-delay:' + delay + 'ms">' +
             '<div class="question-head">' +
-              '<span class="question-chip">Escena ' + number + '</span>' +
+              '<span class="question-chip">' + number + '</span>' +
               '<span class="question-hint">Respuesta libre</span>' +
             '</div>' +
             '<label class="question-title" for="respuesta_' + (idx + 1) + '">' + escapeHtml(q) + '</label>' +
@@ -439,6 +475,7 @@
   }
 
   function bootstrap() {
+    bindThemeToggle();
     buildQuestions();
     bindProgressListeners();
     bindNpsReasonToggle();

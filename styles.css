@@ -35,6 +35,50 @@ body {
   color: var(--bone);
   line-height: 1.55;
   letter-spacing: 0.01em;
+  transition: background 0.28s ease, color 0.28s ease;
+}
+
+.theme-toggle {
+  position: fixed;
+  top: max(12px, env(safe-area-inset-top, 0px));
+  right: max(12px, env(safe-area-inset-right, 0px));
+  z-index: 95;
+  border: 1px solid rgba(196, 154, 60, 0.44);
+  border-radius: 999px;
+  background: rgba(13, 12, 10, 0.84);
+  color: var(--bone);
+  padding: 8px 14px;
+  font-family: inherit;
+  font-size: 0.74rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: background 0.2s ease, border-color 0.2s ease, transform 0.2s ease;
+}
+
+.theme-toggle:hover {
+  transform: translateY(-1px);
+  border-color: rgba(196, 154, 60, 0.72);
+}
+
+body.light-theme {
+  --base: #f2ede4;
+  --dark: #ffffff;
+  --bone: #1f1b15;
+  --gold: #9b6e22;
+  --amber: #704f18;
+  --line: rgba(34, 30, 23, 0.17);
+  --line-strong: rgba(155, 110, 34, 0.38);
+  --text-soft: rgba(31, 27, 21, 0.78);
+  --text-faint: rgba(31, 27, 21, 0.55);
+  --focus: rgba(155, 110, 34, 0.2);
+}
+
+body.light-theme .theme-toggle {
+  background: rgba(255, 255, 255, 0.88);
+  color: #1f1b15;
+  border-color: rgba(155, 110, 34, 0.4);
 }
 
 .page {
@@ -44,6 +88,13 @@ body {
   background:
     radial-gradient(1200px 680px at 85% -30%, rgba(196, 154, 60, 0.09), transparent 60%),
     radial-gradient(900px 520px at -20% 70%, rgba(140, 104, 32, 0.08), transparent 64%),
+    var(--base);
+}
+
+body.light-theme .page {
+  background:
+    radial-gradient(1200px 680px at 85% -30%, rgba(155, 110, 34, 0.1), transparent 60%),
+    radial-gradient(900px 520px at -20% 70%, rgba(122, 88, 27, 0.1), transparent 64%),
     var(--base);
 }
 
@@ -85,6 +136,11 @@ body {
   background: rgba(13, 12, 10, 0.78);
   backdrop-filter: blur(1.8px);
   box-shadow: var(--shadow);
+}
+
+body.light-theme .frame {
+  background: rgba(255, 255, 255, 0.86);
+  box-shadow: 0 20px 42px rgba(58, 45, 25, 0.12);
 }
 
 .hero {
@@ -131,6 +187,12 @@ body {
   background:
     linear-gradient(135deg, rgba(196, 154, 60, 0.08), rgba(16, 16, 16, 0) 48%),
     rgba(28, 27, 24, 0.44);
+}
+
+body.light-theme .story-intro {
+  background:
+    linear-gradient(135deg, rgba(155, 110, 34, 0.11), rgba(255, 255, 255, 0) 48%),
+    rgba(255, 255, 255, 0.8);
 }
 
 .story-kicker {
@@ -207,6 +269,11 @@ body {
   box-shadow: 0 14px 34px rgba(0, 0, 0, 0.36);
 }
 
+body.light-theme .floating-progress-inner {
+  background: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 14px 34px rgba(57, 42, 20, 0.14);
+}
+
 .floating-progress[data-progress-state="mid"] {
   --fp-border: rgba(196, 154, 60, 0.38);
   --fp-accent-a: rgba(196, 154, 60, 0.95);
@@ -251,9 +318,18 @@ body {
   animation: rise 520ms ease forwards;
 }
 
+body.light-theme .question-block {
+  background: rgba(255, 255, 255, 0.82);
+}
+
 .question-block:hover {
   border-color: rgba(196, 154, 60, 0.32);
   background: rgba(24, 23, 20, 0.7);
+}
+
+body.light-theme .question-block:hover {
+  border-color: rgba(155, 110, 34, 0.36);
+  background: rgba(255, 255, 255, 0.96);
 }
 
 .question-block.answered {
@@ -261,6 +337,12 @@ body {
   background:
     linear-gradient(120deg, rgba(196, 154, 60, 0.08), rgba(18, 17, 15, 0) 55%),
     rgba(20, 19, 16, 0.74);
+}
+
+body.light-theme .question-block.answered {
+  background:
+    linear-gradient(120deg, rgba(155, 110, 34, 0.09), rgba(255, 255, 255, 0) 55%),
+    rgba(255, 255, 255, 0.94);
 }
 
 .question-head {
@@ -317,6 +399,18 @@ input[type="url"] {
   transition: border-color 0.24s ease, box-shadow 0.24s ease, background 0.24s ease;
 }
 
+body.light-theme .field,
+body.light-theme textarea,
+body.light-theme input[type="text"],
+body.light-theme input[type="tel"],
+body.light-theme input[type="email"],
+body.light-theme input[type="number"],
+body.light-theme input[type="url"] {
+  background: rgba(255, 255, 255, 0.92);
+  color: #1f1b15;
+  border-color: rgba(31, 27, 21, 0.22);
+}
+
 textarea {
   min-height: 118px;
   resize: vertical;
@@ -358,6 +452,12 @@ input[type="url"]:focus {
   border-top: 1px solid var(--line);
 }
 
+body.light-theme .final-fields {
+  background:
+    linear-gradient(160deg, rgba(155, 110, 34, 0.08), rgba(255, 255, 255, 0) 52%),
+    rgba(255, 255, 255, 0.9);
+}
+
 .options {
   display: grid;
   gap: 11px;
@@ -397,6 +497,12 @@ input[type="url"]:focus {
   transition: border-color 0.2s ease, background 0.2s ease, color 0.2s ease, transform 0.2s ease;
 }
 
+body.light-theme .nps-option span {
+  background: rgba(255, 255, 255, 0.95);
+  color: rgba(31, 27, 21, 0.82);
+  border-color: rgba(31, 27, 21, 0.2);
+}
+
 .nps-option input:focus-visible + span {
   outline: none;
   box-shadow: 0 0 0 3px var(--focus);
@@ -418,6 +524,11 @@ input[type="url"]:focus {
   opacity: 0;
   transform: translateY(6px);
   transition: opacity 0.24s ease, transform 0.24s ease;
+}
+
+body.light-theme .nps-reason {
+  background: rgba(255, 255, 255, 0.84);
+  border-color: rgba(155, 110, 34, 0.28);
 }
 
 .nps-reason.is-visible {
@@ -508,6 +619,18 @@ input[type="url"]:focus {
     radial-gradient(120% 160% at 12% 4%, rgba(196, 154, 60, 0.09), rgba(16, 16, 16, 0) 52%),
     linear-gradient(180deg, rgba(11, 11, 11, 0.9), rgba(8, 8, 8, 0.92));
   overflow: hidden;
+}
+
+body.light-theme .success {
+  background:
+    radial-gradient(120% 160% at 12% 4%, rgba(155, 110, 34, 0.16), rgba(255, 255, 255, 0) 52%),
+    linear-gradient(180deg, rgba(255, 255, 255, 0.98), rgba(248, 242, 232, 0.98));
+}
+
+body.light-theme .success p,
+body.light-theme .success h2,
+body.light-theme .success-gratitude {
+  color: #1f1b15;
 }
 
 .success::before {
