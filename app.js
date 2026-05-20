@@ -6,6 +6,7 @@
 
   const form = document.getElementById('exp-form');
   const questionsRoot = document.getElementById('questions-root');
+  const hero = document.querySelector('.hero');
   const heroEyebrow = document.getElementById('hero-eyebrow');
   const heroTitle = document.getElementById('hero-title');
   const heroSubtext = document.getElementById('hero-subtext');
@@ -19,6 +20,7 @@
   const ENDPOINT_STORAGE_KEY = 'matirath_experiencias_endpoint';
   const APPS_SCRIPT_ENDPOINT = 'https://script.google.com/macros/s/AKfycby9ymEEfHKPm1j31YuEZKxhwCtgplRggoLR8lRteKUV8dge-oeV9J6DRbRr4dzrgyronQ/exec';
   const MIN_ANSWER_LENGTH = 4;
+  const WHATSAPP_MOBILE_DELAY_MS = 2600;
 
   let sending = false;
 
@@ -249,6 +251,9 @@
   function showSuccess() {
     successTitle.textContent = config.successTitle;
     successText.textContent = config.successText;
+    if (hero) {
+      hero.classList.add('hide');
+    }
     formBlock.classList.add('hide');
     formBlock.style.display = 'none';
     setTimeout(function () {
@@ -308,9 +313,18 @@
 
       const payload = buildPayload();
       const mensaje = buildWhatsAppMessage(payload);
-      window.open('https://wa.me/' + WA_NUMERO + '?text=' + encodeURIComponent(mensaje), '_blank', 'noopener,noreferrer');
       form.reset();
       showSuccess();
+
+      const whatsappUrl = 'https://wa.me/' + WA_NUMERO + '?text=' + encodeURIComponent(mensaje);
+      const isMobile = /Android|iPhone|iPad|iPod|IEMobile|Opera Mini/i.test(navigator.userAgent);
+      if (isMobile) {
+        setTimeout(function () {
+          window.location.href = whatsappUrl;
+        }, WHATSAPP_MOBILE_DELAY_MS);
+      } else {
+        window.open(whatsappUrl, '_blank', 'noopener,noreferrer');
+      }
     } catch (err) {
       showError(err.message || 'No se pudo procesar. Intent\u00e1 nuevamente.');
     } finally {
