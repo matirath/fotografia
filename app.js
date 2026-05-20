@@ -250,13 +250,51 @@
     successTitle.textContent = config.successTitle;
     successText.textContent = config.successText;
     formBlock.classList.add('hide');
+    formBlock.style.display = 'none';
     setTimeout(function () {
       successBlock.classList.add('visible');
       successBlock.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }, 230);
   }
 
-  async function onSubmit(event) {
+  const WA_NUMERO = '5492954230852';
+
+  function buildWhatsAppMessage(payload) {
+    const tipo = config.tipoCliente === 'comercial' ? 'comercial' : 'eventos';
+    const authorizationLabels = {
+      nombre_completo: 'Nombre completo',
+      solo_nombre: 'Solo nombre',
+      anonimo: 'Anónimo'
+    };
+    const authorizationLabel = authorizationLabels[payload.autorizacion] || 'No indicó autorización';
+    const lines = [
+      'Hola Mat\u00edas! Soy ' + payload.nombre + (payload.instagram ? ' (' + payload.instagram + ')' : '') + '.',
+      'Te mando mi experiencia (' + tipo + ').',
+      ''
+    ];
+
+    const questions = Array.isArray(config.questions) ? config.questions : [];
+    questions.forEach(function (q, idx) {
+      const ans = payload['respuesta_' + (idx + 1)] || '';
+      if (ans && ans !== 'Sin respuesta') {
+        lines.push('\u2726 ' + q);
+        lines.push(ans);
+        lines.push('');
+      }
+    });
+
+    if (payload.frase_destacada) {
+      lines.push('Frase: \"' + payload.frase_destacada + '\"');
+      lines.push('');
+    }
+
+    lines.push('Autorización de uso: ' + authorizationLabel);
+    if (payload.whatsapp) lines.push('WA: ' + payload.whatsapp);
+
+    return lines.join('\n');
+  }
+
+  function onSubmit(event) {
     event.preventDefault();
     if (sending) return;
 
@@ -266,18 +304,19 @@
       validateForm();
       sending = true;
       submitBtn.disabled = true;
-      submitBtn.textContent = 'Enviando...';
+      submitBtn.textContent = 'Abriendo WhatsApp...';
 
       const payload = buildPayload();
-      await sendPayload(payload);
+      const mensaje = buildWhatsAppMessage(payload);
+      window.open('https://wa.me/' + WA_NUMERO + '?text=' + encodeURIComponent(mensaje), '_blank', 'noopener,noreferrer');
       form.reset();
       showSuccess();
     } catch (err) {
-      showError(err.message || 'No se pudo enviar. Intenta nuevamente.');
+      showError(err.message || 'No se pudo procesar. Intent\u00e1 nuevamente.');
     } finally {
       sending = false;
       submitBtn.disabled = false;
-      submitBtn.textContent = 'Enviar experiencia';
+      submitBtn.textContent = 'Enviar por WhatsApp';
     }
   }
 
