@@ -5,6 +5,10 @@
   <meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no,viewport-fit=cover">
   <meta name="robots" content="noindex,nofollow,noarchive,nosnippet,noimageindex,max-snippet:0,max-image-preview:none">
   <meta name="googlebot" content="noindex,nofollow,noarchive,nosnippet,noimageindex,max-snippet:0,max-image-preview:none">
+  <link rel="icon" type="image/png" href="/imgs/favicon.png?v=2">
+  <link rel="shortcut icon" type="image/png" href="/imgs/favicon.png?v=2">
+  <link rel="icon" type="image/png" sizes="192x192" href="/imgs/favicon.png?v=2">
+  <link rel="apple-touch-icon" href="/imgs/favicon.png?v=2">
   <title>matirath.jpg | experiencias eventos</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -22,6 +26,12 @@
 
         <div class="form-wrap fade-target" id="form-block">
           <form id="exp-form" novalidate>
+            <section class="story-intro" aria-label="Guia del relato">
+              <p class="story-kicker">Modo curaduria</p>
+              <h2 class="story-title">Tu experiencia en formato archivo</h2>
+              <p class="story-copy">No hace falta completar todo. Con una respuesta valiosa alcanza, y mientras mas detalle sumes, mejor queda el relato.</p>
+            </section>
+
             <p class="section-label">Memoria</p>
             <div id="questions-root"></div>
 
@@ -48,6 +58,35 @@
                   <span class="question-title">Frase destacada (opcional)</span>
                   <input class="field" type="text" name="frase_destacada" maxlength="220" placeholder="Una frase que quieras dejar registrada">
                 </label>
+
+                <label style="grid-column:1/-1">
+                  <span class="question-title">Aporte libre (opcional)</span>
+                  <textarea name="comentario_libre" maxlength="1500" placeholder="Si queres sumar algo que no te pregunte arriba, escribilo aca"></textarea>
+                </label>
+              </div>
+
+              <div class="nps-block" style="margin-top:22px">
+                <p class="question-title">Que probabilidad hay de que recomiendes mi trabajo? (0 a 10)</p>
+                <div class="nps-scale" role="radiogroup" aria-label="NPS recomendacion">
+                  <label class="nps-option"><input type="radio" name="nps_recomendacion" value="0" required><span>0</span></label>
+                  <label class="nps-option"><input type="radio" name="nps_recomendacion" value="1" required><span>1</span></label>
+                  <label class="nps-option"><input type="radio" name="nps_recomendacion" value="2" required><span>2</span></label>
+                  <label class="nps-option"><input type="radio" name="nps_recomendacion" value="3" required><span>3</span></label>
+                  <label class="nps-option"><input type="radio" name="nps_recomendacion" value="4" required><span>4</span></label>
+                  <label class="nps-option"><input type="radio" name="nps_recomendacion" value="5" required><span>5</span></label>
+                  <label class="nps-option"><input type="radio" name="nps_recomendacion" value="6" required><span>6</span></label>
+                  <label class="nps-option"><input type="radio" name="nps_recomendacion" value="7" required><span>7</span></label>
+                  <label class="nps-option"><input type="radio" name="nps_recomendacion" value="8" required><span>8</span></label>
+                  <label class="nps-option"><input type="radio" name="nps_recomendacion" value="9" required><span>9</span></label>
+                  <label class="nps-option"><input type="radio" name="nps_recomendacion" value="10" required><span>10</span></label>
+                </div>
+                <p class="meta-note" style="margin-top:10px">0 = nada probable · 10 = totalmente probable</p>
+                <div class="nps-reason" id="nps-reason-wrap" hidden>
+                  <label>
+                    <span class="question-title">Por que elegiste esa puntuacion? (opcional)</span>
+                    <textarea name="nps_por_que" maxlength="1200" placeholder="Si queres, contame brevemente el motivo de tu puntuacion"></textarea>
+                  </label>
+                </div>
               </div>
 
               <div style="margin-top:22px">
@@ -100,6 +139,16 @@
         </section>
       </section>
     </main>
+
+    <div class="floating-progress" id="floating-progress" aria-live="polite">
+      <div class="floating-progress-inner">
+        <p class="floating-progress-title">Progreso del relato</p>
+        <div class="story-progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="6" aria-valuenow="0" id="questions-progress-track">
+          <span class="story-progress-fill" id="questions-progress-fill"></span>
+        </div>
+        <p class="story-progress-label" id="questions-progress-label">0/6 respuestas completas</p>
+      </div>
+    </div>
   </div>
 
   <script>

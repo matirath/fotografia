@@ -16,6 +16,11 @@
   const successBlock = document.getElementById('success-block');
   const successTitle = document.getElementById('success-title');
   const successText = document.getElementById('success-text');
+  const floatingProgress = document.getElementById('floating-progress');
+  const progressTrack = document.getElementById('questions-progress-track');
+  const progressFill = document.getElementById('questions-progress-fill');
+  const progressLabel = document.getElementById('questions-progress-label');
+  const npsReasonWrap = document.getElementById('nps-reason-wrap');
 
   const ENDPOINT_STORAGE_KEY = 'matirath_experiencias_endpoint';
   const APPS_SCRIPT_ENDPOINT = 'https://script.google.com/macros/s/AKfycby9ymEEfHKPm1j31YuEZKxhwCtgplRggoLR8lRteKUV8dge-oeV9J6DRbRr4dzrgyronQ/exec';
@@ -144,16 +149,105 @@
     questionsRoot.innerHTML = config.questions
       .map(function (q, idx) {
         const delay = 80 + idx * 70;
+        const number = String(idx + 1).padStart(2, '0');
         return '' +
           '<div class="question-block" style="animation-delay:' + delay + 'ms">' +
+            '<div class="question-head">' +
+              '<span class="question-chip">Escena ' + number + '</span>' +
+              '<span class="question-hint">Respuesta libre</span>' +
+            '</div>' +
             '<label class="question-title" for="respuesta_' + (idx + 1) + '">' + escapeHtml(q) + '</label>' +
-            '<textarea id="respuesta_' + (idx + 1) + '" name="respuesta_' + (idx + 1) + '" maxlength="1800" required></textarea>' +
+            '<textarea id="respuesta_' + (idx + 1) + '" name="respuesta_' + (idx + 1) + '" maxlength="1800"></textarea>' +
           '</div>';
       })
       .join('');
   }
 
+  function updateProgress() {
+    const questionCount = Array.isArray(config.questions) ? config.questions.length : 0;
+    if (!questionCount) return;
+
+    let completedCount = 0;
+    for (let i = 1; i <= questionCount; i += 1) {
+      const field = form.elements.namedItem('respuesta_' + i);
+      const wrapper = field && field.closest ? field.closest('.question-block') : null;
+      const answer = field ? String(field.value || '').trim() : '';
+      const isCompleted = answer.length >= MIN_ANSWER_LENGTH;
+
+      if (wrapper && wrapper.classList) {
+        wrapper.classList.toggle('answered', isCompleted);
+      }
+
+      if (isCompleted) {
+        completedCount += 1;
+      }
+    }
+
+    const percent = Math.min(100, Math.round((completedCount / questionCount) * 100));
+    const ratio = questionCount ? (completedCount / questionCount) : 0;
+
+    if (progressFill) {
+      progressFill.style.width = percent + '%';
+    }
+
+    if (floatingProgress) {
+      let state = 'low';
+      if (ratio >= 0.67) {
+        state = 'high';
+      } else if (ratio >= 0.34) {
+        state = 'mid';
+      }
+      floatingProgress.setAttribute('data-progress-state', state);
+      floatingProgress.classList.remove('is-bumping');
+      requestAnimationFrame(function () {
+        floatingProgress.classList.add('is-bumping');
+      });
+    }
+
+    if (progressTrack) {
+      progressTrack.setAttribute('aria-valuemax', String(questionCount));
+      progressTrack.setAttribute('aria-valuenow', String(completedCount));
+    }
+
+    if (progressLabel) {
+      progressLabel.textContent = completedCount + '/' + questionCount + ' respuestas completas';
+    }
+  }
+
+  function bindProgressListeners() {
+    const questionCount = Array.isArray(config.questions) ? config.questions.length : 0;
+    for (let i = 1; i <= questionCount; i += 1) {
+      const field = form.elements.namedItem('respuesta_' + i);
+      if (!field || !field.addEventListener) continue;
+      field.addEventListener('input', updateProgress);
+      field.addEventListener('blur', updateProgress);
+    }
+    updateProgress();
+  }
+
+  function toggleNpsReasonVisibility() {
+    if (!npsReasonWrap) return;
+    const hasNpsSelected = Boolean(form.querySelector('input[name="nps_recomendacion"]:checked'));
+    npsReasonWrap.hidden = !hasNpsSelected;
+    npsReasonWrap.classList.toggle('is-visible', hasNpsSelected);
+  }
+
+  function bindNpsReasonToggle() {
+    const npsRadios = form.querySelectorAll('input[name="nps_recomendacion"]');
+    npsRadios.forEach(function (radio) {
+      radio.addEventListener('change', toggleNpsReasonVisibility);
+      radio.addEventListener('input', toggleNpsReasonVisibility);
+    });
+    toggleNpsReasonVisibility();
+  }
+
   function readRequiredText(name) {
+    const field = form.elements.namedItem(name);
+    if (!field) return '';
+    return String(field.value || '').trim();
+  }
+
+  function readOptionalText(name) {
     const field = form.elements.namedItem(name);
     if (!field) return '';
     return String(field.value || '').trim();
@@ -171,25 +265,14 @@
       throw new Error('Por favor, comparti tu nombre.');
     }
 
-    const questionCount = Array.isArray(config.questions) ? config.questions.length : 0;
-    let hasAtLeastOneAnswer = false;
-    for (let i = 1; i <= questionCount; i += 1) {
-      const fieldName = 'respuesta_' + i;
-      const answer = readRequiredText(fieldName);
-      if (answer && answer.length >= MIN_ANSWER_LENGTH) {
-        hasAtLeastOneAnswer = true;
-      }
-    }
-
-    if (!hasAtLeastOneAnswer) {
-      const firstAnswerField = form.elements.namedItem('respuesta_1');
-      markInvalidField(firstAnswerField);
-      throw new Error('Con una sola respuesta ya alcanza. Completa al menos una pregunta.');
-    }
-
     const auth = form.elements.namedItem('autorizacion');
     if (!auth || !form.querySelector('input[name="autorizacion"]:checked')) {
       throw new Error('Por favor, elegi como queres figurar en caso de publicacion.');
+    }
+
+    const nps = form.querySelector('input[name="nps_recomendacion"]:checked');
+    if (!nps) {
+      throw new Error('Por favor, marca la probabilidad de recomendacion (0 a 10).');
     }
 
     const consent = form.elements.namedItem('consentimiento');
@@ -212,8 +295,8 @@
       source: 'private_landing',
       tipo_cliente: config.tipoCliente,
       nombre: readRequiredText('nombre'),
-      instagram: normalizeInstagram(form.elements.namedItem('instagram').value),
-      whatsapp: String(form.elements.namedItem('whatsapp').value || '').trim(),
+      instagram: normalizeInstagram(readOptionalText('instagram')),
+      whatsapp: readOptionalText('whatsapp'),
       autorizacion: authorization,
       respuesta_1: answers.respuesta_1,
       respuesta_2: answers.respuesta_2,
@@ -221,7 +304,10 @@
       respuesta_4: answers.respuesta_4,
       respuesta_5: answers.respuesta_5,
       respuesta_6: answers.respuesta_6,
-      frase_destacada: String(form.elements.namedItem('frase_destacada').value || '').trim(),
+      nps_recomendacion: (form.querySelector('input[name="nps_recomendacion"]:checked') || {}).value || '',
+      nps_por_que: readOptionalText('nps_por_que'),
+      frase_destacada: readOptionalText('frase_destacada'),
+      comentario_libre: readOptionalText('comentario_libre'),
       consentimiento_uso: Boolean(form.elements.namedItem('consentimiento') && form.elements.namedItem('consentimiento').checked),
       landing_key: config.tipoCliente,
       landing_path: window.location.pathname,
@@ -253,6 +339,9 @@
     successText.textContent = config.successText;
     if (hero) {
       hero.classList.add('hide');
+    }
+    if (floatingProgress) {
+      floatingProgress.classList.add('is-hidden');
     }
     formBlock.classList.add('hide');
     formBlock.style.display = 'none';
@@ -290,6 +379,21 @@
 
     if (payload.frase_destacada) {
       lines.push('Frase: \"' + payload.frase_destacada + '\"');
+      lines.push('');
+    }
+
+    if (payload.comentario_libre) {
+      lines.push('Aporte libre:');
+      lines.push(payload.comentario_libre);
+      lines.push('');
+    }
+
+    if (payload.nps_recomendacion !== '') {
+      lines.push('NPS (recomendacion 0-10): ' + payload.nps_recomendacion);
+      if (payload.nps_por_que) {
+        lines.push('Por que esa puntuacion:');
+        lines.push(payload.nps_por_que);
+      }
       lines.push('');
     }
 
@@ -336,6 +440,8 @@
 
   function bootstrap() {
     buildQuestions();
+    bindProgressListeners();
+    bindNpsReasonToggle();
     form.addEventListener('submit', onSubmit);
   }
 
